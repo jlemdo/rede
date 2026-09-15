@@ -742,6 +742,14 @@
 
 <script src="js/d2.js"></script>
 <script src="js/d2-header.js"></script>
+<!-- d2-composicion.js NO es opcional en esta pagina.
+
+     Es quien traduce data-comp-rol a data-comp-tono, y sin el tono el
+     CTA se queda con texto #333333 sobre fondo #333333: 1.00:1.
+
+     Poner el rol sin cargar el script es exactamente lo que hice en el
+     intento anterior, y por eso seguia invisible. -->
+<script src="js/d2-composicion.js"></script>
 
 </body>
 </html>
