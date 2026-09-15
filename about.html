@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Rede Energy Solutions</title>
-<meta name="description" content="Small by design, embedded by practice, and genuinely committed to the organizations we work with. Rede has been doing this since 2008.">
+<title>About Rede | Rede Energy Solutions</title>
+<meta name="description" content="Rede has been reducing building energy costs for public-sector and multi-site organisations across Western Canada since 2008.">
 
 <!-- Maqueta de trabajo interna. No debe indexarse. -->
 <meta name="robots" content="noindex, nofollow">
@@ -18,6 +18,10 @@
 <link rel="stylesheet" href="css/d2.css">
 <link rel="stylesheet" href="css/d2-variantes.css">
 <link rel="stylesheet" href="css/v1.css">
+<!-- d2-ega.css: el hero se copia de Energy Gap Analysis y sus reglas
+     viven ahi. Sin esta hoja el marcado no tiene un solo estilo. -->
+<link rel="stylesheet" href="css/d2-ega.css">
+<link rel="stylesheet" href="css/d2-about.css">
 </head>
 <body class="d2">
 
@@ -209,258 +213,339 @@
     <a href="#contact" class="btn btn--primary btn--block">Book a Call</a>
   </div>
 </header>
+<main id="contenido">
+<section class="d2-ega-hero d2-entra" data-comp-rol="hero" aria-labelledby="ab-hero-t">
+    <div class="d2-ega-hero__inner">
 
+      <div class="d2-ega-hero__copy">
+        <nav class="d2-ega-hero__migas" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">About</span>
+        </nav>
 
+        <p class="eyebrow">About Rede</p>
+        <h1 class="d2-ega-hero__titulo" id="ab-hero-t">We&rsquo;ve been doing this since 2008.</h1>
+        <p class="d2-ega-hero__lead">Small by design, embedded by practice, and genuinely committed to the organisations we work with.</p>
 
+        
 
-<!-- ==========================================================================
-     HERO
-     El copy dice que no hace falta foto aqui: el titular se sostiene solo.
-     ========================================================================== -->
-<section class="serv-hero serv-hero--corto">
-  <div class="serv-hero__inner">
-
-    <nav class="miga" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="index.html">Home</a></li>
-        <li aria-current="page">About</li>
-      </ol>
-    </nav>
-
-    <p class="eyebrow">About Rede</p>
-    <h1 class="serv-hero__titulo">We have been doing this since 2008.</h1>
-    <p class="serv-hero__lead">
-      Small by design, embedded by practice, and genuinely committed to the
-      organizations we work with.
-    </p>
-  </div>
-</section>
-
-
-<!-- ==========================================================================
-     QUIENES SOMOS
-     El brief pide encuadrar el origen como prueba de caracter, no como
-     definicion del mercado al que sirven hoy.
-     ========================================================================== -->
-<section class="origen">
-  <div class="origen__inner">
-
-    <div class="origen__texto">
-      <p class="eyebrow">Who we are</p>
-      <h2 class="origen__titulo">
-        Founded for communities that needed the work done well.
-      </h2>
-      <p class="origen__lead">
-        Rede was founded to serve Indigenous, Northern, and rural communities across
-        Western Canada, places where resources were tight and no one else was doing the
-        work. That origin shaped everything about how we operate: the relationships we
-        build, the data we rely on, and the long-term view we take.
-      </p>
-      <p class="origen__lead">
-        We have grown since then, and the organizations we work with have grown with
-        us. But the approach has not changed. We are still a small, nimble firm. We
-        still show up for the long term. We still believe the people operating the
-        buildings are essential to any energy management program worth running.
-      </p>
-      <p class="origen__lead">
-        We are engineers, but that is not all we are. We are project managers, data
-        analysts, and long-term partners who work alongside your team rather than
-        delivering a report and moving on.
-      </p>
-    </div>
-
-    <div class="ph ph--foto ph--equipo" role="img"
-         aria-label="Placeholder: Rede team on site with a client">
-      <div class="ph__icono" aria-hidden="true">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        
       </div>
-      <p class="ph__label">Team on site with a client</p>
+
+      <div class="d2-ega-hero__arte">
+        <img src="assets/img/ega/portfolio-isometrico.webp"
+             alt="A portfolio of commercial buildings with selected facilities illuminated in green"
+             width="1209" height="783" decoding="async">
+      </div>
+
     </div>
-  </div>
-</section>
-
-
+  </section>
 <!-- ==========================================================================
-     QUE NOS DIFERENCIA
-     Los tres bloques que define el brief.
+     WHO WE ARE
+
+     Va pegada al hero porque el 74% del tiempo de lectura se gasta en las
+     dos primeras pantallas (NN/g 2018, 120 participantes, mas de 130.000
+     fijaciones). Lo que hay que contar, se cuenta aqui.
+
+     Y aqui vive la profundidad de Matthew, no en su tarjeta del equipo:
+     asi las cuatro tarjetas pueden ser iguales sin que se note un hueco.
      ========================================================================== -->
-<section class="diferencia">
-  <div class="diferencia__inner">
+<section class="ab-origen d2-entra" aria-labelledby="ab-origen-t">
+  <div class="ab-origen__inner">
 
-    <div class="diferencia__intro">
-      <p class="eyebrow">What makes the difference</p>
-      <h2 class="diferencia__titulo">Three things that do not change.</h2>
-    </div>
-
-    <ul class="diferencia__lista">
-      <li class="valor">
-        <span class="valor__icono" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor"
-                  stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <h3 class="valor__titulo">Your data, your buildings, your plan</h3>
-        <p class="valor__texto">
-          We do not apply a generic program and hope it fits. Every engagement starts
-          with what is actually happening in your portfolio.
-        </p>
-      </li>
-
-      <li class="valor">
-        <span class="valor__icono" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3"
-                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <h3 class="valor__titulo">Embedded for the long term</h3>
-        <p class="valor__texto">
-          Energy management requires sustained attention, and that means a partner who
-          stays engaged for as long as the relationship is useful.
-        </p>
-      </li>
-
-      <li class="valor">
-        <span class="valor__icono" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
-                  stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <h3 class="valor__titulo">Data first, always</h3>
-        <p class="valor__texto">
-          Every recommendation we make is grounded in building performance data. If we
-          cannot measure it, we will not claim it.
-        </p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ==========================================================================
-     EL EQUIPO
-     ⚠ El brief avisa: todas las bios deben actualizarse antes de publicar, y
-     falta desarrollar la del cuarto integrante.
-     ========================================================================== -->
-<section class="equipo">
-  <div class="equipo__inner">
-
-    <div class="equipo__intro">
-      <p class="eyebrow">Meet the team</p>
-      <h2 class="equipo__titulo">More than engineers.</h2>
-      <p class="equipo__lead">
-        Rede is a small team of engineers and energy efficiency professionals. We
-        specialize in institutional facilities and complex building environments, and
-        we care about the organizations and communities we work with.
+    <div class="ab-origen__texto">
+      <p class="eyebrow">Who we are</p>
+      <h2 class="ab-origen__titulo" id="ab-origen-t">Founded for communities that needed the work done well.</h2>
+      <p>
+        Rede was founded to serve Indigenous, Northern, and rural communities across
+        Western Canada &mdash; places where resources were tight and no one else was
+        doing the work. That origin shaped everything about how we operate: the
+        relationships we build, the data we rely on, the long-term view we take.
+      </p>
+      <p>
+        We&rsquo;ve grown since then, and the organisations we work with have grown
+        with us. But the approach hasn&rsquo;t changed. We&rsquo;re still a small,
+        nimble firm. We still show up for the long term. We still believe that the
+        people operating the buildings are essential to any energy management
+        program worth running.
       </p>
     </div>
 
-    <ul class="personas personas--cuatro">
-      <li class="persona">
-        <div class="ph ph--retrato" role="img" aria-label="Placeholder: portrait of Matthew Redekopp">
-          <span class="ph__iniciales" aria-hidden="true">MR</span>
+    <div class="ab-origen__arte">
+      <!-- LOS ANILLOS: un aro por ano, de 2008 a 2026.
+
+           Es el gesto de esta pagina y no repite ninguno de los dos que ya
+           existen: la de acceso tiene una senal que VIAJA, la de contacto
+           un campo que REVELA. Aqui la figura SE ACUMULA.
+
+           El radio crece por raiz --exponente .62-- y no linealmente: con
+           crecimiento lineal los primeros anos se apinan en el centro y
+           los ultimos quedan sueltos. Asi se lee como un tronco.
+
+           pathLength="100" normaliza cada aro, de modo que los diecinueve
+           comparten la misma animacion aunque midan distinto. -->
+      <svg class="ab-anillos" viewBox="0 0 320 320" fill="none" role="img"
+           aria-label="Diagram: one ring for each year Rede has been working, from 2008 to 2026.">
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="18.0" pathLength="100" style="--i:0"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="39.7" pathLength="100" style="--i:1"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="51.3" pathLength="100" style="--i:2"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="60.8" pathLength="100" style="--i:3"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="69.2" pathLength="100" style="--i:4"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="76.8" pathLength="100" style="--i:5"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="83.8" pathLength="100" style="--i:6"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="90.4" pathLength="100" style="--i:7"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="96.6" pathLength="100" style="--i:8"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="102.6" pathLength="100" style="--i:9"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="108.3" pathLength="100" style="--i:10"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="113.8" pathLength="100" style="--i:11"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="119.1" pathLength="100" style="--i:12"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="124.2" pathLength="100" style="--i:13"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="129.2" pathLength="100" style="--i:14"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="134.1" pathLength="100" style="--i:15"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="138.8" pathLength="100" style="--i:16"/>
+        <circle class="ab-anillos__aro" cx="160" cy="160" r="143.5" pathLength="100" style="--i:17"/>
+        <circle class="ab-anillos__aro ab-anillos__aro--hoy" cx="160" cy="160" r="148.0" pathLength="100" style="--i:18"/>
+
+        <line class="ab-anillos__eje" x1="160" y1="160" x2="160" y2="12"/>
+        <text class="ab-anillos__marca" x="160" y="176" text-anchor="middle" style="--i:0">2008</text>
+        <text class="ab-anillos__marca ab-anillos__marca--hoy" x="160" y="8"
+              text-anchor="middle" style="--i:18">2026</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     MORE THAN ENGINEERS
+
+     Seccion propia y no fundida con el equipo: el copy del cliente las trae
+     separadas, y hacen cosas distintas. Esta dice QUE SOMOS; la del equipo
+     dice QUIENES SOMOS.
+
+     Los cuatro oficios van en lista y no en el parrafo: el copy dice
+     "somos ingenieros, pero no solo eso", y una lista lo ENSENA en vez de
+     repetirlo.
+     ========================================================================== -->
+<section class="ab-mas d2-entra" aria-labelledby="ab-mas-t">
+  <div class="ab-mas__inner">
+
+    <div>
+      <p class="eyebrow">More than engineers</p>
+      <h2 class="ab-mas__titulo" id="ab-mas-t">We&rsquo;re engineers, but that&rsquo;s not all we are.</h2>
+    </div>
+
+    <div class="ab-mas__texto">
+      <p>
+        We&rsquo;re project managers, data analysts, and long-term partners who work
+        alongside your team rather than delivering a report and moving on.
+      </p>
+      <p>
+        That distinction matters, especially for organisations that have been let
+        down by firms that did exactly that.
+      </p>
+
+      <ul class="ab-oficios">
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          </svg>
+          Engineers
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 19.5V11M9.5 19.5V5M15 19.5v-6M20.5 19.5V8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Data analysts
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Project managers
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/>
+          </svg>
+          Long-term partners
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<section class="d2-equipo-banda" aria-labelledby="eq-banda-titulo">
+
+      <!-- El trazado de circuito del fondo. Decorativo. -->
+      <svg class="d2-equipo-banda__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120H210L280 50H520M1440 90H1180L1120 150H860"/>
+        <path d="M120 620V470H330L400 400H610"/>
+        <path d="M1440 540H1150L1080 470H900"/>
+        <circle cx="280" cy="50" r="5"/>
+        <circle cx="1120" cy="150" r="5"/>
+        <circle cx="400" cy="400" r="5"/>
+        <circle cx="1080" cy="470" r="5"/>
+      </svg>
+
+      <div class="d2-equipo-banda__inner">
+
+        <div class="d2-equipo-banda__cabecera">
+          <p class="d2-equipo-banda__eyebrow">The Rede team</p>
+          <h2 class="d2-equipo-banda__titulo" id="eq-banda-titulo">Meet the team.</h2>
+          <p class="d2-equipo-banda__lead">
+            Rede is a small team of engineers and energy efficiency professionals.
+            We specialise in institutional facilities and complex building environments,
+            and we care about the organisations and communities we work with.
+          </p>
         </div>
-        <h3 class="persona__nombre">Matthew Redekopp</h3>
-        <p class="persona__credenciales">P.Eng., CEM, LEED AP</p>
-        <p class="persona__cargo">Founder and CEO</p>
-        <p class="persona__bio">
-          Matthew founded Rede in 2008 to serve Indigenous, Northern, and rural
-          communities that larger engineering firms were not reaching. Nearly two
-          decades later, he leads a team that has helped organizations across Western
-          Canada reduce their energy costs.
+
+        <ol class="d2-equipo-banda__lista">
+
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">01</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
+              <picture>
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/matthew.jpg" alt="Matthew Redekopp"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/matthew-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+              </picture>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Matthew Redekopp, P.Eng., CEM</h3>
+            <p class="d2-equipo-banda__cargo">Owner and Mechanical Engineer</p>
+          </li>
+
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">02</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
+              <picture>
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/marco.jpg" alt="Marco Bieri"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/marco-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+              </picture>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Marco Bieri, P.Eng., M.Eng, MSc, CEM</h3>
+            <p class="d2-equipo-banda__cargo">Senior Energy Efficiency Engineer</p>
+          </li>
+
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">03</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
+              <picture>
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/erica.jpg" alt="Erica Letchford"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/erica-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+              </picture>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Erica Letchford, BID, LEED AP</h3>
+            <p class="d2-equipo-banda__cargo">Director of Operations</p>
+          </li>
+
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">04</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
+              <picture>
+                <img src="assets/img/equipo/enrique.png" alt="Enrique Contreras"
+                     width="400" height="400" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Enrique Contreras, SD MSc (Cand.)</h3>
+            <p class="d2-equipo-banda__cargo">Certified Sustainability &amp; Cleantech Specialist</p>
+          </li>
+
+        </ol>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ======================================================================
+       OPCION 3 — FIRMA
+       Eje: la credencial deja de ser un atributo de cada persona y pasa a
+       ser una propiedad de la FIRMA. Un retrato destacado (el fundador, que
+       es quien tiene la historia de 2008) ocupa la izquierda; los otros dos
+       van en una columna estrecha a la derecha; y todas las credenciales
+       del equipo se recogen en una sola linea al pie de la seccion.
+
+       Es lo mismo que hace la portada de una propuesta: una cara, un
+       parrafo, y las siglas del equipo juntas debajo. Ninguna credencial
+       se pierde -- cambian de dueño, del individuo al conjunto.
+       ====================================================================== -->
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 3: Signature">
+    
+<!-- ==========================================================================
+     WHY REDE
+
+     Los tres del copy del cliente, en rejilla. Cada caja lleva el filete
+     verde arriba: el mismo gesto que la tarjeta de acceso y la ficha del
+     FAQ, que es la marca de "esto es una pieza de Rede".
+     ========================================================================== -->
+<section class="ab-porque d2-entra" aria-labelledby="ab-porque-t">
+  <div class="ab-porque__inner">
+
+    <div class="ab-porque__cab">
+      <p class="eyebrow">What makes the difference</p>
+      <h2 class="ab-porque__titulo" id="ab-porque-t">Why Rede</h2>
+    </div>
+
+    <ul class="ab-porque__lista">
+      <li class="ab-caja" style="--i:0">
+        <span class="ab-caja__n">01</span>
+        <h3 class="ab-caja__titulo">Your data, your buildings, your plan</h3>
+        <p class="ab-caja__texto">
+          We don&rsquo;t apply a generic program and hope it fits. Every engagement
+          starts with what&rsquo;s actually happening in your portfolio.
         </p>
       </li>
-
-      <li class="persona">
-        <div class="ph ph--retrato" role="img" aria-label="Placeholder: portrait of Marco Bieri">
-          <span class="ph__iniciales" aria-hidden="true">MB</span>
-        </div>
-        <h3 class="persona__nombre">Marco Bieri</h3>
-        <p class="persona__credenciales">P.Eng., M.Eng., M.Sc., CEM</p>
-        <p class="persona__cargo">Energy Efficiency Engineer</p>
-        <p class="persona__bio">
-          Marco brings deep expertise in recommissioning, energy auditing, and building
-          performance diagnostics, along with a rigorous approach to data analysis and
-          measurement verification.
+      <li class="ab-caja" style="--i:1">
+        <span class="ab-caja__n">02</span>
+        <h3 class="ab-caja__titulo">Embedded for the long term</h3>
+        <p class="ab-caja__texto">
+          Energy management requires sustained attention, and that means a partner
+          who stays engaged. We work alongside your team, at whatever cadence makes
+          sense, for as long as the relationship is useful.
         </p>
       </li>
-
-      <li class="persona">
-        <div class="ph ph--retrato" role="img" aria-label="Placeholder: portrait of Erica Letchford">
-          <span class="ph__iniciales" aria-hidden="true">EL</span>
-        </div>
-        <h3 class="persona__nombre">Erica Letchford</h3>
-        <p class="persona__credenciales">BID, LEED AP</p>
-        <p class="persona__cargo">Director of Operations</p>
-        <p class="persona__bio">
-          Erica has spent nearly two decades working to reduce energy consumption and
-          operating costs in residential, commercial, and institutional facilities. She
-          brings a background in sustainable design and a project manager's instinct for
-          keeping the big picture in view.
-        </p>
-      </li>
-
-      <li class="persona persona--pendiente">
-        <div class="ph ph--retrato" role="img" aria-label="Placeholder: portrait pending">
-          <span class="ph__iniciales" aria-hidden="true">?</span>
-        </div>
-        <h3 class="persona__nombre">New team member</h3>
-        <p class="persona__credenciales">Credentials to be confirmed</p>
-        <p class="persona__cargo">Title to be confirmed</p>
-        <p class="persona__bio">
-          Bio to be developed. The brief flags this as required before the page goes
-          live.
+      <li class="ab-caja" style="--i:2">
+        <span class="ab-caja__n">03</span>
+        <h3 class="ab-caja__titulo">Data first, always</h3>
+        <p class="ab-caja__texto">
+          Every recommendation we make is grounded in building performance data. If
+          we can&rsquo;t measure it, we won&rsquo;t claim it.
         </p>
       </li>
     </ul>
+
   </div>
 </section>
 
-
 <!-- ==========================================================================
-     CTA FINAL
+     EL CIERRE
+
+     Una pregunta corta que sigue del contenido, no una descarga con
+     formulario. Es lo que hacen las dos mejores paginas de la muestra; la
+     peor termina pidiendo nombre y correo justo despues de hablar de
+     valores.
      ========================================================================== -->
-<section class="cta-final">
-  <div class="cta-final__inner">
-    <h2 class="cta-final__titulo">We would love to talk about how we might help.</h2>
-    <p class="cta-final__texto">
-      No pressure and no obligation. Tell us about your buildings and we will tell you
-      whether there is something worth looking at.
-    </p>
-    <div class="cta-final__acciones">
-      <a href="contact.html" class="btn btn--primary btn--lg">
-        Book a call
-        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="index.html#calculator" class="btn btn--outline btn--lg">
-        Check your opportunity
-        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+<section class="ab-cierre d2-entra">
+  <div class="ab-cierre__inner">
+    <h2 class="ab-cierre__titulo">Want to talk about your buildings?</h2>
+    <div class="ab-cierre__acciones">
+      <a class="d2-btn d2-btn--solido" href="contact.html">Get in touch <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="d2-btn d2-btn--linea" href="energy-gap-analysis.html">See the Gap Analysis <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
+</main>
 
-
-<!-- ==========================================================================
-     FOOTER
-     ========================================================================== -->
 <footer class="d2-pie-dir">
       <div class="d2-pie-dir__inner">
 
@@ -535,8 +620,8 @@
       </div>
     </footer>
 
-<script src="js/main.js"></script>
 <script src="js/d2.js"></script>
 <script src="js/d2-header.js"></script>
+
 </body>
 </html>

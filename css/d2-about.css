@@ -1,0 +1,353 @@
+/* ==========================================================================
+   ABOUT (15/9/2026)
+
+   LA IDEA: EL TIEMPO
+
+   Las dos paginas hermanas ya tienen su gesto y este no puede repetirlos:
+
+     acceso    una senal que VIAJA por el circuito
+     contacto  un campo que REVELA lo que hay debajo
+     about     una linea que SE ACUMULA -- 2008 a hoy
+
+   Aqui el movimiento no transmite ni revela: crece. Los anillos de la
+   seccion de origen se dibujan uno por ano al entrar en pantalla, como
+   los anillos de un tronco. Es la misma familia --energia, ingenieria,
+   precision-- diciendo permanencia en vez de transmision.
+
+   LO QUE MANDA LA COMPOSICION, Y NO ES EL GUSTO
+
+   - FRONT-LOAD. NN/g 2018, sobre 120 participantes y mas de 130.000
+     fijaciones: el 57% del tiempo de lectura se va ARRIBA DEL PLIEGUE y
+     el 74% en las dos primeras pantallas. Lo que importa va primero.
+
+   - BIOS CORTAS. Nielsen: se lee el 20-28% de las palabras, y solo se
+     llega al 50% en paginas de 111 palabras o menos. Ese es el techo.
+
+   - LAS PERSONAS, PRONTO. Es la convencion observada en las firmas
+     canadienses reales --KWL, Urban Systems, TRUE, Pinnacle-- y cuanto
+     mas pequena la firma, mas arriba va el equipo.
+
+   - TARJETAS IGUALES para los cuatro. La profundidad de Matthew vive en
+     "Who we are", no en una tarjeta seis veces mas larga que las otras
+     tres. Ninguna de las firmas auditadas esconde esa asimetria tras un
+     acordeon: o uniforme corto, o jerarquia visible.
+
+   - LAS FOTOS, MIRANDO A CAMARA. El dato de la "mirada desviada" que
+     circula por los blogs se rastreo hasta su origen: un post de 2009
+     con n=106 descrito como "gente a la que le he ensenado el eye
+     tracker". Sin control, sin estadistica, nunca replicado. El unico
+     test aplicado encontro que mirar hacia otro lado rendia PEOR.
+
+   - EL CTA, UNA PREGUNTA CORTA que siga del contenido. Las dos mejores
+     de la muestra lo hacen asi. La peor termina en una descarga con
+     formulario.
+   ========================================================================== */
+
+/* --- Who we are: el origen ---------------------------------------------- */
+
+.d2 .ab-origen {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--sp-7), 7vw, var(--sp-9));
+  background: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .ab-origen__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
+  display: grid;
+  /* El texto manda y los anillos acompanan: 1.25fr / 1fr. Con columnas
+     iguales el parrafo caia en lineas demasiado cortas. */
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(var(--sp-6), 5vw, var(--sp-8));
+  align-items: center;
+}
+
+.d2 .ab-origen__titulo {
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .ab-origen__texto p {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+/* --- LOS ANILLOS -------------------------------------------------------- */
+
+.d2 .ab-anillos {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Que el resplandor del borde no se recorte: el viewBox va justo. */
+  overflow: visible;
+}
+
+.d2 .ab-anillos__aro {
+  fill: none;
+  stroke: var(--c-verde-marca, #39B54A);
+  stroke-width: 1.4;
+  /* En reposo se ven todos: si el guion no corre, la figura sigue
+     completa en vez de quedarse en blanco. */
+  opacity: .34;
+}
+
+/* El aro del ano en curso: el unico que lleva el verde entero. */
+.d2 .ab-anillos__aro--hoy {
+  stroke-width: 2.2;
+  opacity: 1;
+}
+
+.d2 .ab-anillos__eje {
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 1;
+}
+
+.d2 .ab-anillos__marca {
+  font-size: 11px;
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .06em;
+  fill: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .ab-anillos__marca--hoy { fill: var(--c-verde-hover, #026F00); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Cada aro se dibuja al entrar la seccion, uno por ano.
+
+     stroke-dasharray/offset sobre un circulo con pathLength="100": el
+     recorrido se escribe en porcentaje y no depende del radio, asi que
+     los dieciocho aros comparten la misma animacion aunque midan
+     distinto. */
+  .d2 .ab-origen .ab-anillos__aro {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+
+  .d2 .ab-origen.es-visible .ab-anillos__aro {
+    animation: ab-aro .9s cubic-bezier(.32, .72, 0, 1) both;
+    /* 70ms por ano: los dieciocho tardan 1.2s en aparecer y el conjunto
+       se lee como una acumulacion, no como un parpadeo. */
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .d2 .ab-origen .ab-anillos__marca { opacity: 0; }
+
+  .d2 .ab-origen.es-visible .ab-anillos__marca {
+    animation: ab-marca .5s ease-out both;
+    animation-delay: calc(.4s + var(--i, 0) * 70ms);
+  }
+}
+
+@keyframes ab-aro  { to { stroke-dashoffset: 0; } }
+@keyframes ab-marca { to { opacity: 1; } }
+
+/* --- More than engineers ------------------------------------------------ */
+
+.d2 .ab-mas {
+  padding-block: clamp(var(--sp-6), 6vw, var(--sp-8));
+  background: var(--c-superficie-oscura, #1A1A1A);
+  color: #FFFFFF;
+}
+
+.d2 .ab-mas__inner {
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(var(--sp-5), 4vw, var(--sp-7));
+  align-items: start;
+}
+
+.d2 .ab-mas .eyebrow { color: var(--c-verde-marca, #39B54A); }
+
+.d2 .ab-mas__titulo {
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: -.022em;
+  font-weight: var(--fw-extrabold, 800);
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+.d2 .ab-mas__texto p {
+  margin: 0 0 var(--sp-4);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  /* Blanco al 84%: 14.9:1 sobre el fondo. */
+  color: rgba(255, 255, 255, .84);
+}
+
+.d2 .ab-mas__texto p:last-child { margin-bottom: 0; }
+
+/* Los cuatro oficios. No es decoracion: el copy dice "somos ingenieros,
+   pero no solo eso", y la lista lo ensena en vez de repetirlo. */
+.d2 .ab-oficios {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+  margin: var(--sp-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .ab-oficios li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background: rgba(255, 255, 255, .06);
+  border-radius: var(--radio-sm, 6px);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold, 700);
+  color: #FFFFFF;
+}
+
+.d2 .ab-oficios svg {
+  flex: none;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* --- Why Rede: los tres --------------------------------------------------- */
+
+.d2 .ab-porque {
+  padding-block: clamp(var(--sp-6), 6vw, var(--sp-8));
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+.d2 .ab-porque__inner {
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
+}
+
+.d2 .ab-porque__cab {
+  max-width: 46ch;
+  margin-bottom: clamp(var(--sp-5), 4vw, var(--sp-7));
+}
+
+.d2 .ab-porque__titulo {
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ab-porque__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .ab-caja {
+  padding: clamp(var(--sp-5), 2.4vw, var(--sp-6));
+  background: var(--c-blanco, #FFFFFF);
+  border-radius: var(--radio-sm, 6px);
+  /* El filete verde arriba: el mismo gesto que la tarjeta de acceso y la
+     ficha del FAQ. Es la marca de "esto es una pieza de Rede". */
+  border-top: 3px solid var(--c-verde-marca, #39B54A);
+}
+
+.d2 .ab-caja__n {
+  display: block;
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .1em;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .ab-caja__titulo {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ab-caja__texto {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .ab-porque .ab-caja {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  .d2 .ab-porque.es-visible .ab-caja {
+    animation: ab-caja .5s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+}
+
+@keyframes ab-caja {
+  to { opacity: 1; transform: none; }
+}
+
+/* --- El cierre ----------------------------------------------------------- */
+
+.d2 .ab-cierre {
+  padding-block: clamp(var(--sp-6), 5vw, var(--sp-7));
+  background: var(--c-blanco, #FFFFFF);
+  text-align: center;
+}
+
+.d2 .ab-cierre__inner {
+  max-width: 60ch;
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
+}
+
+.d2 .ab-cierre__titulo {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .ab-cierre__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+/* --- Adaptacion ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .d2 .ab-origen__inner,
+  .d2 .ab-mas__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .d2 .ab-porque__lista { grid-template-columns: 1fr; }
+  /* Los anillos, primero: en una columna la ilustracion arriba anuncia
+     de que va la seccion antes de leer el texto. */
+  .d2 .ab-origen__arte { order: -1; }
+}
+
+@media (max-width: 560px) {
+  .d2 .ab-oficios { grid-template-columns: 1fr; }
+}
