@@ -632,3 +632,35 @@
 @media (max-width: 900px) {
   .d2 .run-hero .d2-ega-hero__arte { order: 0; }
 }
+
+
+/* ==========================================================================
+   RUN — LA VISTA DE INSTALACION (15/9/2026)
+
+   Sustituye al hueco de video de la seccion The Platform.
+
+   El pie no es decorativo: la imagen es un panel denso y el visitante
+   necesita una frase que diga QUE esta mirando antes de intentar leer
+   los ejes. Sin el, un grafico de seis series se lee como ruido.
+   ========================================================================== */
+
+.d2 .plataforma__vista {
+  margin: 0;
+}
+
+.d2 .plataforma__vista img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radio-sm, 6px);
+  /* El borde separa el panel del fondo: la captura es casi blanca y sin
+     el se funde con la pagina. */
+  border: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .plataforma__vista figcaption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}

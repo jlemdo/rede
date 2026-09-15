@@ -342,14 +342,28 @@
       </p>
     </div>
 
-    <div class="ph ph--video" role="img" aria-label="Placeholder: RUN portfolio summary view">
-      <span class="ph__play" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M8 5.5v13l10-6.5-10-6.5z" fill="currentColor"/>
-        </svg>
-      </span>
-      <p class="ph__label">RUN portfolio summary</p>
-    </div>
+    <!-- EL PANEL DE UNA INSTALACION
+
+           Sustituye al hueco de video. Mismo criterio que el hero: dos
+           recortes, cada uno con lo que se lee a su ancho.
+
+             escritorio  el panel sin la barra lateral de filtros
+             movil       solo el grafico de arriba, "Energy by Month" por
+                         ano. El de abajo tiene sesenta columnas y a
+                         390px es ruido, no informacion.
+
+           El <img> lleva la version de movil como respaldo. -->
+      <figure class="plataforma__vista">
+        <picture>
+          <source media="(min-width: 901px)"
+                  srcset="assets/img/run/run-facility-escritorio.webp"
+                  width="1200" height="845">
+          <img src="assets/img/run/run-facility-movil.webp"
+               alt="RUN showing monthly energy use for one school across six years, with average energy cost overlaid"
+               width="900" height="353" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Monthly cost and use for a single facility, compared year over year.</figcaption>
+      </figure>
   </div>
 </section>
 
