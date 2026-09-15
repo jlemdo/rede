@@ -1,0 +1,264 @@
+/* ==========================================================================
+   ENERGY GAP ANALYSIS — EL RANKING (15/9/2026)
+
+   Va entre el hero y la calculadora: primero se ensena QUE se recibe y
+   despues se ofrece calcularlo.
+
+   EL FONDO ES EL VERDE DE LA CASA
+
+   #1A5121, el mismo de la banda del equipo. No es un color nuevo: el
+   comentario del sistema lo describe como "verde de marca al 45% sobre
+   negro", y ya vive en una seccion entera del sitio.
+
+   Contrastes medidos sobre el:
+
+     titular y nombres  #FFFFFF ... 9.36:1
+     el parrafo         #D1D1D1 ... 6.13:1
+     eyebrow y numeros  #B0E1B7 ... 6.38:1
+     la barra llena     #6BE873 ... 5.98:1
+
+   LA ANIMACION: LAS BARRAS CRECEN
+
+   Es lo que el usuario pidio, y ademas es lo unico que tiene sentido
+   animar aqui: la barra ES el dato, asi que verla crecer es ver la
+   medida formarse.
+
+   Solo transform, que es lo que el compositor puede animar sin
+   recalcular la pagina. Animar `width` obligaria a un reflow por
+   fotograma y por barra.
+
+   El truco: la barra se dibuja al ancho final y se escala en X desde
+   cero con transform-origin a la izquierda. Asi el navegador nunca
+   recalcula nada.
+   ========================================================================== */
+
+.d2 .ega-rank {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--sp-7), 7vw, var(--sp-9));
+  background: #1A5121;
+  color: #FFFFFF;
+}
+
+.d2 .ega-rank__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
+  display: grid;
+  /* El texto a la izquierda y el panel a la derecha. .92fr/1fr: el panel
+     lleva seis filas con barra y necesita el ancho. */
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
+  gap: clamp(var(--sp-6), 5vw, var(--sp-8));
+  align-items: center;
+}
+
+/* --- La columna de texto ------------------------------------------------ */
+
+.d2 .ega-rank .eyebrow { color: #B0E1B7; }
+
+.d2 .ega-rank__titulo {
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-h1);
+  line-height: 1.06;
+  letter-spacing: -.028em;
+  font-weight: var(--fw-extrabold, 800);
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+.d2 .ega-rank__lead {
+  margin: var(--sp-5) 0 0;
+  max-width: 42ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.65;
+  color: #D1D1D1;
+}
+
+/* --- El panel ------------------------------------------------------------ */
+
+.d2 .ega-rank__eti {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: var(--ls-eyebrow, .08em);
+  text-transform: uppercase;
+  color: #B0E1B7;
+}
+
+.d2 .ega-rank__sub {
+  margin: var(--sp-2) 0 var(--sp-5);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: #D1D1D1;
+}
+
+.d2 .ega-rank__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada fila: numero, icono, nombre y barra. La barra se lleva el resto
+   del ancho con 1fr. */
+.d2 .ega-rank__fila {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 12rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(var(--sp-3), 1.6vw, var(--sp-4));
+  padding-block: var(--sp-4);
+  border-top: 1px solid rgba(176, 225, 183, .22);
+}
+
+.d2 .ega-rank__fila:first-child { border-top: 0; padding-top: 0; }
+
+.d2 .ega-rank__n {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1;
+  /* tabular-nums: sin esto el 01 y el 06 miden distinto y la columna
+     baila. */
+  font-variant-numeric: tabular-nums;
+  /* Los tres primeros en blanco, los otros tres apagados: la jerarquia
+     del ranking se lee antes de leer las barras. */
+  color: rgba(176, 225, 183, .55);
+}
+
+.d2 .ega-rank__fila.es-alto .ega-rank__n { color: #FFFFFF; }
+
+/* 46px y no 38: a 38 el dibujo isometrico se convertia en una mancha.
+   Estos iconos tienen tres o cuatro lineas cruzadas y necesitan sitio
+   para leerse como un edificio. */
+.d2 .ega-rank__icono {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding-left: var(--sp-4);
+  border-left: 1px solid rgba(176, 225, 183, .28);
+  color: rgba(255, 255, 255, .8);
+}
+
+.d2 .ega-rank__icono svg {
+  width: 100%;
+  height: 100%;
+  /* El trazo, mas fino de lo normal: a 46px con 1.1 las lineas se tocan
+     en las esquinas del isometrico. */
+  stroke-width: 1;
+}
+
+.d2 .ega-rank__fila.es-alto .ega-rank__icono { color: #FFFFFF; }
+
+.d2 .ega-rank__nombre {
+  font-size: var(--fs-small);
+  line-height: 1.3;
+  color: rgba(255, 255, 255, .88);
+}
+
+.d2 .ega-rank__fila.es-alto .ega-rank__nombre { color: #FFFFFF; }
+
+/* La barra. La pista va mas clara que el fondo para que se vea donde
+   acaba: sobre #1A5121 un verde mas oscuro se perderia. */
+.d2 .ega-rank__barra {
+  position: relative;
+  display: block;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(176, 225, 183, .18);
+  overflow: hidden;
+}
+
+/* El relleno se dibuja al ANCHO FINAL y se escala desde cero. Animar
+   `width` seria un reflow por fotograma y por barra; con transform el
+   trabajo se queda en el compositor. */
+.d2 .ega-rank__lleno {
+  display: block;
+  width: var(--pct, 50%);
+  height: 100%;
+  border-radius: 2px;
+  background: rgba(209, 209, 209, .75);
+  transform-origin: left center;
+}
+
+/* Las tres primeras, en el verde claro: son las que hay que mirar. */
+.d2 .ega-rank__fila.es-alto .ega-rank__lleno { background: #6BE873; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .ega-rank .ega-rank__lleno { transform: scaleX(0); }
+
+  .d2 .ega-rank.es-visible .ega-rank__lleno {
+    animation: ega-rank-crece .85s cubic-bezier(.32, .72, 0, 1) both;
+    /* 90ms por fila: las seis tardan medio segundo en arrancar y el
+       conjunto se lee de arriba abajo, como se lee un ranking. */
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  /* El numero y el nombre entran con su barra, no antes. */
+  .d2 .ega-rank .ega-rank__fila > :not(.ega-rank__barra) { opacity: 0; }
+
+  .d2 .ega-rank.es-visible .ega-rank__fila > :not(.ega-rank__barra) {
+    animation: ega-rank-entra .45s ease-out both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+}
+
+@keyframes ega-rank-crece { to { transform: scaleX(1); } }
+@keyframes ega-rank-entra { to { opacity: 1; } }
+
+/* --- El pie del panel ---------------------------------------------------- */
+
+.d2 .ega-rank__pie {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px solid rgba(176, 225, 183, .22);
+  text-align: center;
+}
+
+.d2 .ega-rank__pie-eti {
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: var(--ls-eyebrow, .08em);
+  text-transform: uppercase;
+  color: #B0E1B7;
+}
+
+.d2 .ega-rank__pie-txt {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: #FFFFFF;
+}
+
+/* El aviso de que la muestra es ilustrativa. Va pequeno pero VA: al lado
+   de nombres de edificio reales, una barra sin aviso se lee como un dato
+   medido. Es la misma linea que se siguio con el mapa de barrios. */
+.d2 .ega-rank__aviso {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(209, 209, 209, .72);
+}
+
+/* --- Adaptacion ---------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .d2 .ega-rank__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
+}
+
+@media (max-width: 620px) {
+  /* El icono se va: con el ancho justo, la barra necesita el sitio. */
+  .d2 .ega-rank__icono { display: none; }
+  .d2 .ega-rank__fila {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "n nombre"
+      "barra barra";
+    gap: var(--sp-2) var(--sp-3);
+  }
+  .d2 .ega-rank__n      { grid-area: n; }
+  .d2 .ega-rank__nombre { grid-area: nombre; }
+  .d2 .ega-rank__barra  { grid-area: barra; }
+}
