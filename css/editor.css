@@ -1,0 +1,233 @@
+/* ==========================================================================
+   EDITOR DE TEXTOS
+
+   Solo se aplica cuando el modo edicion esta activo. Nada de esto afecta al
+   sitio normal.
+
+   Archivo TEMPORAL: se borra entero al pasar a WordPress.
+   ========================================================================== */
+
+/* --- Texto editable ------------------------------------------------------ */
+
+.modo-edicion .editable {
+  position: relative;
+  cursor: text;
+  border-radius: 3px;
+  transition: background-color 140ms ease, box-shadow 140ms ease;
+}
+
+.modo-edicion .editable:hover {
+  background: rgba(2, 139, 0, .07);
+  box-shadow: 0 0 0 3px rgba(2, 139, 0, .07);
+}
+
+/* Sobre fondo oscuro el resalte debe ser mas claro, no mas verde */
+.modo-edicion .prueba-sec .editable:hover,
+.modo-edicion .calc__panel .editable:hover,
+.modo-edicion .pie .editable:hover,
+.modo-edicion .nivel--destacado .editable:hover,
+.modo-edicion .cierre .editable:hover {
+  background: rgba(255, 255, 255, .1);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .1);
+}
+
+/* Mientras se escribe */
+.modo-edicion .editable.editando {
+  background: rgba(2, 139, 0, .1);
+  box-shadow: 0 0 0 2px var(--c-verde);
+  outline: none;
+}
+
+.modo-edicion .prueba-sec .editable.editando,
+.modo-edicion .calc__panel .editable.editando,
+.modo-edicion .pie .editable.editando,
+.modo-edicion .nivel--destacado .editable.editando,
+.modo-edicion .cierre .editable.editando {
+  background: rgba(255, 255, 255, .12);
+  box-shadow: 0 0 0 2px var(--c-verde-marca);
+}
+
+/* Marca discreta en lo ya cambiado */
+.modo-edicion .editable.editado::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 7px;
+  height: 7px;
+  background: var(--c-verde);
+  border-radius: 50%;
+}
+
+/* Los botones no deben navegar mientras se edita */
+.modo-edicion a.editable { pointer-events: auto; }
+.modo-edicion a.editable.editando { pointer-events: none; }
+
+
+/* --- Barra de control ---------------------------------------------------- */
+
+.barra-edicion {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  padding: 0.875rem 1.25rem;
+  font-family: var(--font-base);
+  color: #fff;
+  background: #1A1A1A;
+  border-top: 2px solid var(--c-verde);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .18);
+}
+
+.barra-edicion__info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.barra-edicion__info strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca);
+  white-space: nowrap;
+}
+
+.barra-edicion__info span {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, .6);
+}
+
+.barra-edicion__acciones {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.barra-edicion__cuenta {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, .5);
+  white-space: nowrap;
+}
+
+.barra-edicion button,
+.barra-edicion a {
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.barra-edicion button:hover,
+.barra-edicion a:hover {
+  background: rgba(255, 255, 255, .18);
+  border-color: rgba(255, 255, 255, .35);
+}
+
+#ed-publicar {
+  color: #fff;
+  background: var(--c-verde);
+  border-color: var(--c-verde);
+}
+
+#ed-publicar:hover {
+  background: var(--c-verde-hover);
+  border-color: var(--c-verde-hover);
+}
+
+.barra-edicion .es-riesgo { color: rgba(255, 255, 255, .55); }
+.barra-edicion .es-riesgo:hover { color: #FF8080; border-color: rgba(255, 128, 128, .4); }
+
+/* La barra no debe tapar el final de la pagina */
+.modo-edicion { padding-bottom: 76px; }
+
+
+/* --- Avisos -------------------------------------------------------------- */
+
+.aviso-edicion {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  translate: -50% 0;
+  z-index: 10000;
+
+  max-width: min(90vw, 460px);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-base);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #fff;
+  background: #1A1A1A;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .28);
+  animation: aviso-entra 260ms ease;
+}
+
+.aviso-edicion.se-va {
+  opacity: 0;
+  transition: opacity 460ms ease;
+}
+
+@keyframes aviso-entra {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+/* --- Movil --------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .barra-edicion {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .barra-edicion__info { justify-content: center; }
+  .barra-edicion__info span { display: none; }
+
+  .barra-edicion__acciones { justify-content: center; }
+
+  .modo-edicion { padding-bottom: 120px; }
+  .aviso-edicion { bottom: 134px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aviso-edicion { animation: none; }
+  .modo-edicion .editable { transition: none; }
+}
+
+/* Boton de la llave: es una accion de configuracion, no de uso diario */
+.barra-edicion .es-discreto {
+  color: rgba(255, 255, 255, .45);
+  padding-inline: 0.75rem;
+}
+.barra-edicion .es-discreto:hover { color: rgba(255, 255, 255, .8); }
+
+.barra-edicion button:disabled { opacity: .6; cursor: wait; }
+
+/* Envoltorio temporal para editar solo una parte del texto */
+.caja-edicion { outline: none; }

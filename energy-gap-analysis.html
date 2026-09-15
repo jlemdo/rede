@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- La pagina vive en _paginas/ --el guion bajo hace que GitHub Pages no
+     la publique-- pero el CSS, el JS y las imagenes estan en la raiz.
+
+     <base> resuelve las rutas de golpe: las del marcado y tambien las que
+     algun JS escribe en tiempo de ejecucion, que es la razon por la que
+     la copia privada se hizo asi en su dia. -->
+<title>Energy Gap Analysis for Commercial Buildings | Rede Energy Solutions</title>
+<meta name="description" content="Compare energy use and utility costs across commercial buildings, identify which sites need attention, and check whether BC Hydro, SaskPower or other programs may support the next step.">
+
+<!-- Maqueta de trabajo interna. No debe indexarse. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/d2.css">
+<link rel="stylesheet" href="css/d2-variantes.css">
+<link rel="stylesheet" href="css/d2-ega.css">
+<link rel="stylesheet" href="css/d2-ega-pasos-opciones.css">
+</head>
+<body class="d2">
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="index.html" class="header__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false" aria-controls="drop-solutions">
+            Solutions
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="nav__drop" id="drop-solutions" hidden="">
+
+            <ul class="nav__drop__lista">
+              <li>
+                <a href="energy-gap-analysis.html" data-mega-img="assets/img/banners/senal-1.jpg" data-mega-cif="9.5%" data-mega-txt="average historical cost reduction for schools.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Lupa sobre grafico: el diagnostico -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"></circle>
+                      <path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                      <path d="M8 11.5v2M10.5 8.5v5M13 10v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                  <span>Energy Gap Analysis<small>Affordable one-time diagnostic</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="run.html" data-mega-img="assets/img/banners/consumo-descendente.jpg" data-mega-cif="$2.94M" data-mega-txt="identified for one Western Canadian school district.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Panel de control: la plataforma -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                      <path d="M3 9h18" stroke="currentColor" stroke-width="1.8"></path>
+                      <path d="M7 13v3M11 12v4M15 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                  <span>RUN<small>Utility management platform</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="recommissioning.html" data-mega-img="assets/img/banners/esquema-mecanico.jpg" data-mega-cif="1.8 yrs" data-mega-txt="average simple payback across school projects.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Llave inglesa: el ajuste de la instalacion.
+                         Un solo trazo cerrado: boca abierta arriba y mango en
+                         diagonal. El anterior llevaba un fragmento suelto que
+                         se leia como un trazo roto. -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M15.6 3.4a5 5 0 00-4.9 8.3l-6.4 6.4a1.9 1.9 0 002.6 2.6l6.4-6.4a5 5 0 008.3-4.9l-3.1 3.1-3.4-.6-.6-3.4 3.1-3.1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                  <span>Recommissioning<small>Project-based service</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="energy-management.html" data-mega-img="assets/img/banners/senal-3.jpg" data-mega-cif="2008" data-mega-txt="working with public sector portfolios since.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Ciclo continuo: el programa que no termina.
+                         Puntas en V tangentes al arco. Las anteriores eran
+                         escuadras y no se leian como flecha. -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M20.5 12a8.5 8.5 0 01-14.6 5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+                      <path d="M3.5 12a8.5 8.5 0 0114.6-5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+                      <path d="M9.4 18.4L5.9 17.9l-.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M14.6 5.6l3.5.5.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                  <span>Energy Management<small>Full-service program</small></span>
+                </a>
+              </li>
+            </ul>
+
+            <!-- El destacado: en la referencia es una imagen suelta. Aqui la
+                 imagen va de fondo y encima el dato que Rede tiene que contar. -->
+            <div class="nav__drop__destacado">
+              <img src="assets/img/banners/esquema-mecanico.jpg" alt="" aria-hidden="true" decoding="async" data-mega-destino="">
+              <p class="nav__drop__cifra" data-mega-cifra="">$2.94M</p>
+              <p class="nav__drop__texto" data-mega-texto="">
+                identified for one Western Canadian school district.
+              </p>
+              <a href="#calculator" class="nav__drop__enlace">
+                Check your opportunity
+                <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                  <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+        <li class="nav__item"><a class="nav__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="client-login.html" class="d2-btn d2-btn--linea header__login-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"></circle>
+          <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        Client Login
+      </a>
+      <a href="#contact" class="d2-btn d2-btn--solido">
+        Book a Call
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+    <!-- El velo: atenua la pagina y es la zona de cierre al tocar fuera. -->
+  <div class="menu-velo" id="menu-velo" hidden=""></div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden=""><div class="mobile-menu__cabecera"><a href="index.html" class="mobile-menu__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a><button type="button" class="mobile-menu__cerrar" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path></svg></button></div>
+
+    <!-- El panel tapa el header entero, asi que la marca se repite aqui: sin
+         ella el menu abierto no dice de quien es. -->
+    
+
+    <nav aria-label="Mobile">
+
+      <p class="mobile-menu__rotulo">Solutions</p>
+      <div class="mobile-menu__sub">
+        <a href="energy-gap-analysis.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"></circle>
+              <path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              <path d="M8 11.5v2M10.5 8.5v5M13 10v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+              </svg>
+          </span>
+          <span>Energy Gap Analysis<small>Affordable one-time diagnostic</small></span>
+        </a>
+        <a href="run.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+              <path d="M3 9h18" stroke="currentColor" stroke-width="1.8"></path>
+              <path d="M7 13v3M11 12v4M15 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+          </span>
+          <span>RUN<small>Utility management platform</small></span>
+        </a>
+        <a href="recommissioning.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M15.6 3.4a5 5 0 00-4.9 8.3l-6.4 6.4a1.9 1.9 0 002.6 2.6l6.4-6.4a5 5 0 008.3-4.9l-3.1 3.1-3.4-.6-.6-3.4 3.1-3.1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+              </svg>
+          </span>
+          <span>Recommissioning<small>Project-based service</small></span>
+        </a>
+        <a href="energy-management.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M20.5 12a8.5 8.5 0 01-14.6 5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+              <path d="M3.5 12a8.5 8.5 0 0114.6-5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+              <path d="M9.4 18.4L5.9 17.9l-.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14.6 5.6l3.5.5.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+          </span>
+          <span>Energy Management<small>Full-service program</small></span>
+        </a>
+      </div>
+
+      <a href="about.html" class="mobile-menu__raiz">About</a>
+      <a href="contact.html" class="mobile-menu__raiz">Contact</a>
+      <a href="client-login.html" class="mobile-menu__raiz">Client Login</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--primary btn--block">Book a Call</a>
+  </div>
+</header>
+<main id="top">
+  <!-- ====================================================================
+       HERO
+
+       Dos columnas, como el de la home: texto a la izquierda y la
+       ilustracion a la derecha. El copy es literal del wireframe.
+
+       La palabra en verde del titular es del original --"energy audit."--
+       y se respeta: es donde cae el peso de la frase.
+       ==================================================================== -->
+  <section class="d2-ega-hero d2-entra" data-comp-rol="hero" aria-labelledby="ega-hero-t">
+    <div class="d2-ega-hero__inner">
+
+      <div class="d2-ega-hero__copy">
+        <nav class="d2-ega-hero__migas" aria-label="Breadcrumb">
+          <a href="index.html#solutions">Solutions</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Energy Gap Analysis</span>
+        </nav>
+
+        <p class="eyebrow">Energy Gap Analysis for commercial buildings</p>
+        <h1 class="d2-ega-hero__titulo" id="ega-hero-t">
+          Know which buildings are worth an <span>energy audit.</span>
+        </h1>
+        <p class="d2-ega-hero__lead">Rede compares utility costs and energy use across your commercial building portfolio. You see where to investigate first&mdash;and whether a utility program may support the next step.</p>
+
+        <div class="d2-ega-hero__acciones">
+          <a class="d2-btn d2-btn--solido" href="#contact">Check available funding
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="d2-btn d2-btn--linea" href="#contact">Book a call</a>
+        </div>
+
+        <p class="d2-ega-hero__nota"><span class="d2-ega-hero__punto" aria-hidden="true"></span>Rede can quickly screen your buildings for relevant BC Hydro, SaskPower and other provincial programs&mdash;at no cost and with no commitment.</p>
+      </div>
+
+      <div class="d2-ega-hero__arte">
+        <img src="assets/img/ega/portfolio-isometrico.webp"
+             alt="A portfolio of commercial buildings with selected facilities illuminated in green"
+             width="1209" height="783" decoding="async">
+      </div>
+
+    </div>
+  </section>
+  <!-- ====================================================================
+       LA BANDA DE CLIENTES
+
+       Identica a la de la home. Los cuatro nombres son los mismos que
+       lleva el wireframe, asi que no hay nada que cambiar.
+       ==================================================================== -->
+<!-- ====================================================================
+         OPCION 2 — tres bloques
+
+         Izquierda:  el titular.
+         Centro:     la etiqueta y, debajo, los logos.
+         Derecha:    la cifra.
+
+         Los logos NO se reparten entre columnas: estan todos en el centro,
+         en marquesina. Repartidos, la misma marca aparecia dos veces y se
+         leia como si fueran clientes distintos.
+
+         Se ven cinco a la vez para que salgan grandes; el resto va
+         entrando por la derecha. La pista esta duplicada: es lo que hace
+         que el bucle no tenga un salto visible al reiniciar.
+         ==================================================================== -->
+    <section class="d2-logos--dos" data-comp-rol="marcas" data-logos-tono="oscuro" style="--logos-fondo:#333333">
+      <div class="d2-logos--dos__inner">
+
+        <!-- COLUMNA RETIRADA (4/9/2026): el titular. La seccion se deja solo
+             con el eyebrow y los logos, mas sobria.
+
+        <div class="d2-logos--dos__izq">
+          <p class="d2-logos--dos__titular">
+            Proven across[[br]]complex multi-site[[br]]portfolios
+          </p>
+        </div>
+        -->
+
+        <!-- La cifra vuelve (7/9/2026) y ahora va a la IZQUIERDA, sobre
+             fondo oscuro: es la composicion que pidio el cliente. El copy
+             es el que ya teniamos, sin tocar una palabra. -->
+        <div class="d2-logos--dos__der">
+          <p class="d2-logos--dos__cifra">$4.4M</p>
+          <p class="d2-logos--dos__cifra-pie">Cumulative savings</p>
+          <p class="d2-logos--dos__cifra-nota">for one long-term client, over&nbsp;12&nbsp;years</p>
+        </div>
+
+        <div class="d2-logos--dos__centro">
+          <!-- ETIQUETA RETIRADA (7/9/2026): la composicion que eligio el
+               cliente no la lleva --la cifra de al lado ya dice que son
+               estos logos--. Se deja escrita, no borrada: es copy aprobado
+               y volver a ponerla es descomentar.
+          <p class="d2-logos--dos__etiqueta">PUBLIC-SECTOR PORTFOLIOS WE&rsquo;VE WORKED WITH</p>
+          -->
+
+          <div class="d2-logos--dos__marquesina">
+            <div class="d2-logos--dos__pista">
+              <img src="assets/img/logos-clientes/calgary-board.png" alt="Calgary Board of Education" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/greater-victoria.png" alt="Greater Victoria School District" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/northland.png" alt="Northland School Division" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/fort-vermilion.png" alt="Fort Vermilion School Division" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/cariboo-chilcotin.png" alt="Cariboo Chilcotin School District" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/grande-prairie.png" alt="Grande Prairie Public Schools" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/sunshine-coast.png" alt="Sunshine Coast School District" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/calgary-board.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/greater-victoria.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/northland.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/fort-vermilion.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/cariboo-chilcotin.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/grande-prairie.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+              <img src="assets/img/logos-clientes/sunshine-coast.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+  <!-- ====================================================================
+       EL PROCESO, EN TRES PASOS
+
+       Mismo gesto que la seccion de rutas de la home: titular a la
+       izquierda, parrafo de apoyo a la derecha y tres pasos numerados
+       debajo.
+
+       Al final, el "puente": donde acaba este servicio y donde empieza el
+       siguiente. Es el bloque mas util del wireframe --situa el producto
+       en una escalera en vez de venderlo suelto.
+       ==================================================================== -->
+  <!-- ==================================================================
+       LOS TRES PASOS: TRES DISENOS PARA ELEGIR (14/9/2026)
+
+       Mismo copy en los tres, solo cambia la presentacion. Se elige con la
+       barra de abajo, igual que las secciones de la home.
+
+       Cuando este decidido: data-caru-fijo="N" con el numero elegido.
+       ================================================================== -->
+  <div class="d2-caru" id="caru-ega-pasos" data-caru>
+
+    <!-- OPCION 1 - LA LISTA QUE SE ORDENA -->
+    <!-- OPCION 1 - TERMOGRAFIA
+
+         Doce fachadas de la cartera. Al entrar pasan de gris a falso color
+         termico y las tres mas calientes se quedan marcadas.
+
+         El filtro es un feComponentTransfer con tres tablas: una LUT por
+         pixel, que no muestrea vecinos y por tanto es barata. Se aplica UNA
+         vez; lo que se anima es la mascara que lo revela.
+
+         Un hue-rotate no puede hacer esto: la rueda de tono no permite ir
+         de azul a naranja pasando por rosa. La tabla si. -->
+    <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1: Thermal">
+      <section class="d2-ega-termo d2-entra" data-comp-rol="proceso" aria-labelledby="ega-termo-t">
+
+        <!-- El filtro vive una sola vez en la pagina. width/height 0 para
+             que el <svg> no ocupe: solo transporta la definicion. -->
+        <svg class="d2-ega-termo__def" width="0" height="0" aria-hidden="true" focusable="false">
+          <filter id="ega-termico" color-interpolation-filters="sRGB">
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0 0.125 0.8 1 1"/>
+              <feFuncG type="table" tableValues="0 0 0 0.843 1"/>
+              <feFuncB type="table" tableValues="0 0.549 0.466 0 1"/>
+            </feComponentTransfer>
+          </filter>
+        </svg>
+
+        <div class="d2-ega-termo__inner">
+
+          <div class="d2-ega-termo__cab">
+            <div>
+              <p class="eyebrow">Start with the portfolio</p>
+              <h2 class="d2-ega-termo__titulo" id="ega-termo-t">Find the buildings worth a closer look.</h2>
+            </div>
+            <p class="d2-ega-termo__lead">A detailed commercial energy audit looks inside one building. Energy Gap Analysis compares the buildings you manage first, so your budget and team can focus on the right places.</p>
+          </div>
+
+          <div class="d2-ega-termo__reja">
+
+            <!-- La cartera leida como termografia. aria-hidden porque es la
+                 ilustracion de lo que dicen los tres pasos, no informacion
+                 nueva: un lector de pantalla oiria doce span vacios. -->
+            <div class="d2-ega-col">
+            <div class="d2-ega-graf" role="img"
+                 aria-label="Historical cost reduction by building type, from BC Hydro Continuous Optimization results: school 9.5 per cent at the high end, shopping mall 2 per cent at the low end, with an average of 5.8 per cent across the thirteen types.">
+              <svg viewBox="0 0 520 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Rejilla: da escala. Sin ella el grafico flota. -->
+                <g class="g-rejilla" stroke="#EFEFEF" stroke-width="1">
+                  <line x1="8" y1="20" x2="512" y2="20"/>
+                  <line x1="8" y1="55" x2="512" y2="55"/>
+                  <line x1="8" y1="90" x2="512" y2="90"/>
+                  <line x1="8" y1="120" x2="512" y2="120"/>
+                </g>
+
+                <!-- La media de los trece: la referencia contra la que se
+                     compara cada tipo, igual que la linea base del hero. -->
+                <line class="g-base" x1="14" y1="62.0" x2="506" y2="62.0"
+                      stroke="#C9C9C9" stroke-width="2" stroke-dasharray="5 5"
+                      stroke-linecap="round"/>
+
+                <path class="g-area" d="M14 25.0 L55 41.0 L96 46.0 L137 50.0 L178 53.0 L219 63.0 L260 63.0 L301 68.0 L342 72.0 L383 72.0 L424 75.0 L465 78.0 L506 100.0 L506 120 L14 120 Z"
+                      fill="var(--c-verde)" fill-opacity=".07"/>
+
+                <path class="g-linea" d="M14 25.0 L55 41.0 L96 46.0 L137 50.0 L178 53.0 L219 63.0 L260 63.0 L301 68.0 L342 72.0 L383 72.0 L424 75.0 L465 78.0 L506 100.0"
+                      stroke="var(--c-verde)" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Cada punto es una lectura, no una curva suelta. -->
+                <g class="g-puntos" fill="#FFFFFF" stroke="var(--c-verde)" stroke-width="2">
+                <circle cx="14" cy="25.0" r="3"/>
+                <circle cx="178" cy="53.0" r="3"/>
+                <circle cx="342" cy="72.0" r="3"/>
+                <circle cx="506" cy="100.0" r="3"/>
+                </g>
+              </svg>
+
+              <p class="d2-ega-graf__eje-y" aria-hidden="true">% annual cost saved</p>
+
+              <p class="d2-ega-graf__ejes" aria-hidden="true">
+                <span>School 9.5%</span>
+                <span class="d2-ega-graf__media">Average 5.8%</span>
+                <span>Shopping mall 2%</span>
+              </p>
+
+              <p class="d2-ega-graf__cuenta" aria-hidden="true">13 building types</p>
+            </div>
+
+            <p class="d2-ega-graf__fuente">
+              Historical cost reduction by building type. Source: BC Hydro
+              Continuous Optimization results, the same benchmarks used in the
+              calculator above.
+            </p>
+            </div>
+
+            <ol class="d2-ega-termo__pasos">
+              <li class="d2-ega-termo__paso">
+                <span class="d2-ega-termo__num">01</span>
+                <h3 class="d2-ega-termo__h">Share the information you already have</h3>
+                <p class="d2-ega-termo__d">Utility bills, building type, floor area and basic operating context. No new equipment needs to be installed.</p>
+              </li>
+              <li class="d2-ega-termo__paso">
+                <span class="d2-ega-termo__num">02</span>
+                <h3 class="d2-ega-termo__h">Compare each building fairly</h3>
+                <p class="d2-ega-termo__d">Rede compares both energy used and money spent by building size. Engineers call these measures BEPI and BECI; your team gets the plain-language meaning.</p>
+              </li>
+              <li class="d2-ega-termo__paso">
+                <span class="d2-ega-termo__num">03</span>
+                <h3 class="d2-ega-termo__h">See where to investigate first</h3>
+                <p class="d2-ega-termo__d">Get a ranked view of the buildings that stand out, the numbers behind the decision and a practical next step.</p>
+              </li>
+            </ol>
+
+          </div>
+
+          <div class="d2-ega-puente2">
+            <div class="d2-ega-puente2__lado">
+              <p class="d2-ega-puente2__eti">This service</p>
+              <p class="d2-ega-puente2__nom">Energy Gap Analysis</p>
+              <p class="d2-ega-puente2__preg">Where should we look?</p>
+            </div>
+            <div class="d2-ega-puente2__lado d2-ega-puente2__lado--fin">
+              <p class="d2-ega-puente2__eti">What may come next</p>
+              <p class="d2-ega-puente2__nom">Energy audit or investigation</p>
+              <p class="d2-ega-puente2__preg">What is causing it?</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 2 - LA ESCALERA (de la biblioteca: rutas/02-ladder)
+
+         Guardada sin usar desde que la home eligio self-select. Su CSS ya
+         esta en d2-variantes.css y no lleva JS: el rail se traza con
+         stroke-dashoffset en 1.1s, UNA pasada, y los nodos se encienden a
+         .35/.65/.95s, calados sobre ese recorrido.
+
+         Es el gesto que la investigacion de 2026 valida: la linea ES la
+         secuencia del metodo, no un adorno, y no hace bucle. -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: Ladder" hidden>
+      <section class="d2-rutas-esc d2-entra" data-comp-rol="proceso" aria-labelledby="ega-esc-t">
+        <div class="d2-rutas-esc__inner">
+
+          <div class="d2-rutas-esc__cabecera">
+            <p class="d2-rutas-esc__eyebrow">Start with the portfolio</p>
+            <h2 class="d2-rutas-esc__titulo" id="ega-esc-t">Find the buildings worth a closer look.</h2>
+            <p class="d2-rutas-esc__lead">
+              A detailed commercial energy audit looks inside one building. Energy Gap
+              Analysis compares the buildings you manage first, so your budget and team
+              can focus on the right places.
+            </p>
+          </div>
+
+          <div class="d2-rutas-esc__eje">
+
+            <!-- El rail es decorativo: el orden ya lo lleva el <ol>. Por eso
+                 aria-hidden. El trazo se dibuja al entrar con
+                 stroke-dasharray/dashoffset, una sola pasada. -->
+            <svg class="d2-rutas-esc__rail" viewBox="0 0 1200 8" preserveAspectRatio="none"
+                 aria-hidden="true" focusable="false">
+              <line class="d2-rutas-esc__rail-linea" x1="0" y1="4" x2="1200" y2="4"/>
+            </svg>
+
+            <ol class="d2-rutas-esc__lista">
+
+              <li class="d2-rutas-esc__peldano">
+                <span class="d2-rutas-esc__nodo" aria-hidden="true"></span>
+                <p class="d2-rutas-esc__tag">Step 01</p>
+                <h3 class="d2-rutas-esc__titulo-ruta">Share the information you already have</h3>
+                <p class="d2-rutas-esc__texto">
+                  Utility bills, building type, floor area and basic operating context. No
+                  new equipment needs to be installed.
+                </p>
+              </li>
+
+              <li class="d2-rutas-esc__peldano">
+                <span class="d2-rutas-esc__nodo" aria-hidden="true"></span>
+                <p class="d2-rutas-esc__tag">Step 02</p>
+                <h3 class="d2-rutas-esc__titulo-ruta">Compare each building fairly</h3>
+                <p class="d2-rutas-esc__texto">
+                  Rede compares both energy used and money spent by building size.
+                  Engineers call these measures BEPI and BECI; your team gets the
+                  plain-language meaning.
+                </p>
+              </li>
+
+              <li class="d2-rutas-esc__peldano">
+                <span class="d2-rutas-esc__nodo" aria-hidden="true"></span>
+                <p class="d2-rutas-esc__tag">Step 03</p>
+                <h3 class="d2-rutas-esc__titulo-ruta">See where to investigate first</h3>
+                <p class="d2-rutas-esc__texto">
+                  Get a ranked view of the buildings that stand out, the numbers behind
+                  the decision and a practical next step.
+                </p>
+              </li>
+
+            </ol>
+
+            <!-- Los extremos rotulan el eje. Sin ellos la linea es adorno: el
+                 lector no sabe que magnitud crece de izquierda a derecha. Van
+                 fuera de la lista para no colarse en el recuento que anuncia
+                 un lector de pantalla. -->
+            <p class="d2-rutas-esc__extremos">
+              <span class="d2-rutas-esc__extremo">What you already have</span>
+              <span class="d2-rutas-esc__extremo">Where to look first</span>
+            </p>
+
+          </div>
+
+          <div class="d2-ega-puente2">
+            <div class="d2-ega-puente2__lado">
+              <p class="d2-ega-puente2__eti">This service</p>
+              <p class="d2-ega-puente2__nom">Energy Gap Analysis</p>
+              <p class="d2-ega-puente2__preg">Where should we look?</p>
+            </div>
+            <div class="d2-ega-puente2__lado d2-ega-puente2__lado--fin">
+              <p class="d2-ega-puente2__eti">What may come next</p>
+              <p class="d2-ega-puente2__nom">Energy audit or investigation</p>
+              <p class="d2-ega-puente2__preg">What is causing it?</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 3 - LA CARTERA A LA VISTA -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: Portfolio chart" hidden>
+      <section class="d2-ega-pasos3 d2-entra" data-comp-rol="proceso" aria-labelledby="ega-p3-t">
+              <svg class="d2-ega-pasos3__circuito" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 160H240L300 220H520L580 160H760"/>
+        <path d="M0 620H200L270 550H480"/>
+        <path d="M1440 80H1240L1180 140H980"/>
+        <circle cx="300" cy="220" r="5"/>
+        <circle cx="580" cy="160" r="5"/>
+        <circle cx="270" cy="550" r="5"/>
+        <circle cx="1180" cy="140" r="5"/>
+      </svg>
+      <div class="d2-ega-pasos3__inner">
+          <div class="d2-ega-pasos3__cab">
+            <div>
+              <p class="eyebrow">Start with the portfolio</p>
+              <h2 class="d2-ega-pasos3__titulo" id="ega-p3-t">Find the buildings worth a closer look.</h2>
+            </div>
+            <p class="d2-ega-pasos3__lead">A detailed commercial energy audit looks inside one building. Energy Gap Analysis compares the buildings you manage first, so your budget and team can focus on the right places.</p>
+          </div>
+
+          <div class="d2-ega-pasos3__reja">
+            <ol class="d2-ega-pasos3__lista">
+              <li class="d2-ega-pasos3__paso">
+                <span class="d2-ega-pasos3__num" aria-hidden="true">01</span>
+                <h3 class="d2-ega-pasos3__h">Share the information you already have</h3>
+                <p class="d2-ega-pasos3__d">Utility bills, building type, floor area and basic operating context. No new equipment needs to be installed.</p>
+              </li>
+              <li class="d2-ega-pasos3__paso">
+                <span class="d2-ega-pasos3__num" aria-hidden="true">02</span>
+                <h3 class="d2-ega-pasos3__h">Compare each building fairly</h3>
+                <p class="d2-ega-pasos3__d">Rede compares both energy used and money spent by building size. Engineers call these measures BEPI and BECI; your team gets the plain-language meaning.</p>
+              </li>
+              <li class="d2-ega-pasos3__paso">
+                <span class="d2-ega-pasos3__num" aria-hidden="true">03</span>
+                <h3 class="d2-ega-pasos3__h">See where to investigate first</h3>
+                <p class="d2-ega-pasos3__d">Get a ranked view of the buildings that stand out, the numbers behind the decision and a practical next step.</p>
+              </li>
+            </ol>
+
+            <!-- Catorce edificios, uno destacado: es lo que el metodo
+                 produce, no un adorno. -->
+            <div class="d2-ega-col">
+            <div class="d2-ega-onda" role="img"
+                 aria-label="Typical daily load shape for an institutional building, before and after optimization. The gap between the two curves is widest overnight and in the early evening, when the building is empty.">
+              <svg viewBox="0 0 520 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Rejilla: la misma gramatica del hero. Da escala. -->
+                <g class="g-rejilla" stroke="#EFEFEF" stroke-width="1">
+                  <line x1="8" y1="18" x2="512" y2="18"/>
+                  <line x1="8" y1="51" x2="512" y2="51"/>
+                  <line x1="8" y1="84" x2="512" y2="84"/>
+                  <line x1="8" y1="118" x2="512" y2="118"/>
+                </g>
+
+                <!-- EL GAP: el area entre las dos curvas. Es lo que el
+                     servicio busca, dibujado. -->
+                <path class="d2-ega-onda__gap" d="M14 46.0 L35 44.0 L57 43.0 L78 44.0 L100 45.0 L121 48.0 L142 60.0 L164 78.0 L185 92.0 L207 98.0 L228 100.0 L249 99.0 L271 96.0 L292 98.0 L313 99.0 L335 97.0 L356 92.0 L378 80.0 L399 66.0 L420 56.0 L442 50.0 L463 47.0 L485 45.0 L506 44.0 L506 32.0 L485 33.0 L463 35.0 L442 38.0 L420 43.0 L399 53.0 L378 68.0 L356 82.0 L335 88.0 L313 90.0 L292 89.0 L271 87.0 L249 90.0 L228 91.0 L207 89.0 L185 82.0 L164 66.0 L142 48.0 L121 35.0 L100 32.0 L78 31.0 L57 30.0 L35 31.0 L14 32.0 Z"
+                      fill="var(--c-verde)" fill-opacity=".1"/>
+
+                <!-- Antes de optimizar: discontinua, arriba. -->
+                <path class="d2-ega-onda__antes" d="M14 46.0 L35 44.0 L57 43.0 L78 44.0 L100 45.0 L121 48.0 L142 60.0 L164 78.0 L185 92.0 L207 98.0 L228 100.0 L249 99.0 L271 96.0 L292 98.0 L313 99.0 L335 97.0 L356 92.0 L378 80.0 L399 66.0 L420 56.0 L442 50.0 L463 47.0 L485 45.0 L506 44.0"
+                      stroke="#BFBFBF" stroke-width="2" stroke-dasharray="5 5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Despues: continua, verde, por debajo. -->
+                <path class="d2-ega-onda__despues" d="M14 32.0 L35 31.0 L57 30.0 L78 31.0 L100 32.0 L121 35.0 L142 48.0 L164 66.0 L185 82.0 L207 89.0 L228 91.0 L249 90.0 L271 87.0 L292 89.0 L313 90.0 L335 88.0 L356 82.0 L378 68.0 L399 53.0 L420 43.0 L442 38.0 L463 35.0 L485 33.0 L506 32.0"
+                      stroke="var(--c-verde)" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              
+                <!-- Donde el gap es mayor: de madrugada, con el edificio
+                     vacio. Es lo que el pie afirma en palabras, senalado. -->
+                <g class="d2-ega-onda__marca">
+                  <line x1="76" y1="26" x2="76" y2="104" stroke="var(--c-verde-hover)"
+                        stroke-width="1" stroke-dasharray="2 3"/>
+                  <circle cx="76" cy="26" r="2.5" fill="var(--c-verde-hover)"/>
+                  <circle cx="76" cy="104" r="2.5" fill="var(--c-verde-hover)"/>
+                </g>
+              </svg>
+
+              <p class="d2-ega-onda__eje-y" aria-hidden="true">Energy use</p>
+
+              <p class="d2-ega-onda__franjas" aria-hidden="true">
+                <span class="d2-ega-onda__franja d2-ega-onda__franja--vacio">Building empty</span>
+                <span class="d2-ega-onda__franja">Occupied</span>
+                <span class="d2-ega-onda__franja d2-ega-onda__franja--vacio">Building empty</span>
+              </p>
+
+              <p class="d2-ega-onda__horas" aria-hidden="true">
+                <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+              </p>
+
+              <p class="d2-ega-onda__leyenda" aria-hidden="true">
+                <span class="d2-ega-onda__clave d2-ega-onda__clave--antes">Before</span>
+                <span class="d2-ega-onda__clave d2-ega-onda__clave--despues">After optimization</span>
+                <span class="d2-ega-onda__clave d2-ega-onda__clave--gap">The gap</span>
+              </p>
+            </div>
+
+            <p class="d2-ega-onda__pie">
+              Illustrative daily load shape, before and after optimization. The
+              gap is widest when the building is empty &mdash; which is where a
+              portfolio comparison tends to find it first. Your own profile comes
+              from your utility data.
+            </p>
+            </div>
+          </div>
+
+          <div class="d2-ega-puente3">
+            <p class="d2-ega-puente3__preg">
+              <span class="d2-ega-puente3__eti">Energy Gap Analysis</span>
+              Where should we look?
+            </p>
+            <span class="d2-ega-puente3__sep" aria-hidden="true"></span>
+            <p class="d2-ega-puente3__preg d2-ega-puente3__preg--fin">
+              <span class="d2-ega-puente3__eti">Energy audit or investigation</span>
+              What is causing it?
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="d2-caru__mandos">
+      <button class="d2-caru__ocultar" type="button" data-caru-ocultar aria-expanded="true" aria-label="Close options">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="d2-caru__puntos" role="tablist" aria-label="Section version">
+        <button class="d2-caru__punto es-activo" type="button" role="tab" aria-selected="true"  data-caru-a="0"><span>1</span><small>Thermal</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="1"><span>2</span><small>Ladder</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="2"><span>3</span><small>Portfolio</small></button>
+      </div>
+
+      <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       LA CALCULADORA
+
+       La de la home, entera. El wireframe trae una propia de cuatro
+       campos que devuelve un rango fijo del 5-15%; esta tiene ocho
+       pasos, tabla de sectores y tres caminos de formulario. Se queda
+       la buena.
+       ==================================================================== -->
+<!-- ====================================================================
+         OPCION 3 — ASISTENTE POR PASOS
+
+         La que ya existe. Se conserva como opcion conservadora: sigue la
+         convencion de "una cosa por pagina" de GOV.UK, que los compradores
+         del sector publico reconocen.
+
+         Su inconveniente es real: el numero queda oculto hasta el final,
+         que es la peor posicion para una herramienta cuyo valor ES el
+         numero.
+
+         Solo animacion de entrada. Animar el cambio de paso distraeria de
+         la pregunta, que es lo unico que debe leerse en cada pantalla.
+         ==================================================================== -->
+    <section class="calc calc--pasos" data-comp-rol="calc" id="calculator">
+      <div class="calc__inner">
+
+        <div class="calc__intro">
+        <p class="eyebrow">Check your opportunity</p>
+        <h2 class="calc__titulo">Find out what your buildings may be trying to tell you.</h2>
+        <p class="calc__lead">
+        Use a few basic inputs to compare your building or portfolio against
+        historical BC Hydro Continuous Optimization results. The output is a
+        planning benchmark, not a savings guarantee.
+        </p>
+        </div>
+
+
+        <div class="calc__panel">
+
+          <div class="pasos" id="pasos">
+
+          <div class="pasos__cabecera">
+          <p class="pasos__contador">Step <span id="paso-n">1</span> of <span id="paso-total">6</span></p>
+          <div class="barra" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-label="Progress">
+          <span class="barra__fill" id="barra" style="width: 16.6667%;"></span>
+          </div>
+          </div>
+
+          <!-- ============================================================
+          PRECALIFICACION (feedback 9/9/2026, Parte 1)
+
+          Cuatro pantallas antes de la pregunta de siempre. La idea del
+          cliente: filtrar los edificios demasiado pequenos para llegar a
+          ser proyecto ANTES de que nadie invierta tiempo, ni el suyo ni el
+          nuestro.
+
+          El orden importa y fue una correccion suya: preguntar primero por
+          la UBICACION y solo despues por la comercializadora. Poner "eres
+          cliente de BC Hydro" como primera pregunta perdia a cualquiera de
+          fuera de la Columbia Britanica antes de que supiera si la pregunta
+          le aplicaba siquiera.
+          ============================================================ -->
+
+          <!-- PASO 1: el filtro de tamano -->
+          <div class="paso-calc is-activo" data-paso="1">
+          <h3 class="paso-calc__titulo">Is your building at least 25,000 sq ft?</h3>
+          <p class="paso-calc__ayuda">
+          Recommissioning pays for itself on larger buildings. Below that size
+          the numbers rarely work.
+          </p>
+          <div class="opciones">
+          <button class="opcion" type="button" data-tamano="si">
+          <span class="opcion__titulo">Yes</span>
+          <span class="opcion__texto">25,000 sq ft or more.</span>
+          </button>
+          <button class="opcion" type="button" data-tamano="no">
+          <span class="opcion__titulo">No</span>
+          <span class="opcion__texto">Smaller than that.</span>
+          </button>
+          </div>
+          </div>
+
+          <!-- PASO 2: donde esta el edificio.
+          Se pregunta SIEMPRE, sea o no de la Columbia Britanica: es el dato
+          que necesita el equipo comercial para saber que subvenciones
+          provinciales o de comercializadora pueden aplicar. -->
+          <div class="paso-calc" data-paso="2">
+          <h3 class="paso-calc__titulo">Where is your building located?</h3>
+          <p class="paso-calc__ayuda">
+          Grant programs vary by province and by utility, so this tells us
+          which ones might apply to you.
+          </p>
+          <div class="campos">
+          <div class="campo">
+          <label class="campo__label" for="c-prov">Province or territory</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-prov">
+          <option value="">Select one</option>
+          <option value="BC">British Columbia</option>
+          <option value="AB">Alberta</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="ON">Ontario</option>
+          <option value="QC">Quebec</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          </select>
+          </div>
+          </div>
+          <div class="campo">
+          <label class="campo__label" for="c-city">City or district</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-city" type="text" autocomplete="address-level2" placeholder="Vancouver">
+          </div>
+          </div>
+          </div>
+          </div>
+
+          <!-- PASO 3: la comercializadora. Solo para quien dijo Columbia
+          Britanica en el paso 2; al resto se le salta. -->
+          <div class="paso-calc" data-paso="3">
+          <h3 class="paso-calc__titulo">Are you a BC Hydro or FortisBC customer?</h3>
+          <p class="paso-calc__ayuda">
+          Their programs fund a large share of recommissioning work in the
+          province.
+          </p>
+          <div class="opciones">
+          <button class="opcion" type="button" data-utility="si">
+          <span class="opcion__titulo">Yes</span>
+          <span class="opcion__texto">BC Hydro, FortisBC or both.</span>
+          </button>
+          <button class="opcion" type="button" data-utility="no">
+          <span class="opcion__titulo">No</span>
+          <span class="opcion__texto">Another provider.</span>
+          </button>
+          </div>
+          </div>
+
+          <!-- PASO 4: historial de subvenciones. Solo para clientes de BC
+          Hydro o FortisBC. Sin explicar por que se pregunta: lo pidio asi
+          el cliente. -->
+          <div class="paso-calc" data-paso="4">
+          <h3 class="paso-calc__titulo">
+          Have you received funding from a utility provider for recommissioning
+          or C-Op work before?
+          </h3>
+          <div class="campos">
+          <div class="campo">
+          <label class="campo__label" for="c-funding">Previous funding</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-funding">
+          <option value="">Select one</option>
+          <option value="lt5">Yes, less than 5 years ago</option>
+          <option value="5to10">Yes, 5 to 10 years ago</option>
+          <option value="gt10">Yes, more than 10 years ago</option>
+          <option value="never">Never</option>
+          </select>
+          </div>
+          </div>
+          </div>
+          </div>
+
+          <!-- PASO 5 (antes 1) -->
+          <div class="paso-calc" data-paso="5">
+          <h3 class="paso-calc__titulo">How many buildings are in scope?</h3>
+          <p class="paso-calc__ayuda">
+          A portfolio needs comparison across buildings. A single facility needs a
+          focused investigation of that site.
+          </p>
+          <div class="opciones">
+          <button class="opcion" type="button" data-scope="single">
+          <span class="opcion__titulo">One building</span>
+          <span class="opcion__texto">A single facility or campus building.</span>
+          </button>
+          <button class="opcion" type="button" data-scope="multi">
+          <span class="opcion__titulo">Multiple buildings</span>
+          <span class="opcion__texto">A portfolio where comparison matters.</span>
+          </button>
+          </div>
+          <!-- Cuelga de la eleccion de arriba: con "One building" la respuesta
+          es 1 y el guion la escribe solo, asi que preguntarla sobraria. Se
+          muestra al elegir "Multiple buildings". (14/9/2026) -->
+          <div class="campo" data-campo="sitios" hidden>
+          <label class="campo__label" for="c-sites">How many sites in total?</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-sites" type="text" inputmode="numeric"
+          placeholder="22" autocomplete="off">
+          </div>
+          </div>
+
+          </div>
+
+          <!-- PASO 2 -->
+          <div class="paso-calc" data-paso="6">
+          <h3 class="paso-calc__titulo">What kind of organization is this?</h3>
+          <p class="paso-calc__ayuda">
+          This helps us understand your operating context before we look at the
+          building benchmark.
+          </p>
+          <div class="campo">
+          <label class="campo__label" for="c-sector">Organization or sector</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-sector">
+          <option value="">Select one</option>
+          <option value="k12">K-12 school district</option>
+          <option value="postsec">Post-secondary institution</option>
+          <option value="health">Healthcare or care provider</option>
+          <option value="muni">Municipality or regional district</option>
+          <option value="commercial">Commercial property operator</option>
+          <option value="housing">Housing operator</option>
+          <option value="other">Other institutional operator</option>
+          </select>
+          </div>
+          </div>
+          <!-- La ubicacion se pregunta en el paso 2 --provincia y ciudad--, asi
+          que aqui solo queda el campo que alimenta el perfil y HubSpot. Su
+          valor lo escribe el guion a partir de #c-prov: sin esto se
+          preguntaba dos veces lo mismo, y la segunda vez peor. (14/9/2026) -->
+          <input type="hidden" id="c-province" value="">
+          </div>
+
+          <!-- PASO 3 -->
+          <div class="paso-calc" data-paso="7">
+          <h3 class="paso-calc__titulo">Which building type is the closest match?</h3>
+          <p class="paso-calc__ayuda">
+          Choose the closest available match from historical C-Op building categories.
+          </p>
+          <div class="campo" data-campo="tipo">
+          <label class="campo__label" for="c-type">Building type</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-type"><option value="extendedCare" data-i="0">Extended care</option><option value="foodRetail" data-i="1">Food retail</option><option value="hospital" data-i="2">Hospital</option><option value="largeOffice" data-i="3">Large office</option><option value="mediumOffice" data-i="4">Medium office</option><option value="murb" data-i="5">Multi-unit residential building</option><option value="nursingHome" data-i="6">Nursing home</option><option value="recreation" data-i="7">Recreation</option><option value="shoppingMall" data-i="8">Shopping mall</option><option value="university" data-i="9">University or college</option><option value="hotel" data-i="10">Hotel</option><option value="school" data-i="11">School</option><option value="other" data-i="12">Other</option></select>
+          </div>
+          </div>
+
+          <!-- Para ayuntamientos: no hay datos C-Op de parques de bomberos ni
+          de naves de obras publicas, asi que no se puede ofrecer una lista
+          de tipos. En su lugar se pide una descripcion, que le sirve al
+          equipo comercial para preparar la llamada. (Feedback 9/9/2026,
+          Parte 2.) -->
+          <div class="campo" data-campo="libre" hidden="">
+          <label class="campo__label" for="c-desc">Describe the building</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-desc" type="text" placeholder="Fire hall, public works yard, community centre..." autocomplete="off" tabindex="-1">
+          </div>
+          </div>
+          <div class="campo">
+          <label class="campo__label" for="c-area">Total area in square feet</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-area" type="text" inputmode="numeric" placeholder="1,850,000" autocomplete="off">
+          <span class="campo__sufijo">sq ft</span>
+          </div>
+          </div>
+          <!-- El gasto anual viaja aqui (14/9/2026): es el otro dato que alimenta
+          el calculo, y preguntarlo en su propia pantalla al final separaba dos
+          campos que se responden de una sola vez. -->
+          <div class="campo">
+          <label class="campo__label" for="c-spend">Annual utility spend</label>
+          <div class="campo__wrap">
+          <span class="campo__prefijo">$</span>
+          <input class="campo__input" id="c-spend" type="text" inputmode="numeric" placeholder="Optional" autocomplete="off">
+          </div>
+          </div>
+          <p class="paso-calc__nota">
+          If you manage multiple sites, use total portfolio area. Spend is optional
+          &mdash; without it we estimate from historical cost per square foot.
+          </p>
+          </div>
+
+          <!-- PASO 4 -->
+          <!-- PASO 8 (retirado el 14/9/2026): preguntaba el gasto anual y el
+          numero de sitios. El gasto vive ahora junto a la superficie --los dos
+          alimentan el mismo calculo-- y los sitios junto al ambito, que es la
+          misma pregunta. La pantalla se quedaba sin nada que responder. -->
+
+          <!-- Navegacion -->
+          <div class="pasos__nav">
+          <button class="btn btn--fantasma" type="button" id="btn-atras" hidden="">
+          <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M6.5 1L1.5 6L6.5 11M2 6h15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Back
+          </button>
+          <button class="btn btn--primary btn--lg calc__btn" type="button" id="btn-siguiente">
+          <span id="btn-texto">Next</span>
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          </button>
+          </div>
+
+          <p class="calc__nota">
+          This is an early planning check. Eligibility, scope, and incentives are
+          confirmed through a conversation with the Rede team.
+          </p>
+          </div>
+
+          <!-- Al terminar, esto sustituye a las preguntas. La columna deja de estar
+          muerta y ofrece contacto directo a quien prefiera hablar. -->
+
+          <div class="cierre" id="cierre" hidden="">
+          <p class="cierre__label">Your benchmark opportunity</p>
+          <p class="cierre__cifra" id="cierre-cifra">$0</p>
+          <p class="cierre__nota" id="cierre-nota">
+          in annual opportunity, based on historical benchmark results
+          </p>
+
+          <dl class="cierre__datos">
+          <div class="cierre__fila">
+          <dt>Benchmark type</dt>
+          <dd id="c-d-tipo">-</dd>
+          </div>
+          <div class="cierre__fila">
+          <dt>Historical cost reduction</dt>
+          <dd id="c-d-pct">-</dd>
+          </div>
+          <div class="cierre__fila">
+          <dt>Average simple payback</dt>
+          <dd id="c-d-payback">-</dd>
+          </div>
+          </dl>
+
+          <div class="cierre__recomienda">
+          <p class="cierre__rec-titulo" id="c-rec-titulo">Recommended next step</p>
+          <p class="cierre__rec-texto" id="c-rec-texto"></p>
+          </div>
+          </div>
+
+          <!-- SALIDA SIN DATOS (14/9/2026)
+
+          Cuando no hay superficie ni gasto no hay nada que estimar. Antes se
+          enseñaba igual el benchmark y la recomendacion junto a un "Add your
+          area": una ficha tecnica que no le correspondia a quien no habia
+          dado ningun dato.
+
+          Esta es la otra salida. No pide disculpas ni señala un error: el
+          dato que falta puede no estar a mano, y para eso esta la
+          conversacion. -->
+          <div class="cierre cierre--consulta" id="cierre-consulta" hidden>
+          <p class="cierre__label">Your next step</p>
+          <p class="cierre__titulo-consulta">Talk to one of our experts.</p>
+          <p class="cierre__nota">
+          We can review your buildings with you and estimate the opportunity
+          together &mdash; no floor area needed to start the conversation.
+          </p>
+
+          <ul class="cierre__lista">
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          A 20-minute call, with no commitment
+          </li>
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          We bring the benchmark data for your building type
+          </li>
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          You leave knowing whether a deeper look is justified
+          </li>
+          </ul>
+
+          <div class="cierre__recomienda">
+          <p class="cierre__rec-titulo" id="cc-rec-titulo">Recommended next step</p>
+          <p class="cierre__rec-texto" id="cc-rec-texto"></p>
+          </div>
+
+          </div>
+
+          <!-- ================= COLUMNA DERECHA: la tarjeta de resultado ================= -->
+
+          <div class="flip" id="flip" data-flip-panel="">
+
+          <!-- ANVERSO -->
+          <div class="flip__cara flip__cara--frente">
+          <div class="resultado">
+
+          <!-- Panel vivo: se va llenando con cada respuesta.
+          Cada paso produce un cambio visible, y en el paso 3 aparece ya
+          el benchmark del sector como adelanto del resultado. -->
+          <div class="espera" id="espera">
+
+          <div class="resultado__head">
+          <p class="resultado__label">Your profile</p>
+          <span class="pastilla" id="etiqueta-progreso">0 of 6</span>
+          </div>
+
+          <ul class="perfil" id="perfil">
+          <li class="perfil__fila perfil__fila--eleg" data-fila="tamano">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Building size</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="lugar">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Location</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="utility">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Utility</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="fondos">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Prior funding</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__resumen" id="eleg-resumen" hidden>
+          <span class="perfil__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="perfil__resumen-txt" id="eleg-resumen-txt"></span>
+          </li>
+          <li class="perfil__fila perfil__fila--corte" data-fila="scope">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Scope</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila" data-fila="sector">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Organization</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila" data-fila="tipo">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Building type</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila" data-fila="area">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Portfolio size</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila" data-fila="spend">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Annual spend</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila" data-fila="sites">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Sites</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          </ul>
+
+          <!-- Adelanto del benchmark. Aparece al elegir tipo de edificio. -->
+          <div class="adelanto" id="adelanto" hidden="">
+          <p class="adelanto__cifra"><span id="adelanto-pct">0</span>%</p>
+          <p class="adelanto__texto" id="adelanto-txt">
+          average historical cost reduction for this building type
+          </p>
+          </div>
+
+          <!-- Prueba social mientras el perfil se completa -->
+          <div class="prueba" id="prueba">
+          <p class="prueba__cifra">$2.94M</p>
+          <p class="prueba__texto">
+          identified for one Western Canadian school district
+          </p>
+          </div>
+          </div>
+
+          <!-- Resultado, tras calcular -->
+          <div class="salida" id="salida" hidden="" aria-live="polite" aria-atomic="true">
+          <div class="resultado__head">
+          <p class="resultado__label">Your benchmark opportunity</p>
+          <span class="pastilla" id="etiqueta-tipo">Benchmark</span>
+          </div>
+
+          <p class="resultado__cifra" id="cifra">$0</p>
+          <p class="resultado__nota" id="cifra-nota">
+          in annual opportunity, based on historical benchmark results
+          </p>
+
+          <dl class="desglose">
+          <div class="desglose__fila">
+          <dt>Benchmark type</dt>
+          <dd id="d-tipo">-</dd>
+          </div>
+          <div class="desglose__fila">
+          <dt>Historical cost reduction</dt>
+          <dd id="d-pct">-</dd>
+          </div>
+          <div class="desglose__fila">
+          <dt>Average simple payback</dt>
+          <dd id="d-payback">-</dd>
+          </div>
+          </dl>
+
+          <div class="recomienda">
+          <p class="recomienda__titulo" id="rec-titulo">Recommended next step</p>
+          <p class="recomienda__texto" id="rec-texto"></p>
+          </div>
+
+          <button class="btn btn--primary btn--block resultado__cta" type="button" data-flip="abrir" aria-controls="flip" aria-expanded="false">
+          <span id="rec-boton">See the recommended path</span>
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          </button>
+          </div>
+
+          <p class="resultado__legal">
+          Benchmarks come from historical BC Hydro C-Op results by building type.
+          </p>
+          </div>
+          </div>
+
+          <!-- REVERSO: captura para HubSpot -->
+          <div class="flip__cara flip__cara--dorso" inert="">
+          <div class="resultado resultado--dorso">
+          <div class="resultado__head">
+          <p class="resultado__label" id="dorso-titulo">Your recommended path</p>
+          </div>
+
+          <p class="captura__titulo">Want the real number for your portfolio?</p>
+          <p class="captura__texto">
+          Leave your details and the team will put together a closer look at
+          your actual buildings.
+          </p>
+
+          <form class="captura" data-hubspot="opportunity-check" onsubmit="return false" data-camino="cualificado">
+          <div class="campo campo--claro">
+          <label class="campo__label" for="h-name">Name</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-name" name="firstname" type="text" autocomplete="name" required="">
+          </div>
+          </div>
+
+          <div class="campo campo--claro" data-campo="org">
+          <label class="campo__label" for="h-org">Organization</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-org" name="company" type="text" autocomplete="organization" required="">
+          </div>
+          </div>
+
+          <div class="campo campo--claro">
+          <label class="campo__label" for="h-email">Work email</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-email" name="email" type="email" autocomplete="email" required="">
+          </div>
+          </div>
+
+          <!-- Cargo: lo pidio el cliente (feedback 9/9/2026, Parte 4). Un
+          director de operaciones y un tecnico no son el mismo lead. -->
+          <div class="campo campo--claro" data-solo="cualificado">
+          <label class="campo__label" for="h-role">Role</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-role" name="jobtitle" type="text" autocomplete="organization-title" required="">
+          </div>
+          </div>
+
+          <!-- Dos telefonos y ya no opcionales: el equipo comercial necesita
+          poder llamar. La linea directa solo en el camino cualificado. -->
+          <div class="campo campo--claro" data-solo="cualificado">
+          <label class="campo__label" for="h-direct">Direct line</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-direct" name="hs_phone_number" type="tel" inputmode="tel" autocomplete="tel" required="">
+          </div>
+          </div>
+
+          <div class="campo campo--claro" data-campo="movil">
+          <label class="campo__label" for="h-phone">Mobile phone</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-phone" name="mobilephone" type="tel" inputmode="tel" autocomplete="tel" required="">
+          </div>
+          </div>
+
+          <!-- Provincia y ciudad: SOLO en el camino de descartado por tamano
+          --Parte 1, pantalla 1--. Ocultos en el resto. -->
+          <div class="campo campo--claro" data-solo="descartado" hidden="">
+          <label class="campo__label" for="h-prov">Province</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-prov" name="state" type="text" autocomplete="address-level1" tabindex="-1">
+          </div>
+          </div>
+
+          <div class="campo campo--claro" data-solo="descartado" hidden="">
+          <label class="campo__label" for="h-city">City</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="h-city" name="city" type="text" autocomplete="address-level2" tabindex="-1">
+          </div>
+          </div>
+
+          <!-- Contexto que viaja a HubSpot con el contacto -->
+          <input type="hidden" name="scope" value="">
+          <input type="hidden" name="sector" value="">
+          <input type="hidden" name="province" value="">
+          <input type="hidden" name="building_type" value="">
+          <input type="hidden" name="area" value="">
+          <input type="hidden" name="annual_spend" value="">
+          <input type="hidden" name="sites" value="">
+          <input type="hidden" name="benchmark_opportunity" value="">
+
+          <!-- Consentimiento. Obligatorio en los TRES caminos.
+
+          El texto es el que mando el cliente y es PROVISIONAL: su equipo lo
+          esta revisando. Importa que sea literal, porque es lo que se guarda
+          en HubSpot como prueba del consentimiento --y en Canada esto cae
+          bajo CASL--. Si cambia en pantalla, hay que cambiarlo tambien en el
+          guion que lo envia. -->
+          <div class="campo campo--claro campo--casilla">
+          <label class="casilla">
+          <input class="casilla__input" type="checkbox" id="h-consent" name="consent" required="">
+          <span class="casilla__texto" id="texto-consentimiento">I consent to receive
+          electronic communications from Rede Energy Solutions about energy
+          management services, program updates, and related content. I can
+          withdraw this consent at any time.</span>
+          </label>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">
+          <span data-boton-envio="">Send me the deeper look</span>
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          </button>
+
+          <p class="captura__legal">Only used to prepare your analysis.</p>
+          </form>
+
+          <!-- Contacto directo y reinicio. Aparecen dentro de la tarjeta
+          blanca, bajo el mensaje de confirmacion, para no cargar la
+          columna izquierda. -->
+          <div class="tras-envio" id="cierre-extra" hidden="">
+          <div class="tras-envio__contacto">
+          <a class="contacto contacto--claro" href="tel:+17783276851">
+          <span class="contacto__icono" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1
+          A16 16 0 014 5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+          </svg>
+          </span>
+          <span>
+          <span class="contacto__label">Call the team</span>
+          <span class="contacto__dato">778.327.6851</span>
+          </span>
+          </a>
+
+          <a class="contacto contacto--claro" href="mailto:matthew@getrede.ca">
+          <span class="contacto__icono" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"></rect>
+          <path d="M3.5 6.5L12 13l8.5-6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          </span>
+          <span>
+          <span class="contacto__label">Send an email</span>
+          <span class="contacto__dato">matthew@getrede.ca</span>
+          </span>
+          </a>
+          </div>
+
+          <button class="reiniciar" type="button" id="btn-reiniciar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Run another check
+          </button>
+          </div>
+          </div>
+          </div>
+
+          </div>
+
+        
+
+        </div>
+      </div>
+    </section>
+  <!-- ====================================================================
+       EL ALCANCE: LO QUE SI Y LO QUE NO
+
+       La mejor seccion del wireframe. Decir en voz alta lo que el
+       servicio NO hace es lo que hace creible lo que si hace, y encaja
+       con el tono del resto de la web --el mismo que pone "cifras
+       ilustrativas" en el grafico del hero.
+
+       Dos tarjetas enfrentadas: la de la izquierda en verde claro, la de
+       la derecha en blanco con borde. Se distinguen por color Y por el
+       simbolo de cada linea, no solo por color.
+       ==================================================================== -->
+  <!-- ==================================================================
+       ALCANCE: TRES DISENOS PARA ELEGIR (14/9/2026)
+
+       Mismo copy en los tres. Lo que cambia es el PESO y el ORDEN, que es
+       justo lo que la evidencia dice que importa aqui.
+       ================================================================== -->
+  <div class="d2-caru" id="caru-ega-alcance" data-caru>
+
+    <!-- OPCION 1 - DOS TARJETAS (la que ya existia) -->
+    <!-- OPCION 1 - PERIMETRO
+
+         Una forma completa --todo lo que podria saberse de un edificio-- y
+         dentro, recortado, lo que este servicio cubre. El hueco ES lo que
+         no entrega: el significado esta en la operacion booleana, no en un
+         check y una cruz.
+
+         mask-composite: subtract. Baseline desde diciembre de 2023 y SIN
+         prefijo; la documentacion que circula pidiendo -webkit- esta
+         obsoleta. -->
+    <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1: Perimeter">
+      <section class="d2-ega-per d2-entra" data-comp-rol="prueba" aria-labelledby="ega-per-t">
+        <div class="d2-ega-per__inner">
+
+          <div class="d2-ega-per__cab">
+            <p class="eyebrow">Clear scope. Straight answers.</p>
+            <h2 class="d2-ega-per__titulo" id="ega-per-t">A ranked shortlist&mdash;not a diagnosis.</h2>
+            <p class="d2-ega-per__lead">Energy Gap Analysis helps you decide where deeper work is justified. It does not guess at the cause or commit you to another service.</p>
+          </div>
+
+          <div class="d2-ega-per__reja">
+
+            <div class="d2-ega-per__dentro">
+              <p class="d2-ega-per__eti">What you receive</p>
+              <ul class="d2-ega-per__lista">
+                <li>One comparison of the portfolio</li>
+                <li>A ranked list of priority buildings</li>
+                <li>The numbers behind the decision</li>
+                <li>A findings review and next-step recommendation</li>
+              </ul>
+              <p class="d2-ega-per__libre"><strong>No lock-in.</strong> Review the findings, ask questions and decide what happens next.</p>
+            </div>
+
+            <div class="d2-ega-per__fuera">
+              <p class="d2-ega-per__eti d2-ega-per__eti--fuera">What needs a closer look</p>
+              <ul class="d2-ega-per__lista-fuera">
+                <li>The exact source of the problem</li>
+                <li>How controls are programmed</li>
+                <li>Whether equipment is failing</li>
+                <li>Guaranteed savings or confirmed funding</li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 2 - EL PIVOTE
+
+         El mecanismo del FAQ, con otra carga: abrir un entregable muestra
+         en la ficha SU limite emparejado, con la razon de por que lo es.
+
+         <details name> da acordeon exclusivo, teclado y accesibilidad sin
+         una linea de JS: es el mismo patron que ya usa el FAQ. -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: Pivot" hidden>
+      <section class="d2-ega-piv d2-entra" data-comp-rol="prueba" aria-labelledby="ega-piv-t">
+        <div class="d2-ega-piv__inner">
+
+          <div class="d2-ega-piv__cab">
+            <p class="eyebrow">Clear scope. Straight answers.</p>
+            <h2 class="d2-ega-piv__titulo" id="ega-piv-t">A ranked shortlist&mdash;not a diagnosis.</h2>
+            <p class="d2-ega-piv__lead">Energy Gap Analysis helps you decide where deeper work is justified. It does not guess at the cause or commit you to another service.</p>
+          </div>
+
+          <div class="d2-ega-piv__cuerpo">
+
+            <div class="d2-ega-piv__lista">
+              <p class="d2-ega-piv__eti">What you receive</p>
+              <details class="d2-ega-piv__item" name="d2-ega-piv" open=""
+                       data-limite="The exact source of the problem" data-razon="Comes from the investigation the shortlist points to.">
+                <summary class="d2-ega-piv__si">
+                  <span class="d2-ega-piv__marca" aria-hidden="true"></span>
+                  One comparison of the portfolio
+                </summary>
+                <p class="d2-ega-piv__r">
+                  <span class="d2-ega-piv__r-eti">What this does not include</span>
+                  <strong>The exact source of the problem</strong> Comes from the investigation the shortlist points to.
+                </p>
+              </details>
+              <details class="d2-ega-piv__item" name="d2-ega-piv"
+                       data-limite="How controls are programmed" data-razon="Requires trend data from the building automation system.">
+                <summary class="d2-ega-piv__si">
+                  <span class="d2-ega-piv__marca" aria-hidden="true"></span>
+                  A ranked list of priority buildings
+                </summary>
+                <p class="d2-ega-piv__r">
+                  <span class="d2-ega-piv__r-eti">What this does not include</span>
+                  <strong>How controls are programmed</strong> Requires trend data from the building automation system.
+                </p>
+              </details>
+              <details class="d2-ega-piv__item" name="d2-ega-piv"
+                       data-limite="Whether equipment is failing" data-razon="Needs eyes on the equipment, not utility data.">
+                <summary class="d2-ega-piv__si">
+                  <span class="d2-ega-piv__marca" aria-hidden="true"></span>
+                  The numbers behind the decision
+                </summary>
+                <p class="d2-ega-piv__r">
+                  <span class="d2-ega-piv__r-eti">What this does not include</span>
+                  <strong>Whether equipment is failing</strong> Needs eyes on the equipment, not utility data.
+                </p>
+              </details>
+              <details class="d2-ega-piv__item" name="d2-ega-piv"
+                       data-limite="Guaranteed savings or confirmed funding" data-razon="The utility confirms eligibility; we tell you what they will ask for.">
+                <summary class="d2-ega-piv__si">
+                  <span class="d2-ega-piv__marca" aria-hidden="true"></span>
+                  A findings review and next-step recommendation
+                </summary>
+                <p class="d2-ega-piv__r">
+                  <span class="d2-ega-piv__r-eti">What this does not include</span>
+                  <strong>Guaranteed savings or confirmed funding</strong> The utility confirms eligibility; we tell you what they will ask for.
+                </p>
+              </details>
+            </div>
+
+            <!-- La ficha, sticky como la del FAQ. aria-live porque su
+                 contenido cambia lejos de donde el usuario pulsa: sin el,
+                 un lector de pantalla no se entera. -->
+            <aside class="d2-ega-piv__ficha" aria-live="off">
+              <div class="d2-ega-piv__ficha-caja">
+                <p class="d2-ega-piv__ficha-eti" data-piv-eti>What this does not include</p>
+                <p class="d2-ega-piv__ficha-limite" data-piv-limite></p>
+                <p class="d2-ega-piv__ficha-razon" data-piv-razon></p>
+              </div>
+              <p class="d2-ega-piv__ficha-pie">
+                <strong>No lock-in.</strong> Review the findings, ask questions and decide what happens next.
+              </p>
+            </aside>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 3 - LA ESCALA DE INSTRUMENTO
+
+         Sustituye al interruptor que solo oscurecia un fondo: pulsarlo no
+         producia informacion nueva, asi que no era un mecanismo.
+
+         Cada entregable lleva un dial cuyas MARCAS DE CALIBRACION no se
+         dibujan: se RESTAN del arco con repeating-conic-gradient y
+         mask-composite. No hay atajo para esto, que es justo lo que lo
+         distingue de una barra de progreso.
+
+         Los arcos se llenan escalonados al entrar, como las cifras de
+         secciones/prueba/01-record. -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: Meter" hidden>
+      <section class="d2-ega-met d2-entra" data-comp-rol="prueba" aria-labelledby="ega-met-t">
+        <div class="d2-ega-met__inner">
+
+          <div class="d2-ega-met__cab">
+            <p class="eyebrow">Clear scope. Straight answers.</p>
+            <h2 class="d2-ega-met__titulo" id="ega-met-t">A ranked shortlist&mdash;not a diagnosis.</h2>
+            <p class="d2-ega-met__lead">Energy Gap Analysis helps you decide where deeper work is justified. It does not guess at the cause or commit you to another service.</p>
+          </div>
+
+          <div class="d2-ega-met__reja">
+
+          <div class="d2-ega-met__regla" aria-hidden="true">
+            <svg viewBox="0 0 64 320" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 preserveAspectRatio="xMidYMin meet">
+
+              <!-- El eje. No llega a los extremos: se desvanece con la
+                   mascara del CSS. -->
+              <line class="d2-ega-met__eje" x1="12" y1="8" x2="12" y2="312"
+                    stroke="var(--c-borde)" stroke-width="1.5"/>
+
+              <!-- Las marcas: una mayor por cada entregable, cuatro
+                   menores entre medias. Es la graduacion de un
+                   instrumento, no una lista de vinetas. -->
+              <g class="d2-ega-met__marcas" stroke="var(--c-borde)" stroke-width="1">
+                <line x1="12" y1="40" x2="30" y2="40" stroke-width="1.5"/>
+                <line x1="12" y1="56" x2="21" y2="56"/>
+                <line x1="12" y1="72" x2="21" y2="72"/>
+                <line x1="12" y1="112" x2="30" y2="112" stroke-width="1.5"/>
+                <line x1="12" y1="128" x2="21" y2="128"/>
+                <line x1="12" y1="144" x2="21" y2="144"/>
+                <line x1="12" y1="184" x2="30" y2="184" stroke-width="1.5"/>
+                <line x1="12" y1="200" x2="21" y2="200"/>
+                <line x1="12" y1="216" x2="21" y2="216"/>
+                <line x1="12" y1="256" x2="30" y2="256" stroke-width="1.5"/>
+                <line x1="12" y1="272" x2="21" y2="272"/>
+                <line x1="12" y1="288" x2="21" y2="288"/>
+              </g>
+
+              <!-- El cursor: baja por el eje al ritmo de los cuatro
+                   arcos, y se detiene en el ultimo. -->
+              <g class="d2-ega-met__cursor">
+                <line x1="6" y1="0" x2="34" y2="0" stroke="var(--c-verde-hover)"
+                      stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="0" r="3.5" fill="var(--c-verde-hover)"/>
+              </g>
+            </svg>
+          </div>
+
+          <ul class="d2-ega-met__lista">
+            <li class="d2-ega-met__item" style="--i:0">
+              <span class="d2-ega-met__dial" aria-hidden="true">
+                <span class="d2-ega-met__arco"></span>
+                <span class="d2-ega-met__n">01</span>
+              </span>
+              <div class="d2-ega-met__cuerpo">
+                <h3 class="d2-ega-met__si">One comparison of the portfolio</h3>
+                <p class="d2-ega-met__no">
+                  <span class="d2-ega-met__eti">Not included</span>
+                  <strong>The exact source of the problem</strong>
+                  <span class="d2-ega-met__razon">Comes from the investigation the shortlist points to.</span>
+                </p>
+              </div>
+            </li>
+            <li class="d2-ega-met__item" style="--i:1">
+              <span class="d2-ega-met__dial" aria-hidden="true">
+                <span class="d2-ega-met__arco"></span>
+                <span class="d2-ega-met__n">02</span>
+              </span>
+              <div class="d2-ega-met__cuerpo">
+                <h3 class="d2-ega-met__si">A ranked list of priority buildings</h3>
+                <p class="d2-ega-met__no">
+                  <span class="d2-ega-met__eti">Not included</span>
+                  <strong>How controls are programmed</strong>
+                  <span class="d2-ega-met__razon">Requires trend data from the building automation system.</span>
+                </p>
+              </div>
+            </li>
+            <li class="d2-ega-met__item" style="--i:2">
+              <span class="d2-ega-met__dial" aria-hidden="true">
+                <span class="d2-ega-met__arco"></span>
+                <span class="d2-ega-met__n">03</span>
+              </span>
+              <div class="d2-ega-met__cuerpo">
+                <h3 class="d2-ega-met__si">The numbers behind the decision</h3>
+                <p class="d2-ega-met__no">
+                  <span class="d2-ega-met__eti">Not included</span>
+                  <strong>Whether equipment is failing</strong>
+                  <span class="d2-ega-met__razon">Needs eyes on the equipment, not utility data.</span>
+                </p>
+              </div>
+            </li>
+            <li class="d2-ega-met__item" style="--i:3">
+              <span class="d2-ega-met__dial" aria-hidden="true">
+                <span class="d2-ega-met__arco"></span>
+                <span class="d2-ega-met__n">04</span>
+              </span>
+              <div class="d2-ega-met__cuerpo">
+                <h3 class="d2-ega-met__si">A findings review and next-step recommendation</h3>
+                <p class="d2-ega-met__no">
+                  <span class="d2-ega-met__eti">Not included</span>
+                  <strong>Guaranteed savings or confirmed funding</strong>
+                  <span class="d2-ega-met__razon">The utility confirms eligibility; we tell you what they will ask for.</span>
+                </p>
+              </div>
+            </li>
+          </ul>
+          </div>
+
+          <p class="d2-ega-met__libre">
+            <strong>No lock-in.</strong> Review the findings, ask questions and decide what happens next.
+          </p>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="d2-caru__mandos">
+      <button class="d2-caru__ocultar" type="button" data-caru-ocultar aria-expanded="true" aria-label="Close options">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="d2-caru__puntos" role="tablist" aria-label="Section version">
+        <button class="d2-caru__punto es-activo" type="button" role="tab" aria-selected="true"  data-caru-a="0"><span>1</span><small>Perimeter</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="1"><span>2</span><small>Pivot</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="2"><span>3</span><small>Meter</small></button>
+      </div>
+
+      <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       LO QUE DICEN LOS CLIENTES
+
+       De la home. La cita de Norman Buhler --Fort Vermilion-- que lleva
+       el wireframe ya esta entre las de la home.
+       ==================================================================== -->
+<section class="d2-res-cen" data-comp-rol="citas" aria-labelledby="res-cen-titulo">
+      <h2 class="u-oculto-visual" id="res-cen-titulo">What our clients say</h2>
+
+      <!-- El trazado de fondo. Decorativo: no aporta informacion. -->
+      <svg class="d2-res-cen__lineas" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M720 0V170H910L1030 290H1440M910 170V50M1030 290V505H1290L1440 430"></path>
+        <circle cx="910" cy="170" r="6"></circle>
+        <circle cx="1030" cy="290" r="6"></circle>
+      </svg>
+
+      <div class="d2-res-cen__inner" data-res-cen="">
+
+        <div class="d2-res-cen__contenido">
+          <p class="d2-res-cen__eyebrow">What our clients say</p>
+
+          <!-- La region viva: anuncia el cambio de cita sin mover el foco -->
+          <div role="status" aria-live="polite">
+            <blockquote class="d2-res-cen__cita" data-cen-cita="">“The Rede team is all about proactively implementing energy solutions. They see a gap and they take care of it.”</blockquote>
+
+            <div class="d2-res-cen__firma">
+              <b data-cen-nombre="">Alex Telford</b>
+              <span data-cen-cargo="">Director of Operations</span>
+              <span data-cen-org="">SD27 · British Columbia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d2-res-cen__cifras">
+          <div>
+            <b data-cen-c1="">20</b>
+            <span data-cen-e1="">Buildings connected</span>
+          </div>
+          <div>
+            <b data-cen-c2="">$500K+</b>
+            <span data-cen-e2="">Annual savings</span>
+          </div>
+          <div>
+            <b data-cen-c3="">$4.4M</b>
+            <span data-cen-e3="">Cumulative savings</span>
+          </div>
+        </div>
+
+        <!-- Los mandos. Van despues de las cifras para que el orden de
+             tabulacion siga al de lectura. -->
+        <div class="d2-res-cen__mandos">
+          <button class="d2-res-cen__flecha" type="button" data-cen-ir="-1" aria-label="Previous review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+
+          <div class="d2-res-cen__puntos" role="tablist" aria-label="Client reviews">
+            <button class="d2-res-cen__punto es-activo" type="button" role="tab" aria-selected="true" data-cen-a="0" aria-label="Review 1 of 3"></button>
+            <button class="d2-res-cen__punto" type="button" role="tab" aria-selected="false" data-cen-a="1" aria-label="Review 2 of 3"></button>
+            <button class="d2-res-cen__punto" type="button" role="tab" aria-selected="false" data-cen-a="2" aria-label="Review 3 of 3"></button>
+          </div>
+
+          <button class="d2-res-cen__flecha" type="button" data-cen-ir="1" aria-label="Next review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+  <!-- ====================================================================
+       LA FINANCIACION
+
+       Tres tarjetas, una por region. Sobre fondo oscuro, que es lo que
+       hace el wireframe y encaja con la composicion Contrast: esta es la
+       segunda banda oscura de la pagina.
+
+       La nota del final no es letra pequena por costumbre: es la unica
+       forma honesta de hablar de ayudas cuyos requisitos cambian.
+       ==================================================================== -->
+  <!-- ==================================================================
+       FINANCIACION: TRES DISENOS PARA ELEGIR (14/9/2026)
+
+       Mismo copy en los tres. Ninguna promete importes: las propias
+       utilities no lo hacen --BC Hydro dice "funding varies"-- y hacerlo
+       aqui nos expondria.
+       ================================================================== -->
+  <div class="d2-caru" id="caru-ega-fondos" data-caru>
+
+    <!-- OPCION 1 - TRES TARJETAS (la que ya existia) -->
+    <!-- OPCION 1 - LAS RUTAS
+
+         Tres trazados de distinta CERTEZA hacia un mismo punto de
+         resolucion.
+
+         BC Hydro y SaskPower tienen programas nombrados y publicados:
+         su linea llega entera. "Otras provincias" es una conversacion:
+         la suya arranca discontinua.
+
+         Eso no es decoracion. Credit Karma hace lo mismo con sus niveles
+         de probabilidad: el mas alto se basa en criterios reales del
+         prestamista y los de abajo en comparacion, y NO se dibujan
+         iguales. La asimetria es el dato. -->
+    <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1: Routes">
+      <section class="d2-ega-ruta-sec d2-entra" data-comp-rol="prueba" aria-labelledby="ega-ruta-t">
+        <div class="d2-ega-ruta-sec__inner">
+
+          <div class="d2-ega-ruta-sec__cab">
+            <p class="eyebrow">Commercial energy funding</p>
+            <h2 class="d2-ega-ruta-sec__titulo" id="ega-ruta-t">Could a utility program help pay for what comes next?</h2>
+            <p class="d2-ega-ruta-sec__lead">Program rules change, and the right path depends on your utility, building and proposed work. Rede helps you identify the relevant route before you invest in a detailed study or project.</p>
+          </div>
+
+          <ul class="d2-ega-ruta-sec__lista">
+            <li class="d2-ega-ruta" data-certeza="definido" style="--i:0">
+              <span class="d2-ega-ruta__traza" aria-hidden="true">
+                <svg viewBox="0 0 40 120" fill="none" preserveAspectRatio="none">
+                  <path class="d2-ega-ruta__linea" d="M20 4 L20 116" pathLength="100"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="d2-ega-ruta__nodo"></span>
+              </span>
+              <div class="d2-ega-ruta__cuerpo">
+                <p class="d2-ega-ruta__region">British Columbia</p>
+                <h3 class="d2-ega-ruta__nom">BC Hydro programs</h3>
+                <p class="d2-ega-ruta__cert">Named programs, published rules</p>
+                <p class="d2-ega-ruta__txt">Commercial and institutional customers may be able to access support for eligible studies, operational improvements, equipment projects or ongoing energy management.</p>
+                <a class="d2-ega-ruta__link" href="#contact">Check BC program fit <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </li>
+            <li class="d2-ega-ruta" data-certeza="definido" style="--i:1">
+              <span class="d2-ega-ruta__traza" aria-hidden="true">
+                <svg viewBox="0 0 40 120" fill="none" preserveAspectRatio="none">
+                  <path class="d2-ega-ruta__linea" d="M20 4 L20 116" pathLength="100"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="d2-ega-ruta__nodo"></span>
+              </span>
+              <div class="d2-ega-ruta__cuerpo">
+                <p class="d2-ega-ruta__region">Saskatchewan</p>
+                <h3 class="d2-ega-ruta__nom">SaskPower programs</h3>
+                <p class="d2-ega-ruta__cert">Named programs, criteria vary</p>
+                <p class="d2-ega-ruta__txt">Available support depends on the customer, facility, energy opportunity and type of project being considered.</p>
+                <a class="d2-ega-ruta__link" href="#contact">Check Saskatchewan program fit <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </li>
+            <li class="d2-ega-ruta" data-certeza="abierto" style="--i:2">
+              <span class="d2-ega-ruta__traza" aria-hidden="true">
+                <svg viewBox="0 0 40 120" fill="none" preserveAspectRatio="none">
+                  <path class="d2-ega-ruta__linea" d="M20 4 L20 116" pathLength="100"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="d2-ega-ruta__nodo"></span>
+              </span>
+              <div class="d2-ega-ruta__cuerpo">
+                <p class="d2-ega-ruta__region">Other provinces</p>
+                <h3 class="d2-ega-ruta__nom">Regional program review</h3>
+                <p class="d2-ega-ruta__cert">Reviewed case by case</p>
+                <p class="d2-ega-ruta__txt">Rede can discuss other provincial energy-efficiency programs relevant to commercial, institutional and public-sector buildings.</p>
+                <a class="d2-ega-ruta__link" href="#contact">Ask about your province <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </li>
+          </ul>
+
+          <p class="d2-ega-ruta-sec__cierre">
+            <span class="d2-ega-ruta-sec__cierre-eti">Where the uncertainty ends</span>
+            Energy Gap Analysis identifies a sensible next step. It is not automatically funded, and final eligibility is always confirmed against the current program requirements.
+          </p>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 2 - LAS ETAPAS
+
+         El recorrido completo en tres tiempos: donde estas, que hace
+         Rede, quien decide.
+
+         Es la estructura de HealthCare.gov dibujada: "might ahora ->
+         exacto cuando hagas X". El condicional se cierra porque se VE
+         donde termina, no porque lo diga una nota al pie.
+
+         Las tres regiones van dentro de la primera etapa: son el punto
+         de partida, no el argumento de la seccion. -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: Stages" hidden>
+      <section class="d2-ega-eta d2-entra" data-comp-rol="prueba" aria-labelledby="ega-eta-t">
+        <div class="d2-ega-eta__inner">
+
+          <div class="d2-ega-eta__cab">
+            <p class="eyebrow">Commercial energy funding</p>
+            <h2 class="d2-ega-eta__titulo" id="ega-eta-t">Could a utility program help pay for what comes next?</h2>
+            <p class="d2-ega-eta__lead">Program rules change, and the right path depends on your utility, building and proposed work. Rede helps you identify the relevant route before you invest in a detailed study or project.</p>
+          </div>
+
+          <ol class="d2-ega-eta__lista">
+
+            <li class="d2-ega-eta__paso" style="--i:0">
+              <span class="d2-ega-eta__eje" aria-hidden="true"></span>
+              <span class="d2-ega-eta__nodo" aria-hidden="true"></span>
+              <p class="d2-ega-eta__n">Where you are</p>
+              <h3 class="d2-ega-eta__h">Your utility and province</h3>
+              <ul class="d2-ega-eta__regs">
+                <li class="d2-ega-eta__reg">
+                  <span class="d2-ega-eta__reg-nom">British Columbia</span>
+                  <span class="d2-ega-eta__reg-cert">Named programs, published rules</span>
+                </li>
+                <li class="d2-ega-eta__reg">
+                  <span class="d2-ega-eta__reg-nom">Saskatchewan</span>
+                  <span class="d2-ega-eta__reg-cert">Named programs, criteria vary</span>
+                </li>
+                <li class="d2-ega-eta__reg">
+                  <span class="d2-ega-eta__reg-nom">Other provinces</span>
+                  <span class="d2-ega-eta__reg-cert">Reviewed case by case</span>
+                </li>
+              </ul>
+            </li>
+
+            <li class="d2-ega-eta__paso" style="--i:1">
+              <span class="d2-ega-eta__eje" aria-hidden="true"></span>
+              <span class="d2-ega-eta__nodo" aria-hidden="true"></span>
+              <p class="d2-ega-eta__n">What Rede does</p>
+              <h3 class="d2-ega-eta__h">Identify the relevant route</h3>
+              <p class="d2-ega-eta__d">Rede reads your utility data against the programs that apply where your buildings are, and tells you which route is worth pursuing.</p>
+              <a class="d2-ega-eta__link" href="#contact">Check your program fit <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </li>
+
+            <li class="d2-ega-eta__paso d2-ega-eta__paso--fin" style="--i:2">
+              <span class="d2-ega-eta__eje" aria-hidden="true"></span>
+              <span class="d2-ega-eta__nodo" aria-hidden="true"></span>
+              <p class="d2-ega-eta__n">Where the uncertainty ends</p>
+              <h3 class="d2-ega-eta__h">The utility confirms</h3>
+              <p class="d2-ega-eta__d">Energy Gap Analysis identifies a sensible next step. It is not automatically funded, and final eligibility is always confirmed against the current program requirements.</p>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <!-- OPCION 3 - LAS SENALES
+
+         Tres barras de intensidad distinta. Cada una dice cuanta certeza
+         hay SIN numeros: llena donde los programas estan publicados, a
+         medias donde los criterios varian, y apenas iniciada donde hay
+         una conversacion.
+
+         Credit Karma usa palabras y no porcentajes por la misma razon:
+         un numero aqui seria una precision que no existe. -->
+    <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: Signal" hidden>
+      <section class="d2-ega-sen d2-entra" data-comp-rol="prueba" aria-labelledby="ega-sen-t">
+        <div class="d2-ega-sen__inner">
+
+          <div class="d2-ega-sen__cab">
+            <p class="eyebrow">Commercial energy funding</p>
+            <h2 class="d2-ega-sen__titulo" id="ega-sen-t">Could a utility program help pay for what comes next?</h2>
+            <p class="d2-ega-sen__lead">Program rules change, and the right path depends on your utility, building and proposed work. Rede helps you identify the relevant route before you invest in a detailed study or project.</p>
+          </div>
+
+          <ul class="d2-ega-sen__lista">
+            <li class="d2-ega-sen__item" style="--i:0;--n:3">
+              <div class="d2-ega-sen__cab">
+                <p class="d2-ega-sen__reg">British Columbia</p>
+                <span class="d2-ega-sen__barra" aria-hidden="true">
+                  <span class="d2-ega-sen__lleno"></span>
+                </span>
+                <p class="d2-ega-sen__cert">Named programs, published rules</p>
+              </div>
+              <h3 class="d2-ega-sen__nom">BC Hydro programs</h3>
+              <p class="d2-ega-sen__txt">Commercial and institutional customers may be able to access support for eligible studies, operational improvements, equipment projects or ongoing energy management.</p>
+              <a class="d2-ega-sen__link" href="#contact">Check BC program fit <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </li>
+            <li class="d2-ega-sen__item" style="--i:1;--n:2">
+              <div class="d2-ega-sen__cab">
+                <p class="d2-ega-sen__reg">Saskatchewan</p>
+                <span class="d2-ega-sen__barra" aria-hidden="true">
+                  <span class="d2-ega-sen__lleno"></span>
+                </span>
+                <p class="d2-ega-sen__cert">Named programs, criteria vary</p>
+              </div>
+              <h3 class="d2-ega-sen__nom">SaskPower programs</h3>
+              <p class="d2-ega-sen__txt">Available support depends on the customer, facility, energy opportunity and type of project being considered.</p>
+              <a class="d2-ega-sen__link" href="#contact">Check Saskatchewan program fit <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </li>
+            <li class="d2-ega-sen__item" style="--i:2;--n:1">
+              <div class="d2-ega-sen__cab">
+                <p class="d2-ega-sen__reg">Other provinces</p>
+                <span class="d2-ega-sen__barra" aria-hidden="true">
+                  <span class="d2-ega-sen__lleno"></span>
+                </span>
+                <p class="d2-ega-sen__cert">Reviewed case by case</p>
+              </div>
+              <h3 class="d2-ega-sen__nom">Regional program review</h3>
+              <p class="d2-ega-sen__txt">Rede can discuss other provincial energy-efficiency programs relevant to commercial, institutional and public-sector buildings.</p>
+              <a class="d2-ega-sen__link" href="#contact">Ask about your province <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </li>
+          </ul>
+
+          <p class="d2-ega-sen__cierre">
+            <span class="d2-ega-sen__cierre-eti">Where the uncertainty ends</span>
+            Energy Gap Analysis identifies a sensible next step. It is not automatically funded, and final eligibility is always confirmed against the current program requirements.
+          </p>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="d2-caru__mandos">
+      <button class="d2-caru__ocultar" type="button" data-caru-ocultar aria-expanded="true" aria-label="Close options">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="d2-caru__puntos" role="tablist" aria-label="Section version">
+        <button class="d2-caru__punto es-activo" type="button" role="tab" aria-selected="true"  data-caru-a="0"><span>1</span><small>Routes</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="1"><span>2</span><small>Stages</small></button>
+        <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="2"><span>3</span><small>Signal</small></button>
+      </div>
+
+      <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option">
+        <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       PREGUNTAS
+
+       El bloque de la home con las cinco preguntas de ESTA pagina: son
+       especificas del servicio y no valen las de la home.
+       ==================================================================== -->
+<section class="d2-faq-dato d2-entra" data-comp-rol="faq" aria-labelledby="faq-d-titulo">
+      <div class="d2-faq-dato__inner">
+
+        <div class="d2-faq-dato__cabecera">
+          <p class="d2-faq-dato__eyebrow">Before you ask</p>
+          <h2 class="d2-faq-dato__titulo" id="faq-d-titulo">
+            Straight answers.<br><span>Including the limits.</span>
+          </h2>
+        </div>
+
+        <div class="d2-faq-dato__cuerpo">
+
+          <div class="d2-faq-dato__lista">
+
+            <details class="d2-faq-dato__item" name="faq-dato" open="" data-cifra="Compare" data-eti="Portfolio first" data-nota="One comparison across every building you manage.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">01</span>
+                <span class="d2-faq-dato__q">Is an Energy Gap Analysis the same as a commercial energy audit?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p><strong>No.</strong> Energy Gap Analysis compares buildings to show where attention is most justified. A detailed commercial energy audit investigates a specific building to find causes and potential measures.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="1–2 yrs" data-eti="Utility billing history" data-nota="No new equipment needs to be installed.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">02</span>
+                <span class="d2-faq-dato__q">What information do we need to provide?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Typically, Rede starts with utility billing history, building type, floor area and basic operating context. The exact information needed is confirmed before work begins.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="Ranked" data-eti="A shortlist, not a diagnosis" data-nota="The cause comes from the investigation that follows.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">03</span>
+                <span class="d2-faq-dato__q">Will the analysis tell us exactly what is wrong?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p><strong>No.</strong> It identifies buildings that stand out. Finding the cause—such as schedules, sensors, controls or equipment—requires a closer investigation.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="No cost" data-eti="Program screening" data-nota="Rede checks the fit; the utility confirms eligibility.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">04</span>
+                <span class="d2-faq-dato__q">Can BC Hydro or SaskPower help pay?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p><strong>Possibly.</strong> Support depends on the building, customer, proposed service or project, and current program rules. Rede can help check program fit, but the utility confirms eligibility.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="No lock-in" data-eti="Your decision" data-nota="Review the findings and decide what happens next.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">05</span>
+                <span class="d2-faq-dato__q">Are we committed to another service afterward?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p><strong>No.</strong> The goal is to give your team a clearer decision. You can review the findings and choose whether, when and how to proceed.</p>
+              </div>
+            </details>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+          </div>
+
+          <!-- La ficha. Se rellena desde los data- del item abierto.
+               aria-hidden porque repite lo que ya dice la respuesta: para un
+               lector de pantalla seria una duplicacion, no una ayuda. -->
+          <aside class="d2-faq-dato__ficha" aria-hidden="true">
+            <!-- EL MAPA DE CARTERA, traido de The Problem (4/9/2026).
+                 La caja de dato que habia aqui cambiaba con cada pregunta
+                 abierta --los data-cifra/eti/nota de cada <details>--. Al
+                 sustituirla por el mapa esa relacion se pierde: el mapa es
+                 una pieza estatica. Los datos siguen en el marcado de cada
+                 pregunta por si se recupera.
+
+                 La caja original, comentada:
+                 <div class="d2-faq-dato__ficha-caja">
+                 <p class="d2-faq-dato__ficha-eti" data-ficha-eti>Energy Gap Analysis</p>
+                 <p class="d2-faq-dato__ficha-cifra" data-ficha-cifra>$5,000</p>
+                 <p class="d2-faq-dato__ficha-nota" data-ficha-nota>Four to six weeks from data access to findings.</p>
+                 </div>
+                 -->
+
+                                                                                                                                                                                    <!-- ============================================================
+                 MAPA DE SITIOS
+
+                 Los trece sitios de la referencia que mando Erick, sobre el
+                 plano real de Grande Prairie, Alberta.
+
+                 COMO SE SUPO DONDE VA CADA UNO
+
+                 La captura no trae coordenadas, asi que se calibro: se
+                 tomaron las etiquetas que el propio mapa base dibuja
+                 --ARBOUR HILLS, LAKELAND, GATEWAY...-- y se cruzaron con
+                 sus coordenadas reales. Eso da la transformacion de pixel
+                 de captura a latitud y longitud, con 168 m de error medio.
+
+                 Con ese margen los trece caen dentro de un barrio oficial y
+                 coinciden con las etiquetas que lleva la captura.
+
+                 EL ENCUADRE
+
+                 El viewBox no es 7:5 sino la proporcion del propio grupo de
+                 sitios. Con un lienzo fijo sobraba la mitad del ancho y las
+                 burbujas se veian diminutas --ocupaban el 45% del lienzo,
+                 ahora el 82%. Los radios estan escalados para que la mayor
+                 ocupe el 15% del ancho, como en la referencia.
+
+                 SON EDIFICIOS, NO BARRIOS
+
+                 Dos pares comparten barrio, y el sitio 13 esta dentro del
+                 12. Un barrio no se dibuja dos veces; un edificio dentro de
+                 otro terreno si. El circulo marca un SITIO y la etiqueta
+                 nombra el barrio donde esta.
+
+                 Limites del portal de datos abiertos de la Ciudad de Grande
+                 Prairie, con licencia que permite uso comercial y exige la
+                 atribucion de debajo.
+                 ============================================================ -->
+            <div class="d2-prob-mapa d2-mapa-zonas d2-faq-dato__mapa">
+            <div class="d2-prob-mapa__lienzo d2-mapa-zonas__lienzo" data-mapa-zonas="">
+            <div class="d2-prob-mapa__visual">
+
+            <svg class="d2-prob-mapa__grafico" viewBox="0 0 700 741" role="img" aria-label="Map of Grande Prairie, Alberta, showing thirteen building sites, each circle sized by how much energy that site uses">
+
+              <path class="d2-mapa-zonas__fondo" d="M435.2 331.8L415.8 314.0L417.5 322.8L415.8 327.6L394.1 327.6L394.1 321.8L318.2 321.7L318.2 325.5L313.9 325.5L312.9 305.2L306.2 305.2L304.7 295.0L303.4 295.0L303.8 276.8L305.8 276.8L306.8 271.2L313.6 270.7L313.6 255.4L317.9 255.4L317.9 259.8L355.1 259.8L355.5 245.4L398.7 245.3L421.1 287.0L424.2 287.0L424.5 289.5L429.3 287.9L435.8 288.6L435.8 333.3L435.2 331.8ZM25.4 124.2L59.4 124.2L59.4 136.5L85.3 136.5L85.3 122.6L106.3 122.6L106.4 203.7L36.1 203.9L36.1 192.8L25.5 192.8L25.4 124.2ZM601.1 -39.3L681.3 -39.3L681.3 41.5L601.1 41.5L601.1 -39.3ZM601.9 284.6L600.8 284.6L601.2 234.3L681.3 234.4L681.3 249.2L679.3 249.2L679.3 283.0L678.3 284.0L601.9 284.6ZM435.4 -122.9L435.5 -42.7L397.9 -42.4L386.8 -122.8L435.4 -122.9ZM600.2 610.4L560.5 610.2L560.5 581.2L541.6 531.6L542.3 530.7L559.8 530.7L559.7 537.3L597.4 537.4L597.4 530.8L600.2 530.8L600.2 610.4ZM356.5 212.7L356.5 202.8L334.2 202.8L334.1 124.1L340.6 121.1L352.3 121.1L357.0 123.6L388.5 123.6L393.8 225.0L397.8 243.2L357.0 243.8L356.5 212.7ZM630.3 287.7L681.3 287.8L681.2 368.6L630.2 368.4L630.3 287.7ZM411.4 694.7L411.3 683.2L409.4 676.5L404.1 670.3L396.3 669.0L393.0 671.9L379.5 656.8L378.8 651.6L383.7 643.9L373.7 637.1L369.8 632.3L367.6 626.6L367.2 616.0L370.4 614.4L436.0 614.5L436.0 694.7L411.4 694.7ZM600.2 449.6L680.7 449.8L680.7 531.0L600.2 530.8L600.2 449.6ZM415.8 327.6L415.7 325.9L433.9 358.5L441.1 391.7L460.8 444.0L458.5 447.3L355.6 447.2L355.5 328.0L354.5 321.7L394.1 321.8L394.1 327.6L415.8 327.6ZM468.5 118.6L391.3 118.6L388.3 50.5L394.4 10.6L407.0 10.6L407.0 8.2L439.1 8.2L460.6 20.7L476.1 20.7L481.4 36.4L484.8 81.6L482.6 89.1L469.9 109.4L468.1 115.1L468.5 118.6ZM-58.3 427.9L-58.4 368.4L20.9 368.5L21.0 398.3L-58.3 427.9ZM184.4 530.6L185.8 530.7L185.9 610.6L176.5 610.6L176.5 611.8L163.6 611.8L163.6 610.6L105.4 610.5L91.8 612.6L56.1 612.8L28.9 612.7L26.4 610.2L26.6 559.1L87.0 559.1L87.0 576.7L106.5 576.7L106.5 530.6L184.4 530.6ZM106.2 41.3L106.2 29.4L95.9 25.6L88.5 20.3L85.2 19.3L82.0 20.3L76.7 30.2L73.5 32.1L63.4 26.0L67.9 14.8L68.6 6.5L76.0 1.5L76.2 -3.0L73.5 -4.1L67.5 -2.8L59.9 9.3L52.4 9.6L49.9 11.0L46.4 10.0L45.1 6.2L39.0 -0.0L37.5 -9.1L40.5 -10.2L46.6 -2.5L51.0 -0.9L53.2 -1.7L55.7 -7.5L54.2 -17.4L51.9 -17.5L51.2 -10.8L49.8 -9.1L46.0 -10.7L42.0 -20.2L30.6 -30.5L27.7 -39.4L187.6 -39.4L187.7 87.6L186.4 87.6L186.4 98.7L200.0 139.9L193.5 148.8L188.0 159.6L184.2 162.9L183.0 166.5L183.5 175.0L186.1 177.1L183.7 188.6L183.6 203.5L106.4 203.7L106.2 41.3ZM-139.9 283.1L-139.9 203.7L-60.0 203.8L-60.0 279.1L-118.3 280.0L-118.3 283.1L-139.9 283.1ZM609.4 287.7L630.3 287.7L630.2 368.4L601.3 368.4L601.3 332.4L609.4 332.4L609.4 287.7ZM435.8 333.3L477.2 444.3L475.6 444.9L472.8 440.2L463.8 443.3L443.9 390.1L440.0 366.4L437.1 358.2L418.2 324.4L415.8 314.0L432.5 328.5L435.8 333.3ZM20.9 368.5L-58.4 368.4L-58.4 362.5L-48.9 361.3L-48.9 359.5L-48.9 356.5L-59.6 345.8L-58.5 336.8L-58.5 292.0L16.8 290.0L19.9 293.1L20.4 323.0L18.9 324.5L20.7 328.9L20.9 368.5ZM263.4 291.2L268.2 291.4L268.2 307.1L257.1 307.2L257.1 310.6L271.3 308.4L270.3 315.3L268.2 315.3L268.2 325.4L231.8 325.5L231.8 319.8L192.4 334.4L191.3 274.4L189.8 258.8L189.8 203.5L196.6 203.5L200.6 212.2L198.4 212.2L201.7 221.4L218.2 230.4L230.6 236.4L230.6 234.2L237.7 231.5L248.6 236.7L257.6 237.9L261.7 240.1L262.8 249.6L265.8 249.6L265.8 255.4L262.8 255.4L262.8 263.5L264.3 263.5L264.3 266.6L265.8 266.6L265.8 281.1L263.4 281.1L263.4 291.2ZM590.2 368.3L600.2 368.4L600.2 530.8L597.4 530.8L597.4 537.4L559.7 537.3L559.7 528.3L540.0 528.3L521.7 479.5L520.6 449.4L525.1 449.4L546.2 460.3L559.7 469.7L559.7 370.5L565.6 370.5L565.6 368.3L590.2 368.3ZM252.4 689.7L247.8 694.9L194.3 695.0L194.3 693.0L192.0 693.0L192.0 625.0L193.3 616.2L310.3 614.3L310.1 624.2L305.7 624.8L301.2 627.7L299.4 630.9L298.8 638.5L290.0 641.0L285.9 644.7L281.0 654.4L280.3 661.0L281.3 663.2L276.5 663.3L271.5 667.1L267.9 673.9L252.4 689.7ZM600.2 695.2L542.7 694.9L542.6 614.7L600.2 614.9L600.2 695.2ZM108.6 281.8L106.4 281.8L106.4 203.7L183.6 203.5L183.6 244.9L186.6 266.9L186.6 277.1L184.9 280.9L180.6 283.2L165.0 283.5L108.6 283.0L108.6 281.8ZM598.8 -38.9L599.1 118.7L519.2 118.6L518.9 87.7L526.4 87.9L533.0 85.5L537.5 81.6L541.3 82.0L546.9 65.1L550.3 61.8L552.4 61.8L557.6 55.4L559.5 49.0L561.4 49.1L567.8 38.8L568.7 35.0L566.8 21.5L560.8 15.3L550.9 13.2L523.9 17.2L516.9 17.0L509.1 19.9L503.7 18.7L495.2 19.3L479.3 8.7L480.8 5.0L487.1 -5.9L493.4 -12.6L491.4 -15.5L493.7 -17.2L496.1 -14.8L504.4 -19.3L502.7 -22.3L506.1 -23.7L503.7 -31.9L503.7 -38.8L598.8 -38.9ZM489.1 287.5L517.0 287.6L517.1 368.2L482.9 368.2L437.8 310.7L437.8 287.5L489.1 287.5ZM524.8 617.0L525.1 615.7L538.6 615.7L538.6 694.9L524.7 694.9L524.8 617.0ZM473.9 203.4L517.0 203.0L517.0 284.6L423.7 285.0L400.3 241.2L396.7 226.5L395.3 201.8L473.9 203.4ZM681.3 234.4L601.2 234.3L601.1 204.0L681.3 204.0L681.3 234.4ZM685.2 122.8L764.5 122.7L764.5 252.3L761.5 252.3L760.9 284.7L683.3 284.8L683.3 122.8L685.2 122.8ZM352.7 553.2L346.5 553.2L346.5 551.2L339.4 550.6L336.9 530.5L324.6 530.5L321.6 528.3L323.4 523.9L328.7 524.9L328.9 520.3L336.2 520.3L336.1 515.2L333.8 510.7L332.0 508.3L327.4 507.6L328.3 500.5L323.7 496.9L325.0 490.3L322.3 486.4L316.7 484.3L315.8 479.9L319.3 475.0L316.2 470.7L318.2 469.0L317.1 461.6L321.9 452.8L320.4 452.8L320.4 451.2L351.6 452.0L352.7 553.2ZM-95.3 528.6L-94.6 469.2L-91.4 457.4L-83.6 445.4L-70.5 435.9L13.7 404.3L13.7 411.6L21.1 408.9L20.6 444.2L16.2 447.2L17.4 451.6L20.1 454.3L21.5 526.6L20.0 528.0L-95.3 528.6ZM147.5 720.4L57.1 721.4L57.0 616.1L185.9 615.2L185.9 695.1L147.5 695.1L147.5 720.4ZM24.1 203.9L106.4 203.7L105.7 283.0L22.7 283.1L24.1 203.9ZM597.6 284.6L520.0 284.5L520.0 251.2L521.0 247.9L544.9 247.2L581.3 227.8L588.6 225.7L598.1 225.4L599.1 228.6L599.1 283.1L597.6 284.6ZM600.2 368.4L680.7 368.6L680.7 449.8L600.2 449.6L600.2 368.4ZM269.6 -43.6L269.8 -122.8L339.2 -122.8L340.0 -129.0L346.9 -135.8L346.9 -122.8L350.0 -122.8L350.1 -48.1L344.4 -44.3L269.6 -43.6ZM559.7 370.5L559.7 465.7L547.8 457.5L525.8 445.7L520.6 444.3L520.5 380.1L521.9 370.8L559.7 370.5ZM633.4 610.8L600.2 610.6L600.2 530.8L680.7 531.0L680.0 604.7L674.2 610.9L633.4 610.8ZM-58.5 203.8L24.1 203.9L22.7 283.1L-55.4 283.1L-60.0 279.1L-60.0 203.8L-58.5 203.8ZM274.9 107.2L270.9 107.2L269.0 -39.9L347.1 -39.9L348.2 93.6L346.2 102.8L340.2 111.2L341.7 112.6L335.9 116.7L328.1 119.2L275.0 119.5L274.9 107.2ZM538.7 776.1L523.3 776.1L523.5 697.9L538.6 698.0L538.7 776.1ZM-58.5 292.0L-58.5 336.8L-59.6 345.8L-48.9 356.5L-48.9 361.3L-58.4 362.5L-58.4 368.4L-139.9 368.4L-139.0 293.0L-138.0 292.0L-58.5 292.0ZM-201.0 82.0L-58.6 81.9L-58.5 203.8L-139.9 203.7L-139.9 283.1L-304.7 283.1L-304.8 153.8L-386.4 153.9L-386.4 84.5L-356.5 84.4L-345.2 73.1L-306.9 73.1L-306.9 82.3L-201.0 82.0ZM620.5 614.5L620.5 615.6L623.5 615.6L623.5 614.5L660.9 614.7L661.0 695.4L658.5 695.4L661.5 701.6L660.8 707.6L662.0 711.5L657.1 728.3L653.5 731.5L651.9 740.2L653.8 745.4L646.2 754.4L647.7 758.1L647.2 761.1L643.7 769.0L636.4 776.5L542.7 776.1L542.7 694.9L600.2 695.2L600.2 614.4L620.5 614.5ZM388.3 118.6L356.4 118.3L356.1 -122.8L383.8 -122.8L395.2 -39.8L435.5 -39.3L435.6 8.2L407.0 8.2L407.0 10.6L391.3 10.6L386.3 37.9L385.2 53.5L388.3 118.6ZM477.4 7.5L466.2 0.2L460.7 -6.3L451.2 -25.5L450.5 -38.9L503.7 -38.8L503.7 -31.9L506.1 -23.7L502.7 -22.3L504.4 -19.3L496.1 -14.8L493.7 -17.2L491.4 -15.5L493.4 -12.6L487.1 -5.9L479.3 8.7L477.4 7.5ZM-58.6 -123.2L21.3 -123.2L21.2 -45.7L20.0 -44.4L21.3 39.4L-140.0 39.3L-140.0 -123.2L-58.6 -123.2ZM317.8 414.1L317.5 409.2L321.7 398.3L321.7 388.5L306.2 388.5L306.7 387.6L298.5 383.4L303.6 373.6L311.7 377.8L317.9 365.9L316.3 360.6L312.8 358.0L306.5 358.0L306.4 346.7L305.1 342.9L300.5 343.1L299.8 340.8L295.1 341.0L297.2 333.7L301.2 326.0L307.8 327.2L318.2 325.5L318.2 321.7L352.5 321.8L351.6 446.4L317.0 447.1L319.4 439.3L319.7 423.6L317.7 419.0L317.8 414.1ZM562.6 368.1L521.2 368.0L521.7 288.7L559.6 289.2L559.6 287.6L600.1 287.7L600.2 368.4L562.6 368.1ZM25.4 -73.4L25.3 -109.0L34.9 -111.5L34.9 -123.2L168.3 -122.8L168.3 -101.5L186.2 -101.5L189.5 -101.5L189.5 -122.8L269.8 -122.8L269.0 -43.6L25.3 -42.9L25.4 -73.4Z" aria-hidden="true"></path>
+
+              <!-- Las vias principales, de OpenStreetMap. Debajo de los
+                   barrios y de los circulos: son contexto, no dato. -->
+              <g class="d2-mapa-zonas__vias" aria-hidden="true">
+                <path class="d2-mapa-zonas__rio" d="M161.1 96.9L162.4 94.9L163.0 86.8L167.1 84.4L170.2 85.7L170.1 90.4L172.5 96.9M282.7 743.2L287.0 743.1L291.0 739.6L288.2 729.8L289.7 728.6L295.5 729.2L299.7 723.1L303.1 725.2L305.5 728.9L307.0 728.9L307.4 722.4L318.8 728.0L322.4 727.5L324.4 723.6L326.4 722.9L332.3 725.5L335.4 730.6L338.3 730.6L348.8 725.9L353.5 728.4L356.3 728.4L357.8 727.3L356.9 723.0L358.3 720.7L364.2 721.3L368.1 719.4L373.9 722.3L369.4 730.4L369.8 732.3L372.2 732.1L374.6 729.7L375.6 724.1L377.2 722.1L384.6 729.1L386.6 729.4L387.4 728.1L386.1 723.6L387.4 721.0L393.2 720.3L396.0 722.2L401.7 720.6L403.0 722.3L402.6 728.8L404.3 730.8L406.5 730.8L411.3 727.5L412.8 728.8L412.1 735.2L415.3 735.9L427.8 734.3L430.2 736.8L430.8 740.6L436.2 743.6L434.3 756.3L429.7 765.4L424.9 769.6L423.0 781.0M265.0 228.2L278.2 235.6L280.2 238.5L278.7 242.8L270.2 255.5L270.1 258.7L279.1 276.7L282.0 291.6L282.2 307.5L283.5 314.9L289.0 319.2L289.8 323.9L288.3 334.3L299.8 355.5L295.6 359.9L289.8 374.5L289.8 379.9L286.1 385.7L288.3 389.2L292.9 390.0L302.1 387.2L305.6 389.6L304.3 399.7L300.9 404.5L302.1 406.7L306.8 409.1L307.4 412.1L302.8 418.2L303.5 428.0L300.2 432.7L291.1 434.6L290.1 438.8L294.5 441.6L299.2 467.7L305.5 470.8L306.7 476.3L308.6 476.4L310.7 474.2L312.5 475.5L312.5 488.8L309.6 493.8L312.5 495.5L314.3 494.8L316.9 490.1L319.5 490.2L314.8 499.7L306.7 500.6L303.2 505.0M303.2 505.0L312.5 509.5L313.3 511.0L309.6 513.6L310.4 516.0L314.7 516.0L319.2 512.0L321.8 511.3L328.2 514.3L329.5 526.1L326.3 526.3L324.0 524.0L321.9 525.1L321.9 528.9L325.7 530.9L325.9 532.8L321.9 533.3L320.5 535.5L322.9 537.4L325.0 536.7L331.4 531.0L332.9 536.0L330.9 542.4L334.8 547.7L333.8 550.4L326.2 547.6L325.4 550.0L327.1 551.9L334.9 554.5L340.3 553.6L341.5 555.9L345.4 557.1L345.7 562.9L349.9 563.9L350.7 565.8L350.6 569.8L348.8 573.2L350.0 575.6L354.2 578.4L353.8 587.6L352.4 593.2L350.8 594.2L349.4 593.9L343.8 586.9L338.8 590.7L337.6 592.2L338.9 595.3L337.9 598.4L338.6 599.6L341.6 600.6L343.1 599.2L343.7 595.0L344.8 594.7L348.2 596.5L348.2 600.4L343.3 605.6L340.4 602.9L338.7 603.7L332.6 617.1L332.4 621.2L327.0 619.9L324.4 621.9L321.2 627.5L321.9 630.6L324.6 631.8L323.1 635.8L319.6 633.1L318.0 629.4L315.2 630.2L314.3 641.7L313.4 642.7L308.6 641.6L307.8 642.7L311.8 648.9L311.4 650.3L296.3 655.1L295.4 661.8L292.0 665.5L294.2 671.7L293.0 674.2L291.0 675.9L286.7 675.1L284.7 680.3L281.3 679.4L279.8 676.5L277.7 676.9L277.6 685.1L274.3 692.9L275.0 696.5L269.8 699.1L270.5 701.9L268.6 702.1L264.0 697.4L260.1 702.4L260.2 705.5L263.2 707.1L263.8 708.8L262.1 716.2L255.9 716.9L256.1 723.1L257.3 724.3L262.7 725.0L262.8 726.6L261.5 728.2L253.4 730.1L249.7 736.3L249.9 738.6L250.8 739.4L254.6 738.4L258.5 742.6L262.6 739.6L267.5 739.3L270.8 734.8L274.1 733.6L277.9 739.6L282.7 743.2M28.3 -39.5L30.7 -30.6L33.1 -27.5L39.1 -24.2L47.6 -9.4L51.0 -10.4L51.8 -16.7L53.8 -17.3L54.9 -15.6L52.9 -2.2L48.1 -2.5L41.0 -9.9L38.4 -8.9L39.0 -1.0L44.7 8.0L48.2 11.3L59.9 9.6L66.6 -1.1L76.2 -2.6L77.7 -1.1L70.2 5.8L67.8 9.8L66.7 20.0L63.3 24.9L63.3 26.4L65.4 28.2L74.0 32.8L75.4 32.2L82.5 21.0L86.9 21.4L95.5 26.9L106.3 30.5L117.3 26.9L119.0 27.8L120.3 29.0L121.3 37.6L124.5 40.4L132.6 40.4L138.0 37.5L145.6 37.1L149.5 38.5L150.5 41.0L149.9 43.3L142.1 54.9L140.7 61.3L141.8 64.5L148.3 67.9L161.4 66.1L167.6 69.4L167.0 74.0L161.5 78.5L160.1 78.1L158.6 70.6L156.2 70.5L152.2 73.2L151.0 81.1L153.8 87.3L152.3 93.1L155.8 96.9M172.5 96.9L172.4 101.5L165.7 105.1L165.9 109.8L164.3 112.5L162.9 120.5L166.7 123.0L177.5 121.3L180.2 130.4L183.7 134.9L182.2 136.8L175.5 138.6L172.7 136.4L170.7 137.3L172.8 142.4L174.8 156.9L180.3 161.5L206.4 169.7L208.2 171.4L208.4 175.9M155.8 96.9L158.4 97.8L161.1 96.9"></path>
+                <path class="d2-mapa-zonas__via2" d="M681.8 613.1L682.4 286.8M23.2 -28.5L23.7 40.5M449.7 408.7L443.5 391.9L438.5 365.7M404.9 315.2L416.6 326.2L432.2 352.8L437.0 366.1M522.5 608.4L521.5 597.5L517.7 583.4L477.2 479.2M520.9 616.6L521.0 687.3M521.0 687.3L521.1 695.7M521.3 777.3L521.1 695.7M554.7 285.8L682.4 286.8M162.5 215.0L151.6 215.1M187.4 215.0L186.0 215.0M186.0 215.0L162.5 215.0M195.1 285.5L189.5 285.5M283.8 288.7L279.3 288.9M507.7 286.5L514.7 287.1M226.9 285.1L195.1 285.5M436.7 287.2L446.5 286.2M251.1 287.3L279.2 292.1M195.1 287.4L225.0 286.9M518.3 286.0L507.7 286.5M549.2 285.9L519.4 286.0M446.5 286.2L395.3 285.8M230.5 286.8L251.1 287.3M251.1 285.8L230.5 285.1M279.3 288.9L251.1 285.8M519.5 287.1L549.2 285.9M354.6 285.6L354.5 200.2M352.9 199.3L353.2 285.6M353.7 429.0L353.5 316.4M353.6 535.8L353.6 481.6M354.7 133.1L354.7 130.4M352.9 453.3L353.6 481.6M352.8 121.6L353.2 133.2M354.5 138.3L354.7 133.1M353.7 429.0L353.0 446.8M354.7 130.4L354.5 121.6M353.9 146.3L354.0 171.0M353.0 450.2L352.9 453.3M353.2 133.2L353.9 146.3M368.8 612.3L368.8 585.6L365.9 571.5M354.2 453.8L354.2 450.2M353.6 481.6L354.2 453.8M354.2 447.0L353.7 429.0M365.9 571.5L363.8 565.0L354.4 552.2L353.6 535.8M203.5 136.9L193.8 110.3M171.6 216.3L186.0 216.3M151.6 216.3L171.6 216.3M186.0 216.3L187.4 216.3M189.2 80.2L188.9 27.7M193.8 110.3L201.0 134.6L205.6 141.3M193.8 110.3L189.9 97.2M189.9 97.2L189.2 80.2M354.5 121.6L357.5 121.6M372.8 121.9L374.0 121.9M415.2 120.6L389.8 120.6M518.4 120.7L466.6 120.6M374.2 120.4L372.9 120.4M357.5 121.6L372.8 121.9M387.9 122.0L389.9 121.9M372.9 120.4L354.5 120.3M466.6 120.6L436.6 120.6M415.2 121.9L436.6 121.9M436.6 121.9L466.5 121.8M436.6 120.6L415.2 120.6M600.2 120.7L536.2 120.7M24.0 583.6L24.2 529.5M22.4 326.0L22.4 330.5M24.2 448.7L24.3 443.6M24.4 242.5L24.4 241.2M23.9 293.7L23.9 287.0M23.9 287.0L23.9 285.6M24.0 273.8L24.1 265.6M21.6 285.6L21.6 287.1M23.9 614.8L24.0 583.6M23.8 281.5L24.0 273.8M24.3 381.3L24.4 352.1M21.5 293.3L21.5 307.8M24.1 307.8L23.9 293.7M21.6 276.5L21.6 285.6M21.6 287.1L21.5 293.3M24.3 417.2L24.3 381.3M23.0 241.1L22.9 242.5M24.3 219.7L23.7 40.5M23.9 285.6L23.8 281.5M22.4 256.2L21.8 265.6M22.4 333.7L22.5 335.5M21.5 307.8L22.4 326.0M21.6 267.6L21.7 271.1M22.9 242.5L22.4 256.2M24.2 529.5L24.1 482.5M24.3 326.0L24.1 307.8M24.1 265.6L24.4 242.5M24.4 352.1L24.3 326.0M24.4 241.2L24.3 219.7M24.3 219.7L23.0 241.1M552.1 612.6L526.0 612.3M589.1 613.3L581.4 613.3M340.5 612.2L330.0 611.0M192.5 613.8L270.7 613.6M641.5 612.9L635.3 612.9M711.2 613.2L641.5 612.9M581.4 613.3L558.9 612.6M149.9 613.4L177.1 613.5M304.7 611.9L271.8 612.3M635.3 612.9L589.1 613.3M77.6 614.9L23.9 614.8M177.1 613.5L185.0 613.7M77.6 614.9L149.9 613.4M144.2 448.9L116.2 448.6M188.2 448.8L184.9 448.8M354.2 449.0L352.9 449.0M349.2 450.2L353.0 450.2M331.9 449.0L297.9 448.9M440.7 449.0L391.8 449.0M189.5 448.8L188.2 448.8M352.9 449.0L349.5 449.0M184.2 450.3L188.2 450.2M171.0 450.2L184.2 450.3M357.4 450.2L391.7 450.5M76.8 448.7L42.7 448.8M116.2 448.6L97.1 448.5M213.7 450.3L236.8 450.1M391.8 449.0L358.8 449.1M236.8 448.7L213.8 448.8M189.5 450.3L192.6 450.2M188.2 450.2L189.5 450.3M349.5 449.0L331.9 449.0M171.0 448.8L144.2 448.9M144.2 450.2L171.0 450.2M292.9 448.8L236.8 448.7M297.9 450.0L339.4 450.5M213.8 448.8L211.2 448.8M292.7 450.0L297.9 450.0M97.1 448.5L76.8 448.7M193.2 448.9L189.5 448.8M463.4 448.4L464.7 448.0M339.4 450.5L349.2 450.2M354.2 450.2L357.4 450.2M464.4 447.1L463.0 447.5M358.8 449.1L354.2 449.0M391.7 450.5L440.5 450.3M236.8 450.1L292.7 450.0M353.0 450.2L354.2 450.2M297.9 448.9L292.9 448.8M42.7 448.8L29.5 448.8M192.6 450.2L213.7 450.3M459.8 448.4L440.7 449.0M440.5 450.3L458.7 449.7M519.7 325.1L519.5 291.8M517.9 121.9L518.0 173.5M558.5 595.0L557.7 580.7L555.5 573.3L518.8 477.2L518.7 340.0M558.5 595.0L557.9 605.1M558.9 612.6L558.5 595.0M394.6 281.0L394.0 285.8M392.6 218.9L392.1 203.9M395.4 296.3L395.3 285.8M394.6 281.0L394.6 276.0M395.3 285.8L394.6 281.0M394.0 285.8L394.1 296.3M374.0 296.3L394.1 296.3M279.2 292.1L285.0 293.2M285.0 293.2L311.8 296.1M395.4 296.3L410.7 296.0L427.0 288.1L436.7 287.2M391.7 193.8L390.8 185.3M372.8 121.9L372.6 132.9M373.8 132.8L374.0 121.9M374.5 153.3L373.8 132.8M390.8 185.3L390.9 204.0M379.8 160.1L374.5 153.3M372.6 132.9L372.5 146.1L374.5 153.3M390.8 185.3L388.8 169.7L379.8 160.1M22.1 448.7L22.1 449.9M24.1 482.5L24.2 457.3M22.1 449.9L24.2 449.9M340.0 613.6L368.7 613.6M487.6 286.4L446.5 286.2M466.5 121.8L517.9 121.9M536.2 120.7L518.4 120.7M517.9 121.9L536.2 120.7M79.8 450.1L144.2 450.2M24.2 449.9L24.2 448.7M22.1 449.9L24.1 482.5M558.9 613.8L581.4 613.3M188.1 612.7L185.4 612.8M518.2 249.1L518.3 286.0M368.8 612.3L340.5 612.2M525.8 613.6L558.9 613.8M518.3 289.6L518.5 325.2M519.4 286.0L518.4 120.7M353.9 146.3L354.5 138.3M394.5 257.0L394.5 249.5M392.6 218.9L394.5 249.5M394.5 249.5L394.5 257.0M352.9 449.0L353.0 450.2M353.0 446.8L352.9 449.0M354.2 449.0L354.2 447.0M354.2 450.2L354.2 449.0M189.5 287.4L195.1 287.4M21.7 271.1L21.6 276.5M402.0 313.2L404.9 315.2M394.1 296.3L395.8 306.2L402.0 313.2M408.6 316.2L405.9 314.4M405.9 314.4L398.2 307.9L395.4 296.3M206.2 140.6L203.5 136.9M184.9 448.8L171.0 448.8M189.6 613.7L192.5 613.8M188.2 613.7L189.6 613.7M185.0 613.7L188.2 613.7M185.4 612.8L177.1 613.5M189.6 612.8L188.1 612.7M194.5 612.8L189.6 612.8M519.5 291.8L519.5 287.1M518.3 287.1L518.3 289.6M518.3 287.1L519.5 287.1M514.7 287.1L518.3 287.1M225.0 286.9L230.5 286.8M230.5 285.1L226.9 285.1M520.9 613.5L520.9 616.6M521.0 612.4L520.9 613.5M520.9 613.5L522.6 613.6M517.0 613.4L520.9 613.5M521.0 612.4L516.9 612.4M522.6 612.4L521.0 612.4M520.9 608.7L521.0 612.4M475.8 479.8L517.0 585.4L520.1 597.0L520.9 608.7M522.6 612.4L522.5 608.4M522.6 613.6L522.6 612.4M526.0 612.3L522.6 612.4M522.6 613.6L525.8 613.6M522.6 616.9L522.6 613.6M521.0 687.3L522.6 616.9M450.4 410.1L449.7 408.7M477.2 479.2L464.7 448.0M354.5 296.3L357.0 296.3M311.8 296.1L353.1 296.3M354.5 298.6L354.5 296.3M353.5 316.4L354.5 298.6M22.4 330.5L22.4 333.7M558.2 612.6L552.1 612.6M558.9 612.6L558.2 612.6M557.9 605.1L558.2 612.6M24.2 449.9L29.5 450.2M24.2 457.3L24.2 449.9M24.3 443.6L24.3 417.2M29.5 448.8L24.2 448.7M24.2 448.7L22.1 448.7M463.0 447.5L459.8 448.4M458.7 449.7L463.4 448.4M464.7 451.8L475.8 479.8M463.4 448.4L464.7 451.8M463.0 447.5L463.4 448.4M461.8 444.5L463.0 447.5M76.8 450.2L79.8 450.1M73.0 450.2L76.8 450.2M29.5 450.2L73.0 450.2M52.8 450.0L58.5 448.7M464.7 448.0L450.4 410.1M389.9 121.9L415.2 121.9M374.0 121.9L387.9 122.0M389.8 120.6L387.8 120.6M387.8 120.6L374.2 120.4M61.5 448.7L61.4 450.1M329.1 612.4L340.0 613.6M554.7 285.8L549.2 285.9M438.5 365.7L429.0 343.9M437.0 366.1L441.9 391.7L448.9 410.6M429.0 343.9L416.2 323.4L408.6 316.2M394.6 276.0L394.5 257.0M206.9 142.0L206.2 140.6M205.6 141.3L206.9 142.0M21.8 265.6L21.6 267.6M229.7 612.3L228.7 612.3M228.7 612.3L194.5 612.8M304.8 613.2L329.1 612.4M330.0 611.0L304.7 611.9M448.9 410.6L461.8 444.5M394.1 296.3L395.4 296.3M357.0 296.3L374.0 296.3M353.1 296.3L354.5 296.3M353.1 296.3L353.5 316.4M271.8 613.6L304.8 613.2M270.7 613.6L271.8 613.6M270.6 612.3L229.7 612.3M271.8 612.3L270.6 612.3M368.7 613.6L479.8 613.4M516.9 612.4L368.8 612.3M335.2 285.7L303.6 286.2L283.8 288.7M353.2 285.6L353.1 296.3M394.0 285.8L373.9 285.8M395.3 285.8L394.0 285.8M507.7 286.5L487.6 286.4M518.0 173.5L518.2 249.1M517.9 121.9L518.4 120.7M354.5 296.3L354.6 285.6M354.6 285.6L353.2 285.6M373.9 285.8L354.6 285.6M390.9 204.0L392.6 218.9M392.1 203.9L391.7 193.8M519.4 286.0L518.3 286.0M518.3 286.0L518.3 287.1M519.5 287.1L519.4 286.0M518.5 325.2L518.7 340.0M518.7 340.0L519.7 325.1M353.2 285.6L335.2 285.7M211.2 448.8L193.2 448.9M22.5 335.5L22.1 448.7M479.8 613.4L517.0 613.4M354.5 200.2L354.0 171.0M354.0 171.0L352.9 199.3"></path>
+                <path class="d2-mapa-zonas__via1" d="M181.2 287.5L188.1 287.4M178.5 285.7L65.8 285.9M189.5 285.5L188.1 285.6M-8.0 286.2L-30.6 286.7M29.0 287.0L169.3 287.4M352.6 -39.5L352.8 74.4M352.8 113.4L352.8 120.2M205.6 141.3L197.3 151.9L191.9 162.2M188.1 608.3L188.1 612.7M189.5 317.8L189.6 312.9M188.8 655.3L189.1 693.9M189.6 445.6L189.5 396.1M188.2 448.8L188.2 450.2M189.6 618.0L189.6 613.7M189.5 448.8L189.6 445.6M189.6 312.9L189.5 309.6M188.2 453.8L188.1 491.9M189.6 613.7L189.6 612.8M189.4 280.2L187.2 242.5L187.4 216.3M188.1 396.1L188.1 445.6M189.8 538.5L189.8 531.8M189.1 693.9L189.0 776.6M189.5 293.1L189.5 287.4M189.5 457.1L189.5 450.3M188.2 636.3L188.8 655.3M188.1 308.5L188.2 312.9M188.2 450.2L188.2 453.8M189.5 396.1L189.2 368.4M189.8 491.9L189.5 457.1M188.1 285.6L188.1 286.2M189.5 450.3L189.5 448.8M188.1 293.1L188.1 308.5M189.8 531.8L189.8 491.9M188.2 613.7L188.1 616.7M188.1 445.6L188.2 448.8M188.1 287.4L188.1 293.1M189.5 309.6L189.5 293.1M187.5 531.9L188.1 608.3M187.6 521.3L187.5 531.9M187.9 368.4L188.1 396.1M193.1 162.7L203.9 145.1M189.7 635.8L189.6 618.0M191.9 162.2L190.2 166.2M189.6 608.3L189.8 538.5M188.1 616.7L188.2 636.3M191.5 166.7L193.1 162.7M188.1 491.9L187.6 521.3M189.2 368.4L189.5 317.8M188.2 312.9L187.9 368.4M206.9 142.0L221.2 130.7L230.5 126.2L238.2 124.1L306.4 122.2M352.8 120.2L241.6 121.9L225.6 126.6L210.4 136.7M354.5 120.3L352.8 120.2M189.5 287.4L189.5 286.8M190.2 166.2L187.0 178.4L186.0 187.8M189.5 286.8L189.5 285.5M188.1 286.2L188.1 287.4M188.1 287.4L189.5 287.4M169.3 287.4L181.2 287.5M189.5 285.5L189.4 280.2M188.0 275.6L188.1 285.6M188.1 285.6L178.5 285.7M203.9 145.1L206.9 142.0M206.2 140.6L205.6 141.3M210.4 136.7L206.2 140.6M188.1 612.7L188.2 613.7M189.6 612.8L189.6 608.3M23.9 285.6L22.8 285.6M23.9 287.0L29.0 287.0M21.6 287.1L22.6 287.1M13.2 287.1L21.6 287.1M21.6 285.6L12.1 285.8M33.2 285.6L23.9 285.6M354.2 74.4L353.8 -39.4M352.8 93.7L352.8 113.4M354.5 120.3L354.4 94.4M354.5 121.6L354.5 120.3M352.8 120.2L352.8 121.6M306.4 122.2L311.7 122.1M311.7 122.1L354.5 121.6M-8.0 287.7L13.2 287.1M12.1 285.8L-8.0 286.2M-28.3 289.4L-8.0 287.7M22.6 287.1L23.9 287.0M22.8 285.6L21.6 285.6M186.0 216.3L185.9 240.8L188.0 275.6M190.5 776.5L189.7 635.8M186.0 215.0L186.0 216.3M186.0 189.3L186.0 215.0M187.4 215.0L187.3 189.3M187.4 216.3L187.4 215.0M187.4 187.9L188.2 179.2L191.5 166.7M187.3 189.3L187.4 187.9M186.0 187.8L186.0 189.3M352.8 74.4L352.8 93.7M354.4 94.4L354.2 74.4M65.8 285.9L33.2 285.6"></path>
+              </g>
+
+              <!-- Los nombres de las calles, girados con su trazado.
+                   Son la referencia que dice QUE ciudad es esta.
+                   Seis y no catorce: en cartografia vale mas leer pocas
+                   que adivinar muchas. -->
+              <g class="d2-mapa-zonas__calles" aria-hidden="true">
+                <text x="24.2" y="200.4" transform="rotate(89.8 24.2 200.4)">116 St</text>
+                <text x="62.8" y="286.8" transform="rotate(-0.0 62.8 286.8)">100 Ave</text>
+                <text x="190.6" y="686.2" transform="rotate(89.5 190.6 686.2)">108 St</text>
+                <text x="281.6" y="448.8" transform="rotate(0.1 281.6 448.8)">84 Ave</text>
+                <text x="655.6" y="613.0" transform="rotate(0.2 655.6 613.0)">68 Ave</text>
+                <text x="537.7" y="527.2" transform="rotate(68.9 537.7 527.2)">92 St</text>
+              </g>
+
+              <text class="d2-mapa-zonas__ciudad" x="350" y="396">GRANDE PRAIRIE</text>
+
+
+              <g class="d2-mapa-zonas__sitio es-foco" data-zona="s1" style="--zona-fill:#897986" role="button" tabindex="0" aria-label="Royal Oaks">
+                <path class="d2-mapa-zonas__area" d="M270.6 89.2L270.9 107.2L274.9 107.2L275.0 119.5L242.4 119.5L233.2 120.4L225.7 122.6L216.9 127.0L212.1 130.6L206.0 136.9L203.8 135.5L201.3 130.3L191.0 97.0L190.9 -38.6L269.0 -38.7L270.6 89.2Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="259.7" cy="68.1" r="36.7"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="259.7" y="72.1" text-anchor="middle">ROYAL OAKS</text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s2" style="--zona-fill:#AB8A7D" role="button" tabindex="0" aria-label="Copperwood">
+                <path class="d2-mapa-zonas__area" d="M681.3 122.8L601.1 122.7L601.1 41.5L681.3 41.5L681.3 122.8Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="635.5" cy="94.0" r="30.6"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="635.5" y="98.0" text-anchor="middle">COPPERWOOD</text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s3" style="--zona-fill:#C4B16E" role="button" tabindex="0" aria-label="Mountview">
+                <path class="d2-mapa-zonas__area" d="M513.5 123.7L516.1 123.7L516.9 124.5L516.5 203.5L462.2 203.9L428.6 201.8L395.3 201.8L391.6 123.6L393.0 123.6L392.9 122.6L435.7 122.6L435.7 123.6L437.7 123.7L513.5 123.7Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="490.9" cy="138.3" r="44.0"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="490.9" y="142.3" text-anchor="middle">MOUNTVIEW</text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s4" style="--zona-fill:#6D8B95" role="button" tabindex="0" aria-label="Avondale">
+                <path class="d2-mapa-zonas__area" d="M313.6 270.7L310.5 270.7L310.5 263.5L306.8 263.5L306.8 259.1L296.1 259.2L296.1 253.4L303.1 253.4L303.1 249.6L301.1 249.6L301.1 245.3L300.1 245.3L300.1 238.9L298.1 238.9L298.1 233.1L286.8 233.1L286.8 229.4L283.8 229.4L283.7 219.2L271.2 219.2L271.2 214.8L270.2 214.8L270.2 204.7L237.4 203.6L227.0 200.0L227.1 198.3L222.1 197.7L219.9 188.2L227.3 184.4L227.3 182.2L221.0 166.9L213.7 158.7L208.9 146.7L206.7 146.8L212.1 139.2L218.4 133.5L229.8 127.7L238.1 125.9L324.5 125.7L334.1 124.1L334.0 204.8L351.7 205.3L352.4 206.0L352.4 259.8L317.9 259.8L317.9 255.4L313.6 255.4L313.6 270.7Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="281.3" cy="160.4" r="33.0"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="281.3" y="164.4" text-anchor="middle">AVONDALE</text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s5" style="--zona-fill:#659390" role="button" tabindex="0" aria-label="Crystal Heights">
+                <path class="d2-mapa-zonas__area" d="M540.0 247.9L521.0 247.9L520.0 246.9L519.9 214.3L520.5 214.3L520.5 206.6L521.1 206.0L520.5 198.9L519.9 198.9L519.9 123.7L599.1 123.7L599.1 224.4L598.1 225.4L588.6 225.7L581.3 227.8L548.0 246.1L540.0 247.9Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="581.3" cy="193.7" r="36.7"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="581.3" y="197.7" text-anchor="middle"><tspan x="581.3" dy="-5">CRYSTAL</tspan><tspan x="581.3" dy="11">HEIGHTS</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s6" style="--zona-fill:#CE9F8D" role="button" tabindex="0" aria-label="Richmond Industrial Park">
+                <path class="d2-mapa-zonas__area" d="M106.5 530.6L104.5 530.6L104.5 473.2L87.1 473.2L87.1 447.6L61.9 447.7L59.8 446.6L57.8 447.7L27.6 447.7L26.0 446.3L26.0 435.0L27.0 433.0L26.0 430.9L26.0 406.8L27.0 404.8L26.0 402.8L26.0 400.3L25.1 400.0L25.6 293.8L32.4 291.5L46.7 291.3L47.3 292.3L100.8 292.2L106.4 294.1L106.4 294.7L108.9 294.7L118.2 291.2L185.3 291.1L185.3 397.4L186.7 398.2L186.9 511.8L186.0 529.8L185.2 530.7L106.5 530.6Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="158.5" cy="463.3" r="47.6"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="158.5" y="467.3" text-anchor="middle"><tspan x="158.5" dy="-5">RICHMOND INDUSTRIAL</tspan><tspan x="158.5" dy="11">PARK</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s7" style="--zona-fill:#6E7273" role="button" tabindex="0" aria-label="Westpointe">
+                <path class="d2-mapa-zonas__area" d="M44.8 451.5L82.0 451.5L82.0 450.5L83.0 450.5L83.0 451.5L87.2 451.5L87.1 473.2L104.5 473.2L104.5 544.1L106.5 544.4L106.5 576.7L87.0 576.7L87.0 559.1L26.6 559.1L26.2 453.6L28.2 451.5L44.8 451.5Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="64.5" cy="485.5" r="30.6"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="64.5" y="489.5" text-anchor="middle">WESTPOINTE</text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s8" style="--zona-fill:#72787A" role="button" tabindex="0" aria-label="Patterson Place">
+                <path class="d2-mapa-zonas__area" d="M473.8 529.3L467.1 530.5L354.7 530.4L354.6 451.2L463.6 451.3L491.1 523.6L489.3 523.3L473.8 529.3Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="444.0" cy="485.5" r="52.5"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="444.0" y="489.5" text-anchor="middle"><tspan x="444.0" dy="-5">PATTERSON</tspan><tspan x="444.0" dy="11">PLACE</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s9" style="--zona-fill:#927676" role="button" tabindex="0" aria-label="Mission Heights, one of 2 sites">
+                <path class="d2-mapa-zonas__area" d="M271.2 451.1L286.0 451.1L288.7 458.1L292.0 459.8L293.7 462.6L291.5 469.3L288.8 474.4L289.7 484.0L288.7 484.7L278.6 484.5L276.4 483.1L272.6 486.2L275.1 492.2L280.2 497.5L287.0 497.0L292.2 498.9L296.6 508.3L302.8 512.9L306.9 518.5L307.9 522.8L311.3 526.4L310.4 530.5L310.3 539.9L315.8 541.3L320.0 554.3L328.7 558.8L323.9 562.8L326.5 573.6L331.3 578.7L335.6 579.6L335.2 581.7L330.7 586.2L329.7 589.7L330.6 598.2L333.5 601.9L332.8 603.5L325.9 606.8L325.0 608.1L319.6 608.0L302.8 610.2L290.0 610.3L290.0 610.9L195.5 611.0L195.4 610.0L193.1 610.0L192.0 601.9L192.0 532.8L190.9 529.6L190.9 451.7L271.2 451.1Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="270.5" cy="544.5" r="31.8"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="270.5" y="548.5" text-anchor="middle"><tspan x="270.5" dy="-5">MISSION</tspan><tspan x="270.5" dy="11">HEIGHTS</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s10" style="--zona-fill:#6F9DAB" role="button" tabindex="0" aria-label="South Patterson Place">
+                <path class="d2-mapa-zonas__area" d="M513.4 582.3L517.1 595.3L517.3 610.6L369.7 610.4L367.3 611.4L358.3 611.4L358.9 607.6L358.1 600.8L360.1 598.5L363.1 591.0L361.2 585.6L366.2 581.2L365.9 579.9L368.9 579.5L364.9 564.6L357.1 554.4L355.3 550.8L354.7 546.9L354.7 530.4L467.1 530.5L472.9 529.6L489.3 523.3L491.1 523.6L513.4 582.3Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="472.9" cy="570.4" r="35.5"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="472.9" y="574.4" text-anchor="middle"><tspan x="472.9" dy="-5">SOUTH PATTERSON</tspan><tspan x="472.9" dy="11">PLACE</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s11" style="--zona-fill:#B57372" role="button" tabindex="0" aria-label="Mission Heights, one of 2 sites">
+                <circle class="d2-mapa-zonas__burbuja" cx="277.7" cy="581.5" r="29.4"></circle>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s12" style="--zona-fill:#9BA9B1" role="button" tabindex="0" aria-label="Country Club Estates, one of 2 sites">
+                <path class="d2-mapa-zonas__area" d="M436.6 694.7L436.0 694.7L436.0 614.5L517.3 614.6L517.3 694.8L436.6 694.7Z"></path>
+                <circle class="d2-mapa-zonas__burbuja" cx="451.2" cy="655.3" r="39.1"></circle>
+                <text class="d2-mapa-zonas__etiqueta" x="451.2" y="659.3" text-anchor="middle"><tspan x="451.2" dy="-5">COUNTRY CLUB</tspan><tspan x="451.2" dy="11">ESTATES</tspan></text>
+              </g>
+
+              <g class="d2-mapa-zonas__sitio" data-zona="s13" style="--zona-fill:#9F9EA2" role="button" tabindex="0" aria-label="Country Club Estates, one of 2 sites">
+                <circle class="d2-mapa-zonas__burbuja" cx="456.6" cy="672.9" r="17.9"></circle>
+              </g>
+
+            </svg>
+
+            <!-- La ficha de lectura del mapa de barrios (14/9/2026)
+
+                 Mismo patron que la del mapa de cartera --.d2-prob-mapa__ficha,
+                 ya aprobado-- porque este mapa reutiliza su contenedor y sus
+                 estilos: la clase existe y hereda posicion, animacion y
+                 colores sin CSS nuevo.
+
+                 aria-live="polite" y no "assertive": el contenido cambia solo
+                 cada 2.6s mientras rota, y "assertive" interrumpiria al lector
+                 de pantalla en cada vuelta.
+
+                 EL TEXTO ES PROVISIONAL. Los nombres de barrio son reales
+                 --salen del portal de datos abiertos de la ciudad-- pero las
+                 tres lineas de datos son lorem ipsum a la espera del contenido
+                 real, y por eso la etiqueta lo dice en la propia interfaz: el
+                 mapa de cartera ya tuvo el problema de ensenar cifras
+                 inventadas al lado de calles verdaderas. -->
+            <div class="d2-prob-mapa__ficha" data-zonas-ficha aria-live="polite">
+              <small data-zonas-titulo>Placeholder content</small>
+              <b data-zonas-nombre>Royal Oaks</b>
+              <div><span>Lorem ipsum</span><strong data-zonas-d1>Dolor sit</strong></div>
+              <div><span>Consectetur</span><strong data-zonas-d2>Adipiscing</strong></div>
+              <div><span>Sed do eiusmod</span><strong data-zonas-d3>Tempor</strong></div>
+            </div>
+
+            <p class="d2-prob-mapa__aviso">Contains information licensed under the Open Data License – City of Grande Prairie. Roads © OpenStreetMap contributors.</p>
+
+            </div>
+            </div>
+            </div>
+
+<!-- RESUMEN DE PRECIOS RETIRADO (3/9/2026): se quito para aligerar
+                 la seccion. El precio sigue en Solutions, que es su sitio.
+                 Para recuperarlo, descomentar.
+
+            [[ Debajo de la ficha, el resumen de precios. Dos motivos:
+                 uno, la columna derecha medía 613px de vacío cuando la
+                 respuesta abierta era corta; y dos, NN/g documenta que el
+                 precio es lo que más buscan los compradores B2B, asi que
+                 tenerlo siempre a la vista mientras se leen las preguntas
+                 ahorra el viaje a la seccion de servicios.
+
+                 Los cuatro datos salen del copy aprobado. ]]
+            <div class="d2-faq-dato__resumen">
+              <p class="d2-faq-dato__resumen-eti">What things cost</p>
+              <dl>
+                <div><dt>Energy Gap Analysis</dt><dd>$5,000</dd></div>
+                <div><dt>RUN Intelligence</dt><dd>1&ndash;2% of spend</dd></div>
+                <div><dt>RUN Insights</dt><dd>+ $20,000/yr</dd></div>
+                <div><dt>Recommissioning</dt><dd>Scoped</dd></div>
+              </dl>
+              <p class="d2-faq-dato__resumen-pie">Public sector pricing is capped.</p>
+            </div>
+            -->
+          </aside>
+
+        </div>
+
+        <p class="d2-faq-dato__pie">
+          Still have a question?
+          <a href="#contact">Book a call</a> and we will answer it directly.
+        </p>
+
+      </div>
+    </section>
+
+  <!-- ====================================================================
+       EL CIERRE
+
+       De la home, con el copy del wireframe: aqui la llamada es la
+       revision de ayudas, no la calculadora.
+       ==================================================================== -->
+<section class="d2-cta-bal d2-entra" data-comp-rol="cierre" id="contact">
+      <div class="d2-cta-bal__inner">
+
+        <div class="d2-cta-bal__texto">
+          <p class="eyebrow">No-cost program screening</p>
+          <h2 class="d2-cta-bal__titulo">
+            Find out what funding may be available&mdash;and where to look first.
+          </h2>
+          <p class="d2-cta-bal__parrafo">
+            Tell Rede where your buildings are located and what you manage. We will quickly
+            screen for relevant utility programs and help clarify the most practical first step.
+          </p>
+        </div>
+
+        <!-- ul y no ol: las dos vias son alternativas, no pasos. El orden
+             no significa nada y un lector de pantalla no debe sugerirlo. -->
+        <ul class="d2-cta-bal__acciones">
+          <li class="d2-cta-bal__accion">
+            <a href="#calculator" class="d2-btn d2-btn--solido d2-cta-bal__btn">
+              Check available funding
+              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </li>
+          <li class="d2-cta-bal__accion">
+            <a href="#contact" class="d2-btn d2-btn--linea d2-cta-bal__btn">
+              Book a call
+              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+</main>
+
+  <!-- ====================================================================
+       EL PIE
+
+       Identico al de la home.
+       ==================================================================== -->
+<footer class="d2-pie-dir">
+      <div class="d2-pie-dir__inner">
+
+        <div class="d2-pie-dir__marca">
+          <a href="index.html" class="d2-pie-dir__logo" aria-label="Rede Energy Solutions, home">
+            <img src="assets/img/rede-logo-white.png" alt="Rede, Building Energy Efficiency" width="376" height="100">
+          </a>
+          <p class="d2-pie-dir__tagline">
+            Energy management for public sector and multi-site organizations across
+            Western Canada.
+          </p>
+          <p class="d2-pie-dir__pron">
+            <a class="d2-pie-social" href="#" target="_blank" rel="noopener" aria-label="Rede Energy Solutions on LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
+              </svg>
+            </a>
+          </p>
+        </div>
+
+        <nav class="d2-pie-dir__nav" aria-label="Footer">
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Solutions</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="energy-gap-analysis.html">Energy Gap Analysis</a></li>
+              <li><a href="#">Site Investigation</a></li>
+              <li><a href="recommissioning.html">Recommissioning</a></li>
+              <li><a href="energy-management.html">Energy Management</a></li>
+              <li><a href="run.html">RUN</a></li>
+            </ul>
+          </div>
+
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Company</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#calculator">Check your opportunity</a></li>
+            </ul>
+          </div>
+
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Get in touch</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="tel:+17783276851">778.327.6851</a></li>
+              <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+            </ul>
+            <address class="d2-pie-dir__direccion">
+              PO Box 23<br>
+              Bowen Island, BC V0N 1G0
+            </address>
+          </div>
+        </nav>
+      </div>
+
+      <div class="d2-pie-dir__base">
+        <div class="d2-pie-dir__base-inner">
+          <p class="d2-pie-dir__legal">© 2026 Rede Energy Solutions Ltd.</p>
+          <ul class="d2-pie-dir__legales">
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of use</a></li>
+            <li><a href="client-login.html" class="d2-pie-dir__login">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"></circle>
+                <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+              Client Login
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+<!-- Los mismos que la home, menos los que aqui no pintan nada: el
+     editor, el selector de version y los mandos de prueba.
+
+     d2.js es el que anima las secciones al entrar --recoge los .d2-entra--
+     y sin el la pagina aparecia de golpe. -->
+<script src="js/d2.js"></script>
+<script src="js/d2-header.js"></script>
+<script src="js/d2-mapa-zonas.js"></script>
+<script src="js/d2-faq.js"></script>
+<script src="js/d2-panel.js"></script>
+<script src="js/d2-foco.js"></script>
+<script src="js/d2-res-centrada.js"></script>
+<script src="js/d2-resenas.js"></script>
+<script src="js/d2-calc-entrada.js"></script>
+<script src="js/d2-calc-vivo.js"></script>
+<script src="js/d2-composicion.js"></script>
+<script src="js/d2-carrusel.js"></script>
+<script src="js/d2-ega-fondos.js"></script>
+<script src="js/d2-ega-alcance.js"></script>
+<script src="js/main.js"></script>
+<script src="js/d2-hubspot.js"></script>
+</body>
+</html>

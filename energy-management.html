@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Management | Rede Energy Solutions</title>
+<meta name="description" content="Rede as your embedded energy management partner. We bring the expertise, the platform, and the plan.">
+
+<!-- Maqueta de trabajo interna. No debe indexarse. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/v1.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="index.html" class="header__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false" aria-controls="drop-solutions">
+            Solutions
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="nav__drop" id="drop-solutions" hidden>
+            <li><a href="energy-gap-analysis.html"><span>Energy Gap Analysis</span><small>Affordable one-time diagnostic</small></a></li>
+            <li><a href="run.html"><span>RUN</span><small>Utility management platform</small></a></li>
+            <li><a href="recommissioning.html"><span>Recommissioning</span><small>Project-based service</small></a></li>
+            <li><a href="energy-management.html"><span>Energy Management</span><small>Full-service program</small></a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+        <li class="nav__item"><a class="nav__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="client-login.html" class="header__login">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        Client Login
+      </a>
+
+      <a href="#" class="btn btn--primary">
+        Book a Call
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Mobile">
+      <a href="#">Solutions</a>
+      <div class="mobile-menu__sub">
+        <a href="energy-gap-analysis.html">Energy Gap Analysis</a>
+        <a href="run.html">RUN</a>
+        <a href="recommissioning.html">Recommissioning</a>
+        <a href="energy-management.html">Energy Management</a>
+      </div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="client-login.html">Client Login</a>
+    </nav>
+    <a href="#" class="btn btn--primary btn--block">Book a Call</a>
+  </div>
+</header>
+
+
+
+
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="serv-hero">
+  <div class="serv-hero__inner">
+
+    <nav class="miga" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#solutions">Solutions</a></li>
+        <li aria-current="page">Energy Management</li>
+      </ol>
+    </nav>
+
+    <p class="eyebrow">Energy Management</p>
+    <h1 class="serv-hero__titulo">
+      Energy management is not something most organizations can do well off the corner
+      of someone's desk.
+    </h1>
+    <p class="serv-hero__lead">
+      It requires sustained attention, the right data, and the expertise to act on it.
+      Most organizations do not have all three.
+    </p>
+
+    <div class="serv-hero__acciones">
+      <a href="contact.html" class="btn btn--primary btn--lg">
+        Talk to us about your situation
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="index.html#calculator" class="btn btn--outline btn--lg">
+        Check your opportunity
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     QUE ES LA GESTION ENERGETICA
+     El brief pide que esta pagina haga primero el trabajo de educar: muchos
+     visitantes no saben que significa en la practica.
+     ========================================================================== -->
+<section class="ciclo-sec">
+  <div class="ciclo-sec__inner">
+
+    <div class="ciclo-sec__texto">
+      <p class="eyebrow">The problem</p>
+      <h2 class="ciclo-sec__titulo">What energy management actually means.</h2>
+      <p class="ciclo-sec__lead">
+        Active energy management is a continuous cycle. Without someone dedicated to
+        running it, energy costs drift upward and capital decisions get made without
+        the data to support them.
+      </p>
+      <p class="ciclo-sec__lead">
+        Rede runs that cycle for you, embedded in your organization, working alongside
+        your team.
+      </p>
+    </div>
+
+    <!-- El ciclo, como diagrama. El copy sugiere justamente esto. -->
+    <ol class="ciclo">
+      <li class="ciclo__paso">
+        <span class="ciclo__n">1</span>
+        <span class="ciclo__nombre">Identify opportunities</span>
+      </li>
+      <li class="ciclo__paso">
+        <span class="ciclo__n">2</span>
+        <span class="ciclo__nombre">Develop strategies</span>
+      </li>
+      <li class="ciclo__paso">
+        <span class="ciclo__n">3</span>
+        <span class="ciclo__nombre">Implement projects</span>
+      </li>
+      <li class="ciclo__paso">
+        <span class="ciclo__n">4</span>
+        <span class="ciclo__nombre">Monitor outcomes</span>
+      </li>
+      <li class="ciclo__repite" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        and repeat
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     LA SOCIEDAD Y LO QUE INCLUYE
+     ========================================================================== -->
+<section class="dos-col">
+  <div class="dos-col__inner dos-col__inner--invertido">
+
+    <div class="dos-col__der">
+      <p class="eyebrow">The partnership</p>
+      <h2 class="dos-col__titulo">We bring the expertise. You bring the buildings.</h2>
+      <p class="dos-col__texto">
+        This is a genuine partnership. Rede brings the expertise, the platform, and the
+        plan. Your team brings the buildings and the people who know them best.
+      </p>
+      <p class="dos-col__texto">
+        One of the most valuable parts of every engagement is what we learn from your
+        staff: the ongoing issues, the known problem buildings, the institutional
+        knowledge that rarely makes it into a report. We surface that, work alongside
+        your team, and build a program around what is actually happening in your
+        facilities.
+      </p>
+      <a href="contact.html" class="btn btn--primary dos-col__cta">
+        Talk to us about your situation
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="dos-col__izq">
+      <p class="eyebrow">What the program includes</p>
+      <ul class="lista-check">
+        <li>Structured onboarding</li>
+        <li>Target setting and baseline definition</li>
+        <li>Portfolio assessment</li>
+        <li>Energy project list and prioritization</li>
+        <li>Three-year capital project plan</li>
+        <li>Building automation scheduling</li>
+        <li>Regular team engagement</li>
+        <li>Carbon reporting</li>
+        <li>Incentive identification and applications</li>
+      </ul>
+
+      <div class="run-callout">
+        <p class="run-callout__texto">
+          Every Energy Management engagement includes full access to RUN, Rede's utility
+          management platform. Your data, your buildings, your plan, in one place.
+        </p>
+        <a class="enlace-flecha enlace-flecha--verde" href="run.html">
+          Learn about RUN
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     RESULTADOS
+     Caso real del brief: 302 a 198 ekWh/m2 desde 2016. El copy pide un
+     grafico de la evolucion, asi que va en SVG.
+     ========================================================================== -->
+<section class="prueba-sec">
+  <div class="prueba-sec__inner prueba-sec__inner--ancho">
+
+    <div class="prueba-sec__dato">
+      <p class="eyebrow">What this looks like over time</p>
+      <p class="prueba-sec__cifra">34%</p>
+      <p class="prueba-sec__pie">
+        reduction in energy intensity, sustained year over year, with $4.4M saved over
+        the course of the program.
+      </p>
+      <p class="prueba-sec__texto">
+        One Western Canadian school division began working with Rede in 2016. At the
+        start of the engagement, their portfolio of 22 facilities had an energy
+        intensity of 302 ekWh per square metre annually. Today that figure is 198.
+      </p>
+      <p class="prueba-sec__texto">
+        That kind of result does not come from a single project. It comes from a
+        continuous program: data tracked monthly, buildings assessed annually, projects
+        prioritized and implemented, and a team that stays engaged long enough to see
+        the work compound.
+      </p>
+    </div>
+
+    <figure class="bepi">
+      <figcaption class="bepi__cab">
+        <span class="bepi__titulo">Energy intensity over time</span>
+        <span class="bepi__unidad">ekWh per square metre</span>
+      </figcaption>
+
+      <svg class="bepi__chart" viewBox="0 0 480 220" preserveAspectRatio="none"
+           role="img" aria-label="Energy intensity falling from 302 to 198 ekWh per square metre between 2016 and today">
+        <g class="bepi__grid">
+          <line x1="0" y1="20"  x2="480" y2="20"/>
+          <line x1="0" y1="75"  x2="480" y2="75"/>
+          <line x1="0" y1="130" x2="480" y2="130"/>
+          <line x1="0" y1="185" x2="480" y2="185"/>
+        </g>
+
+        <path class="bepi__area"
+              d="M10,26 L78,38 L146,62 L214,84 L282,108 L350,132 L418,150 L470,158 L470,200 L10,200 Z"/>
+        <path class="bepi__linea"
+              d="M10,26 L78,38 L146,62 L214,84 L282,108 L350,132 L418,150 L470,158"/>
+
+        <circle class="bepi__punto" cx="10" cy="26" r="4"/>
+        <circle class="bepi__punto bepi__punto--fin" cx="470" cy="158" r="5"/>
+      </svg>
+
+      <div class="bepi__pies">
+        <span><strong>302</strong> in 2016</span>
+        <span><strong>198</strong> today</span>
+      </div>
+
+      <p class="bepi__nota">
+        Anonymized results from a 22-facility school division portfolio.
+      </p>
+    </figure>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     RELATED SERVICES
+     ========================================================================== -->
+<section class="rutas">
+  <div class="rutas__inner">
+    <div class="rutas__intro">
+      <p class="eyebrow">Other services</p>
+      <h2 class="rutas__titulo">How organizations get here.</h2>
+    </div>
+
+    <ul class="rutas__lista">
+      <li class="ruta">
+        <p class="ruta__tag">Investigate</p>
+        <h3 class="ruta__titulo">Energy Gap Analysis</h3>
+        <p class="ruta__texto">
+          Most programs start here. The analysis shows the size of the opportunity
+          before you commit to anything ongoing.
+        </p>
+        <a class="ruta__link" href="energy-gap-analysis.html">
+          See Energy Gap Analysis
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="ruta">
+        <p class="ruta__tag">Platform</p>
+        <h3 class="ruta__titulo">RUN</h3>
+        <p class="ruta__texto">
+          Included in every engagement. It is how you and your team see what is
+          changing, month over month.
+        </p>
+        <a class="ruta__link" href="run.html">
+          See RUN
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="ruta">
+        <p class="ruta__tag">Optimize</p>
+        <h3 class="ruta__titulo">Recommissioning</h3>
+        <p class="ruta__texto">
+          Often the first project a program takes on. It recovers performance without
+          capital spend.
+        </p>
+        <a class="ruta__link" href="recommissioning.html">
+          See Recommissioning
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     CTA FINAL
+     ========================================================================== -->
+<section class="cta-final">
+  <div class="cta-final__inner">
+    <h2 class="cta-final__titulo">Ready to talk about your situation?</h2>
+    <p class="cta-final__texto">
+      Energy Management is scoped to your organization. Get in touch and we will work
+      out what makes sense.
+    </p>
+    <div class="cta-final__acciones">
+      <a href="contact.html" class="btn btn--primary btn--lg">
+        Book a call
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="index.html#calculator" class="btn btn--outline btn--lg">
+        Check your opportunity
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer class="pie">
+  <div class="pie__inner">
+
+    <div class="pie__marca">
+      <a href="index.html" class="pie__logo" aria-label="Rede Energy Solutions, home">
+        <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency"
+             width="360" height="108">
+      </a>
+      <p class="pie__tagline">
+        Energy management for public sector and multi-site organizations across
+        Western Canada.
+      </p>
+      <p class="pie__pron">
+        Rede rhymes with steady.
+        <button class="pron" type="button" aria-label="Hear how Rede is pronounced">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
+        </button>
+      </p>
+    </div>
+
+    <nav class="pie__nav" aria-label="Footer">
+      <div class="pie__col">
+        <h2 class="pie__titulo">Solutions</h2>
+        <ul class="pie__lista">
+          <li><a href="energy-gap-analysis.html">Energy Gap Analysis</a></li>
+          <li><a href="#">Site Investigation</a></li>
+          <li><a href="recommissioning.html">Recommissioning</a></li>
+          <li><a href="energy-management.html">Energy Management</a></li>
+          <li><a href="run.html">RUN</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">Company</h2>
+        <ul class="pie__lista">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#calculator">Check your opportunity</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">Get in touch</h2>
+        <ul class="pie__lista">
+          <li><a href="tel:+17783276851">778.327.6851</a></li>
+          <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+        </ul>
+        <address class="pie__direccion">
+          535 D&rsquo;Artisan Lane<br>
+          Bowen Island, BC V0N 1G2
+        </address>
+      </div>
+    </nav>
+  </div>
+
+  <div class="pie__base">
+    <div class="pie__base-inner">
+      <p class="pie__legal">&copy; 2026 Rede Energy Solutions Ltd.</p>
+      <ul class="pie__legales">
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="client-login.html" class="pie__login">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Client Login
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

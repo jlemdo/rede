@@ -1,0 +1,164 @@
+/* ==========================================================================
+   REDE ENERGY — TOKENS
+   Variables del sistema visual. Solo variables, ninguna regla.
+
+   Estos valores deben coincidir con el Kit global de Elementor.
+   Si se cambia uno aquí, cambiarlo allá. Ver PROCESO/02-SISTEMA-VISUAL.md
+   ========================================================================== */
+
+:root {
+
+  /* ----------------------------------------------------------------------
+     COLORES
+     Fuente: IDENTIDAD-DE-MARCA.md
+     ⚠ Hay TRES verdes en juego. Ver README.md §Colores
+     ---------------------------------------------------------------------- */
+
+  /* Verde de interfaz — botones, links, acentos de texto.
+     Tomado de la captura de referencia del panel "Portfolio overview".
+
+     Da 4.09:1 sobre blanco. WCAG AA pide 4.5:1 para texto normal y 3:1
+     para texto grande (>=18.66px en negrita, o >=24px), asi que sirve para
+     botones y titulares pero NO para texto pequeño en verde sobre blanco.
+     El anterior (#028B00) daba 4.47:1: tampoco llegaba, la nota que decia
+     4.9:1 estaba equivocada.
+
+     Para texto pequeño usar --c-verde-hover (#026F00, 6.41:1). */
+  /* EL VERDE DE MARCA. Manual de identidad, pagina 8: Pantone 361 C.
+
+     Antes aqui habia un #2E902B elegido buscando accesibilidad con texto
+     blanco encima. No la conseguia --4.09:1 frente al minimo de 4.5-- y
+     ademas no era el color de la marca: dos problemas por el precio de uno.
+
+     Este verde da 2.66:1 con blanco, asi que el texto que va ENCIMA cambia
+     a gris oscuro (4.74:1). El manual llama al gris "color de apoyo
+     fuerte", de modo que la combinacion es la que propone la marca.
+
+     Ver PALETA.md para la tabla completa de usos y contrastes. */
+  --c-verde:            #39B54A;
+  /* Para hover y para texto verde pequeño sobre blanco, donde el verde de
+     marca no llega. Es el mismo tono, mas oscuro. */
+  /* El verde para TEXTO pequeno. Antes valia #2A8438, que da 4.40:1 sobre
+     blanco y 4.25:1 sobre el gris de las secciones: por debajo del minimo
+     de 4.5 en ambos casos. El comentario de arriba ya decia #026F00 --el
+     valor correcto-- pero el token nunca se actualizo.
+     Ahora: 6.41:1 sobre blanco, 5.78:1 sobre gris. */
+  --c-verde-hover:      #026F00;
+
+  /* El texto que va SOBRE el verde de marca. Gris de la marca, 4.74:1. */
+  --c-sobre-verde:      #333333;
+  --c-verde-claro:      #E8F5E8;
+
+  /* Verde oficial de marca (guía PDF, p.8). NO pasa AA sobre blanco (~2.5:1).
+     Reservado para acentos grandes y fondos, nunca texto pequeño ni botones. */
+  --c-verde-marca:      #39B54A;
+
+  /* Verde del archivo del logo SVG. No coincide con la guía.
+     Solo lo usa el propio logo. No usar en interfaz. */
+  --c-verde-logo:       #39A935;
+
+  /* Neutros */
+  --c-texto:            #333333;   /* titulares. La guia de marca dice "DARK GREY BETTER FOR WEB" (PDF p.8) */
+
+  /* Superficie oscura. Es un uso distinto del texto: aqui el gris de marca
+     no da contraste suficiente para poner blanco encima, asi que la
+     superficie conserva su propio valor. */
+  --c-superficie-oscura: #1A1A1A;
+  --c-texto-cuerpo:     #333333;   /* cuerpo — la guía dice "dark grey better for web" */
+  --c-texto-suave:      #6B6B6B;   /* secundario, etiquetas */
+  --c-blanco:           #FFFFFF;
+  --c-fondo:            #FAFAFA;   /* fondo del hero, muestreado del mockup */
+  --c-fondo-alt:        #F5F5F5;   /* barra de logos, muestreado del mockup */
+  --c-borde:            #E4E4E4;
+  --c-borde-suave:      #EFEFEF;
+
+  /* Skeleton / placeholders */
+  --c-skeleton-a:       #E8E8E8;
+  --c-skeleton-b:       #F2F2F2;
+
+  /* Datos (gráfico) */
+  --c-dato-positivo:    var(--c-verde);
+  --c-dato-neutro:      #B8B8B8;
+
+
+  /* ----------------------------------------------------------------------
+     TIPOGRAFÍA
+     Open Sans — oficial según la guía de marca (p.10). Gratuita, Google Fonts.
+     El logo usa Olivier Regular y ERA ITC, pero solo dentro del SVG.
+     ---------------------------------------------------------------------- */
+
+  --font-base: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, Helvetica, Arial, sans-serif;
+
+  /* Escala fluida — escala sola entre móvil y escritorio */
+  --fs-h1:      clamp(2.25rem, 1.5rem + 3.2vw, 4rem);
+  --fs-h2:      clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --fs-h3:      clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+  --fs-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body:    clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --fs-small:   0.875rem;
+  --fs-xs:      0.75rem;
+
+  /* Pesos */
+  --fw-regular:   400;
+  --fw-medium:    600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+
+  /* Interlineado */
+  --lh-tight:   1.08;
+  --lh-heading: 1.2;
+  --lh-body:    1.65;
+
+  /* Espaciado entre letras */
+  --ls-eyebrow: 0.08em;
+  --ls-tight:   -0.02em;
+
+
+  /* ----------------------------------------------------------------------
+     ESPACIADO
+     ---------------------------------------------------------------------- */
+
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.5rem;
+  --sp-6:  2rem;
+  --sp-7:  3rem;
+  --sp-8:  4rem;
+  --sp-9:  6rem;
+
+  /* Ritmo vertical de sección */
+  --section-y: clamp(3rem, 2rem + 4vw, 6rem);
+
+  /* Ancho máximo del contenido */
+  --ancho-max: 1440px;
+  --padding-x: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+
+
+  /* ----------------------------------------------------------------------
+     FORMAS Y SOMBRAS
+     ---------------------------------------------------------------------- */
+
+  --radio-sm:   6px;
+  --radio-md:   10px;
+  --radio-lg:   16px;
+  --radio-pill: 999px;
+
+  --sombra-sm: 0 1px 3px rgba(0, 0, 0, .06);
+  --sombra-md: 0 4px 16px rgba(0, 0, 0, .08);
+  --sombra-lg: 0 12px 40px rgba(0, 0, 0, .12);
+
+  /* Transiciones */
+  --trans-rapida: 150ms ease;
+  --trans-media:  250ms ease;
+  --trans-lenta:  400ms cubic-bezier(.4, 0, .2, 1);
+
+
+  /* ----------------------------------------------------------------------
+     LAYOUT DEL HERO
+     ---------------------------------------------------------------------- */
+
+  --header-alto: 88px;
+}

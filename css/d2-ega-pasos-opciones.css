@@ -1,0 +1,3690 @@
+/* ==========================================================================
+   LOS TRES PASOS: LAS DOS VARIANTES NUEVAS (14/9/2026)
+
+   La seccion "Start with the portfolio / Find the buildings worth a closer
+   look" pasa a ser un carrusel de tres disenos, igual que las secciones de
+   la home. El COPY es el mismo en los tres: solo cambia la presentacion.
+
+     Opcion 1  columnas          la que ya existia. Su CSS vive en
+                                 d2-ega.css y no se toca; aqui solo se le
+                                 anade el gesto de entrada que le faltaba.
+     Opcion 2  numeros grandes   filas en vez de columnas
+     Opcion 3  la cartera        los pasos y lo que el metodo produce
+
+   QUE DICE LA INVESTIGACION DE 2026, Y QUE DESCARTA
+
+   - El stepper numerado desaparecio del SaaS de primer nivel --Linear,
+     Vercel y Stripe no tienen ninguno, verificado-- pero sobrevive en el
+     sector de clima y datos de edificios. Watershed lo usa con 01/02/03
+     prominentes, tres bloques y CERO flechas o lineas conectoras: el orden
+     numerico basta. Es el patron correcto aqui porque Rede vende un
+     metodo, no una interfaz.
+
+   - Descartado por anticuado: lineas conectoras que se dibujan solas,
+     contadores que suben, parallax, tilt 3D, y el fade-in elemento por
+     elemento --que ademas empeora la velocidad percibida--.
+
+   - El puente A-vs-B no se anima: la investigacion lo desaconseja y ademas
+     es la pieza que ya funciona. Su CSS sigue en d2-ega.css, compartido
+     por las tres variantes.
+
+   COMO SE ANIMA
+
+   Solo `transform` y `opacity`, las unicas que se quedan en el compositor
+   (web.dev). Nada de `top`, `height` ni `box-shadow`.
+
+   Todo dentro de @media (prefers-reduced-motion: no-preference).
+
+   EL VERDE DE LAS CIFRAS
+
+   El verde entra y se queda: encendido, no parpadeo.
+
+   Va el --c-verde-hover y no el de marca: medido, el de marca da 2.40:1
+   sobre el gris de la seccion, que no llega ni al umbral de texto grande
+   --3.0--. A 62px seguiria siendo un numero dificil de leer. */
+@keyframes d2-ega-p2-enciende {
+  0%   { color: #BFBFBF; }
+  28%  { color: var(--c-verde-hover, #026F00); }
+  100% { color: var(--c-verde-hover, #026F00); }
+}
+
+
+/* ==========================================================================
+   OPCION 3 — LA CARTERA A LA VISTA
+
+   Los tres pasos ocupan una columna estrecha a la izquierda, y a la derecha
+   aparece LO QUE EL METODO PRODUCE: catorce barras de distinta altura --los
+   edificios de la cartera-- con una destacada en verde.
+
+   Es la unica de las tres que ensena el resultado en vez de describirlo, y
+   conecta con el titular: "find the buildings worth a closer look" deja de
+   ser una promesa y se ve.
+
+   Las barras crecen con scaleY escalonado --transform, no height-- que es
+   el mismo gesto que el grafico del hero de la home: la pagina habla
+   consigo misma.
+   ========================================================================== */
+
+.d2 .d2-ega-pasos3 {
+  padding-block: 84px;
+  background: var(--comp-rol, var(--c-fondo-alt, #F5F5F5));
+}
+
+.d2 .d2-ega-pasos3__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 .d2-ega-pasos3__cab {
+  display: grid;
+  grid-template-columns: 1.28fr .72fr;
+  align-items: end;
+  gap: 48px;
+  margin-bottom: 54px;
+}
+
+.d2 .d2-ega-pasos3__titulo {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-pasos3__lead {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-pasos3__reja {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+
+.d2 .d2-ega-pasos3__lista {
+  display: grid;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-pasos3__paso {
+  padding-left: 22px;
+}
+
+.d2 .d2-ega-pasos3__num {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  /* A 12px esto es texto pequeno y necesita 4.5:1. El verde de marca da
+     2.40:1 sobre el gris claro de la seccion; el --c-verde-hover, 5.78:1.
+     Es lo que manda la propia hoja de tokens para texto pequeno. */
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-pasos3__h {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-pasos3__d {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-pasos3 .d2-ega-pasos3__paso {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  .d2 .d2-ega-pasos3.es-visible .d2-ega-pasos3__paso {
+    animation: d2-ega-p-entra .6s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-pasos3.es-visible .d2-ega-pasos3__paso:nth-child(2) { animation-delay: .12s; }
+  .d2 .d2-ega-pasos3.es-visible .d2-ega-pasos3__paso:nth-child(3) { animation-delay: .24s; }
+}
+
+@keyframes d2-ega-p3-crece {
+  to { transform: scaleY(1); }
+}
+
+/* Comun a las tres: entra y se queda. */
+@keyframes d2-ega-p-entra {
+  to { opacity: 1; transform: none; }
+}
+
+
+/* --------------------------------------------------------------------------
+   MOVIL
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .d2 .d2-ega-pasos3__cab {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .d2 .d2-ega-pasos3__reja {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+
+/* ==========================================================================
+   EL CIRCUITO DE FONDO (14/9/2026)
+
+   Mismo lenguaje que el de la seccion de equipo de la home --SVG absoluto,
+   trazos finos y nodos-- pero con un trazado propio en cada opcion: repetir
+   el mismo dibujo tres veces lo delataria como adorno pegado.
+
+   Sobre el gris claro de estas secciones el verde de marca a plena opacidad
+   chilla, asi que va muy diluido. Tiene que notarse que hay algo, no leerse
+   como un dibujo que compite con el texto.
+   ========================================================================== */
+
+
+/* El contenido, por encima del circuito. */
+
+
+/* ==========================================================================
+   PUENTE DE LA OPCION 2 — DOS COLUMNAS CON FILO
+
+   Sin caja: la variante de filas y numeros grandes no tiene cajas en ningun
+   sitio, y meter aqui el bloque blanco de la opcion 1 rompia su logica.
+
+   La etiqueta de arriba --"This service" / "What may come next"-- dice lo
+   que la flecha decia en la opcion 1. Con dos columnas y un filo en medio,
+   la flecha sobra.
+   ========================================================================== */
+
+.d2 .d2-ega-puente2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  margin-top: 56px;
+  padding-top: 34px;
+  border-top: 2px solid var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-puente2__lado--fin {
+  padding-left: clamp(24px, 4vw, 64px);
+}
+
+.d2 .d2-ega-puente2__eti {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-puente2__nom {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-puente2__preg {
+  margin: 0;
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -.015em;
+  color: var(--c-texto, #333333);
+}
+
+/* El lado de la derecha, mas apagado: es lo que viene DESPUES, no lo que
+   se esta vendiendo en esta pagina. */
+.d2 .d2-ega-puente2__lado--fin .d2-ega-puente2__eti {
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-puente2__lado--fin .d2-ega-puente2__preg {
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+
+/* ==========================================================================
+   PUENTE DE LA OPCION 3 — LA BANDA QUE CIERRA
+
+   Una banda oscura pegada al bloque de la cartera. Cierra la seccion en vez
+   de flotar debajo, y el contraste con el gris claro la separa del resto
+   sin necesidad de bordes.
+   ========================================================================== */
+
+.d2 .d2-ega-puente3 {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  margin-top: 48px;
+  padding: 28px clamp(24px, 3vw, 44px);
+  background: var(--c-texto, #333333);
+  border-radius: 6px;
+}
+
+.d2 .d2-ega-puente3__preg {
+  margin: 0;
+  font-size: clamp(17px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-puente3__eti {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  /* Verde de marca: sobre el gris oscuro llega a 5,9:1 y aqui si se puede
+     usar --el problema era sobre blanco--. */
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-puente3__preg--fin {
+  text-align: right;
+  color: rgba(255, 255, 255, .62);
+}
+
+.d2 .d2-ega-puente3__preg--fin .d2-ega-puente3__eti {
+  color: rgba(255, 255, 255, .45);
+}
+
+/* El separador: un filo vertical, no una flecha. La direccion ya la da el
+   orden de lectura y el contraste entre los dos lados. */
+.d2 .d2-ega-puente3__sep {
+  width: 1px;
+  height: 46px;
+  background: rgba(255, 255, 255, .2);
+}
+
+
+@media (max-width: 760px) {
+  .d2 .d2-ega-puente2 {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .d2 .d2-ega-puente2__lado--fin {
+    padding-left: 0;
+    padding-top: 26px;
+      border-top: 1px solid var(--c-borde, #E4E4E4);
+  }
+
+  .d2 .d2-ega-puente3 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .d2 .d2-ega-puente3__preg--fin { text-align: left; }
+
+  .d2 .d2-ega-puente3__sep {
+    width: 100%;
+    height: 1px;
+  }
+}
+
+
+/* ==========================================================================
+   EL TONO OSCURO (14/9/2026)
+
+   En la composicion Contrast el rol `proceso` recibe #333333, y toda esta
+   seccion estaba escrita para fondo claro: los titulares y el cuerpo van en
+   --c-texto, que ES #333333.
+
+   Medido: 1.00:1. Texto invisible sobre su propio color. Es el mismo fallo
+   que ya costo caro en el CTA de la maqueta.
+
+   El guion marca la seccion con data-comp-tono="oscuro" cuando el fondo que
+   le toca es el negro de marca. Aqui se recoge esa marca, igual que hace la
+   home con sus secciones.
+
+   Los valores estan medidos sobre #333333:
+
+     #FFFFFF   12.63:1   titulares y cuerpo
+     #E8E8E8    7.63:1   secundario
+     #39B54A    4.74:1   verde de MARCA: etiquetas y numeros pequenos
+     #39A935    4.15:1   verde del LOGO: el numero grande de la opcion 2,
+                         la flecha y los filos --piezas de 3.0, no de 4.5--
+
+   Los verdes son los del sistema, no tonos aclarados. El del logo no
+   llega a 4.5, asi que en texto pequeno entra el de marca; donde el
+   umbral es 3.0 --numero de 62px, iconos, filos-- va el del logo.
+   ========================================================================== */
+
+/* --- Titulares y cuerpo --- */
+
+.d2 [data-comp-tono="oscuro"]:is(.d2-ega-pasos, .d2-ega-pasos3)
+  :is(h2, h3) {
+  color: #FFFFFF;
+}
+
+.d2 [data-comp-tono="oscuro"].d2-ega-pasos3
+  :is(.d2-ega-pasos3__lead, .d2-ega-pasos3__d) {
+  color: #E8E8E8;
+}
+
+/* El eyebrow "Start with the portfolio": el verde oscuro se queda en
+   1.97:1 sobre este fondo. Entra el verde de MARCA, que da 4.74:1 --el
+   del logo se queda en 4.15 y a 12px hace falta 4.5--. */
+.d2 [data-comp-tono="oscuro"]:is(.d2-ega-pasos, .d2-ega-pasos3)
+  .eyebrow {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* --- Los numeros --- */
+
+/* El verde de MARCA, no un tono aclarado. A 12-13px esto es texto pequeno
+   y necesita 4.5:1: el del logo --#39A935-- se queda en 4.15 y el de
+   marca da 4.74, asi que aqui entra el verde de verdad del sistema. */
+.d2 [data-comp-tono="oscuro"].d2-ega-pasos3 .d2-ega-pasos3__num {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* El verde del LOGO, no el palido. A 38-62px en negrita el umbral es 3.0
+   --texto grande-- y el del logo da 4.15:1 sobre este fondo, asi que se
+   puede usar el verde de verdad de la marca en vez de un tono aclarado
+   que no esta en ninguna parte del manual. */
+@keyframes d2-ega-p2-enciende-oscuro {
+  0%   { color: #BFBFBF; }
+  28%  { color: var(--c-verde-logo, #39A935); }
+  100% { color: var(--c-verde-logo, #39A935); }
+}
+
+/* --- Filos y separadores --- */
+
+.d2 [data-comp-tono="oscuro"].d2-ega-pasos3 .d2-ega-pasos3__paso {
+  border-left-color: rgba(255, 255, 255, .18);
+}
+
+/* --- El circuito de fondo --- */
+
+/* ESTAS REGLAS BASE SE PERDIERON en la limpieza del 14/9 y el resultado
+   fue el SVG relleno de negro ocupando la seccion entera: sin posicion
+   absoluta no se queda de fondo, y sin fill none el navegador rellena
+   cada path con negro por defecto.
+
+   Es lo que el usuario vio: dos manchas negras enormes y el texto
+   desaparecido debajo. */
+.d2 .d2-ega-pasos3 {
+  position: relative;
+  overflow: hidden;
+}
+
+.d2 .d2-ega-pasos3__circuito {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.d2 .d2-ega-pasos3__circuito path {
+  fill: none;
+  stroke: rgba(57, 181, 74, .17);
+  stroke-width: 1.2px;
+}
+
+.d2 .d2-ega-pasos3__circuito circle {
+  /* Relleno del color del fondo: el nodo tapa el trazo que pasa por
+     debajo y se lee como una conexion. Va por --comp-rol para que siga al
+     tema. */
+  fill: var(--comp-rol, var(--c-fondo-alt, #F5F5F5));
+  stroke: rgba(57, 181, 74, .3);
+  stroke-width: 1.5px;
+}
+
+/* El contenido, por encima del circuito. */
+.d2 .d2-ega-pasos3__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-pasos3__circuito path {
+  stroke: rgba(176, 225, 183, .22);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-pasos3__circuito circle {
+  stroke: rgba(176, 225, 183, .38);
+}
+
+/* --- La cartera de la opcion 3 --- */
+
+/* La tarjeta se queda BLANCA a proposito: es un dato, y sobre el fondo
+   oscuro gana el aire de panel que ya tiene la calculadora. Su texto
+   interior no se toca, porque su fondo no ha cambiado. */
+
+/* --- Los puentes --- */
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente {
+  background: rgba(255, 255, 255, .06);
+  /* Filo grafico, no texto: aqui si entra el verde del logo. */
+  border-left-color: var(--c-verde-logo, #39A935);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente :is(.d2-ega-puente__preg) {
+  color: #FFFFFF;
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente .d2-ega-puente__eti {
+  color: #E8E8E8;
+}
+
+/* La flecha es un icono: umbral 3.0 --componente grafico-- asi que lleva
+   el verde del logo, 4.15:1. */
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente .d2-ega-puente__flecha {
+  color: var(--c-verde-logo, #39A935);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 {
+  border-top-color: rgba(255, 255, 255, .4);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 .d2-ega-puente2__lado--fin {
+  border-left-color: rgba(255, 255, 255, .18);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 .d2-ega-puente2__eti {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 .d2-ega-puente2__nom {
+  color: #BFBFBF;
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 .d2-ega-puente2__preg {
+  color: #FFFFFF;
+}
+
+/* El lado derecho sigue mas apagado que el izquierdo --es lo que viene
+   despues-- pero por encima del minimo: 5.63:1. */
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2 .d2-ega-puente2__lado--fin
+  :is(.d2-ega-puente2__eti, .d2-ega-puente2__preg) {
+  color: #BFBFBF;
+}
+
+/* El puente 3 YA es oscuro. Sobre un fondo oscuro se perderia, asi que
+   sube a negro pleno y gana un filo que lo separa. */
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente3 {
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, .12);
+}
+
+
+/* ==========================================================================
+   LA CARTERA, BLINDADA (14/9/2026)
+
+   En Contrast la tarjeta se queda BLANCA a proposito --es un dato, y sobre
+   el fondo oscuro gana el aire de panel que ya tiene la calculadora-- pero
+   su texto se veia blanco sobre blanco.
+
+   LA CAUSA, encontrada: la seccion oscura redefine los
+   TOKENS de texto --d2-variantes.css:8642--. Pedir var(--c-texto) dentro
+   de una seccion oscura devuelve #FFFFFF, asi que mis reglas pintaban
+   blanco sobre blanco por mucho que nombraran el token correcto.
+
+   El sistema ya tenia la solucion: una lista de tarjetas claras que
+   RESTAURAN los tokens a su valor original. La cartera no estaba en ella
+   y ahora si --misma regla, mismo sitio--.
+
+   Lo de abajo se queda como refuerzo explicito: los tokens ya llegan
+   bien, pero un color fijado donde se sabe cual debe ser no depende de
+   que nadie recuerde mantener esa lista.
+
+   Los valores son los mismos que en fondo claro, porque el fondo de la
+   tarjeta no cambia:
+
+     #333333 sobre blanco  12.63:1
+     #6B6B6B sobre blanco   5.33:1
+     #026F00 sobre blanco   6.41:1
+   ========================================================================== */
+
+
+/* ==========================================================================
+   LADDER EN EGA: EL FONDO POR ROL (14/9/2026)
+
+   La variante viene de la biblioteca --rutas/02-ladder-- y su fondo sale
+   del token --comp-rutas, que en la home pinta el selector de composicion
+   buscando el carrusel de rutas. En EGA ese carrusel no existe, asi que el
+   token llega vacio y la seccion se quedaria sin fondo.
+
+   Se le da el valor por ROL, que es el mecanismo que si funciona fuera de
+   la home. El orden importa: --comp-rol primero, --comp-rutas de respaldo
+   por si algun dia esta pagina hereda el token del home.
+   ========================================================================== */
+
+.d2 .d2-rutas-esc[data-comp-rol] {
+  background: var(--comp-rol, var(--comp-rutas, var(--c-fondo-alt, #F5F5F5)));
+}
+
+/* El rail y los nodos van en el verde de marca. Sobre el gris claro de la
+   seccion es un elemento grafico --umbral 3.0-- y el de marca da 2.40:1,
+   asi que NO llega: pasa al verde oscuro, 5.78:1.
+
+   Sobre el fondo oscuro de Contrast el de marca si vale (4.74:1) y ademas
+   es el verde de verdad, asi que ahi se recupera. */
+.d2 .d2-rutas-esc[data-comp-rol] .d2-rutas-esc__rail-linea {
+  stroke: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-rutas-esc[data-comp-rol] .d2-rutas-esc__nodo {
+  border-color: var(--c-verde-hover, #026F00);
+}
+
+.d2 [data-comp-tono="oscuro"].d2-rutas-esc .d2-rutas-esc__rail-linea {
+  stroke: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"].d2-rutas-esc .d2-rutas-esc__nodo {
+  background: var(--c-texto, #333333);
+  border-color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* ==========================================================================
+   ALCANCE — LAS DOS VARIANTES NUEVAS (14/9/2026)
+
+   El copy no cambia. Lo que cambia es el PESO y el ORDEN, que segun la
+   evidencia es lo que manda en esta seccion concreta:
+
+   - Meta-analisis de OKeefe: el orden ENTRELAZADO da ventaja --r=+.084--;
+     secuenciar bloque-SI contra bloque-NO no da ninguna ventaja fiable.
+   - NN/g: el patron F es "el patron por defecto cuando no hay senales
+     fuertes". Un 50/50 simetrico es precisamente ausencia de senal.
+   - Hsee (evaluabilidad): la evaluacion conjunta amplifica el peso de lo
+     dificil de juzgar, asi que la simetria MAXIMIZA el escrutinio de las
+     exclusiones.
+
+   NADA DE HOVER
+
+   Esta seccion no es interactiva: es una declaracion. Se anima la entrada
+   y ahi acaba.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   LA ENTRADA
+
+   El "SI" entra rapido y escalonado --40ms entre lineas, que es lo que
+   recomienda la investigacion-- y el bloque del "NO" llega despues y mas
+   suave: el orden de lectura marca cual pesa.
+   -------------------------------------------------------------------------- */
+
+
+/* ==========================================================================
+   FINANCIACION — LAS DOS VARIANTES NUEVAS (14/9/2026)
+
+   El copy no cambia. Lo que dice la evidencia:
+
+   - Las propias utilities NO ponen importes: BC Hydro dice "Funding
+     varies based on project type". El copy actual ya lo respeta, y
+     prometer cifras aqui cuando ellos no lo hacen nos expondria.
+   - TARJETAS o FILAS, nunca acordeon cerrado: el acordeon esconde
+     justo lo que el visitante escanea, que es si aplica en su provincia.
+   - Los logos van SEPARADOS. Una etiqueta de texto --"British
+     Columbia"-- es mas segura por uso de marca y envejece mejor que un
+     logo ajeno dentro de una tarjeta.
+   - El aviso de elegibilidad SUBE y se enmarca como competencia, no
+     como descargo (Baymard: una pregunta sin responder deshace todo lo
+     que se hizo bien antes).
+   - Hover MINIMO: 1-2px y cambio de borde. El scale(1.05) y las sombras
+     que crecen son la senal barata.
+
+   Las dos son oscuras, como la que ya existia: es la unica banda oscura
+   de la pagina y marca el cambio de tema.
+   ========================================================================== */
+
+.d2 :is(.d2-ega-ruta-sec) .eyebrow {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* --- La entrada --- */
+
+
+/* ==========================================================================
+   PROCESO — TERMOGRAFIA (14/9/2026)
+
+   Sustituye a "Columns", que eran tres columnas con un filete: podian ser
+   de cualquier web.
+
+   EL GESTO
+
+   Doce fachadas de la cartera. Al entrar en pantalla pasan de gris a falso
+   color termico, de izquierda a derecha, y las tres mas calientes se
+   quedan marcadas. Es lo que hace una auditoria: mirar la cartera y ver
+   cuales destacan.
+
+   No decora. REPRODUCE EL INSTRUMENTO, que es la diferencia entre un
+   efecto y una pieza que significa algo. Si se quita, se pierde
+   informacion: el visitante deja de ver que la lectura es comparativa.
+
+   POR QUE ESTA TECNICA Y NO OTRA
+
+   El falso color sale de un feComponentTransfer con tres tablas --negro,
+   azul, rosa, naranja, blanco--. Es una LUT por pixel: no muestrea
+   vecinos como el blur, asi que es barato.
+
+   Un hue-rotate no puede hacerlo: la rueda de tono no permite ir de azul
+   a naranja pasando por rosa. La tabla si.
+
+   Y el filtro se aplica UNA vez: lo que se anima es la mascara que lo
+   revela --un gradiente cuyo stop se mueve-- no el filtro, que seria
+   recalcularlo en cada fotograma.
+   ========================================================================== */
+
+/* El stop de la mascara. syntax TIPADO y no "*": con "*" no interpola y
+   la revelacion saltaria de golpe. (MDN: @property, Baseline jul 2024.) */
+@property --termo-frente {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+.d2 .d2-ega-termo {
+  padding-block: 84px;
+  background: var(--comp-rol, var(--c-fondo-alt, #F5F5F5));
+}
+
+/* El <svg> del filtro no ocupa: solo transporta la definicion. */
+.d2 .d2-ega-termo__def {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.d2 .d2-ega-termo__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 .d2-ega-termo__cab {
+  display: grid;
+  grid-template-columns: 1.28fr .72fr;
+  align-items: end;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.d2 .d2-ega-termo__titulo {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-termo__lead {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-termo__reja {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+
+
+/* La escala de referencia: los mismos cinco pasos de la LUT. Sin ella la
+   rejilla seria color bonito; con ella es una lectura. */
+.d2 .d2-ega-termo__barra {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  /* La escala, con la paleta de REDE. Antes iba turquesa-rosa-amarillo,
+     copiado tal cual del articulo tecnico: tres colores que no estan en
+     tokens.css. Ahora va del gris del sistema al verde de marca, que es
+     una escala real y sigue leyendose como intensidad. */
+  background: linear-gradient(90deg,
+    var(--c-borde, #E4E4E4) 0%,
+    var(--c-verde-claro, #E8F5E8) 35%,
+    var(--c-verde-marca, #39B54A) 70%,
+    var(--c-verde-hover, #026F00) 100%);
+}
+
+
+/* --- Los tres pasos --- */
+
+.d2 .d2-ega-termo__pasos {
+  display: grid;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-termo__paso {
+  padding-left: 22px;
+}
+
+.d2 .d2-ega-termo__num {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  /* Texto pequeno: 5.78:1 sobre el gris de la seccion. El de marca daria
+     2.40 y no llega. */
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-termo__h {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-termo__d {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+
+/* --- La animacion: la lectura recorre la cartera --- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  
+
+  .d2 .d2-ega-termo.es-visible {
+    animation: d2-termo-barrido 1.5s cubic-bezier(.4, 0, .2, 1) .2s both;
+  }
+
+  
+
+  
+
+  .d2 .d2-ega-termo .d2-ega-termo__paso {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  .d2 .d2-ega-termo.es-visible .d2-ega-termo__paso {
+    animation: d2-ega-p-entra .6s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-termo.es-visible .d2-ega-termo__paso:nth-child(2) { animation-delay: .12s; }
+  .d2 .d2-ega-termo.es-visible .d2-ega-termo__paso:nth-child(3) { animation-delay: .24s; }
+}
+
+@keyframes d2-termo-barrido {
+  from { --termo-frente: 0%; }
+  to   { --termo-frente: 100%; }
+}
+
+@keyframes d2-termo-crece {
+  to { transform: scaleY(1); }
+}
+
+@keyframes d2-termo-marca {
+  to { opacity: 1; }
+}
+
+
+/* --- Tono oscuro (Contrast) --- */
+
+.d2 [data-comp-tono="oscuro"].d2-ega-termo :is(h2, h3) {
+  color: #FFFFFF;
+}
+
+.d2 [data-comp-tono="oscuro"].d2-ega-termo
+  :is(.d2-ega-termo__lead, .d2-ega-termo__d) {
+  color: #E8E8E8;
+}
+
+.d2 [data-comp-tono="oscuro"].d2-ega-termo .eyebrow {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"].d2-ega-termo .d2-ega-termo__num {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"].d2-ega-termo .d2-ega-termo__paso {
+  border-left-color: rgba(255, 255, 255, .18);
+}
+
+/* La tarjeta de lectura se queda BLANCA sobre el fondo oscuro, como la
+   cartera de la otra variante: es un instrumento, y un instrumento tiene
+   su propia superficie. Sus tokens se restauran en d2-variantes.css. */
+
+
+@media (max-width: 900px) {
+  .d2 .d2-ega-termo__cab { grid-template-columns: 1fr; gap: 20px; }
+  .d2 .d2-ega-termo__reja { grid-template-columns: 1fr; gap: 34px; }
+}
+
+
+/* ==========================================================================
+   ALCANCE — PERIMETRO (14/9/2026)
+
+   Sustituye a "Cards", que eran dos tarjetas gemelas enfrentadas.
+
+   EL GESTO
+
+   Una forma completa --todo lo que podria saberse de un edificio-- y
+   dentro, recortado, lo que ESTE servicio cubre. Lo que queda fuera del
+   recorte es literalmente lo que no entrega.
+
+   El significado "esto si, esto no" esta en la OPERACION BOOLEANA, no
+   ilustrado con un check y una cruz. Por eso no es decoracion: si se
+   quita el recorte, se pierde la idea.
+
+   mask-composite: subtract. Baseline desde diciembre de 2023 y SIN
+   prefijo --la documentacion que circula pidiendo -webkit- esta
+   obsoleta--.
+   ========================================================================== */
+
+@property --per-radio {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.d2 .d2-ega-per {
+  padding-block: 84px;
+  background: var(--comp-rol, var(--c-blanco, #FFFFFF));
+}
+
+.d2 .d2-ega-per__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 .d2-ega-per__cab {
+  max-width: 720px;
+  margin-bottom: 44px;
+}
+
+.d2 .d2-ega-per__titulo {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-per__lead {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-per__reja {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(28px, 4vw, 60px);
+  align-items: start;
+}
+
+/* --- Lo que SI entra: el area recortada --- */
+
+.d2 .d2-ega-per__dentro {
+  position: relative;
+  padding: clamp(26px, 3vw, 40px);
+  background: var(--c-verde-claro, #E8F5E8);
+  border-radius: 8px;
+}
+
+/* El recorte: dos mascaras y una resta. La de fuera cubre todo el panel;
+   la de dentro es un circulo que CRECE y se resta, abriendo el area. Al
+   terminar, el circulo cubre el panel entero y no se ve nada: lo que se
+   ve es el proceso de delimitar. */
+.d2 .d2-ega-per__dentro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: rgba(2, 111, 0, .1);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0),
+    radial-gradient(circle at 18% 28%, #000 var(--per-radio), transparent var(--per-radio));
+          mask:
+    linear-gradient(#000 0 0),
+    radial-gradient(circle at 18% 28%, #000 var(--per-radio), transparent var(--per-radio));
+  -webkit-mask-composite: xor;
+          mask-composite: subtract;
+  /* opacity:0 por defecto y NO solo al final de la animacion.
+
+     Con --per-radio en 0% la resta no quita nada, asi que la capa se ve
+     ENTERA: un velo verde permanente sobre el panel. Solo debe verse
+     mientras el barrido corre. Si el navegador no soporta @property o el
+     usuario pide menos movimiento, no se ve nada, que es el estado
+     correcto: el panel limpio. */
+  opacity: 0;
+}
+
+.d2 .d2-ega-per__eti {
+  margin: 0 0 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-per__eti--fuera {
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-per__lista {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-per__lista li {
+  position: relative;
+  padding-left: 26px;
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--c-texto, #333333);
+}
+
+/* Un punto lleno, no un check: el check es la senal generica de esta
+   seccion. El punto dice "esto esta dentro del perimetro". */
+.d2 .d2-ega-per__lista li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-per__libre {
+  margin: 24px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(2, 111, 0, .18);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+/* --- Lo que queda FUERA: sin caja, fuera del perimetro --- */
+
+.d2 .d2-ega-per__fuera {
+  padding-top: 10px;
+}
+
+.d2 .d2-ega-per__lista-fuera {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-per__lista-fuera li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* Un punto HUECO: mismo simbolo, sin rellenar. Dice "esto existe, pero no
+   esta dentro" en lugar de "esto no lo hacemos". */
+.d2 .d2-ega-per__lista-fuera li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--c-borde, #E4E4E4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-per.es-visible .d2-ega-per__dentro::after {
+    animation: d2-per-abre 1.15s cubic-bezier(.4, 0, .2, 1) .15s both;
+  }
+
+  .d2 .d2-ega-per .d2-ega-per__lista li {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li {
+    animation: d2-ega-p-entra .48s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(2) { animation-delay: .04s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(3) { animation-delay: .08s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(4) { animation-delay: .12s; }
+
+  .d2 .d2-ega-per .d2-ega-per__fuera {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__fuera {
+    animation: d2-ega-p-entra .55s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: .3s;
+  }
+}
+
+/* El area se abre y se cierra: lo que queda es el panel limpio. Lo que se
+   ve durante el barrido es el acto de delimitar. */
+@keyframes d2-per-abre {
+  0%   { --per-radio: 0%; opacity: 0; }
+  25%  { opacity: 1; }
+  100% { --per-radio: 145%; opacity: 0; }
+}
+
+/* --- Tono oscuro --- */
+
+.d2 [data-comp-tono="oscuro"].d2-ega-per :is(h2, h3) { color: #FFFFFF; }
+.d2 [data-comp-tono="oscuro"].d2-ega-per .d2-ega-per__lead { color: #E8E8E8; }
+.d2 [data-comp-tono="oscuro"].d2-ega-per .eyebrow { color: var(--c-verde-marca, #39B54A); }
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__eti--fuera { color: #E8E8E8; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista-fuera li { color: #E8E8E8; }
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista-fuera li::before {
+  border-color: rgba(255, 255, 255, .34);
+}
+
+
+/* ==========================================================================
+   FINANCIACION — DIALES (14/9/2026)
+
+   Sustituye a "Cards", que eran tres tarjetas con titulo y parrafo.
+
+   EL GESTO
+
+   Tres medidores. No un anillo de progreso: un SECTOR de 270 grados que
+   arranca en 135, como la aguja de un contador analogico. Cada provincia
+   barre hasta su posicion al entrar.
+
+   Lo que mide no es un porcentaje de nada: es cuanta cobertura tiene el
+   programa, que es justo lo que el visitante quiere saber de un vistazo.
+
+   El angulo va en una variable registrada por @property como <number>.
+   Sin registrar NO interpola: el barrido saltaria de golpe.
+   ========================================================================== */
+
+@property --dial-ang {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+
+/* El barrido llega a --barrido, que cada tarjeta declara en su style.
+   2.7 = 270 grados / 100, para que el valor se escriba de 0 a 100. */
+@keyframes d2-dial-barre {
+  to { --dial-ang: calc(var(--barrido, 60) * 2.7); }
+}
+
+/* Sin animacion la aguja ya esta en su sitio: si @property no se soporta
+   o el usuario pide menos movimiento, se ven los tres medidores leidos. */
+
+@media (max-width: 860px) {
+  .d2 .d2-ega-per__reja { grid-template-columns: 1fr; gap: 30px; }
+}
+
+
+/* ==========================================================================
+   LA GRAFICA DE BENCHMARKS (14/9/2026)
+
+   Sustituye a las barras inventadas de Thermal y Portfolio. Ahora son los
+   TRECE benchmarks de BC Hydro Continuous Optimization que ya alimentan la
+   calculadora --js/main.js, BENCHMARKS-- asi que la pagina afirma un dato
+   que puede sostener.
+
+   Antes decia "12 buildings" en una seccion y "14 buildings" en otra, con
+   alturas sin origen. Dos cifras distintas para lo mismo, las dos
+   inventadas.
+
+   SIGUE LA GRAMATICA DEL HERO, no una propia:
+
+     viewBox 520x132, margen 14..506, base y=120
+     rejilla #EFEFEF          "da escala, sin ella el grafico flota"
+     linea de referencia      gris discontinua --aqui, la media de los 13--
+     linea de datos           verde continua, grosor 2.5
+     area bajo la linea       fill-opacity .07
+     puntos                   blancos con borde verde
+     role=img + aria-label    describiendo la tendencia
+
+   Lo unico que cambia respecto al hero es COMO entra, que es lo que el
+   usuario pidio: misma gramatica, animacion propia.
+   ========================================================================== */
+
+.d2 .d2-ega-graf {
+  padding: clamp(20px, 2.4vw, 28px);
+  background: #FFFFFF;
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: 6px;
+}
+
+.d2 .d2-ega-graf svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.d2 .d2-ega-graf__ejes {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* La media va en el verde de texto pequeno --5.33:1 sobre blanco-- y no
+   en el de marca, que ahi se queda en 2.66. */
+.d2 .d2-ega-graf__media {
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-graf__fuente {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- Como entra: el orden del hero, la ejecucion propia ---
+
+   El hero traza en 1.5s y 1.6s. Aqui se va algo mas rapido --1.2s-- y la
+   media entra ANTES que la linea de datos: primero la referencia, luego
+   lo que se compara con ella. En el hero es al reves porque alli la base
+   es "sin Rede" y la protagonista es la verde.
+
+   El orden: rejilla -> media -> linea -> area -> puntos. */
+
+.d2 .d2-ega-graf .g-rejilla { opacity: 0; }
+
+.d2 .d2-ega-graf .g-base {
+  stroke-dasharray: 5 5;
+  opacity: 0;
+}
+
+.d2 .d2-ega-graf .g-linea {
+  /* 520 unidades: el mismo ancho del viewBox, como en el hero. */
+  stroke-dasharray: 560;
+  stroke-dashoffset: 560;
+}
+
+.d2 .d2-ega-graf .g-area {
+  opacity: 0;
+  transform-origin: bottom;
+}
+
+.d2 .d2-ega-graf .g-puntos circle {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .es-visible .d2-ega-graf .g-rejilla {
+    animation: d2-ega-graf-ver .7s ease-out .1s forwards;
+  }
+
+  .d2 .es-visible .d2-ega-graf .g-base {
+    animation: d2-ega-graf-ver .6s ease-out .3s forwards;
+  }
+
+  .d2 .es-visible .d2-ega-graf .g-linea {
+    animation: d2-ega-graf-traza 1.2s cubic-bezier(.33, 1, .68, 1) .5s forwards;
+  }
+
+  .d2 .es-visible .d2-ega-graf .g-area {
+    animation: d2-ega-graf-rellena .9s ease-out 1.3s forwards;
+  }
+
+  .d2 .es-visible .d2-ega-graf .g-puntos circle {
+    animation: d2-ega-graf-punto .4s cubic-bezier(.34, 1.56, .64, 1) forwards;
+  }
+
+  .d2 .es-visible .d2-ega-graf .g-puntos circle:nth-child(1) { animation-delay: 1.30s; }
+  .d2 .es-visible .d2-ega-graf .g-puntos circle:nth-child(2) { animation-delay: 1.42s; }
+  .d2 .es-visible .d2-ega-graf .g-puntos circle:nth-child(3) { animation-delay: 1.54s; }
+  .d2 .es-visible .d2-ega-graf .g-puntos circle:nth-child(4) { animation-delay: 1.66s; }
+}
+
+/* Sin animacion la grafica esta completa: se degrada hacia el estado CON
+   informacion, no hacia el vacio. */
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-graf :is(.g-rejilla, .g-base, .g-area) { opacity: 1; }
+  .d2 .d2-ega-graf .g-linea { stroke-dashoffset: 0; }
+  .d2 .d2-ega-graf .g-puntos circle { opacity: 1; }
+}
+
+@keyframes d2-ega-graf-ver {
+  to { opacity: 1; }
+}
+
+@keyframes d2-ega-graf-traza {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes d2-ega-graf-rellena {
+  from { opacity: 0; transform: scaleY(.55); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes d2-ega-graf-punto {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* La tarjeta se queda blanca sobre el fondo oscuro, como la calculadora.
+   Sus tokens se restauran en d2-variantes.css. */
+
+
+/* ==========================================================================
+   LA COLUMNA DE LA ILUSTRACION (14/9/2026)
+
+   Arregla el hueco muerto: la rejilla reservaba dos columnas pero la
+   grafica, sus ejes y su pie eran TRES hijos sueltos, asi que se repartian
+   mal y los pasos caian debajo, dejando media seccion vacia.
+
+   Ahora los tres van dentro de .d2-ega-col, que ocupa la primera columna
+   entera, y los pasos la segunda.
+   ========================================================================== */
+
+.d2 .d2-ega-col {
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+
+
+/* ==========================================================================
+   PORTFOLIO — LA CURVA DE CARGA (14/9/2026)
+
+   Sustituye a la grafica de benchmarks, que estaba repetida en Thermal y
+   en Portfolio: dos de las tres variantes ensenaban lo mismo.
+
+   EL GESTO
+
+   Dos curvas superpuestas --antes y despues de optimizar-- y el area entre
+   ellas. Esa area ES el gap del que habla el nombre del servicio, dibujado.
+
+   La animacion es de ONDA: las dos curvas se desplazan muy poco y en fase
+   distinta, asi que el area entre ellas RESPIRA. No es un efecto pegado:
+   lo que late es la distancia entre lo que el edificio consume y lo que
+   podria consumir.
+
+   NO AFIRMA CIFRAS
+
+   No hay eje de valores ni porcentaje. Es un PERFIL de forma --valle de
+   madrugada, arranque a las 6, pico de manana, meseta, caida de tarde--
+   que es como se comporta un edificio institucional cualquiera. El pie lo
+   dice: "typical daily load shape".
+   ========================================================================== */
+
+/* El desfase de cada curva. Tipado: con syntax "*" no interpola. */
+@property --onda-a {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --onda-b {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.d2 .d2-ega-onda {
+  padding: clamp(20px, 2.4vw, 28px);
+  background: #FFFFFF;
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: 6px;
+}
+
+.d2 .d2-ega-onda svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Las curvas se desplazan un pelo hacia arriba y abajo; sin esto el
+     recorte del viewBox les corta la punta. */
+  overflow: visible;
+}
+
+.d2 .d2-ega-onda__horas {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-onda__pie {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- La respiracion ---
+
+   Las dos curvas se mueven POCO --3px y 2px-- y en ciclos distintos --7s
+   y 9s--. Al no coincidir, el area entre ellas se ensancha y se estrecha
+   sin que el movimiento se lea como un bucle: es la diferencia entre
+   respirar y parpadear.
+
+   Va por transform, que se queda en el compositor. */
+
+.d2 .d2-ega-onda__antes,
+.d2 .d2-ega-onda__despues {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+}
+
+.d2 .d2-ega-onda__gap {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .es-visible .d2-ega-onda .g-rejilla {
+    animation: d2-ega-graf-ver .7s ease-out .1s forwards;
+  }
+
+  /* Primero la de antes: es la referencia. */
+  .d2 .es-visible .d2-ega-onda .d2-ega-onda__antes {
+    animation:
+      d2-onda-traza 1.3s cubic-bezier(.33, 1, .68, 1) .3s forwards,
+      d2-onda-sube 7s ease-in-out 1.8s infinite;
+  }
+
+  .d2 .es-visible .d2-ega-onda .d2-ega-onda__despues {
+    animation:
+      d2-onda-traza 1.4s cubic-bezier(.33, 1, .68, 1) .55s forwards,
+      d2-onda-baja 9s ease-in-out 2s infinite;
+  }
+
+  /* El area aparece cuando las dos curvas ya estan trazadas: primero los
+     datos, despues lo que hay entre ellos.
+
+     Y respira con la curva de ARRIBA --la misma animacion, el mismo
+     ciclo--: si las curvas se movieran y el area no, se despegarian y se
+     veria el borde suelto. */
+  .d2 .es-visible .d2-ega-onda .d2-ega-onda__gap {
+    animation:
+      d2-onda-gap 1s ease-out 1.5s forwards,
+      d2-onda-sube 7s ease-in-out 1.8s infinite;
+  }
+}
+
+/* Sin animacion las dos curvas y el area estan puestas: se degrada hacia
+   el estado CON informacion. */
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-onda :is(.d2-ega-onda__antes, .d2-ega-onda__despues) {
+    stroke-dashoffset: 0;
+  }
+  .d2 .d2-ega-onda .d2-ega-onda__gap { opacity: 1; }
+  .d2 .d2-ega-onda .g-rejilla { opacity: 1; }
+}
+
+@keyframes d2-onda-traza {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes d2-onda-gap {
+  to { opacity: 1; }
+}
+
+/* 3px arriba y abajo: se nota que respira, no que se mueve. */
+@keyframes d2-onda-sube {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+@keyframes d2-onda-baja {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(2px); }
+}
+
+/* --- Tono oscuro --- */
+
+/* La tarjeta se queda blanca, como la de la grafica y la calculadora:
+   es un instrumento y tiene su propia superficie. */
+
+
+/* ==========================================================================
+   LAS ETIQUETAS DE LAS GRAFICAS (14/9/2026)
+
+   Lo minimo para leerlas de un vistazo, sin convertirlas en un panel de
+   control. La regla: todo lo que se anade sale de datos que YA existen, y
+   ninguna cifra es nueva.
+
+   Que les faltaba:
+
+     Benchmarks   no decia QUE mide el eje vertical. Se veia una linea que
+                  baja sin saber de que. Tampoco cuantos tipos son.
+     Curva        no decia CUANDO el edificio esta vacio, que es justo
+                  donde el gap se abre y lo que el pie ya afirma en texto.
+   ========================================================================== */
+
+/* El eje vertical, en pequeno y arriba: no es un titulo, es una unidad. */
+.d2 :is(.d2-ega-graf__eje-y, .d2-ega-onda__eje-y) {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* El recuento, al pie de la grafica de benchmarks. Dice que la linea son
+   trece lecturas y no una curva continua. */
+.d2 .d2-ega-graf__cuenta {
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- Las franjas horarias de la curva --- */
+
+/* Tres tramos proporcionales al dia: vacio hasta las 6, ocupado hasta las
+   18, vacio de nuevo. Es la misma division que dibuja la curva. */
+.d2 .d2-ega-onda__franjas {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  gap: 2px;
+  margin: 10px 0 0;
+}
+
+.d2 .d2-ega-onda__franja {
+  padding: 5px 8px;
+  border-radius: 3px;
+  background: var(--c-fondo-alt, #F5F5F5);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-align: center;
+  color: var(--c-texto-suave, #6B6B6B);
+  /* Los rotulos no caben en el tramo estrecho a ciertos anchos: antes de
+     desbordar, se recortan. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Las franjas de edificio vacio, en verde muy claro: es donde el gap se
+   abre, y conviene que se note sin gritar. */
+.d2 .d2-ega-onda__franja--vacio {
+  background: var(--c-verde-claro, #E8F5E8);
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* --- La leyenda de las dos curvas --- */
+
+.d2 .d2-ega-onda__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 12px 0 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-onda__clave {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* La muestra de cada clave: una raya del mismo trazo que la curva, no un
+   cuadrado de color. Asi la leyenda usa el lenguaje de la grafica. */
+.d2 .d2-ega-onda__clave::before {
+  content: "";
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.d2 .d2-ega-onda__clave--antes::before {
+  /* Discontinua, como la curva de antes. El degradado la imita sin
+     necesidad de un SVG. */
+  background: repeating-linear-gradient(90deg,
+    var(--c-texto-suave, #6B6B6B) 0 4px,
+    transparent 4px 7px);
+}
+
+.d2 .d2-ega-onda__clave--despues::before {
+  background: var(--c-verde-hover, #026F00);
+  height: 2.5px;
+}
+
+.d2 .d2-ega-onda__clave--gap::before {
+  height: 10px;
+  border-radius: 2px;
+  background: var(--c-verde-claro, #E8F5E8);
+  border: 1px solid var(--c-verde-marca, #39B54A);
+}
+
+/* --- La marca del gap mas ancho, dentro del SVG --- */
+
+.d2 .d2-ega-onda__marca {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Llega al final: primero las curvas, luego el area, y solo entonces se
+     senala donde es mayor. Un dato cada vez. */
+  .d2 .es-visible .d2-ega-onda .d2-ega-onda__marca {
+    animation: d2-onda-gap .6s ease-out 2.4s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-onda .d2-ega-onda__marca { opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  /* A este ancho "Building empty" no cabe en un cuarto de la fila. Se
+     queda solo la franja central rotulada, que es la que explica el
+     contraste. */
+  .d2 .d2-ega-onda__franja--vacio { font-size: 0; }
+
+  .d2 .d2-ega-onda__franja--vacio::after {
+    content: "—";
+    font-size: 10.5px;
+  }
+}
+
+
+/* ==========================================================================
+   ALCANCE — PIVOTE Y CONTRASTE (14/9/2026)
+
+   Sustituyen a Weighted y Paired, que eran maquetacion estatica: una la
+   misma rejilla que Perimeter con una decima de diferencia --1.7fr contra
+   1.6fr-- y la otra filas de tabla.
+
+   Lo que las eleva no es mas animacion: es MECANISMO. El usuario actua y
+   la interfaz responde con informacion util. Es lo que hace bueno al FAQ,
+   cuya unica animacion dura 180 ms.
+
+   CADA LIMITE LLEVA SU RAZON
+
+   Verificado en Datadog y Vercel: las exclusiones se enuncian con su
+   causa, no como negativa suelta. "How controls are programmed" pasa a
+   llevar "requires trend data from the building automation system".
+
+   El limite deja de ser una negativa y pasa a ser competencia demostrada.
+   Es copy nuevo, anotado en COPY-PROPUESTO-EGA.md.
+   ========================================================================== */
+
+.d2 :is(.d2-ega-piv) {
+  padding-block: 84px;
+  background: var(--comp-rol, var(--c-blanco, #FFFFFF));
+}
+
+.d2 :is(.d2-ega-piv__inner) {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 :is(.d2-ega-piv__cab) {
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.d2 :is(.d2-ega-piv__titulo) {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 :is(.d2-ega-piv__lead) {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 :is(.d2-ega-piv__eti) {
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+
+/* --------------------------------------------------------------------------
+   OPCION 2 — EL PIVOTE
+
+   Abrir un entregable muestra en la ficha SU limite emparejado. Mismo
+   mecanismo que el FAQ: <details name> da el acordeon exclusivo sin JS, y
+   el guion solo rellena la ficha.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-piv__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 60px);
+  align-items: start;
+}
+
+.d2 .d2-ega-piv__item {
+  border-bottom: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .d2-ega-piv__item:first-of-type {
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .d2-ega-piv__si {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-block: clamp(15px, 1.8vw, 20px);
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--c-texto, #333333);
+  cursor: pointer;
+  list-style: none;
+  transition: color .18s ease;
+}
+
+/* El triangulo por defecto, fuera: la marca propia lo sustituye. */
+.d2 .d2-ega-piv__si::-webkit-details-marker { display: none; }
+.d2 .d2-ega-piv__si::marker { content: ""; }
+
+.d2 .d2-ega-piv__si:hover { color: var(--c-verde-hover, #026F00); }
+
+/* La marca: un anillo que se rellena al abrirse. Es el mismo gesto del
+   punto del perfil de la calculadora, no un icono nuevo. */
+.d2 .d2-ega-piv__marca {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+  margin-top: .38em;
+  border-radius: 50%;
+  border: 2px solid var(--c-borde, #E4E4E4);
+  transition: border-color .22s ease, background-color .22s ease;
+}
+
+.d2 .d2-ega-piv__item[open] .d2-ega-piv__marca {
+  border-color: var(--c-verde-hover, #026F00);
+  background: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-piv__item[open] .d2-ega-piv__si {
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* El limite dentro del propio <details>. En escritorio se oculta porque
+   lo dice la ficha; en movil y sin JS es el contenido de verdad. */
+.d2 .d2-ega-piv__r {
+  margin: 0 0 18px;
+  padding-left: 25px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-piv__r-eti {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- La ficha --- */
+
+.d2 .d2-ega-piv__ficha {
+  position: sticky;
+  top: 104px;
+}
+
+.d2 .d2-ega-piv__ficha-caja {
+  padding: clamp(22px, 2.6vw, 30px);
+  background: var(--c-fondo-alt, #F5F5F5);
+  border-radius: 4px;
+}
+
+.d2 .d2-ega-piv__ficha-eti {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* Sin llegar al tamano de una cifra: esto es una frase, no un dato. */
+.d2 .d2-ega-piv__ficha-limite {
+  margin: 0 0 10px;
+  font-size: clamp(19px, 1.9vw, 25px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -.015em;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-piv__ficha-razon {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-piv__ficha-pie {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* La entrada al cambiar de item. Corta --180 ms, la del FAQ-- porque al
+   segundo clic una animacion lenta se siente pesada. */
+@keyframes d2-piv-entra {
+  from { opacity: .4; transform: translateY(5px); }
+  to   { opacity: 1;  transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-piv__ficha-caja { animation: d2-piv-entra .18s ease-out; }
+}
+
+
+/* --- La entrada --- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-piv .d2-ega-piv__item{
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .d2-ega-piv.es-visible .d2-ega-piv__item{
+    animation: d2-ega-p-entra .5s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-piv.es-visible .d2-ega-piv__item:nth-of-type(2){ animation-delay: .05s; }
+  .d2 .d2-ega-piv.es-visible .d2-ega-piv__item:nth-of-type(3){ animation-delay: .10s; }
+  .d2 .d2-ega-piv.es-visible .d2-ega-piv__item:nth-of-type(4){ animation-delay: .15s; }
+}
+
+
+/* --- Tono oscuro --- */
+
+.d2 [data-comp-tono="oscuro"]:is(.d2-ega-piv) :is(h2, h3) {
+  color: #FFFFFF;
+}
+
+.d2 [data-comp-tono="oscuro"]:is(.d2-ega-piv)
+  :is(.d2-ega-piv__lead) {
+  color: #E8E8E8;
+}
+
+.d2 [data-comp-tono="oscuro"]:is(.d2-ega-piv) .eyebrow {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"] :is(.d2-ega-piv__eti) {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__si {
+  color: #FFFFFF;
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__item[open] .d2-ega-piv__si {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__item[open] .d2-ega-piv__marca {
+  border-color: var(--c-verde-marca, #39B54A);
+  background: var(--c-verde-marca, #39B54A);
+}
+
+
+/* La ficha se queda clara sobre el fondo oscuro, como la del FAQ: sus
+   tokens se restauran en d2-variantes.css. */
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__ficha-pie,
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__r,
+
+
+@media (max-width: 900px) {
+  .d2 .d2-ega-piv__cuerpo { grid-template-columns: 1fr; }
+
+  /* La ficha se retira en movil: abajo quedaria despues de los cuatro
+     items y nadie la relacionaria con lo que acaba de abrir. El limite ya
+     esta dentro de cada <details>, asi que no se pierde nada. Es la misma
+     decision que toma el FAQ, al reves: alli la ficha sube. */
+  .d2 .d2-ega-piv__ficha { display: none; }
+}
+
+/* En escritorio el limite lo dice la ficha: dentro del <details> sobra. */
+@media (min-width: 901px) {
+  .d2 .d2-ega-piv__r { display: none; }
+}
+
+
+/* ==========================================================================
+   ALCANCE — EL DETALLE, REHECHO (14/9/2026)
+
+   Tres cosas que el usuario rechazo, y la tecnica que las sustituye. El
+   criterio sale de la investigacion y vale para todo lo que venga:
+
+     "La tecnica debe ser imposible de conseguir por defecto. dashed es
+      una palabra clave; el anillo por mask-composite no tiene atajo."
+
+   Por eso lo anterior se leia generico: eran decisiones de una palabra.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. EL ANILLO DE CORRIENTE  (sustituye al borde discontinuo)
+
+   Dos capas de mascara --una recortada a padding-box, otra a border-box--
+   y `exclude` elimina el centro solapado dejando solo el aro.
+
+   Lo que lo hace distinto de un border: la fuente es un GRADIENTE, asi que
+   el aro esta encendido por donde entra la corriente y se apaga al otro
+   extremo. Un border no puede hacer eso; un dashed, menos.
+
+   mask-composite es Baseline desde diciembre de 2023. OJO: la variante
+   prefijada usa OTRO vocabulario --xor, no exclude-- asi que hay que
+   declarar las dos lineas. Copiar una sola falla en silencio.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-per__dentro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1.5px;
+  pointer-events: none;
+  /* El gradiente entra por arriba-izquierda, que es de donde viene la
+     lectura, y se apaga hacia abajo-derecha. */
+  background: linear-gradient(125deg,
+    var(--c-verde-marca, #39B54A) 0%,
+    var(--c-verde-hover, #026F00) 22%,
+    rgba(2, 111, 0, .25) 48%,
+    transparent 72%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+          mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. EL FUNDIDO  (sustituye al filo vertical de 1px)
+
+   Google Chrome documenta este recurso y DESACONSEJA explicitamente la
+   alternativa --un velo semitransparente encima-- porque interfiere con la
+   seleccion de texto y los eventos de puntero. No es cuestion de gusto:
+   el overlay rompe la interaccion.
+
+   El separador se desvanece por arriba y por abajo, asi que no corta la
+   composicion como lo hace una regla de punta a punta.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-piv__cuerpo {
+  position: relative;
+}
+
+@media (min-width: 901px) {
+  .d2 .d2-ega-piv__ficha::before {
+    content: "";
+    position: absolute;
+    inset-block: 6%;
+    inline-size: 1px;
+    inset-inline-start: calc(clamp(28px, 4vw, 60px) / -2);
+    background: var(--c-verde-hover, #026F00);
+    opacity: .22;
+    -webkit-mask: linear-gradient(to bottom,
+      transparent, #000 18%, #000 82%, transparent);
+            mask: linear-gradient(to bottom,
+      transparent, #000 18%, #000 82%, transparent);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. LA ESCALA DE INSTRUMENTO  (sustituye al interruptor sin consecuencia)
+
+   Las marcas de calibracion NO se dibujan: se RESTAN del arco con una
+   trama conica. El arco es un gradiente continuo y la trama le abre
+   huecos.
+
+   Eso es lo que separa un instrumento de una barra de progreso, y no hay
+   forma de conseguirlo por defecto.
+   -------------------------------------------------------------------------- */
+
+@property --met-ang {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.d2 .d2-ega-met {
+  padding-block: 84px;
+  background: var(--comp-rol, var(--c-blanco, #FFFFFF));
+}
+
+.d2 .d2-ega-met__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 .d2-ega-met__cab {
+  max-width: 720px;
+  margin-bottom: 44px;
+}
+
+.d2 .d2-ega-met__titulo {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-met__lead {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-met__lista {
+  display: grid;
+  gap: clamp(22px, 2.6vw, 32px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-met__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 30px);
+  align-items: start;
+}
+
+/* --- El dial --- */
+
+.d2 .d2-ega-met__dial {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  flex: 0 0 auto;
+}
+
+/* La pista: el arco completo, con sus marcas restadas. */
+.d2 .d2-ega-met__dial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--c-borde, #E4E4E4);
+  -webkit-mask:
+    radial-gradient(circle at 50% 50%, transparent 62%, #000 63%),
+    repeating-conic-gradient(from 218deg at 50% 50%,
+      #000 0 1.6deg, transparent 0 10.4deg);
+          mask:
+    radial-gradient(circle at 50% 50%, transparent 62%, #000 63%),
+    repeating-conic-gradient(from 218deg at 50% 50%,
+      #000 0 1.6deg, transparent 0 10.4deg);
+  /* Las marcas se RESTAN del anillo: ahi esta la diferencia con pintar
+     rayitas encima. */
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+}
+
+/* El arco lleno, con las mismas marcas. Se detiene en --met-ang. */
+.d2 .d2-ega-met__arco {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 218deg,
+    var(--c-verde-hover, #026F00) 0deg,
+    var(--c-verde-hover, #026F00) calc(var(--met-ang) * 1deg),
+    transparent calc(var(--met-ang) * 1deg));
+  -webkit-mask:
+    radial-gradient(circle at 50% 50%, transparent 62%, #000 63%),
+    repeating-conic-gradient(from 218deg at 50% 50%,
+      #000 0 1.6deg, transparent 0 10.4deg);
+          mask:
+    radial-gradient(circle at 50% 50%, transparent 62%, #000 63%),
+    repeating-conic-gradient(from 218deg at 50% 50%,
+      #000 0 1.6deg, transparent 0 10.4deg);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+}
+
+.d2 .d2-ega-met__n {
+  position: relative;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: var(--c-texto, #333333);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .d2-ega-met__cuerpo {
+  padding-top: 4px;
+}
+
+.d2 .d2-ega-met__si {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-met__no {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-met__eti {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-met__no strong {
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-met__razon {
+  display: block;
+  margin-top: 2px;
+}
+
+.d2 .d2-ega-met__libre {
+  margin: clamp(30px, 3.4vw, 42px) 0 0;
+  padding-top: 22px;
+  /* El mismo fundido que separa la ficha del pivote, en horizontal. */
+  border-top: 1px solid transparent;
+  background:
+    linear-gradient(90deg, transparent, var(--c-borde, #E4E4E4) 12%,
+                    var(--c-borde, #E4E4E4) 88%, transparent) top / 100% 1px no-repeat;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+/* Los arcos se llenan escalonados, como las cifras de
+   secciones/prueba/01-record: 80 ms entre uno y otro. */
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-met .d2-ega-met__item {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .d2-ega-met.es-visible .d2-ega-met__item {
+    animation: d2-ega-p-entra .5s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  .d2 .d2-ega-met.es-visible .d2-ega-met__arco {
+    animation: d2-met-llena 1.1s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(.25s + var(--i, 0) * 80ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-met__arco { --met-ang: 284; }
+}
+
+/* 284 grados: el arco va de 218 a 142, dejando el hueco abajo por donde
+   entraria la aguja. Un circulo completo seria un anillo de progreso. */
+@keyframes d2-met-llena {
+  to { --met-ang: 284; }
+}
+
+
+/* La barra de tiempo del item abierto: se llena mientras dura su turno.
+   Es el unico indicador de que algo va a cambiar; sin el, el salto
+   sorprende. */
+.d2 .d2-ega-piv__item[open] .d2-ega-piv__si {
+  position: relative;
+}
+
+.d2 .d2-ega-piv__item[open] .d2-ega-piv__si::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--c-verde-hover, #026F00);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-piv:not([data-piv-parado]) .d2-ega-piv__item[open] .d2-ega-piv__si::after {
+    animation: d2-piv-turno 4.5s linear both;
+  }
+}
+
+@keyframes d2-piv-turno {
+  to { transform: scaleX(1); }
+}
+
+
+/* --- Tono oscuro --- */
+
+.d2 [data-comp-tono="oscuro"].d2-ega-met :is(h2, h3) { color: #FFFFFF; }
+.d2 [data-comp-tono="oscuro"].d2-ega-met .d2-ega-met__lead { color: #E8E8E8; }
+.d2 [data-comp-tono="oscuro"].d2-ega-met .eyebrow { color: var(--c-verde-marca, #39B54A); }
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__n { color: #FFFFFF; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__no { color: #BFBFBF; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__no strong { color: #FFFFFF; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__eti { color: #BFBFBF; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__libre { color: #E8E8E8; }
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__dial::before {
+  background: rgba(255, 255, 255, .22);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__arco {
+  background: conic-gradient(from 218deg,
+    var(--c-verde-marca, #39B54A) 0deg,
+    var(--c-verde-marca, #39B54A) calc(var(--met-ang) * 1deg),
+    transparent calc(var(--met-ang) * 1deg));
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__ficha::before {
+  background: var(--c-verde-marca, #39B54A);
+}
+
+
+@media (max-width: 720px) {
+  .d2 .d2-ega-met__item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+
+/* ==========================================================================
+   FUERA LOS FILOS DE ACENTO (14/9/2026)
+
+   El usuario senalo con una captura la barra verde vertical a la izquierda
+   de un panel. Es el recurso mas repetido que existe --lo lleva cualquier
+   plantilla-- y yo lo tenia en SEIS sitios distintos de esta pagina.
+
+   No significa nada: no dice "aviso", no dice "energia", solo rellena el
+   borde izquierdo porque hay que poner algo ahi.
+
+   LO QUE ENTRA EN SU LUGAR
+
+   Una ESCALA DE MEDIDA: marcas horizontales de distinta longitud, como las
+   de una regla graduada o un instrumento. Se dibujan con un
+   repeating-linear-gradient enmascarado, no con un border.
+
+   Por que esto si significa: una escala dice "esto esta medido", que es
+   exactamente lo que Rede hace. Y las marcas mayores cada cinco son la
+   convencion de cualquier instrumento real.
+
+   Ademas resuelve algo que el filo no podia: la escala se DESVANECE en los
+   extremos, asi que no corta la composicion como una regla de punta a
+   punta.
+   ========================================================================== */
+
+/* La escala, en una variable para no repetir el gradiente seis veces.
+
+   Marcas cada 7px: las menores de 5px y, cada cinco, una mayor de 10px.
+   La segunda capa es la que pinta las mayores, desplazada 35px. */
+.d2 .d2-ega-escala,
+.d2 :is(.d2-ega-piv__ficha-caja, .d2-ega-ruta-sec__cierre) {
+  --escala-color: var(--c-verde-hover, #026F00);
+  position: relative;
+}
+
+.d2 :is(.d2-ega-piv__ficha-caja, .d2-ega-ruta-sec__cierre)::before {
+  content: "";
+  position: absolute;
+  inset-block: 10%;
+  inset-inline-start: 0;
+  inline-size: 11px;
+  background:
+    /* Las marcas mayores, cada 35px */
+    repeating-linear-gradient(to bottom,
+      var(--escala-color) 0 1.5px,
+      transparent 1.5px 35px) left / 11px 100% no-repeat,
+    /* Las menores, cada 7px */
+    repeating-linear-gradient(to bottom,
+      var(--escala-color) 0 1px,
+      transparent 1px 7px) left / 5px 100% no-repeat;
+  /* El desvanecido de los extremos: la escala no corta la composicion.
+     Es el recurso que documenta Google Chrome para separar sin filo. */
+  -webkit-mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+          mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+  /* .62 y no .5: medido, al 50% la escala se queda en 2.26:1 sobre el
+     panel claro y casi no se lee. No le aplica el umbral de 3.0 --es
+     decorativa, no informa-- pero si no se ve, no vale para nada. */
+  opacity: .62;
+  pointer-events: none;
+}
+
+/* El panel deja sitio a la escala sin el border. */
+.d2 .d2-ega-piv__ficha-caja {
+  padding-left: clamp(30px, 3.2vw, 40px);
+}
+
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-piv__ficha-caja {
+  --escala-color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* --------------------------------------------------------------------------
+   LOS FILOS DE LOS PASOS
+
+   Los de .d2-ega-termo__paso y .d2-ega-pasos3__paso marcan que los tres
+   pasos son una secuencia. Ahi el filo SI dice algo, pero de punta a
+   punta corta.
+
+   Se quedan, con el mismo desvanecido: la linea existe donde hay texto y
+   se apaga en los bordes.
+   -------------------------------------------------------------------------- */
+
+.d2 :is(.d2-ega-termo__paso, .d2-ega-pasos3__paso) {
+  position: relative;
+}
+
+.d2 :is(.d2-ega-termo__paso, .d2-ega-pasos3__paso)::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 2px;
+  background: var(--c-borde, #E4E4E4);
+  -webkit-mask: linear-gradient(to bottom, #000 78%, transparent);
+          mask: linear-gradient(to bottom, #000 78%, transparent);
+}
+
+/* El filo del ultimo paso se apaga antes: la secuencia termina ahi y una
+   linea que sigue sugiere que falta algo. */
+.d2 :is(.d2-ega-termo__paso:last-child, .d2-ega-pasos3__paso:last-child)::before {
+  -webkit-mask: linear-gradient(to bottom, #000 42%, transparent);
+          mask: linear-gradient(to bottom, #000 42%, transparent);
+}
+
+.d2 [data-comp-tono="oscuro"] :is(.d2-ega-termo__paso, .d2-ega-pasos3__paso)::before {
+  background: rgba(255, 255, 255, .22);
+}
+
+
+/* --------------------------------------------------------------------------
+   EL FILO DEL PUENTE 2
+
+   Separaba los dos lados de la comparacion. Mismo tratamiento: existe
+   donde hay contenido y se desvanece en los extremos.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-puente2__lado--fin {
+  position: relative;
+}
+
+.d2 .d2-ega-puente2__lado--fin::before {
+  content: "";
+  position: absolute;
+  inset-block: 4%;
+  inset-inline-start: 0;
+  inline-size: 1px;
+  background: var(--c-borde, #E4E4E4);
+  -webkit-mask: linear-gradient(to bottom,
+    transparent, #000 20%, #000 80%, transparent);
+          mask: linear-gradient(to bottom,
+    transparent, #000 20%, #000 80%, transparent);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-puente2__lado--fin::before {
+  background: rgba(255, 255, 255, .22);
+}
+
+@media (max-width: 760px) {
+  /* Apilados, el filo vertical no separa nada. */
+  .d2 .d2-ega-puente2__lado--fin::before { display: none; }
+}
+
+
+/* ==========================================================================
+   LAS DOS COMPOSICIONES (14/9/2026)
+
+   Dos huecos que el usuario senalo con capturas.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   3. METER — la regla graduada
+
+   La lista ocupaba media pantalla y la derecha quedaba en blanco.
+
+   Entra una escala vertical con la misma gramatica de instrumento que ya
+   usan los diales: una marca mayor por cada entregable y cuatro menores
+   entre medias. Cada marca mayor se alinea con su item.
+
+   Lo que da sensacion de instrumento no es la escala en si: es que los
+   items esten MEDIDOS contra algo.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-met__reja {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 26px);
+  align-items: start;
+}
+
+.d2 .d2-ega-met__regla {
+  position: sticky;
+  top: 120px;
+}
+
+.d2 .d2-ega-met__regla svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* El eje se desvanece arriba y abajo: no corta la composicion. */
+  -webkit-mask: linear-gradient(to bottom,
+    transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(to bottom,
+    transparent, #000 8%, #000 92%, transparent);
+}
+
+/* El cursor SIGUE EL SCROLL, no un temporizador.
+
+   Antes bajaba con una animacion de 3.6s y se quedaba clavado donde
+   terminara, sin relacion con lo que el visitante esta mirando. En una
+   regla de medida eso no tiene sentido: el cursor marca DONDE ESTAS.
+
+   Lo mueve d2-ega-alcance.js con un IntersectionObserver sobre los
+   cuatro items, escribiendo --met-pos. No se usa animation-timeline
+   --87% de soporte, Firefox y Safari iOS fuera-- por la misma razon que
+   se descarto para las entradas. */
+.d2 .d2-ega-met__cursor {
+  transform: translateY(var(--met-pos, 40px));
+  transition: transform .55s cubic-bezier(.32, .72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-met__cursor { transition: none; }
+}
+
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__eje,
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__marcas line {
+  stroke: rgba(255, 255, 255, .28);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__cursor line,
+.d2 [data-comp-tono="oscuro"] .d2-ega-met__cursor circle {
+  stroke: var(--c-verde-marca, #39B54A);
+  fill: var(--c-verde-marca, #39B54A);
+}
+
+@media (max-width: 760px) {
+  /* La regla se retira: en una columna no mide nada. */
+  .d2 .d2-ega-met__reja { grid-template-columns: 1fr; }
+  .d2 .d2-ega-met__regla { display: none; }
+}
+
+
+/* ==========================================================================
+   PERIMETER — LA SALIDA DEL PERIMETRO (14/9/2026)
+
+   EL INTENTO ANTERIOR NO SE ENTENDIA
+
+   Era un rectangulo abstracto con puntos dentro y fuera, colocado DEBAJO
+   de las listas. El usuario lo dijo claro: "no le entiendo que sea, no se
+   si esta bien o la figura quedo mal".
+
+   El fallo: los puntos no se alineaban con nada. Un punto a media altura
+   no dice "este entregable" si no esta A LA ALTURA de ese entregable.
+
+   LO QUE ENTRA
+
+   El diagrama deja de estar al lado y pasa a SER la columna. De cada
+   limite sale un trazo corto hacia la derecha, terminado en un nodo
+   hueco. El area cubierta queda a la izquierda --donde esta el panel
+   verde-- y los cuatro limites, literalmente, fuera de ella.
+
+   Cada trazo nace a la altura de su propio limite: eso es lo que hace que
+   se lea solo. No hay que explicarlo.
+
+   Y se dibuja de dentro hacia fuera, escalonado: primero el borde del
+   area, luego cada salida. El orden cuenta la idea.
+   ========================================================================== */
+
+.d2 .d2-ega-per__fuera {
+  position: relative;
+  padding-left: 30px;
+}
+
+/* El borde del area: la linea que separa lo que entra de lo que no.
+   Se desvanece arriba y abajo, como todo filo de esta pagina. */
+.d2 .d2-ega-per__fuera::before {
+  content: "";
+  position: absolute;
+  inset-block: 34px 8px;
+  inset-inline-start: 0;
+  inline-size: 1.5px;
+  background: var(--c-verde-hover, #026F00);
+  opacity: .34;
+  -webkit-mask: linear-gradient(to bottom, #000 82%, transparent);
+          mask: linear-gradient(to bottom, #000 82%, transparent);
+  transform-origin: top;
+}
+
+.d2 .d2-ega-per__lista-fuera li {
+  position: relative;
+  /* Sitio para el trazo de salida. */
+  padding-left: 34px;
+}
+
+/* El trazo: nace en el borde del area, a la altura exacta de su limite. */
+.d2 .d2-ega-per__lista-fuera li::after {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: .72em;
+  width: 22px;
+  height: 1.5px;
+  background: var(--c-verde-hover, #026F00);
+  opacity: .34;
+  transform-origin: left;
+}
+
+/* El nodo hueco, al final del trazo: el limite existe, pero fuera. */
+.d2 .d2-ega-per__lista-fuera li::before {
+  left: 0;
+  top: .5em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-per .d2-ega-per__fuera::before {
+    transform: scaleY(0);
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__fuera::before {
+    animation: d2-per-borde .7s cubic-bezier(.33, 1, .68, 1) .5s both;
+  }
+
+  .d2 .d2-ega-per .d2-ega-per__lista-fuera li::after {
+    transform: scaleX(0);
+  }
+
+  /* Cada salida se dibuja despues de la anterior, de arriba abajo. */
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista-fuera li::after {
+    animation: d2-per-salida .42s cubic-bezier(.33, 1, .68, 1) both;
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista-fuera li:nth-child(1)::after { animation-delay: .95s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista-fuera li:nth-child(2)::after { animation-delay: 1.07s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista-fuera li:nth-child(3)::after { animation-delay: 1.19s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista-fuera li:nth-child(4)::after { animation-delay: 1.31s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-per__fuera::before { transform: none; }
+  .d2 .d2-ega-per__lista-fuera li::after { transform: none; }
+}
+
+@keyframes d2-per-borde {
+  to { transform: scaleY(1); }
+}
+
+@keyframes d2-per-salida {
+  to { transform: scaleX(1); }
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__fuera::before,
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista-fuera li::after {
+  background: var(--c-verde-marca, #39B54A);
+  opacity: .45;
+}
+
+@media (max-width: 860px) {
+  /* Apilado, el borde del area no separa nada: el panel verde queda
+     arriba, no al lado. */
+  .d2 .d2-ega-per__fuera { padding-left: 0; }
+  .d2 .d2-ega-per__fuera::before { display: none; }
+  .d2 .d2-ega-per__lista-fuera li { padding-left: 26px; }
+  .d2 .d2-ega-per__lista-fuera li::after { display: none; }
+}
+
+
+/* ==========================================================================
+   PERIMETER — EL PANEL, REHECHO (14/9/2026)
+
+   El usuario: "lo unico que no me termina de gustar de todo es esto".
+
+   Tenia razon. El panel era una tarjeta verde con esquinas redondeadas y
+   vinetas redondas: tres decisiones por defecto, ninguna dice nada de
+   energia ni de medicion. Podria ser de cualquier sitio.
+
+   QUE CAMBIA
+
+   1. El relleno plano pasa a un degradado MUY leve que se apaga hacia
+      abajo, como la intensidad que la seccion mide. Sigue siendo
+      practicamente plano: no es un efecto, es que el color no sea
+      uniforme.
+
+   2. Las esquinas redondeadas se van. Este panel no es una tarjeta: es
+      un AREA DELIMITADA, y un area de trabajo tiene esquinas vivas. Es
+      el mismo criterio que ya aplica el sistema en el CTA y en la ficha
+      del mapa, donde el propio CSS dice: "alli las esquinas vivas
+      significan algo... un albaran no tiene esquinas redondeadas".
+
+      En su lugar, marcas de esquina: cuatro angulos cortos en las
+      esquinas, como los de un plano tecnico o un visor. Delimitan sin
+      encerrar.
+
+   3. Las vinetas redondas pasan a MARCAS DE ESCALA: un trazo corto y
+      grueso, como las de la regla del instrumento que ya usa la opcion
+      3. Cada entregable es una lectura, no un punto de lista.
+
+   Lo importante: ninguna de las tres es una decision de una palabra
+   clave. Un border-radius es una palabra; cuatro marcas de esquina
+   dibujadas con gradientes enmascarados, no.
+   ========================================================================== */
+
+.d2 .d2-ega-per__dentro {
+  position: relative;
+  padding: clamp(28px, 3.2vw, 42px);
+  border-radius: 0;
+  /* El degradado se apaga hacia abajo: lo que se mide pierde intensidad.
+     La diferencia entre los dos extremos es minima a proposito --el panel
+     tiene que leerse plano, no como un fondo con efecto--. */
+  background: linear-gradient(to bottom,
+    var(--c-verde-claro, #E8F5E8) 0%,
+    color-mix(in srgb, var(--c-verde-claro, #E8F5E8) 55%, #FFFFFF) 100%);
+}
+
+
+/* --- Las marcas de escala, en lugar de las vinetas --- */
+
+.d2 .d2-ega-per__lista li {
+  padding-left: 30px;
+}
+
+.d2 .d2-ega-per__lista li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .62em;
+  /* Un trazo, no un punto: la misma marca de la regla graduada de la
+     opcion 3. Cada entregable es una lectura. */
+  width: 13px;
+  height: 2px;
+  border-radius: 0;
+  background: var(--c-verde-hover, #026F00);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-per .d2-ega-per__lista li::before {
+    transform: scaleX(0);
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li::before {
+    animation: d2-per-marca-item .34s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(1)::before { animation-delay: .34s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(2)::before { animation-delay: .42s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(3)::before { animation-delay: .50s; }
+  .d2 .d2-ega-per.es-visible .d2-ega-per__lista li:nth-child(4)::before { animation-delay: .58s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-per__lista li::before { transform: none; }
+  /* El ::after es la mascara del barrido: sin movimiento no se ve,
+     que es el estado correcto --el panel limpio--. */
+  .d2 .d2-ega-per__dentro::after { opacity: 0; }
+}
+
+@keyframes d2-per-marca-item {
+  to { transform: scaleX(1); }
+}
+
+/* El filete del "No lock-in": el mismo fundido que el resto de la pagina,
+   en vez de una regla de punta a punta. */
+.d2 .d2-ega-per__libre {
+  border-top: 0;
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--c-verde-hover, #026F00) 30%, transparent) 0 62%,
+      transparent)
+    top / 100% 1px no-repeat;
+}
+
+/* --- Tono oscuro --- */
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__dentro {
+  background: linear-gradient(to bottom,
+    rgba(57, 181, 74, .1) 0%,
+    rgba(57, 181, 74, .04) 100%);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__dentro::before {
+  --m: var(--c-verde-marca, #39B54A);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista li::before {
+  background: var(--c-verde-marca, #39B54A);
+}
+
+
+/* ==========================================================================
+   PERIMETER — EL PANEL EN EL VERDE DEL EQUIPO (14/9/2026)
+
+   Tres cosas que pidio el usuario, y una que yo habia roto sin darme
+   cuenta.
+
+   LO QUE ROMPI
+
+   Las marcas de esquina que acabo de anadir usan ::after, que es el MISMO
+   pseudoelemento donde vivia la animacion de mascara --la que el usuario
+   aprobo explicitamente--. Al ir despues en el archivo, la pisaron.
+
+   No se veia ningun error: la animacion simplemente dejo de existir.
+
+   LA SOLUCION
+
+   Las marcas de esquina pasan a ::before del panel. El ::after se queda
+   entero para la animacion de mascara, tal como estaba.
+
+   EL VERDE
+
+   #1A5121, el de la banda del equipo. El comentario del sistema lo
+   describe como "verde de marca al 45% sobre negro", asi que no es un
+   color nuevo: es uno que la web ya usa en una seccion entera.
+
+   Y esa banda lleva circuito de fondo, que es justo el lenguaje que el
+   usuario lleva pidiendo. El panel hereda la familia.
+
+   TEXTO BLANCO
+
+   Medido sobre #1A5121:
+
+     #FFFFFF   9.36:1   titulos e items
+     #D1D1D1   6.13:1   el parrafo del No lock-in
+     #B0E1B7   6.38:1   la etiqueta y las marcas de escala
+   ========================================================================== */
+
+.d2 .d2-ega-per__dentro {
+  /* El degradado, ahora sobre el verde oscuro: se aclara muy poco hacia
+     abajo, lo justo para que el color no sea plano. */
+  background: linear-gradient(to bottom,
+    #1A5121 0%,
+    color-mix(in srgb, #1A5121 88%, #FFFFFF) 100%);
+}
+
+/* Las marcas de esquina se mudan a ::before para dejar libre el ::after,
+   que es donde vive la animacion de mascara. */
+.d2 .d2-ega-per__dentro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --m: #B0E1B7;
+  --g: 14px;
+  background:
+    linear-gradient(to right, var(--m) 0 var(--g), transparent 0) top left / 100% 1.5px no-repeat,
+    linear-gradient(to bottom, var(--m) 0 var(--g), transparent 0) top left / 1.5px 100% no-repeat,
+    linear-gradient(to left, var(--m) 0 var(--g), transparent 0) top right / 100% 1.5px no-repeat,
+    linear-gradient(to bottom, var(--m) 0 var(--g), transparent 0) top right / 1.5px 100% no-repeat,
+    linear-gradient(to right, var(--m) 0 var(--g), transparent 0) bottom left / 100% 1.5px no-repeat,
+    linear-gradient(to top, var(--m) 0 var(--g), transparent 0) bottom left / 1.5px 100% no-repeat,
+    linear-gradient(to left, var(--m) 0 var(--g), transparent 0) bottom right / 100% 1.5px no-repeat,
+    linear-gradient(to top, var(--m) 0 var(--g), transparent 0) bottom right / 1.5px 100% no-repeat;
+  opacity: .6;
+  border: 0;
+  border-radius: 0;
+}
+
+/* --- El texto, en blanco --- */
+
+.d2 .d2-ega-per__eti {
+  color: #B0E1B7;
+}
+
+.d2 .d2-ega-per__lista li {
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-per__lista li::before {
+  background: #B0E1B7;
+}
+
+.d2 .d2-ega-per__libre {
+  /* #E8E8E8 y no #D1D1D1: medido, en la parte BAJA del degradado el gris
+     mas oscuro se queda en 4.41:1 y no llega. Este es ademas el valor que
+     el propio sistema usa para cuerpo sobre fondo oscuro. */
+  color: #E8E8E8;
+  background:
+    linear-gradient(90deg, rgba(176, 225, 183, .32) 0 62%, transparent)
+    top / 100% 1px no-repeat;
+}
+
+.d2 .d2-ega-per__libre strong {
+  color: #FFFFFF;
+}
+
+/* La animacion de mascara vuelve a tener su ::after entero. El velo, en
+   claro sobre el verde oscuro. */
+.d2 .d2-ega-per__dentro::after {
+  background: rgba(176, 225, 183, .16);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Las marcas de esquina ahora entran por ::before. */
+  .d2 .d2-ega-per .d2-ega-per__dentro::before {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  .d2 .d2-ega-per.es-visible .d2-ega-per__dentro::before {
+    animation: d2-per-marcas-b .6s cubic-bezier(.32, .72, 0, 1) .2s both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-per__dentro::before { opacity: .6; transform: none; }
+}
+
+@keyframes d2-per-marcas-b {
+  to { opacity: .6; transform: none; }
+}
+
+/* --- Tono oscuro: el panel ya es oscuro, asi que apenas cambia --- */
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__dentro {
+  background: linear-gradient(to bottom,
+    #1A5121 0%,
+    color-mix(in srgb, #1A5121 92%, #000000) 100%);
+}
+
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista li { color: #FFFFFF; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__eti { color: #B0E1B7; }
+.d2 [data-comp-tono="oscuro"] .d2-ega-per__lista li::before { background: #B0E1B7; }
+
+
+/* ==========================================================================
+   FINANCIACION — LAS RUTAS (14/9/2026)
+
+   Sustituye a los diales, que ademas repetian un gesto ya usado en
+   Alcance/Meter.
+
+   LA IDEA
+
+   Tres trazados de distinta CERTEZA. No es decoracion: es el dato.
+
+   BC Hydro y SaskPower tienen programas nombrados y reglas publicadas,
+   asi que su linea llega entera. "Otras provincias" es una conversacion:
+   la suya arranca discontinua.
+
+   Credit Karma hace exactamente esto con sus niveles de probabilidad --el
+   mas alto se basa en criterios reales del prestamista, los de abajo en
+   comparacion estadistica-- y NO los dibuja iguales. Aplanar la
+   diferencia habria sido perder informacion.
+
+   EL CONDICIONAL SE CIERRA
+
+   HealthCare.gov: "might" a secas suena evasivo; "might ahora, exacto
+   cuando hagas X" suena competente, porque dice CUANDO TERMINA la
+   incertidumbre.
+
+   Por eso el aviso sube y lleva su propia etiqueta --"Where the
+   uncertainty ends"--. No es una nota legal al pie: es la pieza que
+   convierte tres bloques de "depende" en un recorrido con final.
+
+   LA TECNICA
+
+   pathLength="100" normaliza el trazo: el dasharray se escribe en
+   porcentaje sin medir nada con JS. Es la misma tecnica del rail de
+   Ladder, aplicada a tres lineas con valores distintos.
+   ========================================================================== */
+
+.d2 .d2-ega-ruta-sec {
+  padding-block: 84px;
+  background: var(--c-superficie-oscura, #1A1A1A);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .d2-ega-ruta-sec__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 .d2-ega-ruta-sec__cab {
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
+.d2 .d2-ega-ruta-sec__titulo {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+.d2 .d2-ega-ruta-sec__lead {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2 .d2-ega-ruta-sec .eyebrow { color: var(--c-verde-marca, #39B54A); }
+
+.d2 .d2-ega-ruta-sec__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 44px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-ruta {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+/* --- El trazado --- */
+
+.d2 .d2-ega-ruta__traza {
+  display: block;
+  height: 100%;
+  min-height: 190px;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-ruta__traza svg {
+  display: block;
+  width: 40px;
+  height: 100%;
+}
+
+/* El nodo, FUERA del SVG.
+
+   Estaba dentro, y ese svg lleva preserveAspectRatio="none" porque la
+   linea tiene que estirarse al alto de la tarjeta. Pero "none" estira
+   TODO el dibujo: 40 de ancho por unos 250 de alto en pantalla, asi que
+   el circulo salia ovalado. En la linea vertical no se notaba; en el
+   circulo si.
+
+   Como <span> propio nunca se deforma, y ademas el borde puede ser
+   discontinuo en la ruta abierta, que dentro del SVG obligaba a un
+   stroke-dasharray calculado sobre un perimetro estirado. */
+.d2 .d2-ega-ruta__traza {
+  position: relative;
+}
+
+.d2 .d2-ega-ruta__nodo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  border-radius: 50%;
+  background: var(--c-superficie-oscura, #1A1A1A);
+  border: 2px solid var(--c-verde-marca, #39B54A);
+  box-sizing: border-box;
+}
+
+/* La ruta DEFINIDA: linea continua de arriba abajo. Programas nombrados,
+   reglas publicadas. */
+.d2 .d2-ega-ruta[data-certeza="definido"] .d2-ega-ruta__linea {
+  stroke-dasharray: 100;
+}
+
+/* La ruta ABIERTA: discontinua desde el principio. No hay programa que
+   nombrar todavia, hay una conversacion.
+
+   pathLength="100" hace que 3 y 4 sean porcentajes del trazo, no pixeles:
+   el patron se mantiene igual a cualquier alto. */
+.d2 .d2-ega-ruta[data-certeza="abierto"] .d2-ega-ruta__linea {
+  stroke-dasharray: 3 4;
+  opacity: .62;
+}
+
+.d2 .d2-ega-ruta[data-certeza="abierto"] .d2-ega-ruta__nodo {
+  border-style: dashed;
+  opacity: .72;
+}
+
+/* --- El cuerpo --- */
+
+.d2 .d2-ega-ruta__region {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-ruta__nom {
+  margin: 0 0 10px;
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-ruta__txt {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .72);
+}
+
+/* La nota de certeza: lo que hace que los tres NO sean lo mismo.
+
+   Va PEGADA al nombre del programa, no al final del bloque: es la
+   leyenda de su propia linea, y una leyenda lejos de lo que explica no
+   se lee como tal. Sin ella la discontinua parece un fallo de
+   renderizado en vez de una decision. */
+.d2 .d2-ega-ruta__cert {
+  margin: 0 0 14px;
+  padding-top: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: rgba(255, 255, 255, .58);
+}
+
+.d2 .d2-ega-ruta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-ruta__link svg {
+  transition: transform .2s cubic-bezier(.32, .72, 0, 1);
+}
+
+.d2 .d2-ega-ruta__link:hover svg { transform: translateX(3px); }
+
+/* --- El cierre del condicional --- */
+
+.d2 .d2-ega-ruta-sec__cierre {
+  margin: clamp(34px, 3.6vw, 46px) 0 0;
+  padding: 20px 24px 20px 30px;
+  position: relative;
+  background: rgba(255, 255, 255, .05);
+  border-radius: 4px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .78);
+}
+
+/* La escala de medida, igual que en los demas paneles de la pagina. */
+.d2 .d2-ega-ruta-sec__cierre::before {
+  content: "";
+  position: absolute;
+  inset-block: 14%;
+  inset-inline-start: 0;
+  inline-size: 11px;
+  background:
+    repeating-linear-gradient(to bottom,
+      var(--c-verde-marca, #39B54A) 0 1.5px,
+      transparent 1.5px 35px) left / 11px 100% no-repeat,
+    repeating-linear-gradient(to bottom,
+      var(--c-verde-marca, #39B54A) 0 1px,
+      transparent 1px 7px) left / 5px 100% no-repeat;
+  -webkit-mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+          mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+  opacity: .62;
+  pointer-events: none;
+}
+
+.d2 .d2-ega-ruta-sec__cierre-eti {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* --- La entrada: las rutas se trazan de arriba abajo --- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .d2-ega-ruta .d2-ega-ruta__linea {
+    stroke-dashoffset: 100;
+  }
+
+  .d2 .d2-ega-ruta-sec.es-visible .d2-ega-ruta[data-certeza="definido"] .d2-ega-ruta__linea {
+    animation: d2-ruta-traza 1.1s cubic-bezier(.33, 1, .68, 1) both;
+    animation-delay: calc(.2s + var(--i, 0) * 120ms);
+  }
+
+  /* La discontinua no se traza: aparece. Trazarla sugeriria un recorrido
+     completo, que es justo lo que no hay. */
+  .d2 .d2-ega-ruta[data-certeza="abierto"] .d2-ega-ruta__linea {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+
+  .d2 .d2-ega-ruta-sec.es-visible .d2-ega-ruta[data-certeza="abierto"] .d2-ega-ruta__linea {
+    animation: d2-ruta-aparece .7s ease-out both;
+    animation-delay: calc(.5s + var(--i, 0) * 120ms);
+  }
+
+  .d2 .d2-ega-ruta .d2-ega-ruta__cuerpo {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .d2-ega-ruta-sec.es-visible .d2-ega-ruta__cuerpo {
+    animation: d2-ega-p-entra .55s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .d2 .d2-ega-ruta-sec .d2-ega-ruta-sec__cierre {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* El cierre llega al final: primero las tres rutas, luego donde
+     terminan. */
+  .d2 .d2-ega-ruta-sec.es-visible .d2-ega-ruta-sec__cierre {
+    animation: d2-ega-p-entra .6s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: 1.25s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-ruta__linea { stroke-dashoffset: 0; }
+  .d2 .d2-ega-ruta[data-certeza="abierto"] .d2-ega-ruta__linea { opacity: .62; }
+}
+
+@keyframes d2-ruta-traza {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes d2-ruta-aparece {
+  to { opacity: .62; }
+}
+
+@media (max-width: 860px) {
+  .d2 .d2-ega-ruta-sec__lista { grid-template-columns: 1fr; gap: 28px; }
+  .d2 .d2-ega-ruta__traza { min-height: 0; }
+  .d2 .d2-ega-ruta__traza svg { height: 100%; min-height: 110px; }
+}
+
+
+/* ==========================================================================
+   FINANCIACION — ETAPAS Y SENALES (14/9/2026)
+
+   Sustituyen a Ledger --una tabla-- y Focus --pestanas--. Las dos
+   dibujaban los tres programas iguales, que es el error que la
+   investigacion senalo.
+   ========================================================================== */
+
+.d2 :is(.d2-ega-eta, .d2-ega-sen) {
+  padding-block: 84px;
+  background: var(--c-superficie-oscura, #1A1A1A);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 :is(.d2-ega-eta__inner, .d2-ega-sen__inner) {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+.d2 :is(.d2-ega-eta__cab, .d2-ega-sen__cab) {
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
+.d2 :is(.d2-ega-eta__titulo, .d2-ega-sen__titulo) {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+.d2 :is(.d2-ega-eta__lead, .d2-ega-sen__lead) {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2 :is(.d2-ega-eta, .d2-ega-sen) .eyebrow {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* --------------------------------------------------------------------------
+   OPCION 2 — LAS ETAPAS
+
+   Donde estas, que hace Rede, quien decide. Es la estructura de
+   HealthCare.gov dibujada: "might ahora, exacto cuando hagas X".
+
+   El condicional se cierra porque se VE donde termina, no porque lo diga
+   una nota al pie.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-eta__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-eta__paso {
+  position: relative;
+  padding: 26px clamp(20px, 2.6vw, 34px) 26px 0;
+}
+
+.d2 .d2-ega-eta__paso + .d2-ega-eta__paso {
+  padding-left: clamp(20px, 2.6vw, 34px);
+}
+
+/* El eje que enlaza las tres etapas. Se desvanece en los extremos, como
+   todo filo de esta pagina, y el tramo de la ultima se apaga antes: ahi
+   termina el recorrido. */
+/* El eje de las dos primeras etapas.
+
+   Iba al 22% de blanco --2.03:1-- contra el verde de la tercera, que da
+   6.53:1. La diferencia era tan grande que las dos primeras parecian
+   DESACTIVADAS en vez de en reposo, y el recorrido se leia como si solo
+   existiera el final.
+
+   Sube al 42%: siguen por debajo del verde --el ultimo tramo tiene que
+   destacar, ahi es donde se cierra el condicional-- pero ya se leen como
+   parte del mismo eje. */
+.d2 .d2-ega-eta__eje {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: rgba(255, 255, 255, .42);
+}
+
+.d2 .d2-ega-eta__paso:first-child .d2-ega-eta__eje {
+  -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000);
+          mask: linear-gradient(90deg, transparent, #000 12%, #000);
+}
+
+.d2 .d2-ega-eta__paso--fin .d2-ega-eta__eje {
+  background: var(--c-verde-marca, #39B54A);
+  -webkit-mask: linear-gradient(90deg, #000, #000 72%, transparent);
+          mask: linear-gradient(90deg, #000, #000 72%, transparent);
+}
+
+/* El nodo de cada etapa, sobre el eje. */
+.d2 .d2-ega-eta__nodo {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-superficie-oscura, #1A1A1A);
+  border: 2px solid rgba(255, 255, 255, .55);
+}
+
+/* Las etapas 2 y 3 llevan padding a la izquierda, asi que su nodo se
+   desplaza para seguir sobre el eje. El selector correcto es el HIJO de
+   una etapa que sigue a otra, no el hermano del paso. */
+.d2 .d2-ega-eta__paso + .d2-ega-eta__paso .d2-ega-eta__nodo {
+  left: clamp(20px, 2.6vw, 34px);
+}
+
+.d2 .d2-ega-eta__paso--fin .d2-ega-eta__nodo {
+  border-color: var(--c-verde-marca, #39B54A);
+  background: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-eta__n {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .58);
+}
+
+.d2 .d2-ega-eta__paso--fin .d2-ega-eta__n {
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-eta__h {
+  margin: 0 0 14px;
+  font-size: clamp(18px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-eta__d {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .72);
+}
+
+/* Las tres regiones, dentro de la primera etapa: son el punto de
+   partida, no el argumento. */
+.d2 .d2-ega-eta__regs {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-eta__reg {
+  display: grid;
+  gap: 2px;
+}
+
+.d2 .d2-ega-eta__reg-nom {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-eta__reg-cert {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, .58);
+}
+
+.d2 .d2-ega-eta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-eta__link svg { transition: transform .2s cubic-bezier(.32, .72, 0, 1); }
+.d2 .d2-ega-eta__link:hover svg { transform: translateX(3px); }
+
+
+/* --------------------------------------------------------------------------
+   OPCION 3 — LAS SENALES
+
+   Tres barras de intensidad distinta. Dicen cuanta certeza hay SIN
+   numeros: llena donde los programas estan publicados, a medias donde
+   los criterios varian, apenas iniciada donde hay una conversacion.
+
+   Credit Karma usa palabras y no porcentajes por la misma razon: un
+   numero aqui seria una precision que no existe.
+   -------------------------------------------------------------------------- */
+
+.d2 .d2-ega-sen__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 44px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-sen__cab {
+  margin: 0 0 16px;
+  max-width: none;
+}
+
+.d2 .d2-ega-sen__reg {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* La barra: tres tramos separados, como los segmentos de un indicador de
+   senal. No es una barra de progreso: son niveles discretos. */
+.d2 .d2-ega-sen__barra {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  height: 4px;
+  margin-bottom: 10px;
+  /* La pista: los tres tramos apagados. */
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, .16) 0 calc(33.33% - 2px),
+      transparent calc(33.33% - 2px) 33.33%);
+  border-radius: 2px;
+}
+
+.d2 .d2-ega-sen__lleno {
+  /* Solo los tramos que corresponden a su nivel. --n va de 1 a 3. */
+  grid-column: 1 / span var(--n, 1);
+  height: 100%;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--c-verde-marca, #39B54A) 0 calc(100% / var(--n) - 2px),
+      transparent calc(100% / var(--n) - 2px) calc(100% / var(--n)));
+  transform-origin: left;
+}
+
+.d2 .d2-ega-sen__cert {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .58);
+}
+
+.d2 .d2-ega-sen__nom {
+  margin: 0 0 10px;
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.d2 .d2-ega-sen__txt {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2 .d2-ega-sen__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-sen__link svg { transition: transform .2s cubic-bezier(.32, .72, 0, 1); }
+.d2 .d2-ega-sen__link:hover svg { transform: translateX(3px); }
+
+.d2 .d2-ega-sen__cierre {
+  position: relative;
+  margin: clamp(34px, 3.6vw, 46px) 0 0;
+  padding: 20px 24px 20px 30px;
+  background: rgba(255, 255, 255, .05);
+  border-radius: 4px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .78);
+}
+
+.d2 .d2-ega-sen__cierre::before {
+  content: "";
+  position: absolute;
+  inset-block: 14%;
+  inset-inline-start: 0;
+  inline-size: 11px;
+  background:
+    repeating-linear-gradient(to bottom,
+      var(--c-verde-marca, #39B54A) 0 1.5px,
+      transparent 1.5px 35px) left / 11px 100% no-repeat,
+    repeating-linear-gradient(to bottom,
+      var(--c-verde-marca, #39B54A) 0 1px,
+      transparent 1px 7px) left / 5px 100% no-repeat;
+  -webkit-mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+          mask: linear-gradient(to bottom,
+    transparent, #000 14%, #000 86%, transparent);
+  opacity: .62;
+  pointer-events: none;
+}
+
+.d2 .d2-ega-sen__cierre-eti {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* --- Las entradas --- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Etapas: el eje se dibuja y luego llega el contenido. */
+  .d2 .d2-ega-eta .d2-ega-eta__eje {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  /* Cada tramo tarda lo mismo que el anterior en empezar --0.5s-- asi
+     que los tres encadenan sin hueco ni solape: se lee como UNA linea
+     que cruza la seccion, no como tres trazos cortos.
+
+     Antes duraban 0.55s con 180 ms de desfase: el segundo arrancaba
+     cuando el primero llevaba un tercio, y los tres se pisaban. El
+     recorrido se percibia como un parpadeo. */
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__eje {
+    animation: d2-eta-eje .5s linear both;
+    animation-delay: calc(.15s + var(--i, 0) * 500ms);
+  }
+
+  .d2 .d2-ega-eta .d2-ega-eta__nodo {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  /* El nodo aparece cuando el trazo LLEGA a el, no antes: su etapa
+     empieza a dibujarse en .15s + i*500, y el nodo esta al principio de
+     ese tramo. */
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__nodo {
+    animation: d2-eta-nodo .35s cubic-bezier(.34, 1.56, .64, 1) both;
+    animation-delay: calc(.15s + var(--i, 0) * 500ms);
+  }
+
+  /* Los hijos de la etapa, menos tres que tienen animacion propia:
+
+       __regs   la lista de regiones, con su escalonado
+       __eje    la linea que se dibuja
+       __nodo   el punto que aparece sobre ella
+
+     Sin excluirlos, cada uno recibiria DOS animaciones sobre la misma
+     propiedad y la ultima declarada ganaria, anulando la suya. */
+  .d2 .d2-ega-eta .d2-ega-eta__paso > :not(.d2-ega-eta__regs, .d2-ega-eta__eje, .d2-ega-eta__nodo) {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__paso > :not(.d2-ega-eta__regs, .d2-ega-eta__eje, .d2-ega-eta__nodo) {
+    animation: d2-ega-p-entra .5s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(.35s + var(--i, 0) * 500ms);
+  }
+
+  /* Las tres regiones, una tras otra. Van despues del titular de su
+     etapa: primero se sabe que se esta leyendo, luego que hay dentro. */
+  .d2 .d2-ega-eta .d2-ega-eta__reg {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__reg {
+    animation: d2-ega-p-entra .46s cubic-bezier(.32, .72, 0, 1) both;
+  }
+
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__reg:nth-child(1) { animation-delay: .6s; }
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__reg:nth-child(2) { animation-delay: .7s; }
+  .d2 .d2-ega-eta.es-visible .d2-ega-eta__reg:nth-child(3) { animation-delay: .8s; }
+
+  /* Senales: los tramos se encienden uno tras otro. */
+  .d2 .d2-ega-sen .d2-ega-sen__lleno { transform: scaleX(0); }
+
+  .d2 .d2-ega-sen.es-visible .d2-ega-sen__lleno {
+    animation: d2-sen-llena .6s cubic-bezier(.33, 1, .68, 1) both;
+    animation-delay: calc(.3s + var(--i, 0) * 140ms);
+  }
+
+  .d2 .d2-ega-sen .d2-ega-sen__item {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .d2 .d2-ega-sen.es-visible .d2-ega-sen__item {
+    animation: d2-ega-p-entra .55s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .d2 .d2-ega-sen .d2-ega-sen__cierre {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .d2-ega-sen.es-visible .d2-ega-sen__cierre {
+    animation: d2-ega-p-entra .6s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: 1.1s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .d2-ega-sen__lleno { transform: none; }
+}
+
+@keyframes d2-eta-eje { to { transform: scaleX(1); } }
+@keyframes d2-eta-nodo { to { opacity: 1; transform: scale(1); } }
+@keyframes d2-sen-llena { to { transform: scaleX(1); } }
+
+
+@media (max-width: 860px) {
+  .d2 .d2-ega-eta__lista { grid-template-columns: 1fr; }
+
+  .d2 .d2-ega-eta__paso,
+  .d2 .d2-ega-eta__paso + .d2-ega-eta__paso {
+    padding-inline: 0 0;
+    padding-left: 22px;
+  }
+
+  /* Apilado, el eje pasa a vertical. */
+  .d2 .d2-ega-eta__eje {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 1.5px;
+    height: auto;
+  }
+
+  .d2 .d2-ega-eta__nodo,
+  .d2 .d2-ega-eta__paso + .d2-ega-eta__paso .d2-ega-eta__nodo {
+    top: 26px;
+    left: -4px;
+  }
+
+  .d2 .d2-ega-sen__lista { grid-template-columns: 1fr; gap: 28px; }
+}

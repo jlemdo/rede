@@ -1,0 +1,613 @@
+/* ==========================================================================
+   ENERGY GAP ANALYSIS — LAS SECCIONES PROPIAS DE LA PAGINA
+
+   Solo lo que no existe ya. Seis de las diez secciones vienen de la home
+   sin tocar y no necesitan una linea de CSS: se sirven con las hojas que
+   la pagina ya carga.
+
+   EL WIREFRAME NO MANDA EN LOS COLORES
+
+   El que mando Erick trae su propia paleta --verde #087f0d, otra escala
+   tipografica-- porque se hizo suelto, sin el resto del sitio. Copiarla
+   habria dado una pagina que no parece del mismo sitio que la home.
+
+   Aqui manda el sistema que ya existe: los tokens, las clases y los
+   botones de siempre. Del wireframe se copia la ESTRUCTURA y el COPY,
+   que es lo que el cliente aprobo.
+   ========================================================================== */
+
+/* --- Medidas comunes a las cuatro secciones --- */
+
+.d2 :is(.d2-ega-hero, .d2-ega-pasos, .d2-ega-alcance, .d2-ega-fondos) {
+  position: relative;
+}
+
+.d2 :is(.d2-ega-hero__inner, .d2-ega-pasos__inner,
+        .d2-ega-alcance__inner, .d2-ega-fondos__inner) {
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  /* 84 y no 96: es el orden del hero de la home --86-- y con 96 en tres
+     secciones la pagina sumaba 70 px de hueco que no dice nada. */
+  padding: 84px var(--pad-lateral, 28px);
+}
+
+
+/* ==========================================================================
+   1. EL HERO
+   ========================================================================== */
+
+.d2 .d2-ega-hero {
+  /* El fondo lo pone el tema por ROL (14/9/2026). El valor de siempre
+     queda de respaldo: si el guion no corre, la pagina se ve igual. */
+  background: var(--comp-rol, var(--c-blanco, #FFFFFF));
+  border-bottom: 1px solid var(--c-borde, #E4E4E4);
+  /* La ilustracion sangra a la derecha y ademas mide un 112% de su
+     hueco: sin esto la suma abre una barra de scroll horizontal. Lo que
+     sobra por el borde se corta, que ahi no hay dibujo. */
+  overflow: hidden;
+}
+
+.d2 .d2-ega-hero__inner {
+  display: grid;
+  /* La imagen manda. El texto ocupaba la mitad del ancho y aun asi
+     necesitaba cuatro lineas de titular, asi que el hero crecia hasta
+     829 px --200 mas que el de la home-- para rodear una ilustracion
+     pequena. Estrechando la columna de texto el titular cabe en tres
+     lineas Y la imagen gana 240 px. */
+  grid-template-columns: minmax(0, 610px) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  padding-block: 56px 60px;
+}
+
+/* Las migas: donde estoy y como vuelvo. En el wireframe el padre estaba
+   muerto --href="#"-- y aqui apunta a la home. */
+.d2 .d2-ega-hero__migas {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-hero__migas a {
+  color: var(--c-texto-suave, #6B6B6B);
+  text-decoration: none;
+}
+
+.d2 .d2-ega-hero__migas a:hover { text-decoration: underline; }
+
+.d2 .d2-ega-hero__titulo {
+  margin: 12px 0 18px;
+  font-size: var(--fs-h1);
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  font-weight: 800;
+  color: var(--c-texto, #333333);
+  /* Sin esto, "Know which buildings are worth an energy audit." parte en
+     cuatro lineas y el hero se estira. */
+  text-wrap: balance;
+}
+
+/* El verde cae en "energy audit.", que es donde el titular hace pie.
+
+   Va el --c-verde-hover, que es el que usa la home para texto en verde:
+   el de marca da 2,66:1 sobre blanco y no llega al minimo de 4,5. */
+.d2 .d2-ega-hero__titulo span { color: var(--c-verde-hover, #026F00); }
+
+.d2 .d2-ega-hero__lead {
+  margin: 0 0 26px;
+  max-width: 46ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* La nota de "sin coste ni compromiso". El punto verde la marca como
+   mensaje aparte sin subirla a la jerarquia de un titular. */
+.d2 .d2-ega-hero__nota {
+  display: flex;
+  gap: 11px;
+  margin: 0;
+  max-width: 48ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-hero__punto {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--c-verde-marca, #39B54A);
+}
+
+/* La imagen se sale de su columna hacia la derecha, hasta el borde de la
+   ventana. Es lo que hace el wireframe original y aqui resuelve el
+   problema de fondo: el titular necesita 620 px para caber en tres
+   lineas, y dentro del contenedor a la imagen solo le quedarian 612.
+   Sangrando gana los 80 px del padding lateral y todo lo que la pantalla
+   tenga por encima de 1280. */
+.d2 .d2-ega-hero__arte {
+  /* Hasta el borde de la ventana. El hueco esta atado al contenedor de
+     1280, asi que en una pantalla de 1440 la imagen se quedaba en 662 px
+     con 80 de aire a la derecha. Con esto se lleva el padding lateral Y
+     lo que la ventana tenga por encima del contenedor. */
+  margin-right: min(0px, calc((var(--d2-ancho, 1280px) - 100vw) / 2 - var(--pad-lateral, 28px)));
+}
+
+.d2 .d2-ega-hero__arte img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* La ilustracion es linea sobre blanco: multiply la funde con el fondo
+     en vez de dejarle un recuadro. */
+  mix-blend-mode: multiply;
+}
+
+
+/* ==========================================================================
+   2. EL PROCESO
+   ========================================================================== */
+
+.d2 .d2-ega-pasos { background: var(--comp-rol, var(--c-fondo-alt, #F5F5F5)); }
+
+/* Cabecera partida: el titular a la izquierda y el parrafo que lo matiza
+   a la derecha. Mismo gesto que la seccion de rutas de la home. */
+.d2 :is(.d2-ega-pasos__cab, .d2-ega-fondos__cab) {
+  display: grid;
+  /* El titular manda. "Could a utility program help pay for what comes
+     next?" son 1300 px de texto: con 1,05fr --617 px-- necesitaba tres
+     lineas de verdad, y ningun reparto de palabras arregla eso. */
+  grid-template-columns: 1.28fr .72fr;
+  align-items: end;
+  gap: 48px;
+  margin-bottom: 54px;
+}
+
+.d2 :is(.d2-ega-pasos__titulo, .d2-ega-alcance__titulo, .d2-ega-fondos__titulo) {
+  margin: 12px 0 0;
+  /* La escala de los titulares de seccion de la home --49 px a 1440--
+     y no --fs-h2, que topa en 40 y los dejaba pequenos al lado de los
+     suyos. */
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+  /* El de Funding necesitaba 2,44 lineas y ocupaba 3 porque el corte
+     caia mal. Balance reparte las palabras y evita de paso la linea
+     huerfana de una sola palabra. */
+  text-wrap: balance;
+}
+
+.d2 :is(.d2-ega-pasos__lead, .d2-ega-fondos__lead) {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-pasos__lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Separadores entre pasos, no tarjetas: son tres momentos de UNA cosa,
+   no tres cosas distintas. */
+.d2 .d2-ega-pasos__paso {
+  padding: 0 34px;
+  border-left: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .d2-ega-pasos__paso:first-child { padding-left: 0; border-left: 0; }
+.d2 .d2-ega-pasos__paso:last-child  { padding-right: 0; }
+
+.d2 .d2-ega-pasos__num {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  /* A 13px esto es texto pequeno: necesita 4.5:1. El verde de marca se
+     queda en 2.40:1 sobre el gris de la seccion --venia asi de antes--.
+     El --c-verde-hover da 5.78:1, que es el que la hoja de tokens manda
+     usar para texto pequeno. (14/9/2026) */
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-pasos__paso h3 {
+  margin: 0 0 11px;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  font-weight: 700;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-pasos__paso p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+/* --- El puente entre este servicio y el siguiente --- */
+
+.d2 .d2-ega-puente {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 26px;
+  margin-top: 54px;
+  padding: 26px 30px;
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-left: 3px solid var(--c-verde-marca, #39B54A);
+  border-radius: var(--d2-radio-sm, 10px);
+}
+
+.d2 .d2-ega-puente__lado--fin { text-align: right; }
+
+.d2 .d2-ega-puente__eti {
+  margin: 0 0 5px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-ega-puente__preg {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-puente__flecha { color: var(--c-verde-marca, #39B54A); }
+
+
+/* ==========================================================================
+   3. EL ALCANCE
+   ========================================================================== */
+
+.d2 .d2-ega-alcance { background: var(--comp-rol, var(--c-blanco, #FFFFFF)); }
+
+.d2 .d2-ega-alcance__inner {
+  display: grid;
+  grid-template-columns: .88fr 1.12fr;
+  align-items: start;
+  gap: 56px;
+}
+
+.d2 .d2-ega-alcance__lead {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+/* El icono va posicionado y NO como hijo flex: en flex, el <strong> del
+   texto se convertia en otro hijo y se encogia, partiendo "No lock-in."
+   en dos lineas. Asi el parrafo fluye entero. */
+.d2 .d2-ega-alcance__libre {
+  position: relative;
+  margin: 26px 0 0;
+  padding-left: 34px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-alcance__tic {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-verde-marca, #39B54A);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .d2-ega-alcance__tarjetas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.d2 .d2-ega-tarj {
+  padding: 28px 26px;
+  border-radius: var(--d2-radio-sm, 10px);
+}
+
+.d2 .d2-ega-tarj__eti {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.d2 .d2-ega-tarj ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-tarj li {
+  position: relative;
+  padding: 11px 0 11px 26px;
+  font-size: 15px;
+  line-height: 1.55;
+  border-top: 1px solid;
+}
+
+.d2 .d2-ega-tarj li:first-child { border-top: 0; padding-top: 0; }
+
+/* El simbolo de cada linea, no solo el color de la tarjeta: quien no
+   distinga verde de gris tiene que poder leer cual es cual (WCAG 1.4.1). */
+.d2 .d2-ega-tarj li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+}
+
+.d2 .d2-ega-tarj--si {
+  background: var(--c-verde-claro, #E8F5E8);
+  color: var(--c-texto, #333333);
+}
+
+.d2 .d2-ega-tarj--si .d2-ega-tarj__eti { color: var(--c-verde-hover, #026F00); }
+.d2 .d2-ega-tarj--si li { border-color: var(--c-borde, #E4E4E4); }
+
+.d2 .d2-ega-tarj--si li::before {
+  content: "\2713";
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-ega-tarj--no {
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .d2-ega-tarj--no .d2-ega-tarj__eti { color: var(--c-texto-suave, #6B6B6B); }
+.d2 .d2-ega-tarj--no li { border-color: var(--c-borde-suave, #EFEFEF); }
+
+.d2 .d2-ega-tarj--no li::before {
+  content: "\2192";
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+
+/* ==========================================================================
+   4. LA FINANCIACION
+   ========================================================================== */
+
+/* Banda oscura. Es la segunda de la pagina --la primera es la
+   calculadora-- y marca el cambio de "que es esto" a "como se paga". */
+.d2 .d2-ega-fondos {
+  background: var(--c-superficie-oscura, #1A1A1A);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .d2-ega-fondos .eyebrow { color: var(--c-verde-marca, #39B54A); }
+.d2 .d2-ega-fondos__titulo  { color: var(--c-blanco, #FFFFFF); }
+.d2 .d2-ega-fondos__lead    { color: rgba(255, 255, 255, .82); }
+
+.d2 .d2-ega-fondos__lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .d2-ega-fondo {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 26px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-top: 3px solid var(--c-verde-marca, #39B54A);
+  border-radius: var(--d2-radio-sm, 10px);
+}
+
+.d2 .d2-ega-fondo__region {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca, #39B54A);
+}
+
+.d2 .d2-ega-fondo h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  font-weight: 700;
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .d2-ega-fondo p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .74);
+}
+
+/* El enlace, abajo del todo: con textos de distinto largo, sin esto las
+   tres flechas quedan a alturas distintas. */
+.d2 .d2-ega-fondo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-verde-marca, #39B54A);
+  text-decoration: none;
+}
+
+.d2 .d2-ega-fondo a:hover { text-decoration: underline; }
+
+.d2 .d2-ega-fondos__nota {
+  margin: 34px 0 0;
+  max-width: 76ch;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .62);
+}
+
+.d2 .d2-ega-fondos__nota strong { color: rgba(255, 255, 255, .82); }
+
+
+/* ==========================================================================
+   ADAPTACION
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+  .d2 :is(.d2-ega-hero__inner, .d2-ega-alcance__inner) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* La ilustracion, primero: dice de que va la pagina antes que el texto */
+  .d2 .d2-ega-hero__arte {
+    order: -1;
+    /* Sin dos columnas, la sangria y el desbordamiento solo cortan la
+       imagen por la derecha. Aqui ocupa el ancho y ya esta. */
+    margin-right: 0;
+  }
+
+  .d2 .d2-ega-hero__arte img { width: 100%; }
+
+  .d2 :is(.d2-ega-pasos__cab, .d2-ega-fondos__cab) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .d2 :is(.d2-ega-pasos__lista, .d2-ega-fondos__lista) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Sin columnas, el separador vertical no significa nada */
+  .d2 .d2-ega-pasos__paso {
+    padding: 22px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--c-borde, #E4E4E4);
+  }
+
+  .d2 .d2-ega-pasos__paso:first-child { padding-top: 0; border-top: 0; }
+}
+
+@media (max-width: 640px) {
+  .d2 :is(.d2-ega-hero__inner, .d2-ega-pasos__inner,
+          .d2-ega-alcance__inner, .d2-ega-fondos__inner) {
+    padding-block: 60px;
+  }
+
+  .d2 .d2-ega-alcance__tarjetas { grid-template-columns: 1fr; }
+
+  /* El puente se pone en vertical y la flecha gira con el */
+  .d2 .d2-ega-puente {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .d2 .d2-ega-puente__lado--fin { text-align: left; }
+  .d2 .d2-ega-puente__flecha { transform: rotate(90deg); }
+
+  .d2 .d2-ega-hero__acciones .d2-btn { width: 100%; justify-content: center; }
+}
+
+
+/* ==========================================================================
+   EL CTA FINAL — EL CONTRASTE (14/9/2026)
+
+   PRIMER INTENTO, EQUIVOCADO
+
+   Medi el contraste contra --d2-tinta (#F2F9F2) porque es lo que declara
+   la regla de la linea 5462 de d2-variantes.css. Pero 3160 lineas mas
+   abajo, en la 8622, hay esto:
+
+     .d2 .d2-cta-bal, ... { background: var(--comp-cta); }
+
+   Misma especificidad y mas abajo: GANA. Y --comp-cta es --comp-negro,
+   #333333. El fondo real es OSCURO, no claro.
+
+   Puse #026F00 en el eyebrow y en el borde del boton "para mejorar el
+   contraste". Sobre #333333 eso da 1.97:1 -- los hice MENOS visibles.
+
+   LA LECCION: leer la primera regla que define una propiedad no basta.
+   Hay que buscar TODAS y quedarse con la ultima que gana.
+
+   LA CAUSA REAL
+
+   El titular usa var(--c-texto), que vale #333333. Sobre un fondo
+   #333333 eso es 1.00:1: el mismo color exacto. Invisible, no "poco
+   legible".
+
+   d2-variantes.css ya resuelve esto: [data-comp-tono="oscuro"] redefine
+   --c-texto a blanco y --c-texto-cuerpo a #E8E8E8. El atributo lo pone
+   d2-composicion.js, pero SOLO en secciones que declaren data-comp-rol.
+   Y el CTA de esta pagina no lo declaraba.
+
+   Asi que la correccion no es CSS: es declarar el rol en el marcado. Se
+   hace en el HTML, no aqui.
+
+   Medido, con el rol puesto:
+
+     titulo   #FFFFFF sobre #333333 ... 12.63:1
+     parrafo  #E8E8E8 ................. 10.31:1
+     eyebrow  #39B54A .................. 4.74:1
+   ========================================================================== */
+
+/* --- El eyebrow, por TONO --------------------------------------------------
+
+   El .eyebrow global usa --c-verde (#39B54A). Medido:
+
+     sobre blanco  #FFFFFF ... 2.49:1
+     sobre gris    #F3F3F3 ... 2.41:1
+     sobre negro   #333333 ... 4.74:1  OK
+
+   O sea: sobre fondo OSCURO el verde de marca funciona, y sobre CLARO no
+   llega ni de lejos al 4.5 que pide un texto de 12px.
+
+   tokens.css ya tiene el color para este caso exacto -- "el verde para
+   TEXTO pequeno", #026F00, 6.41:1 sobre blanco y 5.78:1 sobre el gris.
+
+   Se aplica por tono y no por seccion: cualquier eyebrow sobre claro lo
+   necesita, y el dia que la composicion cambie el fondo de una seccion,
+   el color la sigue sin tocar nada.
+
+   El :not() deja intacto el caso oscuro, donde el verde de marca es el
+   correcto y ademas es el que lo identifica como Rede. */
+.d2 .d2-cta-bal:not([data-comp-tono="oscuro"]) .eyebrow {
+  color: var(--c-verde-hover, #026F00);
+}

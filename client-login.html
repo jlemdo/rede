@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Login | Rede Energy Solutions</title>
+<meta name="description" content="Sign in to RUN, the Rede Utility Navigator, to see how your buildings are performing.">
+
+<!-- Maqueta de trabajo interna. No debe indexarse. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/v1.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+     CLIENT LOGIN
+     El brief §5.2 pide que sea accesible pero fuera de la navegacion
+     principal. Es la puerta a RUN, la plataforma de datos de utilities.
+
+     Cabecera reducida: en una pagina de acceso, el menu completo distrae.
+     ========================================================================== -->
+
+<header class="header header--simple">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a>
+    <a href="index.html" class="volver-sitio">
+      <svg width="16" height="12" viewBox="0 0 18 12" aria-hidden="true">
+        <path d="M6.5 1L1.5 6L6.5 11M2 6h15" fill="none" stroke="currentColor"
+              stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to site
+    </a>
+  </div>
+</header>
+
+<main class="acceso">
+  <div class="acceso__inner">
+
+    <!-- Columna izquierda: el formulario -->
+    <div class="acceso__panel">
+      <p class="eyebrow">Client login</p>
+      <h1 class="acceso__titulo">Sign in to RUN</h1>
+      <p class="acceso__lead">
+        Your utility data, benchmarked and up to date. Every building, every meter,
+        every vendor, in one place.
+      </p>
+
+      <form class="acceso__form" onsubmit="return false">
+        <div class="campo campo--claro">
+          <label class="campo__label" for="l-email">Work email</label>
+          <div class="campo__wrap">
+            <input class="campo__input" id="l-email" name="email" type="email"
+                   autocomplete="username" required>
+          </div>
+        </div>
+
+        <div class="campo campo--claro">
+          <label class="campo__label" for="l-pass">Password</label>
+          <div class="campo__wrap">
+            <input class="campo__input" id="l-pass" name="password" type="password"
+                   autocomplete="current-password" required>
+            <button class="ver-pass" type="button" aria-label="Show password"
+                    aria-pressed="false" data-ver>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"
+                      stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="acceso__fila">
+          <label class="recordar">
+            <input type="checkbox" name="remember">
+            <span class="recordar__caja" aria-hidden="true">
+              <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5l3.5 3.5L11 1.5" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Keep me signed in
+          </label>
+          <a class="acceso__olvido" href="#">Forgot password?</a>
+        </div>
+
+        <button class="btn btn--primary btn--lg btn--block" type="submit">
+          Sign in
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="acceso__ayuda">
+        Trouble signing in? Email
+        <a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a>
+        or call <a href="tel:+17783276851">778.327.6851</a>.
+      </p>
+    </div>
+
+    <!-- Columna derecha: que hay al otro lado -->
+    <aside class="acceso__aparte">
+      <p class="acceso__aparte-label">What you get inside</p>
+
+      <ul class="ventajas">
+        <li class="ventaja">
+          <span class="ventaja__icono" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h2 class="ventaja__titulo">Portfolio benchmarking</h2>
+            <p class="ventaja__texto">
+              See how every building compares, ranked by energy intensity and cost.
+            </p>
+          </div>
+        </li>
+
+        <li class="ventaja">
+          <span class="ventaja__icono" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M3 17l5-5 4 3 8-8" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 7h5v5" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <h2 class="ventaja__titulo">Monthly cost and use trending</h2>
+            <p class="ventaja__texto">
+              Year-over-year comparisons that flag problems early, not at year end.
+            </p>
+          </div>
+        </li>
+
+        <li class="ventaja">
+          <span class="ventaja__icono" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <h2 class="ventaja__titulo">Carbon and GHG reporting</h2>
+            <p class="ventaja__texto">
+              Emissions by building, vendor, and energy type, ready for the board.
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="acceso__nota">
+        <p class="acceso__nota-titulo">Not a client yet?</p>
+        <p class="acceso__nota-texto">
+          Start with an opportunity check and see what your buildings may be costing you.
+        </p>
+        <a class="enlace-flecha enlace-flecha--claro" href="index.html#calculator">
+          Check your opportunity
+          <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="pie pie--minimo">
+  <div class="pie__base">
+    <div class="pie__base-inner">
+      <p class="pie__legal">&copy; 2026 Rede Energy Solutions Ltd.</p>
+      <ul class="pie__legales">
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of use</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUN, Rede Utility Navigator | Rede Energy Solutions</title>
+<meta name="description" content="RUN brings your utility data together from every vendor and building, normalizes it, and shows how your buildings are actually performing.">
+
+<!-- Maqueta de trabajo interna. No debe indexarse. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/v1.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="index.html" class="header__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false" aria-controls="drop-solutions">
+            Solutions
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="nav__drop" id="drop-solutions" hidden>
+            <li><a href="energy-gap-analysis.html"><span>Energy Gap Analysis</span><small>Affordable one-time diagnostic</small></a></li>
+            <li><a href="run.html"><span>RUN</span><small>Utility management platform</small></a></li>
+            <li><a href="recommissioning.html"><span>Recommissioning</span><small>Project-based service</small></a></li>
+            <li><a href="energy-management.html"><span>Energy Management</span><small>Full-service program</small></a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+        <li class="nav__item"><a class="nav__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="client-login.html" class="header__login">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        Client Login
+      </a>
+
+      <a href="#" class="btn btn--primary">
+        Book a Call
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Mobile">
+      <a href="#">Solutions</a>
+      <div class="mobile-menu__sub">
+        <a href="energy-gap-analysis.html">Energy Gap Analysis</a>
+        <a href="run.html">RUN</a>
+        <a href="recommissioning.html">Recommissioning</a>
+        <a href="energy-management.html">Energy Management</a>
+      </div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="client-login.html">Client Login</a>
+    </nav>
+    <a href="#" class="btn btn--primary btn--block">Book a Call</a>
+  </div>
+</header>
+
+
+
+
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="serv-hero">
+  <div class="serv-hero__inner">
+
+    <nav class="miga" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#solutions">Solutions</a></li>
+        <li aria-current="page">RUN</li>
+      </ol>
+    </nav>
+
+    <p class="eyebrow">RUN, Rede Utility Navigator</p>
+    <h1 class="serv-hero__titulo">
+      Your utility data, organized and interpreted for the first time.
+    </h1>
+    <p class="serv-hero__lead">
+      Most organizations have utility data scattered across vendors, spreadsheets, and
+      departments. RUN brings it together, normalizes it, and gives you a clear picture
+      of how your buildings are actually performing.
+    </p>
+
+    <div class="serv-hero__acciones">
+      <a href="#" class="btn btn--primary btn--lg">
+        Book a conversation
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="client-login.html" class="btn btn--outline btn--lg">
+        Client login
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     LA PLATAFORMA
+     El brief insiste en que aqui hace falta video: el copy no transmite la
+     interactividad. El placeholder lo deja marcado.
+     ========================================================================== -->
+<section class="plataforma">
+  <div class="plataforma__inner">
+
+    <div class="plataforma__texto">
+      <p class="eyebrow">The platform</p>
+      <h2 class="plataforma__titulo">All your buildings. All your vendors. One place.</h2>
+      <p class="plataforma__lead">
+        RUN consolidates utility data from all your vendors and buildings into one
+        place. Every building, every meter, every vendor, tracked monthly and
+        presented in a single view.
+      </p>
+      <p class="plataforma__lead">
+        Utility data is collected and updated automatically. No manual entry, no
+        chasing bills. Data is validated on ingestion and flagged when something looks
+        off, so you can trust what you are seeing.
+      </p>
+    </div>
+
+    <div class="ph ph--video" role="img" aria-label="Placeholder: RUN portfolio summary view">
+      <span class="ph__play" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M8 5.5v13l10-6.5-10-6.5z" fill="currentColor"/>
+        </svg>
+      </span>
+      <p class="ph__label">RUN portfolio summary</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     LO QUE MUESTRA RUN
+     Rejilla 2x3, que es lo que recomienda el propio documento de copy.
+     ========================================================================== -->
+<section class="funciones">
+  <div class="funciones__inner">
+
+    <div class="funciones__intro">
+      <p class="eyebrow">What RUN shows you</p>
+      <h2 class="funciones__titulo">Six things you can see from day one.</h2>
+    </div>
+
+    <ul class="funciones__lista">
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Building Energy Performance Index</h3>
+        <p class="funcion__texto">
+          How much energy each building uses per square metre, benchmarked against
+          similar facilities. Tells you which buildings are underperforming and by how
+          much, so you know where to focus first.
+        </p>
+      </li>
+
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v2M12 19v2M5 12H3M21 12h-2M6.3 6.3L4.9 4.9M19.1 19.1l-1.4-1.4M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"
+                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Weather normalization</h3>
+        <p class="funcion__texto">
+          Energy consumption varies with the seasons. Weather normalization adjusts for
+          that variation so you can see whether a building has actually improved, or
+          just benefited from a mild winter.
+        </p>
+      </li>
+
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
+                  stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Carbon and GHG tracking</h3>
+        <p class="funcion__texto">
+          Emissions by building, by vendor, and by energy type. Tracked and reported
+          with emission factors updated by province and vendor. Gives you what you need
+          for board reporting without building it yourself.
+        </p>
+      </li>
+
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 17l5-5 4 3 8-8" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 7h5v5" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Monthly cost and use trending</h3>
+        <p class="funcion__texto">
+          Year-over-year monthly comparisons that show seasonal patterns and flag
+          anomalies. Useful for catching problems early rather than discovering them at
+          year end when the damage is done.
+        </p>
+      </li>
+
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 5h6v6H4zM14 5h6v4h-6zM4 15h5v4H4zM13 13h7v6h-7z"
+                  stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Portfolio benchmarking</h3>
+        <p class="funcion__texto">
+          Your buildings ranked against each other by energy intensity and cost. A clear
+          view of where the biggest opportunities sit across your portfolio, so capital
+          and operational decisions are grounded in data.
+        </p>
+      </li>
+
+      <li class="funcion">
+        <span class="funcion__icono" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v11M12 14l-4-4M12 14l4-4" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 17v3h16v-3" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="funcion__titulo">Flexible exports</h3>
+        <p class="funcion__texto">
+          Export visuals and data in the format that works for you. Clean slides for
+          board presentations, a direct connection to Excel for custom analysis, and PDF
+          for records. Whatever your audience needs, it is a single click away.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     LOS DOS NIVELES
+     El brief pide presentarlos como niveles de la misma plataforma, en una
+     sola pagina.
+     ========================================================================== -->
+<section class="niveles">
+  <div class="niveles__inner">
+
+    <div class="niveles__intro">
+      <p class="eyebrow">Choose your level</p>
+      <h2 class="niveles__titulo">Two ways to subscribe.</h2>
+      <p class="niveles__lead">
+        RUN Intelligence and RUN Insights are levels of the same platform. The
+        difference is how much engineering support comes with it.
+      </p>
+    </div>
+
+    <div class="niveles__grid">
+
+      <article class="nivel">
+        <header class="nivel__cab">
+          <h3 class="nivel__nombre">RUN Intelligence</h3>
+          <p class="nivel__precio">1 to 2 per cent of annual energy spend</p>
+          <p class="nivel__nota">Capped for public sector. Typical payback: 2 to 5 months.</p>
+        </header>
+        <p class="nivel__texto">
+          Built for organizations that have someone in-house with the expertise to
+          interpret energy data and act on what they find. The platform gives them the
+          visibility they need. The analysis is theirs to run.
+        </p>
+        <ul class="nivel__lista">
+          <li>Annual subscription</li>
+          <li>Unlimited online access</li>
+          <li>Organization onboarding</li>
+          <li>Utility data updated monthly</li>
+          <li>Facility data updated annually</li>
+          <li>User tutorials</li>
+          <li>Technical support</li>
+        </ul>
+        <a href="#" class="btn btn--outline btn--block nivel__cta">
+          Talk about Intelligence
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </article>
+
+      <article class="nivel nivel--destacado">
+        <p class="nivel__marca">With engineering support</p>
+        <header class="nivel__cab">
+          <h3 class="nivel__nombre">RUN Insights</h3>
+          <p class="nivel__precio">Intelligence, plus an annual fee</p>
+          <p class="nivel__nota">Two senior engineer sessions per year.</p>
+        </header>
+        <p class="nivel__texto">
+          Adds engineering support for organizations that want expert interpretation
+          alongside the data. We help set the baseline, define targets, and measure
+          whether the work is producing results.
+        </p>
+        <ul class="nivel__lista">
+          <li>Everything in Intelligence</li>
+          <li>Baseline and target definition</li>
+          <li>Measurement and verification</li>
+          <li>Bi-annual program impact reporting</li>
+          <li>Two senior engineer sessions per year</li>
+        </ul>
+        <a href="#" class="btn btn--primary btn--block nivel__cta">
+          Talk about Insights
+          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </article>
+    </div>
+
+    <p class="niveles__pie">
+      It is the right fit if you want the platform and the perspective that comes from
+      working across hundreds of buildings in Western Canada.
+    </p>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     RELATED SERVICES
+     ========================================================================== -->
+<section class="rutas">
+  <div class="rutas__inner">
+    <div class="rutas__intro">
+      <p class="eyebrow">Other services</p>
+      <h2 class="rutas__titulo">Where RUN fits.</h2>
+    </div>
+
+    <ul class="rutas__lista">
+      <li class="ruta">
+        <p class="ruta__tag">Investigate</p>
+        <h3 class="ruta__titulo">Energy Gap Analysis</h3>
+        <p class="ruta__texto">
+          Built on the same platform. A one-time look at your utility data that shows
+          where the recoverable costs are before you commit to a subscription.
+        </p>
+        <a class="ruta__link" href="energy-gap-analysis.html">
+          See Energy Gap Analysis
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="ruta">
+        <p class="ruta__tag">Optimize</p>
+        <h3 class="ruta__titulo">Recommissioning</h3>
+        <p class="ruta__texto">
+          When the data points to operational drift, recommissioning corrects it without
+          capital projects.
+        </p>
+        <a class="ruta__link" href="recommissioning.html">
+          See Recommissioning
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="ruta">
+        <p class="ruta__tag">Manage</p>
+        <h3 class="ruta__titulo">Energy Management</h3>
+        <p class="ruta__texto">
+          Every Energy Management engagement includes RUN. Your data, your buildings,
+          your plan, with our team alongside.
+        </p>
+        <a class="ruta__link" href="energy-management.html">
+          See Energy Management
+          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
+            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     CTA FINAL
+     ========================================================================== -->
+<section class="cta-final">
+  <div class="cta-final__inner">
+    <h2 class="cta-final__titulo">See what RUN can find in your portfolio.</h2>
+    <p class="cta-final__texto">
+      Book a conversation with our team. We will walk you through the platform and talk
+      through what it would look like for your organization.
+    </p>
+    <div class="cta-final__acciones">
+      <a href="#" class="btn btn--primary btn--lg">
+        Book a conversation
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="index.html#calculator" class="btn btn--outline btn--lg">
+        Check your opportunity
+        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer class="pie">
+  <div class="pie__inner">
+
+    <div class="pie__marca">
+      <a href="index.html" class="pie__logo" aria-label="Rede Energy Solutions, home">
+        <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency"
+             width="360" height="108">
+      </a>
+      <p class="pie__tagline">
+        Energy management for public sector and multi-site organizations across
+        Western Canada.
+      </p>
+      <p class="pie__pron">
+        Rede rhymes with steady.
+        <button class="pron" type="button" aria-label="Hear how Rede is pronounced">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
+        </button>
+      </p>
+    </div>
+
+    <nav class="pie__nav" aria-label="Footer">
+      <div class="pie__col">
+        <h2 class="pie__titulo">Solutions</h2>
+        <ul class="pie__lista">
+          <li><a href="energy-gap-analysis.html">Energy Gap Analysis</a></li>
+          <li><a href="#">Site Investigation</a></li>
+          <li><a href="recommissioning.html">Recommissioning</a></li>
+          <li><a href="energy-management.html">Energy Management</a></li>
+          <li><a href="run.html">RUN</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">Company</h2>
+        <ul class="pie__lista">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#calculator">Check your opportunity</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">Get in touch</h2>
+        <ul class="pie__lista">
+          <li><a href="tel:+17783276851">778.327.6851</a></li>
+          <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+        </ul>
+        <address class="pie__direccion">
+          535 D&rsquo;Artisan Lane<br>
+          Bowen Island, BC V0N 1G2
+        </address>
+      </div>
+    </nav>
+  </div>
+
+  <div class="pie__base">
+    <div class="pie__base-inner">
+      <p class="pie__legal">&copy; 2026 Rede Energy Solutions Ltd.</p>
+      <ul class="pie__legales">
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="client-login.html" class="pie__login">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Client Login
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

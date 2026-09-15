@@ -1,0 +1,1372 @@
+/* ==========================================================================
+   DISEÑO 2 — CIMIENTOS
+
+   Segunda propuesta de home. Toma el sistema estructural de la referencia
+   analizada (ver Get Rede/ADN-DISENO-2.md) y lo pinta con la identidad de
+   Rede, que no cambia.
+
+   De la referencia: formas, ritmo, sombras tintadas, animaciones.
+   De Rede:          colores, tipografia, copy, datos.
+
+   Las medidas llevan variacion deliberada respecto a la referencia, para
+   replicar la esencia sin clonarla. Se anota cual y por que.
+   ========================================================================== */
+
+.d2 {
+  /* --- Formas ---------------------------------------------------------
+     La referencia usa 8 / 24 / 999. Aqui 10 / 20 / 999: mismo caracter
+     blando, valores propios. */
+  --d2-radio-sm:    10px;   /* su 8px  */
+  --d2-radio-md:    16px;
+  --d2-radio-lg:    20px;   /* su 24px */
+  --d2-radio-full: 999px;   /* botones en pildora, igual que la referencia */
+
+  /* --- Espaciado, escala de 8 --------------------------------------- */
+  --d2-e1:  8px;
+  --d2-e2: 12px;
+  --d2-e3: 16px;
+  --d2-e4: 24px;
+  --d2-e5: 48px;
+  --d2-e6: 64px;
+
+  /* --- Contenedor ---------------------------------------------------- */
+  --d2-ancho: 1280px;       /* su 1320px */
+  --d2-gutter: clamp(20px, 4vw, 40px);
+
+  /* --- Sombras --------------------------------------------------------
+     El hallazgo mas util de la referencia: sus sombras no son negras,
+     llevan el color oscuro de su marca. Una sombra negra sobre color se
+     ve sucia; tintada se integra. Aqui, el verde oscuro de Rede. */
+  --d2-sombra-sm: 0 1px 3px  rgba(2, 51, 0, .22);
+  --d2-sombra-md: 0 2px 8px  rgba(2, 51, 0, .14);
+  --d2-sombra-lg: 0 2px 30px rgba(2, 51, 0, .18);
+  --d2-sombra-alta: 0 12px 32px rgba(2, 51, 0, .22);
+
+  /* --- Movimiento ------------------------------------------------------
+     Las mismas curvas y duraciones medidas en la referencia. */
+  --d2-curva: cubic-bezier(.77, 0, .175, 1);
+  --d2-rapido: .15s;
+  --d2-normal: .3s;
+  --d2-entrada: 1s;
+
+  /* --- Superficies ----------------------------------------------------
+     La referencia separa secciones con fondos de color suave, no
+     alternando blanco y gris. Aqui la tinta del verde de marca. */
+  /* El fondo de las secciones tintadas. Es el UNICO que mueve el selector
+     de composicion: por eso esta separado de los dos de abajo. */
+  --d2-tinta: #F2F9F2;
+
+  /* El relleno de piezas internas --marcos de foto, celdas, credenciales--
+     que antes compartia token con el fondo de seccion. Al cambiar la
+     composicion se iban con el, y los marcos del equipo se volvian negros.
+     Valor fijo: no depende de la composicion. */
+  --d2-relleno: #F2F9F2;
+
+  /* Los estados del menu. Mismo motivo: con el token compartido, poner la
+     pagina en oscuro tenia el efecto de ennegrecer el hover del header. */
+  --d2-hover: #F2F9F2;
+
+  --d2-oscuro: #0E2A12;     /* verde muy oscuro, para footer y bandas */
+
+  background: var(--c-blanco);
+}
+
+/* ==========================================================================
+   CONTENEDOR Y RITMO
+   ========================================================================== */
+
+.d2-envoltorio {
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter);
+}
+
+.d2-seccion {
+  --padding-top: clamp(48px, 7vw, 96px);
+  --padding-bottom: clamp(48px, 7vw, 96px);
+
+  padding-block: var(--padding-top) var(--padding-bottom);
+}
+
+/* ==========================================================================
+   ENTRADAS AL HACER SCROLL
+
+   La referencia no usa libreria: son waypoints que anaden una clase al
+   entrar en pantalla. Se reproduce con IntersectionObserver en d2.js.
+   ========================================================================== */
+
+.d2-entra {
+  opacity: 0;
+  transform: translateY(10%);
+}
+
+.d2-entra.es-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--d2-entrada) var(--d2-curva),
+              transform var(--d2-entrada) var(--d2-curva);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2-entra { opacity: 1; transform: none; transition: none; }
+}
+
+/* ==========================================================================
+   BOTONES
+
+   Pildora completa, como la referencia. El gesto propio: se elevan 2px al
+   pasar el raton y ganan sombra difusa.
+   ========================================================================== */
+
+.d2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--d2-e2);
+  min-height: 52px;
+  padding-inline: var(--d2-e4);
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: var(--d2-radio-full);
+  cursor: pointer;
+  transition: background-color var(--d2-normal) ease,
+              border-color var(--d2-normal) ease,
+              color var(--d2-normal) ease,
+              transform var(--d2-normal) ease,
+              box-shadow var(--d2-normal) ease;
+}
+
+.d2-btn--solido {
+  color: var(--c-blanco);
+  background: var(--c-verde);
+  border-color: var(--c-verde);
+}
+
+.d2-btn--solido:hover {
+  background: var(--c-verde-hover);
+  border-color: var(--c-verde-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--d2-sombra-alta);
+}
+
+.d2-btn--linea {
+  color: var(--c-verde);
+  background: var(--c-blanco);
+  border-color: var(--c-verde);
+}
+
+.d2-btn--linea:hover {
+  color: var(--c-blanco);
+  background: var(--c-verde);
+  transform: translateY(-2px);
+  box-shadow: var(--d2-sombra-alta);
+}
+
+.d2-btn:active { transform: translateY(0); }
+
+.d2-btn svg { transition: transform var(--d2-normal) ease; }
+.d2-btn:hover svg { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .d2-btn, .d2-btn svg { transition: none; }
+  .d2-btn:hover { transform: none; }
+}
+
+/* ==========================================================================
+   HEADER
+
+   Estructura de la referencia: barra superior fina con enlaces secundarios,
+   barra principal con logo, navegacion y boton.
+
+   ⚠ Al pasar a WordPress: UN SOLO contenedor raiz. Ver WORDPRESS-ARRANQUE.md,
+   esto costo 6 horas en el proyecto anterior.
+   ========================================================================== */
+
+.d2 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--c-blanco);
+  border-bottom: 1px solid var(--c-borde-suave);
+}
+
+/* --- La barra superior: enlaces secundarios --- */
+
+.d2-barra-sup {
+  background: var(--d2-tinta);
+  border-bottom: 1px solid rgba(2, 51, 0, .07);
+}
+
+.d2-barra-sup__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--d2-e4);
+  min-height: 36px;
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter);
+}
+
+.d2-barra-sup a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* La barra es fina a proposito, pero el area que se toca debe llegar al
+     minimo. Se gana con padding, sin engordar la barra. */
+  min-height: 36px;
+  padding-inline: 4px;
+  font-size: .8125rem;
+  color: var(--c-texto-cuerpo);
+  text-decoration: none;
+  transition: color var(--d2-rapido) ease;
+}
+
+.d2-barra-sup a:hover { color: var(--c-verde); }
+
+/* --- La barra principal --- */
+
+.d2 .header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--d2-e4);
+  min-height: 80px;              /* la medida de la referencia */
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter);
+}
+
+.d2 .header__logo { flex-shrink: 0; }
+.d2 .header__logo img { display: block; width: auto; height: 50px; }
+
+/* La navegacion queda centrada, con el boton al final */
+.d2 .nav { margin-inline: auto; }
+
+.d2 .nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--d2-e1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px var(--d2-e2);
+  font-size: 1rem;
+  font-weight: var(--fw-medium);
+  color: var(--c-texto);
+  background: none;
+  border: 0;
+  border-radius: var(--d2-radio-sm);
+  cursor: pointer;
+  transition: background-color var(--d2-rapido) ease,
+              color var(--d2-rapido) ease;
+}
+
+.d2 .nav__link:hover { background: var(--d2-hover); }
+
+/* El subrayado que crece, como en la referencia */
+.d2 .nav__link::after {
+  content: "";
+  position: absolute;
+  left: var(--d2-e2);
+  right: var(--d2-e2);
+  bottom: 2px;
+  height: 2px;
+  background: var(--c-verde);
+  transform: scaleX(0);
+  transition: transform var(--d2-normal) var(--d2-curva);
+}
+
+.d2 .nav__item--abierto > .nav__link::after,
+.d2 .nav__link[aria-expanded="true"]::after { transform: scaleX(1); }
+
+.d2 .nav__caret { transition: transform var(--d2-normal) ease; }
+.d2 .nav__link[aria-expanded="true"] .nav__caret { transform: rotate(180deg); }
+
+/* --- El desplegable ---
+   Estructura del mega-menu de la referencia: panel ancho con las entradas a
+   la izquierda, cada una con su icono, y un bloque destacado a la derecha.
+
+   Cambia respecto a la referencia: alli el destacado es una imagen suelta;
+   aqui es el panel oscuro con la cifra, que es lo que Rede tiene que contar.
+   -------------------------------------------------------------------------- */
+
+.d2 .nav__item--has-drop { position: relative; }
+
+.d2 .nav__drop {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  translate: -50% 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--d2-e2);
+  width: min(760px, calc(100vw - 40px));
+  margin: 0;
+  padding: var(--d2-e2);
+  list-style: none;
+  background: var(--c-blanco);
+  border: 1px solid var(--c-borde-suave);
+  border-radius: var(--d2-radio-lg);
+  box-shadow: var(--d2-sombra-lg);
+}
+
+.d2 .nav__drop[hidden] { display: none; }
+
+/* La columna de entradas */
+.d2 .nav__drop__lista {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .nav__drop a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--d2-e2);
+  padding: var(--d2-e2);
+  border-radius: var(--d2-radio-sm);
+  text-decoration: none;
+  transition: background-color var(--d2-rapido) ease;
+}
+
+.d2 .nav__drop a:hover { background: var(--d2-hover); }
+
+/* El icono: va suelto en la composicion, sin cuadrito de color */
+.d2 .nav__drop__icono {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-top: 1px;
+  color: var(--c-verde);
+}
+
+.d2 .nav__drop__icono svg { display: block; }
+
+/* `> span` y no `span` a secas: el icono tambien es un span y esta regla
+   --misma especificidad, pero mas abajo-- le ganaba el color, asi que los
+   iconos salian grises en vez del verde que pide la regla de arriba. */
+.d2 .nav__drop a > span:not(.nav__drop__icono) {
+  display: block;
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  color: var(--c-texto);
+}
+
+/* La descripcion vive DENTRO del span del titulo y heredaba su 700. Es
+   texto secundario: en negrita competia con el nombre. */
+.d2 .nav__drop small {
+  display: block;
+  margin-top: 3px;
+  font-size: .8125rem;
+  font-weight: var(--fw-regular);
+  line-height: 1.45;
+  color: var(--c-texto-suave);
+}
+
+/* El bloque destacado de la derecha */
+.d2 .nav__drop__destacado {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--d2-e2);
+  padding: var(--d2-e4);
+  overflow: hidden;
+  color: var(--c-blanco);
+  background: var(--d2-oscuro);
+  border-radius: var(--d2-radio-md);
+}
+
+/* La imagen de fondo, tenue para que el texto se lea */
+.d2 .nav__drop__destacado img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .26;
+}
+
+/* Velo inferior: asegura la lectura del texto sobre cualquier zona del
+   esquema mecanico, que tiene lineas claras en sitios impredecibles. */
+.d2 .nav__drop__destacado::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(14, 42, 18, .85) 0%,
+    rgba(14, 42, 18, .35) 55%,
+    transparent 100%);
+}
+
+.d2 .nav__drop__destacado > * { position: relative; z-index: 1; }
+
+.d2 .nav__drop__cifra {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: var(--fw-extrabold);
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .nav__drop__texto {
+  margin: 0;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .82);
+}
+
+.d2 .nav__drop__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  color: var(--c-blanco);
+  text-decoration: none;
+  transition: gap var(--d2-rapido) ease;
+}
+
+.d2 .nav__drop__enlace:hover { gap: 12px; }
+
+.d2 .header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--d2-e3);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   HERO
+
+   Dos columnas, como la referencia: texto a la izquierda, panel de datos a
+   la derecha.
+
+   El fondo es el render de la empresa: un dibujo a lapiz del conjunto de
+   edificios con lineas de circuito verdes. Es material propio de Rede, no un
+   marcador, asi que aqui no va el rayado diagonal.
+   ========================================================================== */
+
+.d2-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-blanco);
+}
+
+/* El render, anclado a la derecha y desvanecido hacia el texto */
+.d2-hero__fondo {
+  position: absolute;
+  top: 0;
+
+  /* Desplazado a la derecha: la imagen es mas apaisada que su hueco, asi
+     que centrada dejaba la parte util detras del texto. Lo llevan las tres
+     variantes, no solo las dos ultimas. */
+  right: -9%;
+  width: 77%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center left;
+  opacity: .5;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 100%);
+}
+
+.d2-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding: clamp(48px, 6vw, 88px) var(--d2-gutter);
+}
+
+/* --- La columna de texto --- */
+
+.d2-hero__eyebrow {
+  margin: 0 0 var(--d2-e3);
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde);
+}
+
+.d2-hero__titulo {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.75rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  color: var(--c-texto);
+  text-wrap: balance;
+}
+
+.d2-hero__titulo .acento { color: var(--c-verde); }
+
+.d2-hero__lead {
+  max-width: 44ch;
+  margin: var(--d2-e4) 0 0;
+  font-size: clamp(1rem, .95rem + .3vw, 1.0625rem);
+  line-height: 1.7;
+  color: var(--c-texto-cuerpo);
+}
+
+.d2-hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--d2-e2);
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* --- El panel de datos ---
+   Es el objeto que el cliente ya aprobo en el diseno 1. Aqui conserva su
+   estructura y adopta las formas del sistema nuevo. */
+
+.d2-panel {
+  padding: clamp(20px, 2.4vw, 28px);
+  background: var(--c-blanco);
+  border: 1px solid var(--c-borde-suave);
+  border-radius: var(--d2-radio-lg);
+  box-shadow: var(--d2-sombra-lg);
+}
+
+.d2-panel__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--d2-e3);
+  margin-bottom: var(--d2-e4);
+}
+
+.d2-panel__titulo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: var(--fw-bold);
+  color: var(--c-texto);
+}
+
+/* Es un control, asi que toma la forma de los controles del sistema:
+   pildora completa, como los botones. Y llega al minimo tactil. */
+.d2-panel__filtro {
+  min-height: 44px;
+  padding: 0 var(--d2-e4) 0 var(--d2-e3);
+  font-size: .8125rem;
+  font-weight: var(--fw-medium);
+  font-family: inherit;
+  color: var(--c-texto-cuerpo);
+  background: var(--d2-tinta);
+  border: 1px solid rgba(2, 51, 0, .12);
+  border-radius: var(--d2-radio-full);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* La flecha, dibujada en el propio fondo: sin ella el select se ve plano */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236B6B6B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--d2-e2) center;
+  transition: background-color var(--d2-rapido) ease,
+              border-color var(--d2-rapido) ease;
+}
+
+.d2-panel__filtro:hover {
+  background-color: var(--c-blanco);
+  border-color: var(--c-verde);
+}
+
+/* --- Las metricas ---
+   En el diseno 1 iban una al lado de otra separadas por aire. Aqui cada una
+   vive en su propia superficie, como las tarjetas del sistema: es el mismo
+   recurso que usa la referencia para agrupar informacion. */
+
+.d2-panel__metricas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--d2-e2);
+  margin-bottom: var(--d2-e4);
+}
+
+/* Sin caja: las cifras van directas sobre el panel, como en los diseños 1
+   y 3. El recuadro verde competia con el propio numero, que es lo que
+   tiene que destacar.
+
+   Se conserva el padding vertical para que las dos metricas sigan
+   separadas del borde y entre si. */
+.d2-metrica {
+  padding-block: var(--d2-e2);
+}
+
+.d2-metrica__label {
+  margin: 0 0 6px;
+  font-size: .8125rem;
+  line-height: 1.35;
+  color: var(--c-texto-suave);
+}
+
+/* La cifra respeta el techo de 40px del sistema */
+.d2-metrica__valor {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.4rem + 1.1vw, 2.5rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: var(--c-texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2-metrica__valor small {
+  font-size: .8125rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-texto-suave);
+  letter-spacing: 0;
+}
+
+/* El delta va en pildora: es el mismo lenguaje de formas del sistema */
+/* Sin pastilla: el dato va suelto bajo la cifra, como en los diseños 1 y 3.
+
+   El verde pasa al tono oscuro. A 12px hace falta 4.5:1 para cumplir AA, y
+   --c-verde da 4.09 sobre blanco; --c-verde-hover da 6.41. Quitar el fondo
+   ya subia el contraste de 3.57 a 4.09 -- el verde al 10% oscurecia la
+   base -- pero no bastaba. */
+.d2-metrica__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: var(--d2-e1) 0 0;
+  font-size: .75rem;
+  color: var(--c-verde-hover);
+}
+
+.d2-metrica__delta strong { font-weight: var(--fw-bold); }
+.d2-metrica__delta svg { flex-shrink: 0; }
+
+/* --- El grafico --- */
+
+.d2-panel__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--d2-e3);
+  flex-wrap: wrap;
+  margin-bottom: var(--d2-e2);
+}
+
+.d2-panel__pie p {
+  margin: 0;
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  color: var(--c-texto);
+}
+
+.d2-leyenda {
+  display: flex;
+  align-items: center;
+  gap: var(--d2-e3);
+  font-size: .75rem;
+  color: var(--c-texto-suave);
+}
+
+.d2-leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.d2-grafico { margin-top: var(--d2-e2); }
+.d2-grafico svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* Los meses bajo el grafico: sin ellos no se lee como un grafico real */
+.d2-grafico__meses {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-top: var(--d2-e1);
+  font-size: .6875rem;
+  color: var(--c-texto-suave);
+  text-align: center;
+}
+.d2-grafico svg { display: block; width: 100%; height: auto; }
+
+/* ==========================================================================
+   BARRA DE LOGOS — MARQUEE
+
+   El componente mejor resuelto de la referencia, y es CSS puro, sin JS.
+   Dos pistas que se desplazan en sentidos opuestos.
+
+   El -50% funciona porque los logos estan duplicados en el marcado.
+
+   Se copian sus tres detalles de calidad: mascara de desvanecido lateral,
+   pausa al pasar el raton y respeto por prefers-reduced-motion.
+   ========================================================================== */
+
+.d2-logos {
+  --marquee-gap: clamp(28px, 3.4vw, 52px);
+  --marquee-alto: 54px;
+
+  padding-block: clamp(40px, 5vw, 64px);
+  background: var(--d2-tinta);
+  border-block: 1px solid rgba(2, 51, 0, .07);
+  overflow: hidden;
+}
+
+.d2-logos__titulo {
+  margin: 0 0 clamp(24px, 3vw, 40px);
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--c-texto-suave);
+}
+
+.d2-marquee {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vw, 32px);
+
+  /* El desvanecido de los bordes, para que no aparezcan de golpe */
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%,
+                              #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%,
+                                      #000 92%, transparent 100%);
+}
+
+@keyframes d2-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.d2-marquee__pista {
+  display: flex;
+  align-items: center;
+  gap: var(--marquee-gap);
+  width: max-content;
+  padding-right: var(--marquee-gap);
+  animation: d2-marquee 58s linear infinite;
+  will-change: transform;
+}
+
+.d2-marquee__pista--inversa {
+  animation-direction: reverse;
+  animation-duration: 66s;    /* ritmo distinto: no van sincronizadas */
+}
+
+/* Pausa al pasar el raton, para poder leer un logo */
+.d2-marquee:hover .d2-marquee__pista { animation-play-state: paused; }
+
+/* Los logos vienen con proporciones muy distintas: uno mide 44px de ancho y
+   otro 152px al mismo alto. Sin una caja comun se leen desiguales.
+   Cada uno se ajusta dentro de la misma caja, centrado. */
+.d2-marquee img {
+  display: block;
+  flex-shrink: 0;
+  width: 168px;
+  height: var(--marquee-alto);
+  object-fit: contain;
+  object-position: center;
+  opacity: .55;
+  filter: grayscale(100%);
+  transition: opacity var(--d2-normal) ease, filter var(--d2-normal) ease;
+}
+
+.d2-marquee img:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+/* Sin movimiento: rejilla centrada y se ocultan los duplicados */
+@media (prefers-reduced-motion: reduce) {
+  .d2-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .d2-marquee__pista {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    animation: none;
+  }
+
+  .d2-marquee__pista [aria-hidden="true"] { display: none; }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+
+   La referencia colapsa todo a 100% de golpe. Aqui se hace por pasos, que
+   se lee mejor en tableta.
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+  .d2-hero__inner { grid-template-columns: 1fr; }
+
+  /* El render pasa a cubrir el ancho, mas tenue tras el texto */
+  .d2-hero__fondo {
+    width: 100%;
+    opacity: .22;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+  }
+
+  .d2 .nav,
+  .d2 .header__actions .header__login { display: none; }
+}
+
+@media (max-width: 640px) {
+  .d2-barra-sup__inner { justify-content: center; gap: var(--d2-e3); }
+  .d2-hero__acciones { flex-direction: column; align-items: stretch; }
+  .d2-panel__metricas { grid-template-columns: 1fr; gap: var(--d2-e3); }
+  .d2-panel__pie { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .d2-logos { --marquee-alto: 42px; }
+}
+
+/* En movil el boton del header compite con la hamburguesa: se compacta */
+@media (max-width: 1000px) {
+  .d2 .header__inner { gap: var(--d2-e2); }
+
+  .d2 .header__actions .d2-btn {
+    min-height: 44px;
+    padding-inline: var(--d2-e3);
+    font-size: .9375rem;
+  }
+
+  .d2 .header__logo img { height: 42px; }
+}
+
+@media (max-width: 640px) {
+  /* Muy estrecho: manda la hamburguesa, el boton ya esta en el menu */
+  .d2 .header__actions { display: none; }
+}
+
+/* ==========================================================================
+   SECCION 3 — PORTFOLIO VISIBILITY PROBLEM
+
+   Patron de la referencia: fondo de color suave que separa la seccion sin
+   necesidad de lineas, titulo centrado con su entradilla, y rejilla de
+   tarjetas blancas elevadas.
+
+   Ellos usan cuatro tarjetas; nosotros tenemos tres senales, asi que la
+   rejilla es de tres. El numero de columnas lo decide el contenido.
+
+   El cierre "Rede closes that gap" cambia por completo respecto al diseno 1:
+   alli era una franja oscura, aqui es una banda con el esquema mecanico de
+   la empresa detras.
+   ========================================================================== */
+
+.d2-problema {
+  --padding-top: clamp(56px, 8vw, 104px);
+  --padding-bottom: clamp(56px, 8vw, 104px);
+
+  padding-block: var(--padding-top) var(--padding-bottom);
+  /* Blanco: los banners de la empresa son verdes y sobre la tinta se
+     fundian con el fondo. El ritmo lo marca la seccion de logos, que si
+     lleva tinta. */
+  background: var(--c-blanco);
+}
+
+.d2-problema__inner {
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter);
+}
+
+/* --- La cabecera, centrada como en la referencia --- */
+
+.d2-problema__cabecera {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: clamp(36px, 5vw, 64px);
+  text-align: center;
+}
+
+.d2-eyebrow {
+  margin: 0 0 var(--d2-e3);
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde);
+}
+
+.d2-titulo-seccion {
+  margin: 0;
+  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.75rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+  color: var(--c-texto);
+  text-wrap: balance;
+}
+
+.d2-lead-seccion {
+  max-width: 62ch;
+  margin: var(--d2-e4) auto 0;
+  font-size: clamp(1rem, .95rem + .3vw, 1.0625rem);
+  line-height: 1.7;
+  color: var(--c-texto-cuerpo);
+}
+
+/* --- Las senales: FILAS ALTERNAS ---
+
+   Este es el recurso dominante de la referencia: ocho de sus diecisiete
+   secciones son una fila con imagen a un lado y texto al otro, alternando
+   el lado en cada una.
+
+   Se elige frente a la rejilla de tarjetas porque una rejilla de tres es
+   justo lo que ya hacia el diseno 1. Aqui cada senal tiene su propio espacio
+   y su propia imagen, asi que se leen como tres argumentos, no como tres
+   celdas de una tabla.
+   -------------------------------------------------------------------------- */
+
+.d2-senales {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2-senal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+/* La alternancia: en las pares, la imagen pasa a la derecha */
+.d2-senal:nth-child(even) .d2-senal__media { order: 2; }
+
+/* La imagen, con el recorte asimetrico de la referencia:
+   la esquina superior izquierda muy redondeada y las demas menos. */
+.d2-senal__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: 88px var(--d2-radio-lg) var(--d2-radio-lg) var(--d2-radio-lg);
+  box-shadow: var(--d2-sombra-md);
+  border: 1px solid rgba(2, 51, 0, .1);
+}
+
+.d2-senal:nth-child(even) .d2-senal__media {
+  /* En las pares el recorte se refleja, para que mire hacia el texto */
+  border-radius: var(--d2-radio-lg) 88px var(--d2-radio-lg) var(--d2-radio-lg);
+}
+
+.d2-senal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 620ms var(--d2-curva);
+}
+
+.d2-senal:hover .d2-senal__media img { transform: scale(1.04); }
+
+/* El numero de orden: da secuencia a los tres argumentos */
+.d2-senal__n {
+  display: block;
+  margin-bottom: var(--d2-e2);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .12em;
+  color: var(--c-verde);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2-senal__titulo {
+  margin: 0 0 var(--d2-e3);
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  color: var(--c-texto);
+  text-wrap: balance;
+}
+
+.d2-senal__texto {
+  max-width: 46ch;
+  margin: 0;
+  font-size: clamp(1rem, .95rem + .25vw, 1.0625rem);
+  line-height: 1.7;
+  color: var(--c-texto-cuerpo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2-senal__media img { transition: none; }
+  .d2-senal:hover .d2-senal__media img { transform: none; }
+}
+
+/* --- El cierre: BANDA DE CIFRAS ---
+
+   Patron de la referencia: fondo oscuro y las cifras enormes en fila, con
+   su etiqueta debajo. Sustituye a la banda con boton, que repetia la
+   composicion del diseno 1.
+
+   Las cifras son las reales de Rede, las mismas que ya usa el sitio.
+   -------------------------------------------------------------------------- */
+
+.d2-cierre {
+  position: relative;
+  margin-top: clamp(56px, 8vw, 104px);
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px);
+  overflow: hidden;
+  text-align: center;
+  background: var(--d2-oscuro);
+  border-radius: var(--d2-radio-lg);
+}
+
+.d2-cierre__fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .18;
+}
+
+.d2-cierre > *:not(.d2-cierre__fondo) { position: relative; z-index: 1; }
+
+.d2-cierre__texto {
+  margin: 0 0 clamp(32px, 4vw, 52px);
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  color: var(--c-blanco);
+}
+
+/* Las cifras rotan: una queda destacada por turno mientras las otras dos
+   se atenuan. Se eligio esto frente a mostrar una sola porque en una banda
+   de cierre la gente pasa rapido: si solo se ve un dato, se pierden los
+   otros dos. Asi hay movimiento sin perder informacion. */
+
+.d2-cifras {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--d2-e4);
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.d2-cifra {
+  padding-inline: var(--d2-e2);
+  opacity: .42;
+  transition: opacity 700ms var(--d2-curva);
+}
+
+.d2-cifra.es-activa { opacity: 1; }
+
+.d2-cifra__valor {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.2rem + 1.9vw, 2.75rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1;
+  letter-spacing: -.035em;
+  color: var(--c-blanco);
+  font-variant-numeric: tabular-nums;
+  transition: transform 700ms var(--d2-curva);
+}
+
+/* La activa crece un punto: se nota sin dar un salto */
+.d2-cifra.es-activa .d2-cifra__valor { transform: scale(1.08); }
+
+/* Y gana un subrayado que crece bajo la cifra */
+.d2-cifra__linea {
+  display: block;
+  width: 100%;
+  max-width: 72px;
+  height: 2px;
+  margin: var(--d2-e2) auto 0;
+  background: var(--c-verde-marca);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 700ms var(--d2-curva);
+}
+
+.d2-cifra.es-activa .d2-cifra__linea { transform: scaleX(1); }
+
+.d2-cifra__nombre {
+  margin: var(--d2-e2) 0 0;
+  font-size: .875rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .74);
+}
+
+/* Sin movimiento: todas quedan legibles y sin animacion */
+@media (prefers-reduced-motion: reduce) {
+  .d2-cifra { opacity: 1; transition: none; }
+  .d2-cifra__valor { transition: none; }
+  .d2-cifra.es-activa .d2-cifra__valor { transform: none; }
+  .d2-cifra__linea { transition: none; }
+}
+
+/* --- El CTA del cierre --- */
+
+.d2-cierre__cta {
+  margin-top: clamp(32px, 4vw, 48px);
+}
+
+/* Sobre oscuro el contorno desaparece: va el solido en blanco */
+.d2-cierre__cta .d2-btn {
+  color: var(--d2-oscuro);
+  background: var(--c-blanco);
+  border-color: var(--c-blanco);
+}
+
+.d2-cierre__cta .d2-btn:hover {
+  color: var(--c-blanco);
+  background: var(--c-verde);
+  border-color: var(--c-verde);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DE LA SECCION 3
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* Las filas se apilan: imagen arriba, texto debajo.
+     El order se anula, o las pares saldrian con el texto primero. */
+  .d2-senal { grid-template-columns: 1fr; gap: var(--d2-e4); }
+  .d2-senal:nth-child(even) .d2-senal__media { order: 0; }
+
+  /* El recorte se suaviza: a este tamano 88px se come la imagen */
+  .d2-senal__media,
+  .d2-senal:nth-child(even) .d2-senal__media {
+    border-radius: 48px var(--d2-radio-lg) var(--d2-radio-lg) var(--d2-radio-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Tres cifras no caben en fila: pasan a una columna con linea horizontal */
+  .d2-cifras { grid-template-columns: 1fr; gap: 0; }
+
+  .d2-cifras > div + div {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, .16);
+    padding-top: var(--d2-e4);
+    margin-top: var(--d2-e4);
+  }
+}
+
+/* ==========================================================================
+   SECCION 4 — COMPACT CUSTOMER REVIEW
+
+   La referencia no tiene seccion de resenas, asi que no hay patron que
+   copiar. Se construye combinando dos que si tiene:
+
+   - la banda oscura a dos columnas de su banner de recurso
+   - el panel destacado con logo del bloque de su menu
+
+   Ademas el fondo oscuro corta el ritmo despues de las filas alternas
+   blancas, que es como la referencia alterna sus zonas.
+
+   Es un carrusel: una cita a la vez, con el logo real del distrito al lado.
+   ========================================================================== */
+
+.d2-resenas {
+  --padding-top: clamp(56px, 8vw, 96px);
+  --padding-bottom: clamp(56px, 8vw, 96px);
+
+  position: relative;
+  padding-block: var(--padding-top) var(--padding-bottom);
+  overflow: hidden;
+  background: var(--d2-oscuro);
+}
+
+.d2-resenas__fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .14;
+}
+
+.d2-resenas__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--d2-ancho);
+  margin-inline: auto;
+  padding-inline: var(--d2-gutter);
+}
+
+.d2-resenas__eyebrow {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-verde-marca);
+}
+
+/* --- El escenario del carrusel ---
+   Todas las citas ocupan la misma celda de la rejilla, superpuestas. Asi el
+   alto no salta al cambiar, que es el defecto tipico de un carrusel. */
+
+.d2-carrusel {
+  display: grid;
+}
+
+.d2-cita {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 520ms var(--d2-curva),
+              transform 520ms var(--d2-curva),
+              visibility 0s linear 520ms;
+}
+
+.d2-cita.es-activa {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 520ms var(--d2-curva),
+              transform 520ms var(--d2-curva),
+              visibility 0s;
+}
+
+/* La comilla, grande y al margen: marca que es una voz ajena sin caja */
+.d2-cita__texto {
+  position: relative;
+  margin: 0;
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
+  font-weight: var(--fw-regular);
+  line-height: 1.45;
+  letter-spacing: -.02em;
+  color: var(--c-blanco);
+  text-wrap: balance;
+}
+
+.d2-cita__texto::before {
+  content: "\201C";
+  position: absolute;
+  top: -.28em;
+  left: -.5em;
+  font-size: 3em;
+  line-height: 1;
+  color: var(--c-verde-marca);
+  opacity: .5;
+}
+
+.d2-cita__autor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--d2-e2);
+  margin: var(--d2-e4) 0 0;
+}
+
+.d2-cita__nombre {
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  color: var(--c-blanco);
+}
+
+.d2-cita__org {
+  font-size: .9375rem;
+  color: rgba(255, 255, 255, .62);
+}
+
+/* El logo real del distrito, en blanco sobre el fondo oscuro */
+.d2-cita__logo {
+  display: grid;
+  place-items: center;
+  width: clamp(150px, 18vw, 210px);
+  padding: var(--d2-e4);
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: var(--d2-radio-md);
+}
+
+.d2-cita__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 76px;
+  object-fit: contain;
+  opacity: .9;
+}
+
+/* --- Los controles: puntos, como los del sistema --- */
+
+.d2-carrusel__puntos {
+  display: flex;
+  gap: var(--d2-e2);
+  margin-top: clamp(32px, 4vw, 48px);
+}
+
+/* El boton mide 44px de alto para poder tocarse, pero la barra visible son
+   4px: se dibuja con un pseudo elemento centrado. Asi el area real y la
+   forma van por separado, sin trucos que un verificador no pueda medir. */
+.d2-punto {
+  position: relative;
+  width: 40px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.d2-punto::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  margin-top: -2px;
+  background: rgba(255, 255, 255, .22);
+  border-radius: var(--d2-radio-full);
+  transition: background-color var(--d2-normal) ease;
+}
+
+.d2-punto:hover::before { background: rgba(255, 255, 255, .45); }
+.d2-punto.es-activo::before { background: var(--c-verde-marca); }
+
+@media (prefers-reduced-motion: reduce) {
+  .d2-cita { transition: none; }
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+  /* El logo pasa arriba: a este ancho no cabe al lado del texto */
+  .d2-cita {
+    grid-template-columns: 1fr;
+    gap: var(--d2-e4);
+  }
+
+  .d2-cita__logo {
+    order: -1;
+    width: clamp(130px, 34vw, 170px);
+    padding: var(--d2-e3);
+  }
+
+  .d2-cita__texto::before { left: -.36em; font-size: 2.4em; }
+}

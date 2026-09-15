@@ -1,0 +1,605 @@
+/* ==========================================================================
+   DISENO 1 — AJUSTES DE COHERENCIA CON EL HERO
+
+   El cliente eligio el diseno 1. Estas reglas alinean tres secciones con el
+   idioma que ya establece el hero, que es lo que da caracter al sitio:
+
+     - bordes cuadrados, sin esquinas muy redondeadas
+     - textura de rayado diagonal en vez de cajas de color plano
+     - el verde reservado para el dato, no para decorar superficies
+     - todo dato apoyado en su comparacion, como el "14% lower vs baseline"
+
+   Va en archivo aparte para poder revertir sin tocar style.css.
+   El copy no cambia: es el aprobado, palabra por palabra.
+   ========================================================================== */
+
+/* NOTA IMPORTANTE SOBRE LA TEXTURA DIAGONAL
+
+   El rayado a 45 grados NO es decoracion: es el marcador de "aqui va una
+   imagen". En el estilo base vive solo dentro de .ph--foto, .ph--retrato,
+   .ph--video y .ph--equipo, que son huecos de material pendiente.
+
+   Usarlo en bloques de contenido rompe su significado: el rayado deja de
+   comunicar nada y los huecos reales de foto ya no se distinguen.
+
+   No usarlo fuera de un placeholder. */
+
+/* ==========================================================================
+   1 — REDE CLOSES THAT GAP
+
+   Antes: barra negra con esquinas redondeadas, texto a la izquierda y enlace
+   a la derecha. Una caja de color que no aporta informacion.
+
+   Ahora: franja clara con el rayado del hero y un filo verde a la izquierda.
+   La frase es una conclusion, asi que se trata como tal: grande, en negro,
+   sobre la textura. Sin caja de color, sin esquinas redondeadas.
+   ========================================================================== */
+
+.respuesta {
+  --padding: clamp(var(--sp-6), 3.4vw, var(--sp-8));
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: clamp(var(--sp-4), 2.4vw, var(--sp-6));
+  padding: var(--padding);
+  /* Esta frase es la conclusion de la seccion del problema: el giro. Por eso
+     no es una caja mas, sino la unica superficie oscura de la zona clara.
+
+     El recurso viene del hero, que ya alterna claro y oscuro para separar lo
+     que se explica de lo que se demuestra. Aqui hace lo mismo: corta el
+     ritmo y obliga a leer. Sin textura prestada y sin filo de color. */
+  background: var(--c-superficie-oscura);
+  border: 0;
+  border-radius: var(--radio-lg);          /* 16px, como el panel del hero */
+}
+
+.respuesta__texto {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.15;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-blanco);
+}
+
+/* El enlace toma el gesto del boton de contorno del hero */
+/* Sobre oscuro el boton de contorno desaparece, asi que aqui va el primario
+   del hero: verde solido, 6px, borde de 2px, peso 700. */
+.respuesta .enlace-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: 48px;
+  padding-inline: clamp(var(--sp-5), 2vw, var(--sp-6));
+  color: var(--c-blanco);
+  background: var(--c-verde);
+  border: 2px solid var(--c-verde);
+  border-radius: var(--radio-sm);   /* 6px, como los botones del hero */
+  white-space: nowrap;
+  transition: background-color var(--trans-media), border-color var(--trans-media);
+}
+
+.respuesta .enlace-flecha:hover {
+  background: var(--c-verde-hover);
+  border-color: var(--c-verde-hover);
+}
+
+/* ==========================================================================
+   2 — WHAT THIS LOOKS LIKE IN PRACTICE
+
+   Antes: la cifra en verde flotando sobre negro, y tres citas en cajas grises
+   identicas con barrita verde, apiladas.
+
+   Ahora: la cifra se presenta como en el panel del hero, sobre blanco y con
+   su pie de contexto inmediatamente debajo. Las citas pierden la caja y se
+   separan con lineas, que es como se ordena una lista de fuentes.
+
+   El copy es el mismo. Solo cambia como se presenta.
+   ========================================================================== */
+
+.prueba-sec {
+  background: var(--c-blanco);
+  color: var(--c-texto);
+}
+
+/* --- El dato --- */
+
+/* Se trata como el panel "Portfolio overview" del hero: tarjeta blanca,
+   borde fino, cuadrada, sobre la textura diagonal. */
+.prueba-sec__dato {
+  align-self: start;
+  padding: clamp(var(--sp-6), 3vw, var(--sp-7));
+  /* Tinta del verde al 10%, de la escala oficial de marca. Antes era un gris
+     de sistema que no pertenecia a la paleta. */
+  background: var(--c-verde-claro);
+  border: 1px solid rgba(2, 139, 0, .16);
+  border-radius: var(--radio-lg);   /* 16px, como el panel del hero */
+}
+
+/* El eyebrow que ya existe hace de etiqueta de la medida: se pega a la cifra
+   para que se lean como un solo bloque, igual que en el panel del hero. */
+.prueba-sec .eyebrow {
+  margin: 0 0 var(--sp-3);
+  color: var(--c-verde);
+}
+
+/* La cifra manda, en negro. El verde queda para el acento, no para el bloque
+   entero: asi se lee como dato y no como decoracion. */
+/* La cifra medía 72px, mas que el titular del hero (64px). Una cifra que
+   grita mas que el titular se lee como diapositiva.
+
+   El techo es 40px, que es lo que mide en el panel del hero. Y se presenta
+   como lo que Rede hace: una lectura contra una referencia, con su etiqueta
+   arriba y su contexto debajo, no un numero flotando. */
+.prueba-sec__cifra {
+  position: relative;
+  margin: 0;
+  padding-top: var(--sp-4);
+  font-size: clamp(2rem, 1.4rem + 1.4vw, 2.5rem);   /* techo 40px */
+  font-weight: var(--fw-extrabold);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: var(--c-texto);
+  font-variant-numeric: tabular-nums;
+  border-top: 2px solid var(--c-verde);
+}
+
+
+.prueba-sec__pie {
+  max-width: 34ch;
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--c-texto);
+}
+
+.prueba-sec__texto {
+  margin: clamp(var(--sp-5), 2.4vw, var(--sp-6)) 0 0;
+  padding-top: clamp(var(--sp-5), 2.4vw, var(--sp-6));
+  font-size: var(--fs-body-sm);
+  line-height: 1.65;
+  color: var(--c-texto-cuerpo);
+  border-top: 1px solid var(--c-borde);
+}
+
+/* --- Las citas: sin caja, separadas por lineas --- */
+
+.prueba-sec .citas {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prueba-sec .cita {
+  padding: clamp(var(--sp-5), 2.6vw, var(--sp-6)) 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--c-borde);
+  border-radius: 0;
+}
+
+.prueba-sec .cita:first-child { border-top: 0; padding-top: 0; }
+.prueba-sec .cita:last-child { padding-bottom: 0; }
+
+.prueba-sec .cita__texto {
+  margin: 0;
+  font-size: clamp(1.0625rem, 1rem + .45vw, 1.3125rem);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  letter-spacing: -.015em;
+  color: var(--c-texto);
+}
+
+/* La comilla se saca al margen: marca que es una voz ajena sin necesitar
+   una caja alrededor. */
+.prueba-sec .cita__texto::before {
+  content: "\201C";
+  float: left;
+  margin-left: -.52em;
+  font-size: 1em;
+  line-height: 1;
+  color: var(--c-verde);
+}
+
+.prueba-sec .cita__autor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin: var(--sp-4) 0 0;
+}
+
+.prueba-sec .cita__nombre {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-bold);
+  color: var(--c-texto);
+}
+
+.prueba-sec .cita__org {
+  font-size: var(--fs-body-sm);
+  color: var(--c-texto-cuerpo);
+}
+
+/* Una linea verde corta antes del nombre, en vez del filo de la caja */
+.prueba-sec .cita__nombre::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  margin-right: var(--sp-3);
+  vertical-align: middle;
+  background: var(--c-verde);
+}
+
+/* ==========================================================================
+   3 — LA CALCULADORA
+
+   La regla del hero no es "todo cuadrado". Es una jerarquia:
+
+     botones          6px   (--radio-sm)   se tocan, piden ser suaves
+     paneles y datos  16px  (--radio-lg)   superficies que contienen algo
+     textura de fondo 0px                  no es un objeto, es fondo
+
+   Lo que se corrige aqui es lo que no seguia esa jerarquia: el rectangulo
+   gris del ejemplo, que en el hero seria una metrica apoyada en una linea.
+
+   La logica no se toca: solo cambia la piel.
+   ========================================================================== */
+
+/* El panel es una superficie de contenido, como el del hero */
+.calc__panel { border-radius: var(--radio-lg); }
+
+.pasos__contador { color: var(--c-verde); }
+
+/* Las opciones se tocan: mismo radio que los botones.
+   El filo verde marca la elegida, como el borde del dato. */
+/* Sin filo lateral: la opcion elegida se marca con su borde completo y un
+   fondo suave, que es como se comporta un control de verdad. */
+.calc .opcion {
+  border-radius: var(--radio-sm);
+  border: 1px solid rgba(255, 255, 255, .14);
+  transition: background-color var(--trans-media),
+              border-color var(--trans-media);
+}
+
+.calc .opcion:hover {
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.calc .opcion.es-elegida,
+.calc .opcion[aria-pressed="true"] {
+  background: rgba(57, 181, 74, .12);
+  border-color: var(--c-verde-marca);
+}
+
+/* La tarjeta de resultado: superficie, 16px */
+.calc .resultado,
+.flip__cara--frente .resultado,
+.flip__cara--dorso .resultado { border-radius: var(--radio-lg); }
+
+/* El bloque de ejemplo: en el hero una metrica no vive dentro de un
+   rectangulo gris, se apoya en una linea y lleva su etiqueta debajo.
+   Esto si cambia, porque es lo que hacia que se leyera como plantilla. */
+.calc .prueba,
+.calc .adelanto {
+  padding: var(--sp-4) 0 0;
+  text-align: left;
+  background: none;
+  border-top: 2px solid var(--c-texto);
+  border-radius: 0;
+}
+
+/* La cifra en negro: el verde se reserva para el resultado real */
+.calc .prueba__cifra,
+.calc .adelanto__cifra {
+  color: var(--c-texto);
+  letter-spacing: -.03em;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .respuesta { align-items: flex-start; }
+  .respuesta .enlace-flecha { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 640px) {
+  .prueba-sec .cita__texto::before { margin-left: 0; float: none; }
+}
+
+/* ==========================================================================
+   OBJETIVOS TACTILES
+
+   Dos controles quedaban por debajo de los 44px que pide Apple: el boton de
+   pronunciacion del pie (28px) y el de ver contrasena (40px).
+
+   Se amplia el area que se puede tocar sin agrandar el circulo visible, con
+   un pseudo elemento centrado. El diseno no cambia, solo el area sensible.
+   ========================================================================== */
+
+.pron,
+.ver-pass { position: relative; }
+
+.pron::after,
+.ver-pass::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+   EL BOTON DEL PASO 4
+
+   En el ultimo paso el texto cambia a "Show benchmark result", mas largo que
+   "Next". Con nowrap y 390px de ancho, el boton se salia 44px.
+
+   Se le permite ajustar el texto solo en pantallas estrechas. En el resto
+   sigue en una linea, como estaba.
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .calc__btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    padding-inline: var(--sp-4);
+  }
+}
+
+/* ==========================================================================
+   EL DORSO DE LA TARJETA
+
+   El frente define la altura y el dorso se superpone en absoluto. El dorso
+   lleva cuatro campos mas un boton, que no caben en esa altura: el boton
+   quedaba cortado por la mitad y la nota legal caia fuera del blanco.
+
+   Obligar a desplazarse dentro de una tarjeta seria peor: el boton de envio
+   quedaria escondido. Como el dorso es la unica cara visible cuando esta
+   girada, se le deja ocupar el alto que necesita y el contenedor crece con
+   el. El frente sigue mandando mientras la tarjeta no esta girada, asi que
+   no hay salto al abrir.
+   ========================================================================== */
+
+/* Girada: el contenedor deja de imponer la altura del frente */
+.flip.girada { height: auto; }
+.flip.girada .flip__cara--dorso { position: relative; inset: auto; }
+
+/* Y el frente se retira del flujo para no sumar su altura */
+.flip.girada .flip__cara--frente {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flip__cara--dorso .resultado {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+/* El formulario ya no se estira mas alla de la tarjeta */
+.flip__cara--dorso .captura { flex: 0 0 auto; }
+
+/* La nota legal cierra el bloque, dentro del blanco */
+.flip__cara--dorso .resultado__legal {
+  margin-top: var(--sp-4);
+  min-height: 0;
+}
+
+/* ==========================================================================
+   EL RESULTADO SIN DATOS
+
+   Si el cliente avanza sin escribir superficie ni gasto, no hay nada que
+   calcular. Antes salia "$0", que hace dudar del metodo entero.
+
+   Ahora se pide el dato que falta. Como ya no es una cifra, no se presenta
+   como tal: baja de tamano y pierde el verde, que en este diseno esta
+   reservado para el dato real.
+   ========================================================================== */
+
+.resultado__cifra.es-incompleto {
+  font-size: clamp(1.1rem, 1rem + .5vw, 1.375rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  color: var(--c-blanco);
+  opacity: .85;
+}
+
+/* ==========================================================================
+   FUERA LOS FILOS DE COLOR
+
+   El patron "border-left de color sobre una caja" es el recurso mas
+   reconocible de plantilla automatica. El hero no lo usa ni una vez.
+
+   Quedaban tres en el estilo base: la recomendacion del resultado, las citas
+   de las paginas interiores y el aviso de requisitos.
+
+   En su lugar, cada bloque se distingue por lo que ya tiene: su fondo, su
+   tipografia y una linea completa arriba cuando hace falta separarlo.
+   ========================================================================== */
+
+/* La recomendacion del resultado: "Recommended next step" */
+.cierre__recomienda {
+  border-left: 0;
+  border-top: 1px solid rgba(57, 181, 74, .34);
+  border-radius: var(--radio-sm);
+  background: rgba(57, 181, 74, .10);
+}
+
+/* Las citas de las paginas interiores */
+.cita {
+  border-left: 0;
+  border-radius: var(--radio-sm);
+}
+
+/* El aviso de requisitos */
+.requisitos__nota {
+  border-left: 0;
+  border-top: 1px solid rgba(2, 139, 0, .28);
+}
+
+/* ==========================================================================
+   EL RESULTADO DE LA CALCULADORA
+
+   Misma regla: la cifra no puede gritar mas que el titular, y no se presenta
+   sola. Se lee como una medida de informe, con su etiqueta y su contexto.
+   ========================================================================== */
+
+.resultado__cifra {
+  font-size: clamp(2rem, 1.4rem + 1.4vw, 2.5rem);   /* techo 40px */
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+
+/* Cuando faltan datos no es una cifra, asi que no se presenta como tal */
+.resultado__cifra.es-incompleto {
+  font-size: clamp(1.05rem, 1rem + .4vw, 1.25rem);
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   FUERA LOS ICONOS EN CUADRITO DE COLOR
+
+   El patron "icono dentro de un cuadrado de color claro" es de los que mas
+   delatan una plantilla. Estaba en seis sitios del estilo base.
+
+   El hero no lo usa: sus iconos van sueltos dentro de la composicion, con el
+   verde en el trazo. Aqui se hace lo mismo, quitando la caja y dejando el
+   icono a su tamano real, alineado con el texto que acompana.
+   ========================================================================== */
+
+.senal__icono,
+.contacto__icono,
+.funcion__icono,
+.valor__icono,
+.ventaja__icono {
+  display: block;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  color: var(--c-verde);
+}
+
+/* El svg es inline: sin esto hereda el centrado del place-items heredado */
+.senal__icono svg,
+.contacto__icono svg,
+.funcion__icono svg,
+.valor__icono svg,
+.ventaja__icono svg {
+  display: block;
+}
+
+/* El de contacto va junto al texto, asi que se mantiene en linea, pero
+   igualmente sin cuadrito de color detras. */
+.contacto__icono {
+  flex-shrink: 0;
+  background: none;
+  border-radius: 0;
+}
+
+.contacto__icono svg { display: inline-block; vertical-align: middle; }
+
+/* La variante clara tiene mas especificidad y conservaba el fondo */
+.contacto--claro .contacto__icono {
+  background: none;
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   LA JERARQUIA DE ESQUINAS, APLICADA A TODO EL SITIO
+
+   El hero solo usa dos valores: 6px en lo que se toca y 16px en las
+   superficies. El estilo base tenia ademas un intermedio de 10px
+   (--radio-md) repartido en dieciocho elementos, que difumina la jerarquia:
+   deja de leerse cual es un control y cual es una superficie.
+
+   Los bloques que son superficie pasan a 16px, como el panel del hero.
+   ========================================================================== */
+
+.senal,
+.ruta,
+.proceso,
+.dos-col__izq,
+.flip__cara,
+.funcion,
+.requisito,
+.fondos__caja,
+.bepi,
+.valor,
+.acceso__nota { border-radius: var(--radio-lg); }
+
+/* Lo que se toca se queda en 6px */
+.duo__btn { border-radius: var(--radio-sm); }
+
+/* ==========================================================================
+   LAS CIFRAS QUE QUEDABAN SOBRE EL TECHO
+
+   El techo es 40px, que es lo que mide la cifra en el panel del hero. Una
+   cifra mas grande que eso compite con el titular y se lee como diapositiva.
+
+   Quedaban dos: el cierre del resultado a 56px y el adelanto a 44px.
+   ========================================================================== */
+
+.cierre__cifra {
+  font-size: clamp(2rem, 1.4rem + 1.4vw, 2.5rem);   /* techo 40px */
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+
+.adelanto__cifra {
+  font-size: clamp(1.75rem, 1.3rem + 1.1vw, 2.25rem);   /* por debajo del techo */
+  line-height: 1.1;
+}
+
+
+/* ==========================================================================
+   EL RENDER DEL HERO
+
+   Sustituye al placeholder gris. Va desplazado a la derecha, igual que en
+   los diseños 2 y 3: la imagen es mas apaisada que su hueco, asi que
+   dejandola centrada la parte util quedaba detras del texto.
+
+   Se desborda por la derecha a proposito; .hero lo contiene con
+   overflow-x: clip, que recorta sin romper el sticky del header.
+   ========================================================================== */
+
+.hero__render {
+  position: absolute;
+  top: 0;
+  right: -15%;
+  width: 115%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center left;
+  pointer-events: none;
+
+  /* El borde izquierdo se funde con el fondo para que la imagen no corte
+     en seco junto a la columna de texto. */
+  mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 100%);
+}
+
+/* En pantallas estrechas el hero pasa a una columna: la imagen cubre el
+   ancho y se atenua, porque ahi si queda detras del texto. */
+@media (max-width: 900px) {
+  .hero__render {
+    right: 0;
+    width: 100%;
+    opacity: .22;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+  }
+}
