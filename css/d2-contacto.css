@@ -1,16 +1,22 @@
 /* ==========================================================================
-   CONTACT — LOS DOS PROTOTIPOS (15/9/2026)
+   CONTACT (15/9/2026)
 
-   Dos vias para la misma pagina, montadas para verlas al lado y decidir.
-   El copy, la composicion y los campos son IDENTICOS en las dos: lo unico
-   que cambia es de donde viene el movimiento.
+   Se montaron dos vias para la animacion y el usuario eligio la primera:
+   el campo termico. La otra --el movimiento solo al interactuar-- queda
+   descrita en el historial por si algun dia se quiere recuperar.
 
-     A  el campo de isolineas    un fondo termico que respira solo
-     B  el acuse de recibo       nada se mueve hasta que el usuario actua
+   LA IDEA
 
-   LO QUE COMPARTEN, Y POR QUE
+   El fondo son las curvas de nivel de un mapa termico. Es el lenguaje de
+   esta industria en el oeste de Canada, y comparte el ADN de la pagina de
+   acceso --hacer visible la energia-- SIN repetir su gesto.
 
-   La composicion sale de la investigacion, no del gusto:
+     acceso    una senal que VIAJA por el circuito
+     contacto  un campo que REVELA lo que hay debajo
+
+   Asi las dos se complementan sin parecerse.
+
+   LO QUE DECIDE LA COMPOSICION, Y NO ES EL GUSTO
 
    - SEIS CAMPOS, los del documento del cliente, sin recortar. La idea de
      que menos campos convierten mas es folclore: Zuko, sobre 93 millones
@@ -22,18 +28,32 @@
 
    - VALIDACION AL ENVIAR. Los dos estudios apuntan igual: validar al
      salir del campo produjo 5.73 errores consecutivos frente a 1.58 al
-     enviar (Bargas-Avila, n=77), y validar mientras se escribe fue lo peor
-     de tres opciones en el estudio que todos citan al reves (n=22).
+     enviar (Bargas-Avila, n=77), y validar mientras se escribe fue lo
+     peor de tres opciones en el estudio que todos citan al reves (n=22).
 
    - SIN CAPTCHA. Es un fallo de nivel A bajo 1.1.1, y el abandono medido
-     va del 18 al 45%, +120% en tareas reales, y empeora con la edad. Va
-     honeypot, invisible para el usuario.
+     va del 18 al 45%, +120% en tareas reales, y empeora con la edad del
+     usuario, que aqui es justo el perfil. Va honeypot.
 
-   - TRES VIAS DE CONTACTO a la vista: formulario, telefono y correo. Que
-     el visitante elija por donde, no que descubra que solo hay una.
-   ========================================================================== */
+   - TRES VIAS DE CONTACTO a la vista: formulario, telefono y correo. En
+     una compra de sector publico, con varios responsables implicados, el
+     que rellena el formulario no siempre es el que llama.
 
-/* --- La rejilla de la pagina ------------------------------------------- */
+/* LOS VALORES SALEN DEL SISTEMA, NO DEL OJO
+
+   Tipografia por --fs-h1/h3/body-lg/body/small/xs, espaciado por los
+   pasos de --sp, colores por los tokens de la paleta y el contenedor por
+   --d2-ancho y --d2-gutter. Asi esta pagina mide, respira y colorea igual
+   que el home, Energy Gap Analysis y la de acceso.
+
+   Los tres valores en pixeles que quedan son deliberados:
+
+     clamp(32px, 4vw, 52px)   un salto fluido que ningun paso fijo da
+     margin-top: 2px          ajuste optico de una linea sobre otra
+     padding: 7px 13px        el boton de pausa, mas pequeno que un boton
+                              de accion a proposito: no compite con el CTA
+
+   --- La rejilla de la pagina ------------------------------------------- */
 
 .d2 .ct {
   position: relative;
@@ -55,8 +75,8 @@
 }
 
 .d2 .ct__titulo {
-  margin: 12px 0 0;
-  font-size: clamp(32px, 3.4vw, 52px);
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-h1);
   line-height: 1.08;
   letter-spacing: -.026em;
   font-weight: var(--fw-extrabold, 800);
@@ -65,8 +85,8 @@
 }
 
 .d2 .ct__lead {
-  margin: 16px 0 0;
-  font-size: 1.0625rem;
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-body-lg);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -87,26 +107,26 @@
   position: relative;
   padding: clamp(24px, 3vw, 38px);
   background: var(--c-fondo-alt, #F3F3F3);
-  border-radius: 6px;
+  border-radius: var(--radio-sm, 6px);
 }
 
 .d2 .ct-form__titulo {
-  margin: 0 0 4px;
-  font-size: clamp(20px, 1.8vw, 26px);
+  margin: 0 0 var(--sp-1);
+  font-size: var(--fs-h3);
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
 }
 
 .d2 .ct-form__nota {
-  margin: 0 0 22px;
-  font-size: 14px;
+  margin: 0 0 var(--sp-5);
+  font-size: var(--fs-small);
   color: var(--c-texto-suave, #6B6B6B);
 }
 
 .d2 .ct-form__rejilla {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--sp-4);
 }
 
 /* El campo abierto y el boton ocupan la fila entera: son las dos piezas
@@ -115,8 +135,8 @@
 
 .d2 .ct-campo__label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 13px;
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-bold, 700);
   color: var(--c-texto, #333333);
 }
@@ -131,13 +151,13 @@
   width: 100%;
   /* 44px de alto: el objetivo tactil de WCAG 2.5.8. */
   min-height: 44px;
-  padding: 11px 14px;
+  padding: var(--sp-3) var(--sp-4);
   font-family: inherit;
-  font-size: 15.5px;
+  font-size: var(--fs-body);
   color: var(--c-texto, #333333);
   background: var(--c-blanco, #FFFFFF);
   border: 1px solid #B8B8B8;
-  border-radius: 4px;
+  border-radius: var(--radio-sm, 6px);
   transition: border-color .16s ease, box-shadow .16s ease;
 }
 
@@ -161,8 +181,8 @@
 }
 
 .d2 .ct-campo__error {
-  margin: 6px 0 0;
-  font-size: 13px;
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-xs);
   /* #B3261E da 5.9:1 sobre el gris de la tarjeta. El rojo puro se queda
      en 3.9 y no llega para texto pequeno. */
   color: #B3261E;
@@ -182,20 +202,20 @@
 .d2 .ct-form__enviar {
   width: 100%;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: var(--sp-1);
 }
 
 .d2 .ct-form__legal {
-  margin: 14px 0 0;
-  font-size: 13px;
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-xs);
   color: var(--c-texto-suave, #6B6B6B);
 }
 
 /* --- La columna directa ------------------------------------------------ */
 
 .d2 .ct-directo__titulo {
-  margin: 0 0 16px;
-  font-size: clamp(19px, 1.6vw, 23px);
+  margin: 0 0 var(--sp-4);
+  font-size: var(--fs-h3);
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
 }
@@ -203,8 +223,8 @@
 .d2 .ct-via {
   display: flex;
   align-items: flex-start;
-  gap: 13px;
-  padding: 15px 0;
+  gap: var(--sp-3);
+  padding: var(--sp-4) 0;
   border-top: 1px solid var(--c-borde, #E4E4E4);
   text-decoration: none;
   color: inherit;
@@ -225,14 +245,14 @@
 
 .d2 .ct-via__eti {
   display: block;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: var(--c-texto-suave, #6B6B6B);
 }
 
 .d2 .ct-via__dato {
   display: block;
   margin-top: 2px;
-  font-size: 16px;
+  font-size: var(--fs-body);
   font-weight: var(--fw-bold, 700);
   color: var(--c-texto, #333333);
 }
@@ -242,15 +262,15 @@
 /* La caja de "no sabes por donde empezar": es del copy del cliente y hace
    de salida para quien no quiere escribir todavia. */
 .d2 .ct-caja {
-  margin-top: 26px;
-  padding: 20px;
+  margin-top: var(--sp-5);
+  padding: var(--sp-5);
   background: var(--c-superficie-oscura, #1A1A1A);
-  border-radius: 6px;
+  border-radius: var(--radio-sm, 6px);
   color: #FFFFFF;
 }
 
 .d2 .ct-caja__eti {
-  margin: 0 0 6px;
+  margin: 0 0 var(--sp-2);
   font-size: var(--fs-small, 12px);
   font-weight: var(--fw-bold, 700);
   letter-spacing: var(--ls-eyebrow, .08em);
@@ -260,15 +280,15 @@
 }
 
 .d2 .ct-caja__titulo {
-  margin: 0 0 8px;
-  font-size: 18px;
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-h3);
   font-weight: var(--fw-extrabold, 800);
   color: #FFFFFF;
 }
 
 .d2 .ct-caja__texto {
-  margin: 0 0 14px;
-  font-size: 14.5px;
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-small);
   line-height: 1.6;
   color: #D8D8D8;
 }
@@ -276,9 +296,9 @@
 .d2 .ct-caja__link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--sp-2);
   min-height: 44px;
-  font-size: 14.5px;
+  font-size: var(--fs-small);
   font-weight: var(--fw-bold, 700);
   color: var(--c-verde-marca, #39B54A);
   text-decoration: none;
@@ -287,10 +307,10 @@
 .d2 .ct-caja__link:hover { color: #FFFFFF; }
 
 /* ==========================================================================
-   PROTOTIPO A — EL CAMPO DE ISOLINEAS
+   EL CAMPO TERMICO
    ========================================================================== */
 
-.d2 .ct--iso .ct__lienzo {
+.d2 .ct .ct__lienzo {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -309,13 +329,13 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: var(--sp-2);
   min-height: 34px;
   padding: 7px 13px;
   background: rgba(255, 255, 255, .92);
   border: 1px solid var(--c-borde, #E4E4E4);
   border-radius: 999px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: var(--fw-bold, 700);
   color: var(--c-texto, #333333);
   cursor: pointer;
@@ -323,154 +343,12 @@
 
 .d2 .ct__pausa:hover { border-color: var(--c-verde-hover, #026F00); }
 
-/* ==========================================================================
-   PROTOTIPO B — EL ACUSE DE RECIBO
-   ========================================================================== */
-
-/* El riel: la linea que recorre el formulario y se ilumina hasta donde va
-   el visitante. Es el unico movimiento continuo, y responde a una accion,
-   no a un temporizador. */
-.d2 .ct--acuse .ct-form {
-  --ct-avance: 0%;
-  padding-left: clamp(30px, 3.4vw, 46px);
-}
-
-.d2 .ct--acuse .ct-form::before {
-  content: "";
-  position: absolute;
-  top: clamp(24px, 3vw, 38px);
-  bottom: clamp(24px, 3vw, 38px);
-  left: 14px;
-  width: 2px;
-  background: var(--c-borde, #E4E4E4);
-  border-radius: 2px;
-}
-
-/* La parte recorrida. La altura la escribe el JS en --ct-avance. */
-.d2 .ct--acuse .ct-form::after {
-  content: "";
-  position: absolute;
-  top: clamp(24px, 3vw, 38px);
-  left: 14px;
-  width: 2px;
-  height: var(--ct-avance);
-  max-height: calc(100% - clamp(48px, 6vw, 76px));
-  background: linear-gradient(to bottom,
-    var(--c-verde-marca, #39B54A),
-    var(--c-verde-hover, #026F00));
-  border-radius: 2px;
-  transition: height .38s cubic-bezier(.32, .72, 0, 1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .d2 .ct--acuse .ct-form::after { transition: none; }
-}
-
-/* El nodo de cada campo: se cierra cuando el campo tiene contenido. */
-.d2 .ct--acuse .ct-campo {
-  position: relative;
-}
-
-.d2 .ct--acuse .ct-campo__label::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * clamp(30px, 3.4vw, 46px) + 10px);
-  top: 4px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--c-fondo-alt, #F3F3F3);
-  border: 2px solid var(--c-borde, #E4E4E4);
-  box-sizing: border-box;
-  transition: border-color .2s ease, background-color .2s ease;
-}
-
-.d2 .ct--acuse .ct-campo.esta-activo .ct-campo__label::before {
-  border-color: var(--c-verde-hover, #026F00);
-}
-
-.d2 .ct--acuse .ct-campo.esta-lleno .ct-campo__label::before {
-  background: var(--c-verde-hover, #026F00);
-  border-color: var(--c-verde-hover, #026F00);
-}
-
-/* El envio: el formulario se atenua mientras el mensaje viaja. */
-.d2 .ct--acuse .ct-form.esta-viajando {
-  opacity: .55;
-  pointer-events: none;
-  transition: opacity .3s ease;
-}
-
-.d2 .ct-form__enviar.esta-enviando {
-  pointer-events: none;
-}
-
-/* El acuse, cuando llega. */
-.d2 .ct-acuse {
-  padding: clamp(28px, 3.4vw, 44px);
-  background: var(--c-fondo-alt, #F3F3F3);
-  border-radius: 6px;
-  border-top: 3px solid var(--c-verde-marca, #39B54A);
-}
-
-.d2 .ct-acuse:focus { outline: none; }
-
-.d2 .ct-acuse__tic {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  margin-bottom: 16px;
-  border-radius: 50%;
-  background: var(--c-verde-hover, #026F00);
-  color: #FFFFFF;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .d2 .ct-acuse__tic {
-    animation: ct-tic .45s cubic-bezier(.32, .72, 0, 1) both;
-  }
-}
-
-@keyframes ct-tic {
-  from { opacity: 0; transform: scale(.6); }
-  to   { opacity: 1; transform: none; }
-}
-
-.d2 .ct-acuse__titulo {
-  margin: 0 0 8px;
-  font-size: clamp(21px, 2vw, 27px);
-  font-weight: var(--fw-extrabold, 800);
-  color: var(--c-texto, #333333);
-}
-
-.d2 .ct-acuse__texto {
-  margin: 0 0 18px;
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: var(--c-texto-cuerpo, #333333);
-}
-
-.d2 .ct-acuse__otro {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0;
-  background: none;
-  border: 0;
-  font-size: 14.5px;
-  font-weight: var(--fw-bold, 700);
-  color: var(--c-verde-hover, #026F00);
-  cursor: pointer;
-}
-
 /* --- Adaptacion -------------------------------------------------------- */
 
 @media (max-width: 900px) {
-  .d2 .ct__cuerpo { grid-template-columns: 1fr; gap: 32px; }
+  .d2 .ct__cuerpo { grid-template-columns: 1fr; gap: var(--sp-6); }
   .d2 .ct-form__rejilla { grid-template-columns: 1fr; }
   /* El fondo de isolineas se atenua: en una columna pasa por detras del
      formulario y compite con el. */
-  .d2 .ct--iso .ct__lienzo { opacity: .5; }
+  .d2 .ct .ct__lienzo { opacity: .5; }
 }
