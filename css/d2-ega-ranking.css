@@ -57,16 +57,19 @@
   align-items: center;
 }
 
-/* --- El circuito de fondo -------------------------------------------------
+/* --- El fondo: las diagonales --------------------------------------------
 
-   El mismo gesto que la banda del equipo y la seccion de financiacion:
-   trazos que entran por las esquinas y terminan en un nodo. Es la marca
-   de la casa sobre fondo verde.
+   Rectas largas con un quiebro en angulo, sin nodos, que entran por los
+   bordes y se cortan ahi. Es lo que tiene la referencia.
 
-   Va muy tenue --blanco al 14%-- porque aqui compite con un panel de seis
-   filas: mas presencia y estorbaria la lectura del ranking. */
+   Mi primer intento fue el circuito de la banda del equipo --codos
+   redondeados y nodos circulares-- y no es el mismo gesto.
 
-.d2 .ega-rank__circuito {
+   Muy tenues: en la referencia apenas se separan del fondo, y esa
+   discrecion es parte del efecto. Aqui compiten con un panel de seis
+   filas, asi que con mas presencia estorbarian la lectura. */
+
+.d2 .ega-rank__lineas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -74,16 +77,13 @@
   pointer-events: none;
 }
 
-.d2 .ega-rank__circuito path {
+.d2 .ega-rank__lineas path {
   fill: none;
-  stroke: rgba(255, 255, 255, .14);
+  stroke: rgba(176, 225, 183, .16);
   stroke-width: 1.2;
-}
-
-.d2 .ega-rank__circuito circle {
-  fill: none;
-  stroke: rgba(176, 225, 183, .3);
-  stroke-width: 1.4;
+  /* Sin linejoin round: el quiebro de la referencia es un angulo vivo,
+     no una curva. */
+  stroke-linejoin: miter;
 }
 
 /* --- La columna de texto ------------------------------------------------ */
@@ -168,14 +168,17 @@
 
 .d2 .ega-rank__fila.es-alto .ega-rank__n { color: #FFFFFF; }
 
-/* 46px y no 38: a 38 el dibujo isometrico se convertia en una mancha.
-   Estos iconos tienen tres o cuatro lineas cruzadas y necesitan sitio
-   para leerse como un edificio. */
+/* 58px. Empezaron en 38 --una mancha-- pasaron a 46 y siguen sin
+   leerse: estos dibujos llevan ventanas, costillas y zocalos, y cada
+   linea necesita separarse de la siguiente.
+
+   Con viewBox de 32 en vez de 24, el detalle cabe sin que los trazos se
+   toquen. */
 .d2 .ega-rank__icono {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   padding-left: var(--sp-4);
   border-left: 1px solid rgba(176, 225, 183, .28);
   color: rgba(255, 255, 255, .8);
@@ -184,9 +187,9 @@
 .d2 .ega-rank__icono svg {
   width: 100%;
   height: 100%;
-  /* El trazo, mas fino de lo normal: a 46px con 1.1 las lineas se tocan
-     en las esquinas del isometrico. */
-  stroke-width: 1;
+  /* El trazo lo fija el marcado en .95 sobre un viewBox de 32, que a
+     58px de caja da algo menos de 1.8px reales: fino, como en la
+     referencia, pero sin desaparecer. */
 }
 
 .d2 .ega-rank__fila.es-alto .ega-rank__icono { color: #FFFFFF; }
