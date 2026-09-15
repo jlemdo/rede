@@ -34,6 +34,9 @@
 
 .d2 .ega-rank {
   position: relative;
+  /* overflow hidden recorta el circuito en los bordes, que es lo que
+     hace que las lineas entren y salgan de la seccion en vez de
+     terminar dentro. */
   overflow: hidden;
   padding-block: clamp(var(--sp-7), 7vw, var(--sp-9));
   background: #1A5121;
@@ -52,6 +55,35 @@
   grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
   gap: clamp(var(--sp-6), 5vw, var(--sp-8));
   align-items: center;
+}
+
+/* --- El circuito de fondo -------------------------------------------------
+
+   El mismo gesto que la banda del equipo y la seccion de financiacion:
+   trazos que entran por las esquinas y terminan en un nodo. Es la marca
+   de la casa sobre fondo verde.
+
+   Va muy tenue --blanco al 14%-- porque aqui compite con un panel de seis
+   filas: mas presencia y estorbaria la lectura del ranking. */
+
+.d2 .ega-rank__circuito {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.d2 .ega-rank__circuito path {
+  fill: none;
+  stroke: rgba(255, 255, 255, .14);
+  stroke-width: 1.2;
+}
+
+.d2 .ega-rank__circuito circle {
+  fill: none;
+  stroke: rgba(176, 225, 183, .3);
+  stroke-width: 1.4;
 }
 
 /* --- La columna de texto ------------------------------------------------ */
@@ -120,9 +152,18 @@
   /* tabular-nums: sin esto el 01 y el 06 miden distinto y la columna
      baila. */
   font-variant-numeric: tabular-nums;
-  /* Los tres primeros en blanco, los otros tres apagados: la jerarquia
-     del ranking se lee antes de leer las barras. */
-  color: rgba(176, 225, 183, .55);
+  /* Los tres primeros en blanco, los otros tres mas apagados: la
+     jerarquia del ranking se lee antes que las barras.
+
+     Pero .55 daba 3.08:1, por debajo del 4.5 que necesita un numero de
+     este tamano. Medido sobre #1A5121:
+
+       .55 -> 3.08:1   lo que habia
+       .72 -> 4.13:1   aun no
+       .78 -> 4.56:1   pasa
+
+     Va .78: sigue leyendose como secundario y ya es legible. */
+  color: rgba(176, 225, 183, .78);
 }
 
 .d2 .ega-rank__fila.es-alto .ega-rank__n { color: #FFFFFF; }
@@ -185,26 +226,89 @@
 .d2 .ega-rank__fila.es-alto .ega-rank__lleno { background: #6BE873; }
 
 @media (prefers-reduced-motion: no-preference) {
+
+  /* LA SECCION ENTRA POR PARTES
+
+     Antes solo se animaban las barras y el resto aparecia de golpe. Ahora
+     el bloque se arma en orden: primero el texto de la izquierda, luego la
+     cabecera del panel, y por ultimo las filas una a una.
+
+     Todo con transform y opacity, que son las dos que el compositor anima
+     sin recalcular la pagina. */
+
+  .d2 .ega-rank__copy > * ,
+  .d2 .ega-rank__eti,
+  .d2 .ega-rank__sub,
+  .d2 .ega-rank__pie,
+  .d2 .ega-rank__aviso {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .d2 .ega-rank.es-visible .ega-rank__copy > * {
+    animation: ega-rank-sube .7s cubic-bezier(.22, .68, 0, 1) both;
+    animation-delay: calc(var(--n, 0) * 90ms);
+  }
+  .d2 .ega-rank.es-visible .ega-rank__copy > :nth-child(1) { --n: 0; }
+  .d2 .ega-rank.es-visible .ega-rank__copy > :nth-child(2) { --n: 1; }
+  .d2 .ega-rank.es-visible .ega-rank__copy > :nth-child(3) { --n: 2; }
+
+  .d2 .ega-rank.es-visible .ega-rank__eti {
+    animation: ega-rank-sube .7s cubic-bezier(.22, .68, 0, 1) .1s both;
+  }
+  .d2 .ega-rank.es-visible .ega-rank__sub {
+    animation: ega-rank-sube .7s cubic-bezier(.22, .68, 0, 1) .18s both;
+  }
+
+  /* El pie y el aviso, al final: cuando las seis barras ya han crecido. */
+  .d2 .ega-rank.es-visible .ega-rank__pie {
+    animation: ega-rank-sube .7s cubic-bezier(.22, .68, 0, 1) 1.05s both;
+  }
+  .d2 .ega-rank.es-visible .ega-rank__aviso {
+    animation: ega-rank-sube .6s ease-out 1.25s both;
+  }
+
+  /* --- Las filas --- */
+
+  .d2 .ega-rank .ega-rank__fila > :not(.ega-rank__barra) {
+    opacity: 0;
+    /* 10px y no 16: la fila es baja y un recorrido largo la hace saltar. */
+    transform: translateY(10px);
+  }
+
+  .d2 .ega-rank.es-visible .ega-rank__fila > :not(.ega-rank__barra) {
+    animation: ega-rank-sube .55s cubic-bezier(.22, .68, 0, 1) both;
+    animation-delay: calc(.26s + var(--i, 0) * 110ms);
+  }
+
+  /* La pista de la barra tambien entra: sin esto aparece de golpe y se
+     ve el hueco antes de que la barra empiece a crecer. */
+  .d2 .ega-rank .ega-rank__barra {
+    opacity: 0;
+    transform: scaleX(.94);
+    transform-origin: left center;
+  }
+
+  .d2 .ega-rank.es-visible .ega-rank__barra {
+    animation: ega-rank-pista .5s cubic-bezier(.22, .68, 0, 1) both;
+    animation-delay: calc(.26s + var(--i, 0) * 110ms);
+  }
+
+  /* Y el relleno crece DESPUES de que su pista este puesta. */
   .d2 .ega-rank .ega-rank__lleno { transform: scaleX(0); }
 
   .d2 .ega-rank.es-visible .ega-rank__lleno {
-    animation: ega-rank-crece .85s cubic-bezier(.32, .72, 0, 1) both;
-    /* 90ms por fila: las seis tardan medio segundo en arrancar y el
-       conjunto se lee de arriba abajo, como se lee un ranking. */
-    animation-delay: calc(var(--i, 0) * 90ms);
-  }
-
-  /* El numero y el nombre entran con su barra, no antes. */
-  .d2 .ega-rank .ega-rank__fila > :not(.ega-rank__barra) { opacity: 0; }
-
-  .d2 .ega-rank.es-visible .ega-rank__fila > :not(.ega-rank__barra) {
-    animation: ega-rank-entra .45s ease-out both;
-    animation-delay: calc(var(--i, 0) * 90ms);
+    /* 1.1s y una curva mas larga: el usuario pidio que fuese mas suave.
+       La curva (.22,.68,0,1) arranca decidida y frena muy despacio al
+       final, que es como se asienta una medida. */
+    animation: ega-rank-crece 1.1s cubic-bezier(.22, .68, 0, 1) both;
+    animation-delay: calc(.42s + var(--i, 0) * 110ms);
   }
 }
 
 @keyframes ega-rank-crece { to { transform: scaleX(1); } }
-@keyframes ega-rank-entra { to { opacity: 1; } }
+@keyframes ega-rank-sube  { to { opacity: 1; transform: none; } }
+@keyframes ega-rank-pista { to { opacity: 1; transform: none; } }
 
 /* --- El pie del panel ---------------------------------------------------- */
 
