@@ -15961,3 +15961,45 @@ span.d2-panel__filtro:hover {
   outline: 2px solid var(--c-verde-marca, #39B54A);
   outline-offset: 2px;
 }
+
+
+/* ==========================================================================
+   LA SECCION DE MARCAS, EN NEGRO (14/9/2026)
+
+   Lo pidio el usuario. Primero entendi que hablaba de la barra de mandos
+   --que tambien esta en negro, unas reglas mas arriba-- pero era el FONDO
+   de la seccion.
+
+   NO SE INVENTA NADA: EL MECANISMO YA EXISTIA
+
+   Esta seccion tiene su propio selector de fondo --el bloque "MARCAS, EL
+   SELECTOR DE FONDO LOCAL"-- con cinco opciones y los contrastes de cada
+   una ya medidos. El marcado ya declaraba data-logos-tono="oscuro" y un
+   --logos-fondo de #333333.
+
+   Asi que lo unico que faltaba era fijar el color mas oscuro de los dos
+   que ese sistema contempla --"sirve para #333333 y para #1A1A1A"-- y
+   dejar que el resto se adapte solo.
+
+   Mi primer intento fue peor: un background con !important y un
+   data-comp-tono anadido al marcado. Eso montaba un segundo mecanismo
+   encima del que ya habia, y dos sistemas peleando por el mismo color es
+   el fallo que ya costo una vuelta en el CTA de Energy Gap Analysis.
+
+   LO QUE VIENE SOLO
+
+   El tono oscuro de este bloque ya redefine --c-texto, --c-texto-cuerpo
+   y --c-texto-suave, y el sistema general invierte los logos de cliente
+   con grayscale + invert, porque son marcas grises que sobre negro
+   desapareceriran.
+
+   Contrastes sobre negro, ya medidos en la tabla de arriba:
+
+     titular  17.40:1
+     cifra    17.40:1
+     etiqueta  9.46:1
+   ========================================================================== */
+
+.d2 .d2-logos--dos {
+  --logos-fondo: var(--c-superficie-oscura, #1A1A1A);
+}
