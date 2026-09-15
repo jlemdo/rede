@@ -284,20 +284,34 @@
 
     <div class="d2-ega-hero__arte">
       <picture>
-        <!-- Dos versiones, y no son recortes de la misma: la de
-             escritorio pone los edificios en columna a la izquierda y las
-             salidas a la derecha; la de movil los reparte en dos por dos
-             alrededor de RUN, que es lo unico que funciona en vertical.
+        <!-- EL PANEL DE RUN, RECORTADO POR TAMANO
 
-             width y height son los REALES de cada archivo. Sin ellos el
-             navegador no sabe cuanto reservar y el texto salta cuando la
-             imagen carga. -->
+             Es una captura real de la plataforma. Meterla entera en el
+             hueco del hero la dejaria a 600px de ancho, y ahi su texto
+             --"Baseline", los ejes del grafico-- cae a 4px. Ilegible.
+
+             Asi que cada version ensena lo que se puede leer a su ancho:
+
+               escritorio  el panel sin la barra lateral. Esa columna son
+                           selectores y filtros: control de interfaz que
+                           en una imagen estatica no dice nada y roba
+                           ancho al contenido que si.
+
+               movil       solo las cifras y el grafico anual. A 390px el
+                           mapa es una mancha gris, y lo que se entiende
+                           de un vistazo son los tres numeros y la serie.
+
+             Es lo que hacen los sitios de software: el panel recortado y
+             grande, no entero y diminuto.
+
+             El <img> lleva la version de movil, que es el respaldo si el
+             navegador no entiende <picture>: mejor caer en la ligera. -->
         <source media="(min-width: 901px)"
-                srcset="assets/img/run/run-flujo-escritorio.webp"
-                width="1440" height="1080">
-        <img src="assets/img/run/run-flujo-movil.webp"
-             alt="Buildings feeding utility data into RUN, which reports building performance, energy costs and carbon"
-             width="1000" height="1000" decoding="async">
+                srcset="assets/img/run/run-panel-escritorio.webp"
+                width="1200" height="848">
+        <img src="assets/img/run/run-panel-movil.webp"
+             alt="The RUN dashboard for a school district: baseline and current energy intensity, percentage change, and annual energy distribution by source since 2010"
+             width="900" height="1054" decoding="async">
       </picture>
     </div>
 
