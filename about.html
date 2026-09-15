@@ -401,122 +401,91 @@
 
   </div>
 </section>
-<section class="d2-equipo-firma">
-      <!-- El mismo circuito de la banda verde: es la misma seccion, asi que
-           lleva la misma energia de fondo. El trazado se cambia para que los
-           nodos no caigan detras del retrato grande de la izquierda. -->
-      <svg class="d2-equipo-firma__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M1440 90H1180L1120 150H840"/>
-        <path d="M0 620V500H250L320 430H560"/>
-        <path d="M1440 560H1120L1050 490H820"/>
-        <circle cx="1120" cy="150" r="5"/>
-        <circle cx="320" cy="430" r="5"/>
-        <circle cx="1050" cy="490" r="5"/>
-      </svg>
-      <div class="d2-equipo-firma__inner">
+<section class="d2-equipo-banda" aria-labelledby="eq-banda-titulo">
 
-        <!-- Mismo copy que la banda verde (7/9/2026): las dos variantes son
-             la MISMA seccion, solo cambia como se coloca. El lead sube aqui
-             --antes vivia dentro de la columna de Matthew y se leia pegado a
-             su nombre, como si hablara de el y no del equipo--. -->
-        <div class="d2-equipo-firma__intro">
-          <p class="d2-equipo-firma__eyebrow">The Rede team</p>
-          <h2 class="d2-equipo-firma__titulo">Meet the team.</h2>
-          <p class="d2-equipo-firma__lead">
+      <!-- El trazado de circuito del fondo. Decorativo. -->
+      <svg class="d2-equipo-banda__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120H210L280 50H520M1440 90H1180L1120 150H860"/>
+        <path d="M120 620V470H330L400 400H610"/>
+        <path d="M1440 540H1150L1080 470H900"/>
+        <circle cx="280" cy="50" r="5"/>
+        <circle cx="1120" cy="150" r="5"/>
+        <circle cx="400" cy="400" r="5"/>
+        <circle cx="1080" cy="470" r="5"/>
+      </svg>
+
+      <div class="d2-equipo-banda__inner">
+
+        <div class="d2-equipo-banda__cabecera">
+          <p class="d2-equipo-banda__eyebrow">The Rede team</p>
+          <h2 class="d2-equipo-banda__titulo" id="eq-banda-titulo">Meet the team.</h2>
+          <p class="d2-equipo-banda__lead">
             Rede is a small team of engineers and energy efficiency professionals.
             We specialise in institutional facilities and complex building environments,
             and we care about the organisations and communities we work with.
           </p>
         </div>
 
-        <div class="d2-equipo-firma__cuerpo">
+        <ol class="d2-equipo-banda__lista">
 
-          <!-- El destacado. No es "el jefe es mas importante": es que su bio
-               es la unica que cuenta el origen de la empresa (2008), y ese
-               parrafo pide mas aire que los otros dos. -->
-          <article class="d2-equipo-firma__principal">
-            <picture>
-              <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-grande"
-                   src="assets/img/equipo/matthew.jpg"
-                   alt="Matthew Redekopp"
-                   width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-grande es-aficion" src="assets/img/equipo/matthew-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
-            </picture>
-            <div class="d2-equipo-firma__principal-texto">
-              <h3 class="d2-equipo-firma__nombre d2-equipo-firma__nombre--grande">Matthew Redekopp</h3>
-              <p class="d2-equipo-firma__cred">P.Eng., CEM, LEED AP</p>
-              <p class="d2-equipo-firma__cargo">Founder and CEO</p>
-              <p class="d2-equipo-firma__bio">
-                Matthew founded Rede in 2008 to serve communities and organizations that
-                larger engineering firms were not reaching. Nearly two decades later, he
-                leads a team helping organizations across Western Canada reduce energy costs
-                and manage buildings more effectively.
-              </p>
-            </div>
-          </article>
-
-          <!-- El resto, en fila vertical. Retrato pequeño y bio completa:
-               el copy va literal, no se recorta para que quepa. -->
-          <ul class="d2-equipo-firma__resto">
-
-            <li class="d2-equipo-firma__mini">
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">01</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
               <picture>
-                <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-mini"
-                     src="assets/img/equipo/marco.jpg"
-                     alt="Marco Bieri"
-                     width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-mini es-aficion" src="assets/img/equipo/marco-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/matthew.jpg" alt="Matthew Redekopp"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/matthew-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
               </picture>
-              <div>
-                <h3 class="d2-equipo-firma__nombre">Marco Bieri</h3>
-                <p class="d2-equipo-firma__cred">P.Eng., M.Eng., M.Sc., CEM</p>
-                <p class="d2-equipo-firma__cargo">Energy Efficiency Engineer</p>
-              </div>
-            </li>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Matthew Redekopp, P.Eng., CEM</h3>
+            <p class="d2-equipo-banda__cargo">Owner and Mechanical Engineer</p>
+          </li>
 
-            <li class="d2-equipo-firma__mini">
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">02</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
               <picture>
-                <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-mini"
-                     src="assets/img/equipo/erica.jpg"
-                     alt="Erica Letchford"
-                     width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-mini es-aficion" src="assets/img/equipo/erica-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/marco.jpg" alt="Marco Bieri"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/marco-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
               </picture>
-              <div>
-                <h3 class="d2-equipo-firma__nombre">Erica Letchford</h3>
-                <p class="d2-equipo-firma__cred">BID, LEED AP</p>
-                <p class="d2-equipo-firma__cargo">Director of Operations</p>
-              </div>
-            </li>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Marco Bieri, P.Eng., M.Eng, MSc, CEM</h3>
+            <p class="d2-equipo-banda__cargo">Senior Energy Efficiency Engineer</p>
+          </li>
 
-            <!-- La cuarta persona (7/9/2026).
-                 SIN BIO a proposito: el documento de copy aprobado
-                 --2026-08-01 Website copy language-- la deja como
-                 "[Bio to be developed]", asi que no hay ninguna que poner y
-                 no se inventa. El cargo es el que ya estaba en la maqueta,
-                 pero OJO: tampoco aparece en el copy aprobado, que dice
-                 "[Title]". Confirmar los dos con Erick.
-                 Su foto es cuadrada (400x400) y no 300x420 como el resto:
-                 el CSS la recorta igual con object-fit. -->
-            <li class="d2-equipo-firma__mini">
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">03</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
               <picture>
-                <img class="d2-equipo-firma__foto-mini"
-                     src="assets/img/equipo/enrique.png"
-                     alt="Enrique Contreras"
+                <span class="d2-equipo-retrato"><img src="assets/img/equipo/erica.jpg" alt="Erica Letchford"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/erica-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+              </picture>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Erica Letchford, BID, LEED AP</h3>
+            <p class="d2-equipo-banda__cargo">Director of Operations</p>
+          </li>
+
+          <li class="d2-equipo-banda__persona">
+            <span class="d2-equipo-banda__marca" aria-hidden="true">
+              <span class="d2-equipo-banda__num">04</span>
+            </span>
+            <span class="d2-equipo-banda__marco">
+              <picture>
+                <img src="assets/img/equipo/enrique.png" alt="Enrique Contreras"
                      width="400" height="400" loading="lazy" decoding="async">
               </picture>
-              <div>
-                <h3 class="d2-equipo-firma__nombre">Enrique Contreras</h3>
-                <p class="d2-equipo-firma__cred">SD M.Sc. (Cand.)</p>
-                <p class="d2-equipo-firma__cargo">Certified Sustainability &amp; Cleantech Specialist</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+            </span>
+            <h3 class="d2-equipo-banda__nombre">Enrique Contreras, SD MSc (Cand.)</h3>
+            <p class="d2-equipo-banda__cargo">Certified Sustainability &amp; Cleantech Specialist</p>
+          </li>
 
-        <!-- SIN linea de credenciales al pie (7/9/2026).
+        </ol>
 
-             Las siglas vuelven a cada persona: "cada uno tiene lo suyo".
-             Agrupadas abajo se leian como un lote del equipo y no se sabia
-             quien tiene que. P.Eng. no es lo mismo que M.Sc.: son licencias
-             distintas y quien evalua un RFP mira quien firma. -->
       </div>
     </section>
   </div>
