@@ -615,7 +615,19 @@
      peor termina pidiendo nombre y correo justo despues de hablar de
      valores.
      ========================================================================== -->
-<section class="d2-cta-bal d2-entra">
+<!-- data-comp-rol="cierre" NO es opcional.
+
+     El fondo de esta seccion sale de --comp-cta, que vale #333333. El
+     titulo y el parrafo usan var(--c-texto), que tambien vale #333333:
+     mismo color exacto, 1.00:1, invisible.
+
+     Lo que lo resuelve es el sistema de tono, que redefine --c-texto a
+     blanco dentro de una seccion oscura. Pero d2-composicion.js solo
+     pone data-comp-tono en secciones que declaren un ROL.
+
+     Es el mismo fallo que ya costo una vuelta en Energy Gap Analysis, y
+     por la misma razon: copiar el marcado sin copiar el atributo. -->
+<section class="d2-cta-bal d2-entra" data-comp-rol="cierre">
       <div class="d2-cta-bal__inner">
 
         <div class="d2-cta-bal__texto">
