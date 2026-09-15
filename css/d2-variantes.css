@@ -15894,29 +15894,70 @@ span.d2-panel__filtro:hover {
 
 
 /* ==========================================================================
-   ENTREGA AL CLIENTE — LAS HERRAMIENTAS DE TRABAJO NO SE VEN (14/9/2026)
+   LA BARRA DE MANDOS DE MARCAS, EN NEGRO (14/9/2026)
 
-   Esta copia se publica para que el cliente la revise. Los controles que
-   sirvieron para comparar variantes durante el diseno no pintan nada aqui
-   y ademas confunden: invitan a tocar cosas que ya estan decididas.
+   Lo pidio el usuario. La barra general es blanca al 90% con desenfoque
+   detras, que funciona sobre las secciones claras. La de marcas se sale:
+   su franja es blanca y una barra blanca sobre fondo blanco solo se
+   distingue por la sombra.
 
-   NO se borran del marcado ni de los scripts:
+   NO BASTA CON CAMBIAR EL FONDO
 
-     - d2-composicion.js tiene que seguir corriendo, porque ademas de
-       dibujar su barra es QUIEN PINTA LOS FONDOS de cada seccion. Sin el,
-       la pagina entera se queda en blanco.
+   Todo lo de dentro esta pensado para leerse sobre claro, y sobre negro
+   se cae:
 
-     - los mandos del carrusel viven dentro de cada seccion y quitarlos del
-       HTML obligaria a tocar quince sitios.
+     el texto de la flecha  #333333 ... 1.38:1
+     los puntos             #6B7280 ... 3.60:1
 
-   Ocultarlos con CSS es reversible: se comenta este bloque y vuelven.
+   Asi que se invierten los tres estados --reposo, activo y hover-- y se
+   comprueba cada uno:
 
-   display:none y no visibility:hidden: los saca del arbol de
-   accesibilidad, asi que tampoco reciben el tabulador.
+     texto e iconos    #E8E8E8 ... 14.20:1
+     punto en reposo   #BFBFBF ...  9.46:1
+     verde de hover    #39B54A ...  6.53:1
+
+   El borde pasa a un blanco translucido: el #EFEFEF original sobre negro
+   dibujaba un marco claro alrededor de la pastilla.
    ========================================================================== */
 
-.d2 .d2-caru__mandos,
-.d2 .d2-fondos,
-.d2 .selector-v {
-  display: none !important;
+#caru-logos .d2-caru__mandos {
+  background: rgba(26, 26, 26, .92);
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, .28);
+}
+
+#caru-logos .d2-caru__flecha,
+#caru-logos .d2-caru__ocultar {
+  color: #E8E8E8;
+}
+
+#caru-logos .d2-caru__flecha:hover,
+#caru-logos .d2-caru__ocultar:hover {
+  background: var(--c-verde-marca, #39B54A);
+  /* Gris de marca sobre el verde: 4.74:1. El blanco aqui se queda en
+     2.66 y es el mismo criterio que sigue el boton solido del sitio. */
+  color: var(--c-sobre-verde, #333333);
+}
+
+#caru-logos .d2-caru__punto {
+  color: #BFBFBF;
+}
+
+#caru-logos .d2-caru__punto:hover {
+  color: #FFFFFF;
+}
+
+/* El elegido: verde de marca, que sobre negro da 6.53:1 y es el mismo
+   verde que identifica al resto del sitio. */
+#caru-logos .d2-caru__punto.es-activo {
+  background: rgba(57, 181, 74, .16);
+  color: var(--c-verde-marca, #39B54A);
+}
+
+/* El anillo de foco tambien: el oscuro por defecto no se veria. */
+#caru-logos .d2-caru__flecha:focus-visible,
+#caru-logos .d2-caru__punto:focus-visible,
+#caru-logos .d2-caru__ocultar:focus-visible {
+  outline: 2px solid var(--c-verde-marca, #39B54A);
+  outline-offset: 2px;
 }
