@@ -78,6 +78,13 @@
 
   /* Datos (gráfico) */
   --c-dato-positivo:    var(--c-verde);
+
+  /* El rojo de error. NO sale del manual --que solo trae verde y negro--
+     sino del propio sitio, donde ya se usaba en siete sitios sin nombre.
+     Se le pone nombre para que sea uno y no tres.
+
+     Medido: 4.90:1 sobre el gris de formulario y 5.44:1 sobre blanco. */
+  --c-error:            #C0392B;
   --c-dato-neutro:      #B8B8B8;
 
 

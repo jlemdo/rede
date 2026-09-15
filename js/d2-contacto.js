@@ -173,16 +173,51 @@
     }
   }
 
-  var reloj = null, t0 = null, pausa = false, aLaVista = true;
+  var reloj = null, t0 = null, aLaVista = true;
+
+  /* Terminado de verdad. Sin esta bandera, volver a entrar en pantalla o
+     cambiar de pestana llamaria a arrancar() otra vez, el movimiento se
+     reanudaria y el total superaria los cinco segundos que es justo lo
+     que hay que evitar. */
+  var terminado = false;
+
+  /* EL MOVIMIENTO SE DETIENE SOLO A LOS 5 SEGUNDOS
+
+     El usuario pidio quitar el boton de pausa, y quitarlo sin mas dejaria
+     la pagina incumpliendo WCAG 2.2.2, que es nivel A: movimiento que
+     arranca solo, dura mas de cinco segundos y convive con otro
+     contenido. La nota 2 del criterio cierra ademas la salida de "es
+     decoracion".
+
+     La otra forma de cumplirlo es que NO dure mas de cinco segundos. Asi
+     que el campo se deforma durante 5s y se queda quieto: se ve el gesto
+     al entrar, y despues es una ilustracion fija que no compite con el
+     formulario.
+
+     Es la misma via que usa la pagina de acceso --su bucle son 4.2s-- de
+     modo que las dos cumplen igual y por la misma razon. */
+  var TOPE = 4.8;
 
   function marco(ahora) {
     if (t0 === null) { t0 = ahora; }
-    pintar((ahora - t0) / 1000);
+    var t = (ahora - t0) / 1000;
+
+    if (t >= TOPE) {
+      /* Un ultimo fotograma en el tope exacto y se para: sin esto el
+         campo se congela donde pille el navegador y el final cambia en
+         cada carga. */
+      pintar(TOPE);
+      reloj = null;
+      terminado = true;
+      return;
+    }
+
+    pintar(t);
     reloj = window.requestAnimationFrame(marco);
   }
 
   function arrancar() {
-    if (reloj || pausa || sinMovimiento || !aLaVista) { return; }
+    if (reloj || terminado || sinMovimiento || !aLaVista) { return; }
     reloj = window.requestAnimationFrame(marco);
   }
 
@@ -197,20 +232,6 @@
      se ve quieto en vez de desaparecer. */
   pintar(0);
   if (!sinMovimiento) { arrancar(); }
-
-  /* El boton de pausa. No es opcional: WCAG 2.2.2 es nivel A y la
-     preferencia del sistema no basta por si sola --sigue sin resolverse en
-     el W3C--. */
-  var btn = document.querySelector('[data-isolineas-pausa]');
-  if (btn) {
-    if (sinMovimiento) { btn.hidden = true; }
-    btn.addEventListener('click', function () {
-      pausa = !pausa;
-      btn.setAttribute('aria-pressed', String(pausa));
-      btn.querySelector('[data-pausa-txt]').textContent = pausa ? 'Resume' : 'Pause';
-      if (pausa) { parar(); } else { arrancar(); }
-    });
-  }
 
   /* Fuera de pantalla no se pinta: es un fondo, no vale la CPU. */
   if ('IntersectionObserver' in window) {
@@ -229,7 +250,7 @@
     window.clearTimeout(espera);
     espera = window.setTimeout(function () {
       medir();
-      if (!reloj) { pintar(0); }
+      if (!reloj) { pintar(terminado ? TOPE : 0); }
     }, 160);
   });
 })();

@@ -106,7 +106,7 @@
 .d2 .ct-form {
   position: relative;
   padding: clamp(24px, 3vw, 38px);
-  background: var(--c-fondo-alt, #F3F3F3);
+  background: var(--c-fondo-alt, #F5F5F5);
   border-radius: var(--radio-sm, 6px);
 }
 
@@ -177,15 +177,19 @@
 
 .d2 .ct-campo.tiene-error input,
 .d2 .ct-campo.tiene-error textarea {
-  border-color: #B3261E;
+  border-color: var(--c-error, #C0392B);
 }
 
 .d2 .ct-campo__error {
   margin: var(--sp-2) 0 0;
   font-size: var(--fs-xs);
-  /* #B3261E da 5.9:1 sobre el gris de la tarjeta. El rojo puro se queda
-     en 3.9 y no llega para texto pequeno. */
-  color: #B3261E;
+  /* #C0392B y no un rojo propio: es el que ya usa el resto del sitio,
+     y el manual de marca solo trae verde y negro, asi que el rojo de
+     error es una decision del proyecto y debe ser UNA.
+
+     Medido sobre el gris del formulario: 4.90:1, por encima del 4.5 que
+     pide un texto de 12px. */
+  color: var(--c-error, #C0392B);
 }
 
 /* El honeypot: invisible para el usuario, visible para un robot. Va
@@ -290,7 +294,10 @@
   margin: 0 0 var(--sp-3);
   font-size: var(--fs-small);
   line-height: 1.6;
-  color: #D8D8D8;
+  /* --c-borde al 100% no sirve aqui --es un gris de linea, no de
+     texto-- asi que va el blanco a media opacidad: mismo resultado
+     visual y un valor menos que mantener. */
+  color: rgba(255, 255, 255, .84);
 }
 
 .d2 .ct-caja__link {
@@ -322,26 +329,6 @@
    solo, dura mas de cinco segundos y convive con el contenido, asi que
    WCAG 2.2.2 aplica en nivel A. Y la nota 2 del criterio cierra
    expresamente la salida de "es decoracion". */
-.d2 .ct__pausa {
-  position: absolute;
-  right: var(--d2-gutter, 24px);
-  top: 18px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  min-height: 34px;
-  padding: 7px 13px;
-  background: rgba(255, 255, 255, .92);
-  border: 1px solid var(--c-borde, #E4E4E4);
-  border-radius: 999px;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold, 700);
-  color: var(--c-texto, #333333);
-  cursor: pointer;
-}
-
-.d2 .ct__pausa:hover { border-color: var(--c-verde-hover, #026F00); }
 
 /* --- Adaptacion -------------------------------------------------------- */
 
