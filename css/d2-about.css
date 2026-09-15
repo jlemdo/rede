@@ -220,107 +220,33 @@
   color: var(--c-verde-marca, #39B54A);
 }
 
-/* --- Why Rede: los tres --------------------------------------------------- */
+/* --- Why Rede: la lista de principios ------------------------------------
 
-.d2 .ab-porque {
+   Tres filas anchas, no tres cajas en rejilla. El contenido son
+   AFIRMACIONES y no productos: una tarjeta dice "elige uno", una lista
+   dice "esto es lo que sostenemos".
+
+   Y el texto respira. En tres columnas cada explicacion caia en seis
+   lineas estrechas; aqui van en dos o tres anchas. */
+
+.d2 .ab-principios {
   padding-block: clamp(var(--sp-6), 6vw, var(--sp-8));
   background: var(--c-fondo-alt, #F5F5F5);
 }
 
-.d2 .ab-porque__inner {
+.d2 .ab-principios__inner {
   max-width: var(--d2-ancho, 1280px);
   margin-inline: auto;
   padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
 }
 
-.d2 .ab-porque__cab {
-  max-width: 46ch;
-  margin-bottom: clamp(var(--sp-5), 4vw, var(--sp-7));
+.d2 .ab-principios__cab {
+  max-width: 34ch;
+  margin-bottom: clamp(var(--sp-5), 4vw, var(--sp-6));
 }
 
-.d2 .ab-porque__titulo {
+.d2 .ab-principios__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h2);
-  line-height: 1.12;
-  letter-spacing: -.022em;
-  font-weight: var(--fw-extrabold, 800);
-  color: var(--c-texto, #333333);
-}
-
-.d2 .ab-porque__lista {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--sp-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.d2 .ab-caja {
-  padding: clamp(var(--sp-5), 2.4vw, var(--sp-6));
-  background: var(--c-blanco, #FFFFFF);
-  border-radius: var(--radio-sm, 6px);
-  /* El filete verde arriba: el mismo gesto que la tarjeta de acceso y la
-     ficha del FAQ. Es la marca de "esto es una pieza de Rede". */
-  border-top: 3px solid var(--c-verde-marca, #39B54A);
-}
-
-.d2 .ab-caja__n {
-  display: block;
-  margin-bottom: var(--sp-3);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold, 700);
-  letter-spacing: .1em;
-  color: var(--c-verde-hover, #026F00);
-}
-
-.d2 .ab-caja__titulo {
-  margin: 0 0 var(--sp-3);
-  font-size: var(--fs-h3);
-  line-height: 1.2;
-  font-weight: var(--fw-extrabold, 800);
-  color: var(--c-texto, #333333);
-}
-
-.d2 .ab-caja__texto {
-  margin: 0;
-  font-size: var(--fs-small);
-  line-height: 1.65;
-  color: var(--c-texto-cuerpo, #333333);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .d2 .ab-porque .ab-caja {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  .d2 .ab-porque.es-visible .ab-caja {
-    animation: ab-caja .5s cubic-bezier(.32, .72, 0, 1) both;
-    animation-delay: calc(var(--i, 0) * 90ms);
-  }
-}
-
-@keyframes ab-caja {
-  to { opacity: 1; transform: none; }
-}
-
-/* --- El cierre ----------------------------------------------------------- */
-
-.d2 .ab-cierre {
-  padding-block: clamp(var(--sp-6), 5vw, var(--sp-7));
-  background: var(--c-blanco, #FFFFFF);
-  text-align: center;
-}
-
-.d2 .ab-cierre__inner {
-  max-width: 60ch;
-  margin-inline: auto;
-  padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
-}
-
-.d2 .ab-cierre__titulo {
-  margin: 0;
   font-size: var(--fs-h2);
   line-height: 1.12;
   letter-spacing: -.022em;
@@ -329,12 +255,93 @@
   text-wrap: balance;
 }
 
-.d2 .ab-cierre__acciones {
+.d2 .ab-principios__lista {
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada principio: la afirmacion a la izquierda, la explicacion a la
+   derecha. .82fr/1fr y no mitad y mitad: el titulo son cuatro palabras y
+   la explicacion tres lineas. */
+.d2 .ab-principio {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: clamp(var(--sp-4), 3vw, var(--sp-6));
+  padding-block: clamp(var(--sp-5), 2.6vw, var(--sp-6));
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+}
+
+/* El filete verde solo en el primero: marca donde empieza la lista sin
+   repetir el gesto tres veces. */
+.d2 .ab-principio:first-child {
+  border-top: 2px solid var(--c-verde-marca, #39B54A);
+}
+
+.d2 .ab-principio__que {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  letter-spacing: -.012em;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-texto, #333333);
+  text-wrap: balance;
+}
+
+.d2 .ab-principio__por {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .ab-principios .ab-principio {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .d2 .ab-principios.es-visible .ab-principio {
+    animation: ab-caja .5s cubic-bezier(.32, .72, 0, 1) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+}
+
+@keyframes ab-caja {
+  to { opacity: 1; transform: none; }
+}
+
+/* --- Los datos del hero ---------------------------------------------------
+
+   El hero se veia vacio con solo titular y una linea. Los tres datos
+   salen del copy oficial --2008 del titular, 150+ organizaciones y
+   Western Canada de la bio de Matthew-- y ademas son lo que las firmas
+   canadienses de referencia ponen en su primer parrafo. */
+
+.d2 .ab-hero__datos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--sp-3);
-  margin-top: var(--sp-5);
+  gap: clamp(var(--sp-5), 4vw, var(--sp-7));
+  margin: clamp(var(--sp-5), 3vw, var(--sp-6)) 0 0;
+}
+
+.d2 .ab-hero__datos div { min-width: 0; }
+
+.d2 .ab-hero__datos dt {
+  margin: 0 0 var(--sp-1);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .ab-hero__datos dd {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1;
+  color: var(--c-texto, #333333);
+  font-variant-numeric: tabular-nums;
 }
 
 /* --- Adaptacion ---------------------------------------------------------- */
@@ -342,7 +349,7 @@
 @media (max-width: 900px) {
   .d2 .ab-origen__inner,
   .d2 .ab-mas__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
-  .d2 .ab-porque__lista { grid-template-columns: 1fr; }
+  .d2 .ab-principio { grid-template-columns: 1fr; gap: var(--sp-3); }
   /* Los anillos, primero: en una columna la ilustracion arriba anuncia
      de que va la seccion antes de leer el texto. */
   .d2 .ab-origen__arte { order: -1; }

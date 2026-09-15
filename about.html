@@ -218,15 +218,38 @@
     <div class="d2-ega-hero__inner">
 
       <div class="d2-ega-hero__copy">
-        <nav class="d2-ega-hero__migas" aria-label="Breadcrumb">
-          <a href="index.html">Home</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">About</span>
-        </nav>
+        
 
         <p class="eyebrow">About Rede</p>
-        <h1 class="d2-ega-hero__titulo" id="ab-hero-t">We&rsquo;ve been doing this since 2008.</h1>
-        <p class="d2-ega-hero__lead">Small by design, embedded by practice, and genuinely committed to the organisations we work with.</p>
+        <h1 class="d2-ega-hero__titulo" id="ab-hero-t">
+            We&rsquo;ve been doing this since <span class="acento">2008</span>.
+          </h1>
+          <p class="d2-ega-hero__lead">
+            Small by design, embedded by practice, and genuinely committed to the
+            organisations we work with.
+          </p>
+
+          <!-- Los tres datos salen del copy oficial: 150+ organizaciones y
+               Western Canada estan en la bio de Matthew, y 2008 en el
+               titular. No se inventa ninguno.
+
+               Van aqui porque el hero se veia vacio con solo dos lineas, y
+               porque las firmas canadienses que sirven de referencia ponen
+               ano de fundacion y tamano en el primer parrafo. -->
+          <dl class="ab-hero__datos">
+            <div>
+              <dt>Working since</dt>
+              <dd>2008</dd>
+            </div>
+            <div>
+              <dt>Organisations served</dt>
+              <dd>150+</dd>
+            </div>
+            <div>
+              <dt>Where</dt>
+              <dd>Western Canada</dd>
+            </div>
+          </dl>
 
         
 
@@ -378,91 +401,122 @@
 
   </div>
 </section>
-<section class="d2-equipo-banda" aria-labelledby="eq-banda-titulo">
-
-      <!-- El trazado de circuito del fondo. Decorativo. -->
-      <svg class="d2-equipo-banda__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 120H210L280 50H520M1440 90H1180L1120 150H860"/>
-        <path d="M120 620V470H330L400 400H610"/>
-        <path d="M1440 540H1150L1080 470H900"/>
-        <circle cx="280" cy="50" r="5"/>
+<section class="d2-equipo-firma">
+      <!-- El mismo circuito de la banda verde: es la misma seccion, asi que
+           lleva la misma energia de fondo. El trazado se cambia para que los
+           nodos no caigan detras del retrato grande de la izquierda. -->
+      <svg class="d2-equipo-firma__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M1440 90H1180L1120 150H840"/>
+        <path d="M0 620V500H250L320 430H560"/>
+        <path d="M1440 560H1120L1050 490H820"/>
         <circle cx="1120" cy="150" r="5"/>
-        <circle cx="400" cy="400" r="5"/>
-        <circle cx="1080" cy="470" r="5"/>
+        <circle cx="320" cy="430" r="5"/>
+        <circle cx="1050" cy="490" r="5"/>
       </svg>
+      <div class="d2-equipo-firma__inner">
 
-      <div class="d2-equipo-banda__inner">
-
-        <div class="d2-equipo-banda__cabecera">
-          <p class="d2-equipo-banda__eyebrow">The Rede team</p>
-          <h2 class="d2-equipo-banda__titulo" id="eq-banda-titulo">Meet the team.</h2>
-          <p class="d2-equipo-banda__lead">
+        <!-- Mismo copy que la banda verde (7/9/2026): las dos variantes son
+             la MISMA seccion, solo cambia como se coloca. El lead sube aqui
+             --antes vivia dentro de la columna de Matthew y se leia pegado a
+             su nombre, como si hablara de el y no del equipo--. -->
+        <div class="d2-equipo-firma__intro">
+          <p class="d2-equipo-firma__eyebrow">The Rede team</p>
+          <h2 class="d2-equipo-firma__titulo">Meet the team.</h2>
+          <p class="d2-equipo-firma__lead">
             Rede is a small team of engineers and energy efficiency professionals.
             We specialise in institutional facilities and complex building environments,
             and we care about the organisations and communities we work with.
           </p>
         </div>
 
-        <ol class="d2-equipo-banda__lista">
+        <div class="d2-equipo-firma__cuerpo">
 
-          <li class="d2-equipo-banda__persona">
-            <span class="d2-equipo-banda__marca" aria-hidden="true">
-              <span class="d2-equipo-banda__num">01</span>
-            </span>
-            <span class="d2-equipo-banda__marco">
+          <!-- El destacado. No es "el jefe es mas importante": es que su bio
+               es la unica que cuenta el origen de la empresa (2008), y ese
+               parrafo pide mas aire que los otros dos. -->
+          <article class="d2-equipo-firma__principal">
+            <picture>
+              <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-grande"
+                   src="assets/img/equipo/matthew.jpg"
+                   alt="Matthew Redekopp"
+                   width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-grande es-aficion" src="assets/img/equipo/matthew-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+            </picture>
+            <div class="d2-equipo-firma__principal-texto">
+              <h3 class="d2-equipo-firma__nombre d2-equipo-firma__nombre--grande">Matthew Redekopp</h3>
+              <p class="d2-equipo-firma__cred">P.Eng., CEM, LEED AP</p>
+              <p class="d2-equipo-firma__cargo">Founder and CEO</p>
+              <p class="d2-equipo-firma__bio">
+                Matthew founded Rede in 2008 to serve communities and organizations that
+                larger engineering firms were not reaching. Nearly two decades later, he
+                leads a team helping organizations across Western Canada reduce energy costs
+                and manage buildings more effectively.
+              </p>
+            </div>
+          </article>
+
+          <!-- El resto, en fila vertical. Retrato pequeño y bio completa:
+               el copy va literal, no se recorta para que quepa. -->
+          <ul class="d2-equipo-firma__resto">
+
+            <li class="d2-equipo-firma__mini">
               <picture>
-                <span class="d2-equipo-retrato"><img src="assets/img/equipo/matthew.jpg" alt="Matthew Redekopp"
-                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/matthew-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+                <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-mini"
+                     src="assets/img/equipo/marco.jpg"
+                     alt="Marco Bieri"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-mini es-aficion" src="assets/img/equipo/marco-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
               </picture>
-            </span>
-            <h3 class="d2-equipo-banda__nombre">Matthew Redekopp, P.Eng., CEM</h3>
-            <p class="d2-equipo-banda__cargo">Owner and Mechanical Engineer</p>
-          </li>
+              <div>
+                <h3 class="d2-equipo-firma__nombre">Marco Bieri</h3>
+                <p class="d2-equipo-firma__cred">P.Eng., M.Eng., M.Sc., CEM</p>
+                <p class="d2-equipo-firma__cargo">Energy Efficiency Engineer</p>
+              </div>
+            </li>
 
-          <li class="d2-equipo-banda__persona">
-            <span class="d2-equipo-banda__marca" aria-hidden="true">
-              <span class="d2-equipo-banda__num">02</span>
-            </span>
-            <span class="d2-equipo-banda__marco">
+            <li class="d2-equipo-firma__mini">
               <picture>
-                <span class="d2-equipo-retrato"><img src="assets/img/equipo/marco.jpg" alt="Marco Bieri"
-                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/marco-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
+                <span class="d2-equipo-retrato"><img class="d2-equipo-firma__foto-mini"
+                     src="assets/img/equipo/erica.jpg"
+                     alt="Erica Letchford"
+                     width="400" height="400" loading="lazy" decoding="async"><img class="d2-equipo-firma__foto-mini es-aficion" src="assets/img/equipo/erica-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
               </picture>
-            </span>
-            <h3 class="d2-equipo-banda__nombre">Marco Bieri, P.Eng., M.Eng, MSc, CEM</h3>
-            <p class="d2-equipo-banda__cargo">Senior Energy Efficiency Engineer</p>
-          </li>
+              <div>
+                <h3 class="d2-equipo-firma__nombre">Erica Letchford</h3>
+                <p class="d2-equipo-firma__cred">BID, LEED AP</p>
+                <p class="d2-equipo-firma__cargo">Director of Operations</p>
+              </div>
+            </li>
 
-          <li class="d2-equipo-banda__persona">
-            <span class="d2-equipo-banda__marca" aria-hidden="true">
-              <span class="d2-equipo-banda__num">03</span>
-            </span>
-            <span class="d2-equipo-banda__marco">
+            <!-- La cuarta persona (7/9/2026).
+                 SIN BIO a proposito: el documento de copy aprobado
+                 --2026-08-01 Website copy language-- la deja como
+                 "[Bio to be developed]", asi que no hay ninguna que poner y
+                 no se inventa. El cargo es el que ya estaba en la maqueta,
+                 pero OJO: tampoco aparece en el copy aprobado, que dice
+                 "[Title]". Confirmar los dos con Erick.
+                 Su foto es cuadrada (400x400) y no 300x420 como el resto:
+                 el CSS la recorta igual con object-fit. -->
+            <li class="d2-equipo-firma__mini">
               <picture>
-                <span class="d2-equipo-retrato"><img src="assets/img/equipo/erica.jpg" alt="Erica Letchford"
-                     width="400" height="400" loading="lazy" decoding="async"><img class="es-aficion" src="assets/img/equipo/erica-hover.jpg" alt="" aria-hidden="true" width="400" height="400" loading="lazy" decoding="async"></span>
-              </picture>
-            </span>
-            <h3 class="d2-equipo-banda__nombre">Erica Letchford, BID, LEED AP</h3>
-            <p class="d2-equipo-banda__cargo">Director of Operations</p>
-          </li>
-
-          <li class="d2-equipo-banda__persona">
-            <span class="d2-equipo-banda__marca" aria-hidden="true">
-              <span class="d2-equipo-banda__num">04</span>
-            </span>
-            <span class="d2-equipo-banda__marco">
-              <picture>
-                <img src="assets/img/equipo/enrique.png" alt="Enrique Contreras"
+                <img class="d2-equipo-firma__foto-mini"
+                     src="assets/img/equipo/enrique.png"
+                     alt="Enrique Contreras"
                      width="400" height="400" loading="lazy" decoding="async">
               </picture>
-            </span>
-            <h3 class="d2-equipo-banda__nombre">Enrique Contreras, SD MSc (Cand.)</h3>
-            <p class="d2-equipo-banda__cargo">Certified Sustainability &amp; Cleantech Specialist</p>
-          </li>
+              <div>
+                <h3 class="d2-equipo-firma__nombre">Enrique Contreras</h3>
+                <p class="d2-equipo-firma__cred">SD M.Sc. (Cand.)</p>
+                <p class="d2-equipo-firma__cargo">Certified Sustainability &amp; Cleantech Specialist</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-        </ol>
+        <!-- SIN linea de credenciales al pie (7/9/2026).
 
+             Las siglas vuelven a cada persona: "cada uno tiene lo suyo".
+             Agrupadas abajo se leian como un lote del equipo y no se sabia
+             quien tiene que. P.Eng. no es lo mismo que M.Sc.: son licencias
+             distintas y quien evalua un RFP mira quien firma. -->
       </div>
     </section>
   </div>
@@ -488,42 +542,68 @@
      verde arriba: el mismo gesto que la tarjeta de acceso y la ficha del
      FAQ, que es la marca de "esto es una pieza de Rede".
      ========================================================================== -->
-<section class="ab-porque d2-entra" aria-labelledby="ab-porque-t">
-  <div class="ab-porque__inner">
+<!-- ==========================================================================
+     WHY REDE
 
-    <div class="ab-porque__cab">
+     La primera version eran tres cajas blancas iguales con un numerito
+     01/02/03 arriba. El usuario: "super IA generica". Tenia razon: tres
+     cajas identicas en rejilla es la forma por defecto de no decidir nada,
+     y el numero no anadia informacion porque no hay orden que seguir.
+
+     Ahora es una LISTA DE PRINCIPIOS, no una rejilla de tarjetas. Cada uno
+     ocupa una fila ancha, con su afirmacion a la izquierda y la
+     explicacion a la derecha, separadas por un filete.
+
+     Por que asi:
+
+     - El contenido son tres AFIRMACIONES, no tres productos. Una tarjeta
+       dice "elige uno"; una lista dice "esto es lo que sostenemos".
+
+     - El tercero --"si no podemos medirlo, no lo afirmamos"-- es una
+       frase que se lee sola. En una caja de 200px se pierde; en una fila
+       ancha es lo que es, una declaracion.
+
+     - Y permite que el texto respire: en tres columnas cada explicacion
+       cae en seis lineas estrechas.
+     ========================================================================== -->
+<section class="ab-principios d2-entra" aria-labelledby="ab-princ-t">
+  <div class="ab-principios__inner">
+
+    <div class="ab-principios__cab">
       <p class="eyebrow">What makes the difference</p>
-      <h2 class="ab-porque__titulo" id="ab-porque-t">Why Rede</h2>
+      <h2 class="ab-principios__titulo" id="ab-princ-t">
+        Three things we don&rsquo;t compromise on.
+      </h2>
     </div>
 
-    <ul class="ab-porque__lista">
-      <li class="ab-caja" style="--i:0">
-        <span class="ab-caja__n">01</span>
-        <h3 class="ab-caja__titulo">Your data, your buildings, your plan</h3>
-        <p class="ab-caja__texto">
+    <dl class="ab-principios__lista">
+
+      <div class="ab-principio" style="--i:0">
+        <dt class="ab-principio__que">Your data, your buildings, your plan</dt>
+        <dd class="ab-principio__por">
           We don&rsquo;t apply a generic program and hope it fits. Every engagement
           starts with what&rsquo;s actually happening in your portfolio.
-        </p>
-      </li>
-      <li class="ab-caja" style="--i:1">
-        <span class="ab-caja__n">02</span>
-        <h3 class="ab-caja__titulo">Embedded for the long term</h3>
-        <p class="ab-caja__texto">
+        </dd>
+      </div>
+
+      <div class="ab-principio" style="--i:1">
+        <dt class="ab-principio__que">Embedded for the long term</dt>
+        <dd class="ab-principio__por">
           Energy management requires sustained attention, and that means a partner
           who stays engaged. We work alongside your team, at whatever cadence makes
           sense, for as long as the relationship is useful.
-        </p>
-      </li>
-      <li class="ab-caja" style="--i:2">
-        <span class="ab-caja__n">03</span>
-        <h3 class="ab-caja__titulo">Data first, always</h3>
-        <p class="ab-caja__texto">
-          Every recommendation we make is grounded in building performance data. If
-          we can&rsquo;t measure it, we won&rsquo;t claim it.
-        </p>
-      </li>
-    </ul>
+        </dd>
+      </div>
 
+      <div class="ab-principio" style="--i:2">
+        <dt class="ab-principio__que">Data first, always</dt>
+        <dd class="ab-principio__por">
+          Every recommendation we make is grounded in building performance data.
+          If we can&rsquo;t measure it, we won&rsquo;t claim it.
+        </dd>
+      </div>
+
+    </dl>
   </div>
 </section>
 
@@ -535,15 +615,43 @@
      peor termina pidiendo nombre y correo justo despues de hablar de
      valores.
      ========================================================================== -->
-<section class="ab-cierre d2-entra">
-  <div class="ab-cierre__inner">
-    <h2 class="ab-cierre__titulo">Want to talk about your buildings?</h2>
-    <div class="ab-cierre__acciones">
-      <a class="d2-btn d2-btn--solido" href="contact.html">Get in touch <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="d2-btn d2-btn--linea" href="energy-gap-analysis.html">See the Gap Analysis <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-  </div>
-</section>
+<section class="d2-cta-bal d2-entra">
+      <div class="d2-cta-bal__inner">
+
+        <div class="d2-cta-bal__texto">
+          <h2 class="d2-cta-bal__titulo">
+            Want to talk about your buildings?
+          </h2>
+          <p class="d2-cta-bal__parrafo">
+            Whether you&rsquo;re ready to start or just want to understand your options, we&rsquo;re happy to have a conversation. No lock-in, no pressure.
+          </p>
+        </div>
+
+        <!-- ul y no ol: las dos vias son alternativas, no pasos. El orden
+             no significa nada y un lector de pantalla no debe sugerirlo. -->
+        <ul class="d2-cta-bal__acciones">
+          <li class="d2-cta-bal__accion">
+            <a href="contact.html" class="d2-btn d2-btn--solido d2-cta-bal__btn">
+              Get in touch
+              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li class="d2-cta-bal__accion">
+            <a href="#" class="d2-btn d2-btn--linea d2-cta-bal__btn">
+              Book a call
+              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </section>
 </main>
 
 <footer class="d2-pie-dir">
