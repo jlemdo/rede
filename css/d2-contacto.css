@@ -133,11 +133,17 @@
    que no se parten. */
 .d2 .ct-campo--ancho { grid-column: 1 / -1; }
 
+/* La etiqueta, con el tamano y el peso de .campo__label de la
+   calculadora: --fs-small y peso medio. Yo habia puesto --fs-xs en
+   negrita, que grita mas de lo que debe una etiqueta.
+
+   El color si cambia: alla es blanco al 75% porque va sobre el panel
+   negro; aqui el gris de marca, que sobre la tarjeta da 11.4:1. */
 .d2 .ct-campo__label {
   display: block;
   margin-bottom: var(--sp-2);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold, 700);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium, 500);
   color: var(--c-texto, #333333);
 }
 
@@ -146,6 +152,31 @@
   color: var(--c-texto-suave, #6B6B6B);
 }
 
+/* LOS CAMPOS SIGUEN A LA CALCULADORA, CON UNA CORRECCION
+
+   La calculadora ya tiene dos versiones de campo: .campo --oscura, sobre
+   su panel negro-- y .campo--claro. Esta pagina usa el registro claro, y
+   se alinea con el: mismo fondo, mismo radio, mismo tiempo de
+   transicion, y el verde de marca al enfocar.
+
+   LO QUE NO SE COPIA, Y POR QUE
+
+   El borde. La calculadora usa var(--c-borde) --#E4E4E4-- que sobre este
+   fondo da 1.17:1. WCAG 1.4.11 pide 3:1 para el limite de un control, y
+   un campo de formulario lo es.
+
+   Medido sobre la tarjeta #F5F5F5:
+
+     #E4E4E4  1.17:1   el de la calculadora
+     #B8B8B8  1.82:1   el que puse yo primero
+     #8A8A8A  3.17:1   pasa
+
+   Entra #8A8A8A, que ademas ya se usa en el proyecto: es el gris de la
+   linea "do nothing" del hero y el del borde de las pastillas de
+   financiacion.
+
+   No se toca la calculadora aqui: su borde tiene el mismo problema, pero
+   arreglarlo es otro cambio y en otra pagina. Queda anotado. */
 .d2 .ct-campo input,
 .d2 .ct-campo textarea {
   width: 100%;
@@ -156,9 +187,10 @@
   font-size: var(--fs-body);
   color: var(--c-texto, #333333);
   background: var(--c-blanco, #FFFFFF);
-  border: 1px solid #B8B8B8;
+  border: 1px solid #8A8A8A;
   border-radius: var(--radio-sm, 6px);
-  transition: border-color .16s ease, box-shadow .16s ease;
+  transition: border-color var(--trans-media, 250ms ease),
+              box-shadow var(--trans-media, 250ms ease);
 }
 
 .d2 .ct-campo textarea {
@@ -169,10 +201,12 @@
 .d2 .ct-campo input:focus,
 .d2 .ct-campo textarea:focus {
   outline: none;
-  border-color: var(--c-verde-hover, #026F00);
+  /* El verde de MARCA al enfocar, igual que .campo--claro:focus-within de
+     la calculadora. Es el mismo gesto en las dos paginas. */
+  border-color: var(--c-verde, #39B54A);
   /* El anillo va en box-shadow y no en outline: asi sigue el radio del
      campo en vez de dibujar un rectangulo alrededor. */
-  box-shadow: 0 0 0 3px rgba(2, 111, 0, .16);
+  box-shadow: 0 0 0 3px rgba(57, 181, 74, .22);
 }
 
 .d2 .ct-campo.tiene-error input,
