@@ -611,3 +611,24 @@
 .d2 .d2-cta-bal:not([data-comp-tono="oscuro"]) .eyebrow {
   color: var(--c-verde-hover, #026F00);
 }
+
+
+/* ==========================================================================
+   RUN — LA IMAGEN VA DEBAJO EN MOVIL (15/9/2026)
+
+   El hero de Energy Gap Analysis pone su ilustracion ARRIBA en una sola
+   columna --order:-1-- y ahi tiene sentido: es una imagen de portada que
+   anuncia de que va la pagina antes de leer nada.
+
+   La de RUN es otra cosa. Es un DIAGRAMA: edificios que alimentan RUN y
+   RUN que devuelve tres salidas. Un diagrama no se entiende antes de
+   saber que se esta mirando, asi que va despues del texto y los botones,
+   que es como lo pide la referencia de movil.
+
+   Solo se anula el orden. El resto --ancho completo, sin sangria-- se
+   hereda tal cual.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .d2 .run-hero .d2-ega-hero__arte { order: 0; }
+}

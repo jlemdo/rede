@@ -284,13 +284,20 @@
 
     <div class="d2-ega-hero__arte">
       <picture>
-        <!-- PENDIENTE: las dos imagenes. En cuanto lleguen, se dejan en
-             assets/img/run/ con estos nombres y funcionan sin tocar nada
-             mas. -->
-        <source media="(min-width: 901px)" srcset="assets/img/run/run-flujo-escritorio.webp">
+        <!-- Dos versiones, y no son recortes de la misma: la de
+             escritorio pone los edificios en columna a la izquierda y las
+             salidas a la derecha; la de movil los reparte en dos por dos
+             alrededor de RUN, que es lo unico que funciona en vertical.
+
+             width y height son los REALES de cada archivo. Sin ellos el
+             navegador no sabe cuanto reservar y el texto salta cuando la
+             imagen carga. -->
+        <source media="(min-width: 901px)"
+                srcset="assets/img/run/run-flujo-escritorio.webp"
+                width="1440" height="1080">
         <img src="assets/img/run/run-flujo-movil.webp"
              alt="Buildings feeding utility data into RUN, which reports building performance, energy costs and carbon"
-             width="1209" height="783" decoding="async">
+             width="1000" height="1000" decoding="async">
       </picture>
     </div>
 
