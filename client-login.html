@@ -3,8 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- La pagina vive en _paginas/ --el guion bajo hace que GitHub Pages no
+     la publique-- pero el CSS, el JS y las imagenes estan en la raiz.
+
+     <base> resuelve las rutas de golpe: las del marcado y tambien las que
+     algun JS escribe en tiempo de ejecucion, que es la razon por la que
+     la copia privada se hizo asi en su dia. -->
 <title>Client Login | Rede Energy Solutions</title>
-<meta name="description" content="Sign in to RUN, the Rede Utility Navigator, to see how your buildings are performing.">
+<meta name="description" content="Sign in to RUN, the Rede Utility Navigator: your utility data for every building, every meter and every vendor in one place.">
 
 <!-- Maqueta de trabajo interna. No debe indexarse. -->
 <meta name="robots" content="noindex, nofollow">
@@ -15,182 +22,455 @@
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/v1.css">
+<link rel="stylesheet" href="css/d2.css">
+<link rel="stylesheet" href="css/d2-variantes.css">
+<link rel="stylesheet" href="css/d2-acceso.css">
 </head>
-<body>
-
-<!-- ==========================================================================
-     CLIENT LOGIN
-     El brief §5.2 pide que sea accesible pero fuera de la navegacion
-     principal. Es la puerta a RUN, la plataforma de datos de utilities.
-
-     Cabecera reducida: en una pagina de acceso, el menu completo distrae.
-     ========================================================================== -->
-
-<header class="header header--simple">
+<body class="d2">
+<header class="header" id="header">
   <div class="header__inner">
+
     <a href="index.html" class="header__logo" aria-label="Rede Energy Solutions, home">
       <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
     </a>
-    <a href="index.html" class="volver-sitio">
-      <svg width="16" height="12" viewBox="0 0 18 12" aria-hidden="true">
-        <path d="M6.5 1L1.5 6L6.5 11M2 6h15" fill="none" stroke="currentColor"
-              stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Back to site
-    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false" aria-controls="drop-solutions">
+            Solutions
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="nav__drop" id="drop-solutions" hidden="">
+
+            <ul class="nav__drop__lista">
+              <li>
+                <a href="energy-gap-analysis.html" data-mega-img="assets/img/banners/senal-1.jpg" data-mega-cif="9.5%" data-mega-txt="average historical cost reduction for schools.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Lupa sobre grafico: el diagnostico -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"></circle>
+                      <path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                      <path d="M8 11.5v2M10.5 8.5v5M13 10v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                  <span>Energy Gap Analysis<small>Affordable one-time diagnostic</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="run.html" data-mega-img="assets/img/banners/consumo-descendente.jpg" data-mega-cif="$2.94M" data-mega-txt="identified for one Western Canadian school district.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Panel de control: la plataforma -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                      <path d="M3 9h18" stroke="currentColor" stroke-width="1.8"></path>
+                      <path d="M7 13v3M11 12v4M15 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                  <span>RUN<small>Utility management platform</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="recommissioning.html" data-mega-img="assets/img/banners/esquema-mecanico.jpg" data-mega-cif="1.8 yrs" data-mega-txt="average simple payback across school projects.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Llave inglesa: el ajuste de la instalacion.
+                         Un solo trazo cerrado: boca abierta arriba y mango en
+                         diagonal. El anterior llevaba un fragmento suelto que
+                         se leia como un trazo roto. -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M15.6 3.4a5 5 0 00-4.9 8.3l-6.4 6.4a1.9 1.9 0 002.6 2.6l6.4-6.4a5 5 0 008.3-4.9l-3.1 3.1-3.4-.6-.6-3.4 3.1-3.1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                  <span>Recommissioning<small>Project-based service</small></span>
+                </a>
+              </li>
+
+              <li>
+                <a href="energy-management.html" data-mega-img="assets/img/banners/senal-3.jpg" data-mega-cif="2008" data-mega-txt="working with public sector portfolios since.">
+                  <span class="nav__drop__icono" aria-hidden="true">
+                    <!-- Ciclo continuo: el programa que no termina.
+                         Puntas en V tangentes al arco. Las anteriores eran
+                         escuadras y no se leian como flecha. -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M20.5 12a8.5 8.5 0 01-14.6 5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+                      <path d="M3.5 12a8.5 8.5 0 0114.6-5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+                      <path d="M9.4 18.4L5.9 17.9l-.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M14.6 5.6l3.5.5.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                  <span>Energy Management<small>Full-service program</small></span>
+                </a>
+              </li>
+            </ul>
+
+            <!-- El destacado: en la referencia es una imagen suelta. Aqui la
+                 imagen va de fondo y encima el dato que Rede tiene que contar. -->
+            <div class="nav__drop__destacado">
+              <img src="assets/img/banners/esquema-mecanico.jpg" alt="" aria-hidden="true" decoding="async" data-mega-destino="">
+              <p class="nav__drop__cifra" data-mega-cifra="">$2.94M</p>
+              <p class="nav__drop__texto" data-mega-texto="">
+                identified for one Western Canadian school district.
+              </p>
+              <a href="#calculator" class="nav__drop__enlace">
+                Check your opportunity
+                <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+                  <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+        <li class="nav__item"><a class="nav__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="client-login.html" class="d2-btn d2-btn--linea header__login-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"></circle>
+          <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        Client Login
+      </a>
+      <a href="#contact" class="d2-btn d2-btn--solido">
+        Book a Call
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+    <!-- El velo: atenua la pagina y es la zona de cierre al tocar fuera. -->
+  <div class="menu-velo" id="menu-velo" hidden=""></div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden=""><div class="mobile-menu__cabecera"><a href="index.html" class="mobile-menu__logo" aria-label="Rede Energy Solutions, home">
+      <img src="assets/Rede-logo.svg" alt="Rede, Building Energy Efficiency" width="360" height="108">
+    </a><button type="button" class="mobile-menu__cerrar" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path></svg></button></div>
+
+    <!-- El panel tapa el header entero, asi que la marca se repite aqui: sin
+         ella el menu abierto no dice de quien es. -->
+    
+
+    <nav aria-label="Mobile">
+
+      <p class="mobile-menu__rotulo">Solutions</p>
+      <div class="mobile-menu__sub">
+        <a href="energy-gap-analysis.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"></circle>
+              <path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              <path d="M8 11.5v2M10.5 8.5v5M13 10v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+              </svg>
+          </span>
+          <span>Energy Gap Analysis<small>Affordable one-time diagnostic</small></span>
+        </a>
+        <a href="run.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+              <path d="M3 9h18" stroke="currentColor" stroke-width="1.8"></path>
+              <path d="M7 13v3M11 12v4M15 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+          </span>
+          <span>RUN<small>Utility management platform</small></span>
+        </a>
+        <a href="recommissioning.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M15.6 3.4a5 5 0 00-4.9 8.3l-6.4 6.4a1.9 1.9 0 002.6 2.6l6.4-6.4a5 5 0 008.3-4.9l-3.1 3.1-3.4-.6-.6-3.4 3.1-3.1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+              </svg>
+          </span>
+          <span>Recommissioning<small>Project-based service</small></span>
+        </a>
+        <a href="energy-management.html">
+          <span class="mobile-menu__icono" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M20.5 12a8.5 8.5 0 01-14.6 5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+              <path d="M3.5 12a8.5 8.5 0 0114.6-5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+              <path d="M9.4 18.4L5.9 17.9l-.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14.6 5.6l3.5.5.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+          </span>
+          <span>Energy Management<small>Full-service program</small></span>
+        </a>
+      </div>
+
+      <a href="about.html" class="mobile-menu__raiz">About</a>
+      <a href="contact.html" class="mobile-menu__raiz">Contact</a>
+      <a href="client-login.html" class="mobile-menu__raiz">Client Login</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--primary btn--block">Book a Call</a>
   </div>
 </header>
 
-<main class="acceso">
-  <div class="acceso__inner">
+<!-- ==========================================================================
+     CLIENT LOGIN — LA PUERTA DE RUN
 
-    <!-- Columna izquierda: el formulario -->
-    <div class="acceso__panel">
-      <p class="eyebrow">Client login</p>
-      <h1 class="acceso__titulo">Sign in to RUN</h1>
-      <p class="acceso__lead">
-        Your utility data, benchmarked and up to date. Every building, every meter,
-        every vendor, in one place.
-      </p>
+     No lleva formulario, y es deliberado. Las credenciales las emite Rede,
+     no hay alta automatica, y el panel vive fuera de esta web. Un
+     formulario que no valida nada seria peor que no tenerlo: el visitante
+     escribe su contrasena, pulsa y no pasa nada.
 
-      <form class="acceso__form" onsubmit="return false">
-        <div class="campo campo--claro">
-          <label class="campo__label" for="l-email">Work email</label>
-          <div class="campo__wrap">
-            <input class="campo__input" id="l-email" name="email" type="email"
-                   autocomplete="username" required>
-          </div>
-        </div>
+     Asi que esta pagina hace tres cosas y ninguna mas: decir donde esta la
+     puerta, como se consigue la llave, y a quien llamar si no abre.
 
-        <div class="campo campo--claro">
-          <label class="campo__label" for="l-pass">Password</label>
-          <div class="campo__wrap">
-            <input class="campo__input" id="l-pass" name="password" type="password"
-                   autocomplete="current-password" required>
-            <button class="ver-pass" type="button" aria-label="Show password"
-                    aria-pressed="false" data-ver>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"
-                      stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+     LA ANIMACION NO ES DECORADO
 
-        <div class="acceso__fila">
-          <label class="recordar">
-            <input type="checkbox" name="remember">
-            <span class="recordar__caja" aria-hidden="true">
-              <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
-                <path d="M1 5l3.5 3.5L11 1.5" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            Keep me signed in
-          </label>
-          <a class="acceso__olvido" href="#">Forgot password?</a>
-        </div>
+     La corriente recorre el circuito y ENERGIZA la tarjeta de acceso. Es la
+     metafora de lo que hace la pagina, y ademas es el lenguaje que este
+     proyecto ya tiene: el comentario del pulso de Rutas lo dice mejor que
+     yo --"si el pulso es una senal electrica que recorre el circuito, pasar
+     el raton sobre un paso es ENERGIZAR ese nodo. No encenderlo de golpe:
+     cargarlo".
+     ========================================================================== -->
 
-        <button class="btn btn--primary btn--lg btn--block" type="submit">
-          Sign in
-          <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </form>
+<main class="d2-acceso" id="contenido">
 
-      <p class="acceso__ayuda">
-        Trouble signing in? Email
-        <a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a>
-        or call <a href="tel:+17783276851">778.327.6851</a>.
+  <!-- El circuito de fondo. Cuatro trazos que convergen en la tarjeta.
+
+       pathLength="100" normaliza cada trazo para que el dasharray se
+       escriba en porcentaje: sin el habria que medir con getTotalLength()
+       y recalcular en cada cambio de tamano. -->
+  <svg class="d2-acceso__circuito" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <!-- El resplandor.
+
+           feColorMatrix con el alfa multiplicado por 19 y desplazado -9
+           devuelve el borde duro que feGaussianBlur difumina: es lo que
+           separa un brillo de una mancha. (Lucas Bebber, Codrops, 2015.)
+
+           La region del filtro va ampliada a mano. Por defecto es
+           x=-10% y=-10% w=120% h=120%, y el resplandor se CORTA en ese
+           limite: es el fallo que se lleva a todo el mundo la primera vez.
+           (Sara Soueidan, SVG Filters 101.) -->
+      <filter id="lg-glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3.5" result="b"/>
+        <feColorMatrix in="b" type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="g"/>
+        <feMerge>
+          <feMergeNode in="g"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Los rieles, siempre visibles y muy tenues: son el circuito. -->
+    <g class="d2-acceso__riel">
+      <path d="M0 150h300a20 20 0 0 1 20 20v104a20 20 0 0 0 20 20h180"/>
+      <path d="M0 610h240a20 20 0 0 0 20-20V430a20 20 0 0 1 20-20h240"/>
+      <path d="M1440 120h-330a20 20 0 0 0-20 20v122a20 20 0 0 1-20 20H890"/>
+      <path d="M1440 650h-280a20 20 0 0 1-20-20V452a20 20 0 0 0-20-20H900"/>
+    </g>
+
+    <!-- Y encima, la corriente: el mismo trazado con un guion corto que
+         recorre la ruta. Cuatro senales con retardos distintos, para que
+         el circuito lata en vez de parpadear a la vez. -->
+    <g class="d2-acceso__senal" filter="url(#lg-glow)">
+      <path style="--i:0" pathLength="100" d="M0 150h300a20 20 0 0 1 20 20v104a20 20 0 0 0 20 20h180"/>
+      <path style="--i:1" pathLength="100" d="M0 610h240a20 20 0 0 0 20-20V430a20 20 0 0 1 20-20h240"/>
+      <path style="--i:2" pathLength="100" d="M1440 120h-330a20 20 0 0 0-20 20v122a20 20 0 0 1-20 20H890"/>
+      <path style="--i:3" pathLength="100" d="M1440 650h-280a20 20 0 0 1-20-20V452a20 20 0 0 0-20-20H900"/>
+    </g>
+
+    <!-- Los nodos donde la corriente entra al panel -->
+    <g class="d2-acceso__nodo">
+      <circle cx="520" cy="294" r="6" style="--i:0"/>
+      <circle cx="520" cy="410" r="6" style="--i:1"/>
+      <circle cx="890" cy="282" r="6" style="--i:2"/>
+      <circle cx="900" cy="432" r="6" style="--i:3"/>
+    </g>
+  </svg>
+
+  <div class="d2-acceso__inner">
+
+    <div class="d2-acceso__copy d2-entra">
+      <p class="eyebrow">RUN &middot; Rede Utility Navigator</p>
+      <h1 class="d2-acceso__titulo">
+        Your utility data, organized and interpreted for the first time.
+      </h1>
+      <p class="d2-acceso__lead">
+        RUN consolidates utility data from all your vendors and buildings into one
+        place. Every building, every meter, every vendor &mdash; tracked monthly and
+        presented in a single view.
       </p>
     </div>
 
-    <!-- Columna derecha: que hay al otro lado -->
-    <aside class="acceso__aparte">
-      <p class="acceso__aparte-label">What you get inside</p>
+    <!-- LA TARJETA DE ACCESO
 
-      <ul class="ventajas">
-        <li class="ventaja">
-          <span class="ventaja__icono" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor"
-                    stroke-width="1.8" stroke-linecap="round"/>
+         Es el centro de la pagina y el punto al que llega la corriente. El
+         boton no es un submit: es un enlace al panel, que vive fuera. -->
+    <div class="d2-acceso__puerta d2-entra">
+
+      <div class="d2-acceso__marca" aria-hidden="true">
+        <!-- El simbolo de energia: un anillo que se carga. El trazo se
+             dibuja al entrar y despues respira muy despacio.
+
+             pathLength="100" otra vez: el dasharray va en porcentaje y no
+             depende del radio. -->
+        <svg viewBox="0 0 64 64" fill="none">
+          <circle class="d2-acceso__aro-base" cx="32" cy="32" r="27"/>
+          <circle class="d2-acceso__aro" cx="32" cy="32" r="27" pathLength="100"/>
+          <path class="d2-acceso__rayo" d="M35.5 17L23 35h8.5L28.5 47L41 29h-8.5z"/>
+        </svg>
+      </div>
+
+      <p class="d2-acceso__eti">Access information</p>
+      <h2 class="d2-acceso__puerta-titulo">Sign in to RUN</h2>
+      <p class="d2-acceso__puerta-texto">
+        Use the login and password provided by Rede to access your utility dashboard.
+        The dashboard is optimized for desktop viewing.
+      </p>
+
+      <a class="d2-btn d2-btn--solido d2-acceso__cta" href="#" data-acceso-cta>
+        Open the dashboard
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <p class="d2-acceso__nota">
+        Don&rsquo;t have credentials yet? Rede issues them when your subscription starts.
+      </p>
+    </div>
+
+    <!-- SOPORTE
+
+         Va despues de la puerta y no antes: quien llega aqui quiere entrar,
+         no leer. Pero tiene que estar en la misma pantalla, porque el
+         momento en que hace falta es justo cuando el boton no funciona. -->
+    <div class="d2-acceso__apoyo d2-entra">
+      <p class="d2-acceso__apoyo-eti">Support</p>
+      <p class="d2-acceso__apoyo-texto">
+        For any technical support or assistance, get in touch and we will reply or
+        call you shortly.
+      </p>
+      <ul class="d2-acceso__vias">
+        <li>
+          <a href="mailto:matthew@getrede.ca">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <div>
-            <h2 class="ventaja__titulo">Portfolio benchmarking</h2>
-            <p class="ventaja__texto">
-              See how every building compares, ranked by energy intensity and cost.
-            </p>
-          </div>
+            matthew@getrede.ca
+          </a>
         </li>
-
-        <li class="ventaja">
-          <span class="ventaja__icono" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M3 17l5-5 4 3 8-8" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M15 7h5v5" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round"/>
+        <li>
+          <a href="tel:+17783276851">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <div>
-            <h2 class="ventaja__titulo">Monthly cost and use trending</h2>
-            <p class="ventaja__texto">
-              Year-over-year comparisons that flag problems early, not at year end.
-            </p>
-          </div>
+            778.327.6851
+          </a>
         </li>
-
-        <li class="ventaja">
-          <span class="ventaja__icono" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
-                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <li>
+          <a href="contact.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.8 8.8 0 0 1-3.8-.9L3 20.5l1.6-4.9A8.4 8.4 0 1 1 21 11.5z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <div>
-            <h2 class="ventaja__titulo">Carbon and GHG reporting</h2>
-            <p class="ventaja__texto">
-              Emissions by building, vendor, and energy type, ready for the board.
-            </p>
-          </div>
+            Send a support request
+          </a>
         </li>
       </ul>
+    </div>
 
-      <div class="acceso__nota">
-        <p class="acceso__nota-titulo">Not a client yet?</p>
-        <p class="acceso__nota-texto">
-          Start with an opportunity check and see what your buildings may be costing you.
-        </p>
-        <a class="enlace-flecha enlace-flecha--claro" href="index.html#calculator">
-          Check your opportunity
-          <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </aside>
   </div>
 </main>
 
-<footer class="pie pie--minimo">
-  <div class="pie__base">
-    <div class="pie__base-inner">
-      <p class="pie__legal">&copy; 2026 Rede Energy Solutions Ltd.</p>
-      <ul class="pie__legales">
-        <li><a href="#">Privacy policy</a></li>
-        <li><a href="#">Terms of use</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
+<footer class="d2-pie-dir">
+      <div class="d2-pie-dir__inner">
 
-<script src="js/login.js"></script>
+        <div class="d2-pie-dir__marca">
+          <a href="index.html" class="d2-pie-dir__logo" aria-label="Rede Energy Solutions, home">
+            <img src="assets/img/rede-logo-white.png" alt="Rede, Building Energy Efficiency" width="376" height="100">
+          </a>
+          <p class="d2-pie-dir__tagline">
+            Energy management for public sector and multi-site organizations across
+            Western Canada.
+          </p>
+          <p class="d2-pie-dir__pron">
+            <a class="d2-pie-social" href="#" target="_blank" rel="noopener" aria-label="Rede Energy Solutions on LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
+              </svg>
+            </a>
+          </p>
+        </div>
+
+        <nav class="d2-pie-dir__nav" aria-label="Footer">
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Solutions</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="energy-gap-analysis.html">Energy Gap Analysis</a></li>
+              <li><a href="#">Site Investigation</a></li>
+              <li><a href="recommissioning.html">Recommissioning</a></li>
+              <li><a href="energy-management.html">Energy Management</a></li>
+              <li><a href="run.html">RUN</a></li>
+            </ul>
+          </div>
+
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Company</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#calculator">Check your opportunity</a></li>
+            </ul>
+          </div>
+
+          <div class="d2-pie-dir__col">
+            <h2 class="d2-pie-dir__titulo">Get in touch</h2>
+            <ul class="d2-pie-dir__lista">
+              <li><a href="tel:+17783276851">778.327.6851</a></li>
+              <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+            </ul>
+            <address class="d2-pie-dir__direccion">
+              PO Box 23<br>
+              Bowen Island, BC V0N 1G0
+            </address>
+          </div>
+        </nav>
+      </div>
+
+      <div class="d2-pie-dir__base">
+        <div class="d2-pie-dir__base-inner">
+          <p class="d2-pie-dir__legal">© 2026 Rede Energy Solutions Ltd.</p>
+          <ul class="d2-pie-dir__legales">
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of use</a></li>
+            <li><a href="client-login.html" class="d2-pie-dir__login">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"></circle>
+                <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+              Client Login
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+<script src="js/d2.js"></script>
+<script src="js/d2-header.js"></script>
+<script src="js/d2-composicion.js"></script>
+<script src="js/d2-carrusel.js"></script>
+<script src="js/d2-hubspot.js"></script>
+
 </body>
 </html>
