@@ -68,7 +68,14 @@
   /* Fondo oscuro: el circuito necesita contraste para leerse, y ademas
      separa esta pagina del resto del sitio, que es lo correcto para una
      puerta de acceso. */
-  background: #111111;
+  /* El verde de la seccion de equipo del home (15/9/2026), por peticion
+     del cliente. Antes era #111111.
+
+     El cambio obliga a repintar la animacion: sobre este verde el verde de
+     marca #39B54A cae a 3.51:1 --medido-- y no llega al minimo. La
+     corriente y los nodos pasan a blanco (9.36:1) y el eyebrow al verde
+     claro #B0E1B7 (6.38:1). */
+  background: #1A5121;
   color: #FFFFFF;
   padding-block: clamp(64px, 8vw, 116px);
   /* Que la pagina llene la ventana aunque el contenido sea corto: sin
@@ -92,7 +99,9 @@
    ruta por la que va a pasar la corriente. */
 .d2 .d2-acceso__riel path {
   fill: none;
-  stroke: rgba(255, 255, 255, .09);
+  /* .14 y no .09: sobre el verde, mas claro que el negro anterior,
+       el trazado al 9% se perdia. */
+    stroke: rgba(255, 255, 255, .14);
   stroke-width: 1.4;
 }
 
@@ -100,15 +109,19 @@
    asi que la pagina nunca queda vacia. */
 .d2 .d2-acceso__senal path {
   fill: none;
-  stroke: var(--c-verde-marca, #39B54A);
+  /* Blanca, no verde: sobre el fondo verde el verde de marca casi
+       desaparece. Y el blanco lee mejor como "corriente". */
+    stroke: #FFFFFF;
   stroke-width: 2.2;
   stroke-linecap: round;
   opacity: .22;
 }
 
 .d2 .d2-acceso__nodo circle {
-  fill: #111111;
-  stroke: var(--c-verde-marca, #39B54A);
+  /* Relleno al color del fondo para que el nodo se vea calado, y el
+       aro en blanco como la corriente que lo recorre. */
+    fill: #1A5121;
+  stroke: #FFFFFF;
   stroke-width: 1.8;
   opacity: .5;
 }
@@ -183,9 +196,9 @@
 /* --- LA COLUMNA DE ARGUMENTO -------------------------------------------- */
 
 .d2 .d2-acceso .eyebrow {
-  /* Sobre este fondo el verde de marca da 7.09:1, muy por encima del
-     minimo. Es el verde que identifica a Rede y aqui si se puede usar. */
-  color: var(--c-verde-marca, #39B54A);
+  /* Verde CLARO y no el de marca (15/9/2026): sobre el fondo verde el
+     #39B54A da 3.51:1 y no llega al minimo de 4.5. Este da 6.38. */
+  color: #B0E1B7;
 }
 
 .d2 .d2-acceso__titulo {
@@ -203,7 +216,7 @@
   max-width: 52ch;
   font-size: 1.0625rem;
   line-height: 1.65;
-  color: #D8D8D8;
+  color: #D8D8D8;   /* 6.57:1 sobre el verde, comprobado */
 }
 
 /* --- LA PUERTA ---------------------------------------------------------- */
@@ -443,4 +456,44 @@
   .d2 .d2-acceso__aro { stroke-dashoffset: 0; }
   .d2 .d2-acceso__rayo { opacity: 1; }
   .d2 .d2-acceso__puerta::before { opacity: .6; }
+}
+
+
+/* --- El velo sobre el circuito (15/9/2026) ------------------------------
+
+   Una capa que oscurece un poco la escena entre la animacion y el
+   contenido. Lo pidio el cliente para que el texto y la caja blanca ganen
+   separacion del fondo.
+
+   POR QUE UN ::after Y NO BAJAR LA OPACIDAD DEL CIRCUITO
+
+   Bajando la opacidad del SVG la corriente se apaga entera y pierde la
+   sensacion de energia, que es lo que sostiene la pagina. El velo, en
+   cambio, hunde el fondo y deja el brillo del trazo intacto: la senal
+   sigue leyendose igual de viva, pero sobre una base mas oscura.
+
+   Es un degradado y no un color plano: mas denso en el centro --donde
+   esta la caja-- y casi transparente en los bordes, para que las esquinas
+   del circuito sigan respirando.
+
+   Va con z-index 1, entre el SVG (sin z-index, al fondo) y el __inner
+   (z-index 2). Y con pointer-events:none, que no hay nada que pulsar. */
+
+.d2 .d2-acceso::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 70% at 50% 50%,
+      rgba(8, 30, 12, .46) 0%,
+      rgba(8, 30, 12, .30) 45%,
+      rgba(8, 30, 12, .10) 100%);
+}
+
+/* El contenido, por encima del velo. */
+.d2 .d2-acceso__inner {
+  position: relative;
+  z-index: 2;
 }

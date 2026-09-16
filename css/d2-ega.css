@@ -631,6 +631,22 @@
 
 @media (max-width: 900px) {
   .d2 .run-hero .d2-ega-hero__arte { order: 0; }
+
+  /* Y lo mismo en Energy Management y Recommissioning: la ilustracion es
+     el cierre del hero, no su entrada. Las cuatro paginas de solucion se
+     comportan igual en movil. */
+  .d2 :is(.em-hero, .rc-hero) .d2-ega-hero__arte { order: 0; }
+
+  /* About, igual que RUN: la imagen DEBAJO del texto en movil (15/9/2026)
+
+     La regla general sube el arte con order:-1 porque en EGA la ilustracion
+     entra antes que el copy. Aqui no: el hero de About abre con el titulo y
+     los datos --anos, proyectos-- y la escena del campus es el cierre, no
+     la entrada. Se pidio expresamente asi.
+
+     Solo se anula el orden; el resto --ancho completo, sin sangria-- se
+     hereda tal cual. */
+  .d2 .ab-hero .d2-ega-hero__arte { order: 0; }
 }
 
 
@@ -663,4 +679,754 @@
   font-size: var(--fs-small);
   line-height: 1.5;
   color: var(--c-texto-suave, #6B6B6B);
+}
+
+
+/* ==========================================================================
+   EL PANEL DE RUN EN EL HERO (15/9/2026)
+
+   Sustituye a la captura del panel. Los seis datos arriba y la grafica de
+   distribucion anual debajo, dibujados en vivo.
+
+   LOS COLORES IDENTIFICAN, NO DECORAN
+
+   Cada tipo de dato lleva el suyo y se repite en la grafica: el verde
+   claro es electricidad tanto en la cifra como en la barra, el verde
+   pleno es gas natural en las dos. Asi la leyenda de abajo sirve para
+   leer las dos mitades del panel y no hay que aprenderse dos codigos.
+
+   Los tres roles de cifra:
+     base ....... gris. Es el punto de partida, el dato contra el que se
+                  compara. No debe llamar la atencion.
+     actual ..... verde claro sobre fondo tenue. El valor de hoy.
+     cambio ..... verde pleno, invertido. Es la noticia del panel y el
+                  unico que se lee de lejos.
+
+   EL TAMANO SE AJUSTA CON --run-panel-escala
+
+   Un solo transform sobre el contenedor, no veinte tamanos de fuente. Al
+   escalar con transform el navegador no rehace la maqueta: el panel entero
+   crece o mengua como una pieza, y las proporciones internas se mantienen
+   exactas. El origen esta arriba a la derecha para que el panel se apoye
+   en el borde de la ilustracion y no se separe del texto al encoger.
+   ========================================================================== */
+
+.d2 .run-panel {
+  margin: 0;
+  padding: clamp(16px, 1.6vw, 22px);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: var(--d2-radio, 6px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .06);
+  /* El zoom. El valor lo pone el guion.
+
+     PARTE DE .8 Y NO DE 1 (15/9/2026)
+
+     El usuario fijo -20 como tamano maximo: a partir de ahi el panel
+     empezaba a competir con el titular. Asi que .8 es el techo y el punto
+     de partida, y los botones bajan desde ahi.
+
+     EL ORIGEN, A LA IZQUIERDA
+
+     Estaba en top right y al encoger el panel se despegaba por el lado
+     izquierdo --184px de hueco a -20 en una pantalla de 1900--, que es lo
+     que se veia como "colgado". Con top left el borde izquierdo queda
+     clavado y lo que sobra se va por la derecha, contra el margen de la
+     pagina, donde no molesta. */
+  transform: scale(var(--run-panel-escala, .8));
+  transform-origin: top left;
+  transition: transform .28s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- Los seis datos --- */
+
+.d2 .run-panel__cifras {
+  display: grid;
+  /* Tres columnas y dos filas, como en el panel original: cada fila es una
+     lectura completa --de donde se parte, donde se esta, cuanto ha
+     cambiado-- y se lee en horizontal. */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: clamp(14px, 1.4vw, 18px);
+}
+
+.d2 .run-panel__dato {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  min-width: 0;
+}
+
+.d2 .run-panel__eti {
+  font-size: .625rem;
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+  /* Las etiquetas no se parten: "Last 12 months" cabe en una linea. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.d2 .run-panel__val {
+  font-size: clamp(1.25rem, 1.6vw, 1.6rem);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.1;
+  /* Cifras de ancho fijo: sin esto las dos columnas de valores bailan al
+     cambiar de 158 a 109. */
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .run-panel__uni {
+  font-size: .625rem;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .run-panel__dato--base {
+  background: var(--c-superficie-alt, #F4F4F4);
+}
+.d2 .run-panel__dato--base .run-panel__val { color: var(--c-texto, #333333); }
+
+.d2 .run-panel__dato--actual {
+  background: var(--c-verde-claro, #E8F5E8);
+}
+.d2 .run-panel__dato--actual .run-panel__val { color: var(--c-verde-hover, #026F00); }
+
+.d2 .run-panel__dato--cambio {
+  background: var(--c-verde-hover, #026F00);
+}
+/* Invertido: sobre el verde oscuro, el texto va en blanco. El .78 de la
+   etiqueta da 4.9:1, por encima del minimo. */
+.d2 .run-panel__dato--cambio .run-panel__eti { color: rgba(255, 255, 255, .78); }
+.d2 .run-panel__dato--cambio .run-panel__val { color: var(--c-blanco, #FFFFFF); }
+
+/* --- La grafica --- */
+
+.d2 .run-panel__titulo-gr {
+  margin: 0 0 8px;
+  font-size: .6875rem;
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .run-gr {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.d2 .run-gr__rejilla line {
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 1;
+}
+
+.d2 .run-gr__elec { fill: #9BD5A4; }
+.d2 .run-gr__gas  { fill: var(--c-verde-hover, #026F00); }
+
+.d2 .run-gr__coste {
+  fill: none;
+  stroke: #1A5121;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* --- Las animaciones, el mismo lenguaje que la grafica del home ---------
+
+   Las barras suben desde la base y la linea de coste se traza despues,
+   cuando ya hay algo sobre lo que leerla. Es el orden en que se cuenta:
+   primero cuanta energia, luego cuanto costo.
+
+   EL ORIGEN VA EN LA BASE DEL LIENZO, NO EN CADA BARRA
+
+   En SVG transform-origin se mide sobre el sistema de coordenadas, asi
+   que "bottom" escalaria cada barra desde su propio centro y saldrian
+   creciendo hacia los dos lados. Con transform-box:view-box y el origen
+   en y=250 --la base del area de dibujo-- todas brotan del eje.
+
+   LAS DOS CAPAS DE CADA BARRA VAN JUNTAS
+
+   Electricidad y gas comparten el indice --i, asi que suben a la vez y la
+   barra apilada crece como una pieza en vez de separarse en dos tramos.
+
+   Solo se anima transform y stroke-dashoffset: las dos viven en el
+   compositor. Animar height o y obligaria a recalcular el SVG en cada
+   fotograma, y aqui hay 32 rectangulos. */
+
+.d2 :is(.run-gr__elec, .run-gr__gas) {
+  transform: scaleY(0);
+  /* La base del area de dibujo en el lienzo achatado (210 de alto). */
+  transform-origin: 0 160px;
+  transform-box: view-box;
+}
+
+.d2 .run-gr__coste {
+  /* 1400 cubre de sobra el largo real del trazado. */
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .es-visible :is(.run-gr__elec, .run-gr__gas) {
+    animation: run-gr-sube .5s cubic-bezier(.32, .72, 0, 1) forwards;
+    /* 38ms por ano: los dieciseis entran en poco mas de medio segundo y se
+       lee como una serie que se despliega, no como un parpadeo. */
+    animation-delay: calc(.35s + var(--i) * .038s);
+  }
+
+  .d2 .es-visible .run-gr__coste {
+    /* Arranca cuando las barras ya casi estan: .35 de espera + 16 x .038
+       son 0.96s, y se le da un respiro antes de trazar encima. */
+    animation: run-gr-traza 1.1s cubic-bezier(.32, .72, 0, 1) 1.05s forwards;
+  }
+}
+
+/* Sin animacion --o si el guion no marca la seccion-- se ve el estado
+   final: la grafica completa y quieta, nunca en blanco. */
+@media (prefers-reduced-motion: reduce) {
+  .d2 :is(.run-gr__elec, .run-gr__gas) { transform: scaleY(1); }
+  .d2 .run-gr__coste { stroke-dashoffset: 0; }
+}
+
+@keyframes run-gr-sube {
+  to { transform: scaleY(1); }
+}
+
+@keyframes run-gr-traza {
+  to { stroke-dashoffset: 0; }
+}
+
+.d2 :is(.run-gr__anos, .run-gr__escala) text {
+  font-size: 9px;
+  fill: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- La leyenda --- */
+
+.d2 .run-panel__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 10px;
+  font-size: .6875rem;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .run-panel__leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.d2 .run-panel__punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.d2 .run-panel__punto--elec  { background: #9BD5A4; }
+.d2 .run-panel__punto--gas   { background: var(--c-verde-hover, #026F00); }
+/* El coste es una linea en la grafica, asi que su marca es una raya y no
+   un cuadrado: la leyenda debe parecerse a lo que senala. */
+.d2 .run-panel__punto--coste {
+  height: 2px;
+  border-radius: 1px;
+  background: #1A5121;
+}
+
+/* --- Los controles de tamano --- */
+
+/* El hueco muerto de debajo del panel
+
+   Un transform NO cambia el espacio que el elemento reserva en la maqueta:
+   el panel se ve al 80% pero su caja sigue midiendo el 100%, y eso dejaba
+   161px vacios debajo en una pantalla de 1900.
+
+   La salida no es un margen negativo en porcentaje --los margenes
+   verticales en % se calculan sobre el ANCHO del contenedor, no sobre el
+   alto, asi que el descuento nunca cuadraria-- ni align-self, que no
+   cambia lo que la caja mide.
+
+   Se usa zoom, que a diferencia de transform SI afecta a la maqueta: el
+   elemento ocupa el espacio que se ve. Esta en todos los navegadores al
+   dia desde 2024 (Firefox 126 fue el ultimo) y es hoy propiedad estandar,
+   no la extension de Internet Explorer que fue durante anos.
+
+   Se conserva transform como respaldo para navegadores viejos: ahi el
+   panel se vera bien pero volvera a sobrar hueco debajo, que es un fallo
+   cosmetico y no uno que impida leer nada. */
+.d2 .d2-ega-hero__arte:has(.run-panel) {
+  display: flow-root;
+  align-self: start;
+  /* SIN la sangria al borde de la ventana (15/9/2026)
+
+     .d2-ega-hero__arte se sale de su columna con un margen negativo --en
+     una pantalla de 1900 son 338px-- para que la ilustracion llegue al
+     borde. Eso funciona con un dibujo de linea sobre blanco, que muere en
+     el fondo; con este panel no: tiene marco y sombra, y quedaba a 7px
+     del borde mientras el texto respiraba 331 al otro lado.
+
+     Aqui se anula y el panel se queda dentro de la rejilla, como el del
+     hero del home. */
+  margin-right: 0;
+}
+
+@supports (zoom: 0.8) {
+  .d2 .run-panel {
+    transform: none;
+    zoom: var(--run-panel-escala, .8);
+  }
+}
+
+.d2 .run-panel__zoom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .run-panel__zoom-eti {
+  margin-right: 4px;
+  font-size: .625rem;
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .run-panel__zoom button {
+  /* 28px de alto y no 44: este control es una ayuda de montaje, no parte
+     del recorrido del visitante. La zona tactil se amplia con el ::after
+     de mas abajo, que no mueve la maqueta. */
+  position: relative;
+  min-height: 28px;
+  padding: 4px 9px;
+  font: inherit;
+  font-size: .6875rem;
+  font-weight: var(--fw-semibold, 600);
+  color: var(--c-texto-cuerpo, #333333);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.d2 .run-panel__zoom button::after {
+  content: "";
+  position: absolute;
+  inset: -8px -2px;
+}
+
+.d2 .run-panel__zoom button:hover {
+  border-color: var(--c-verde-marca, #39B54A);
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .run-panel__zoom button[aria-pressed="true"] {
+  background: var(--c-verde-hover, #026F00);
+  border-color: var(--c-verde-hover, #026F00);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .run-panel { transition: none; }
+}
+
+/* En movil el panel ocupa el ancho completo y el zoom no tiene sentido:
+   ahi manda el ancho de la pantalla, no el ajuste fino. */
+@media (max-width: 900px) {
+  .d2 .run-panel {
+    /* A tamano completo: en movil el panel ya ocupa el ancho de la
+       pantalla, y encogerlo solo haria las cifras mas pequenas sin ganar
+       nada de sitio. Se anulan las dos vias, la moderna y el respaldo. */
+    transform: none;
+    zoom: 1;
+  }
+  .d2 .run-panel__zoom { display: none; }
+  .d2 .run-panel__cifras { gap: 5px; }
+  .d2 .run-panel__val { font-size: clamp(1.1rem, 4.4vw, 1.4rem); }
+}
+
+
+/* ==========================================================================
+   THE PLATFORM: LAS DOS VISTAS DE "ENERGY BY MONTH" (15/9/2026)
+
+   Sustituyen a la captura del panel de una instalacion. Son la misma serie
+   leida de dos maneras --agrupada por mes y en fila continua-- que es lo
+   que dice la seccion: todo en un sitio, mirado como haga falta.
+
+   LOS CINCO CURSOS, EN UNA ESCALA DE UN SOLO TONO
+
+   Del verde mas claro al mas oscuro. Es una secuencia, no cinco categorias
+   sueltas: el orden importa --son anos consecutivos-- y una escala
+   monocroma lo dice sola, sin necesidad de leer la leyenda.
+
+   Los cinco pasos se separan lo suficiente en luminosidad como para
+   distinguirse tambien en escala de grises, que es lo que ve quien tiene
+   deuteranopia o imprime la pagina.
+   ========================================================================== */
+
+.d2 .rp-panel {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 20px);
+  padding: clamp(14px, 1.6vw, 20px);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: var(--d2-radio, 6px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .06);
+}
+
+.d2 .rp-panel__gr { margin: 0; }
+
+.d2 .rp-panel__titulo {
+  margin: 0 0 6px;
+  font-size: .6875rem;
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .rp-gr {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.d2 .rp-gr__rejilla line {
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 1;
+}
+
+/* La escala de cursos: cinco pasos de claro a oscuro. */
+.d2 .rp-gr__b--y1 { fill: #C7E9CD; }
+.d2 .rp-gr__b--y2 { fill: #9BD5A4; }
+.d2 .rp-gr__b--y3 { fill: #5FBB6D; }
+.d2 .rp-gr__b--y4 { fill: var(--c-verde-marca, #39B54A); }
+.d2 .rp-gr__b--y5 { fill: var(--c-verde-hover, #026F00); }
+
+.d2 .rp-gr__coste {
+  fill: none;
+  /* Negro y no verde: el coste es OTRA magnitud --dolares, no energia-- y
+     lleva su propio eje a la derecha. Sacarlo de la gama verde evita que
+     se lea como un curso mas. */
+  stroke: #1A1A1A;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.d2 :is(.rp-gr__eje, .rp-gr__escala) text {
+  font-size: 9px;
+  fill: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- La leyenda, una para las dos --- */
+
+.d2 .rp-panel__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--c-borde, #E4E4E4);
+  font-size: .6875rem;
+  color: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .rp-panel__leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.d2 .rp-panel__punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.d2 .rp-panel__punto--y1 { background: #C7E9CD; }
+.d2 .rp-panel__punto--y2 { background: #9BD5A4; }
+.d2 .rp-panel__punto--y3 { background: #5FBB6D; }
+.d2 .rp-panel__punto--y4 { background: var(--c-verde-marca, #39B54A); }
+.d2 .rp-panel__punto--y5 { background: var(--c-verde-hover, #026F00); }
+/* El coste es una linea: su marca es una raya, no un cuadrado. */
+.d2 .rp-panel__punto--coste {
+  height: 2px;
+  border-radius: 1px;
+  background: #1A1A1A;
+}
+
+.d2 .rp-panel__pie {
+  margin: 0;
+  font-size: .75rem;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* --- Las animaciones, el mismo lenguaje que el resto del sitio ----------
+
+   Las barras suben desde la base y la linea de coste se traza despues. El
+   retardo va por columna --var(--i)-- y no por elemento: en la grafica
+   agrupada los cinco cursos de un mismo mes comparten indice, asi que el
+   grupo entero brota junto y se lee como una unidad.
+
+   111 columnas en total entre las dos graficas, y aun asi solo se animan
+   transform y stroke-dashoffset, que el navegador resuelve sin rehacer la
+   maqueta. */
+
+.d2 .rp-gr__b {
+  transform: scaleY(0);
+  /* La base del area de dibujo en el lienzo achatado (190 de alto). Si se
+     queda en la del lienzo anterior, las barras crecen desde un punto que
+     esta fuera y se ven desplazadas. */
+  transform-origin: 0 150px;
+  transform-box: view-box;
+}
+
+.d2 .rp-gr__coste {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .es-visible .rp-gr__b {
+    animation: rp-gr-sube .45s cubic-bezier(.32, .72, 0, 1) forwards;
+    animation-delay: calc(.2s + var(--i) * .026s);
+  }
+
+  .d2 .es-visible .rp-gr__coste {
+    /* 1.6s y no .9: la ultima columna entra a 1.5s --.2 de espera mas 51 x
+       .026-- y la linea debe trazarse sobre las barras ya puestas, no
+       adelantarse a ellas. Medido, no estimado. */
+    animation: rp-gr-traza 1.2s cubic-bezier(.32, .72, 0, 1) 1.6s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .rp-gr__b { transform: scaleY(1); }
+  .d2 .rp-gr__coste { stroke-dashoffset: 0; }
+}
+
+@keyframes rp-gr-sube { to { transform: scaleY(1); } }
+@keyframes rp-gr-traza { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 900px) {
+  /* A 390px la grafica continua son cincuenta y una columnas de 3px: ruido,
+     no informacion. Se deja solo la agrupada, que es la que responde a la
+     pregunta que trae el visitante --como va este ano contra los otros--. */
+  .d2 .rp-panel__gr:nth-of-type(2) { display: none; }
+  .d2 .rp-panel__leyenda { gap: 4px 10px; }
+}
+
+
+/* --- La segunda seccion de plataforma: columnas al reves (15/9/2026) ----
+
+   Panel a la derecha, texto a la izquierda. Alternar el lado entre dos
+   secciones seguidas de la misma forma evita que se lean como un unico
+   bloque largo.
+
+   SE INVIERTE CON order Y NO REORDENANDO EL MARCADO
+
+   En el HTML el texto sigue yendo primero en las dos secciones. Asi, al
+   apilarse en movil, el visitante lee siempre el texto antes que el
+   panel, y el recorrido con teclado o lector de pantalla es el mismo en
+   ambas. Si se hubiera invertido el marcado, en movil esta seccion
+   abriria con una grafica sin contexto.
+
+   La rejilla base es 1fr / 1.15fr --la columna del panel, mas ancha--.
+   Aqui se da la vuelta a las proporciones tambien, para que el panel siga
+   siendo el lado holgado estando a la derecha. */
+
+.plataforma--invertida .plataforma__inner {
+  /* La columna ancha es la PRIMERA, que es donde va la grafica. Espejo
+     exacto de la seccion de arriba. */
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+
+/* La GRAFICA a la izquierda y el TEXTO a la derecha: al reves que la
+   seccion de arriba, para que dos bloques seguidos de la misma forma no
+   se lean como uno solo y largo.
+
+   El marcado no se toca --el texto sigue yendo primero-- asi que en movil
+   ambas secciones apilan igual: texto y luego grafica. */
+.plataforma--invertida .plataforma__texto { order: 2; }
+.plataforma--invertida .rp-panel { order: 1; }
+
+/* Apilado: vuelve el orden natural del marcado --texto y luego panel-- en
+   las dos secciones por igual. */
+@media (max-width: 900px) {
+  .plataforma--invertida .plataforma__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .plataforma--invertida .plataforma__texto { order: 0; }
+  .plataforma--invertida .rp-panel { order: 0; }
+}
+
+
+/* --- EL BEPI: ranking de edificios en barras horizontales (15/9/2026) ---
+
+   Replica del grafico "Building Energy Performance Index" del cliente:
+   veintiseis edificios ordenados por consumo por metro cuadrado, cada
+   barra partida en electricidad y combustibles.
+
+   POR QUE HORIZONTAL Y NO VERTICAL
+
+   Las etiquetas son codigos de edificio --MAINT, CCS-S, NIDES-- y en
+   vertical habria que girarlas o recortarlas. En horizontal se leen de
+   corrido, y ademas el orden de arriba abajo ES el ranking: la lectura
+   natural coincide con el dato.
+
+   LAS CIFRAS VAN DENTRO DE LA BARRA
+
+   Solo cuando caben --mas de 26px de ancho--. Una cifra que no entra se
+   sale del color y queda flotando sobre el fondo, que es peor que no
+   ponerla: el ojo la asocia a la barra siguiente. */
+
+.d2 .rp-bepi {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.d2 .rp-bepi__rejilla line {
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.d2 .rp-bepi__elec { fill: #2E9E3E; }
+.d2 .rp-bepi__fuel { fill: #8FD49B; }
+
+.d2 .rp-bepi__eti {
+  font-size: 9px;
+  font-weight: var(--fw-semibold, 600);
+  fill: var(--c-texto-cuerpo, #333333);
+}
+
+.d2 .rp-bepi__val {
+  font-size: 8.5px;
+  font-weight: var(--fw-semibold, 600);
+  /* Blanco sobre el verde medio: 4.6:1. */
+  fill: #FFFFFF;
+}
+
+/* Sobre el verde claro el blanco se cae a 1.8:1, asi que ahi la cifra va
+   en verde oscuro, que da 5.1:1 sobre ese mismo fondo. */
+.d2 .rp-bepi__val--osc { fill: var(--c-verde-hover, #026F00); }
+
+.d2 .rp-bepi__escala text {
+  font-size: 9px;
+  fill: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .rp-panel__punto--elec2 { background: #2E9E3E; }
+.d2 .rp-panel__punto--fuel  { background: #8FD49B; }
+
+/* Las barras crecen desde la izquierda, en cascada de arriba abajo: el
+   mismo orden en que se lee un ranking. */
+.d2 :is(.rp-bepi__elec, .rp-bepi__fuel) {
+  transform: scaleX(0);
+  transform-origin: 52px 0;
+  transform-box: view-box;
+}
+
+.d2 .rp-bepi__val { opacity: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .es-visible :is(.rp-bepi__elec, .rp-bepi__fuel) {
+    animation: rp-bepi-crece .5s cubic-bezier(.32, .72, 0, 1) forwards;
+    animation-delay: calc(.2s + var(--i) * .035s);
+  }
+
+  .d2 .es-visible .rp-bepi__val {
+    /* Las cifras entran cuando su barra ya esta puesta: si aparecen antes,
+       se ven flotando sobre el fondo blanco. */
+    animation: rp-bepi-cifra .3s ease-out forwards;
+    animation-delay: calc(.6s + var(--i, 0) * .035s);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 :is(.rp-bepi__elec, .rp-bepi__fuel) { transform: scaleX(1); }
+  .d2 .rp-bepi__val { opacity: 1; }
+}
+
+@keyframes rp-bepi-crece { to { transform: scaleX(1); } }
+@keyframes rp-bepi-cifra { to { opacity: 1; } }
+
+@media (max-width: 900px) {
+  /* El BEPI se queda en movil: son barras horizontales, que es lo que
+     mejor aguanta una pantalla estrecha --el ranking se sigue leyendo de
+     arriba abajo--.
+
+     Lo que se va son las cifras de dentro. A 305px de ancho el lienzo se
+     dibuja a la mitad de escala y quedan en 4px: no se leen, y lo unico
+     que hacen es ensuciar la barra. El dato sigue en el <title> de cada
+     rectangulo, asi que un lector de pantalla lo anuncia igual. */
+  .d2 .rp-panel--bepi .rp-panel__gr { display: block; }
+  .d2 .rp-bepi__val { display: none; }
+}
+
+/* --- El trazado de fondo de los heroes (15/9/2026) ----------------------
+
+   Mismo lenguaje que .d2-res-cen__lineas, el fondo de Reviews del home:
+   recorridos ortogonales que quiebran en diagonal, con nodos calados en
+   los cruces. Cada una de las cuatro paginas de solucion lleva su propio
+   recorrido, asi que se reconocen como familia sin repetirse.
+
+   LOS VALORES SON LOS DE REVIEWS, NO OTROS PARECIDOS
+
+   Trazo rgba(57,181,74,.20) a 1.2px y la capa al 42%. Copiarlos exactos
+   --en vez de elegir unos nuevos que "queden bien"-- es lo que hace que
+   las secciones se lean como el mismo sistema y no como dos intentos.
+
+   El nodo se rellena del color del fondo para que el trazo se vea cortado
+   por debajo: es lo que da la sensacion de conexion y no de cruce.
+
+   preserveAspectRatio="none" deja que el dibujo se estire con la seccion.
+   En una textura de lineas la deformacion no se nota, y a cambio el
+   trazado cubre el ancho sea cual sea. */
+
+.d2 .d2-ega-hero__lineas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: .42;
+  pointer-events: none;
+}
+
+.d2 .d2-ega-hero__lineas path {
+  fill: none;
+  stroke: rgba(57, 181, 74, .20);
+  stroke-width: 1.2px;
+}
+
+.d2 .d2-ega-hero__lineas circle {
+  fill: var(--comp-rol, var(--c-blanco, #FFFFFF));
+  stroke: rgba(57, 181, 74, .20);
+  stroke-width: 1.2px;
+}
+
+/* El hero ya es position:relative por el arte; si algun dia dejara de
+   serlo, el trazado se iria al primer ancestro posicionado. */
+.d2 .d2-ega-hero { position: relative; }
+
+@media (max-width: 900px) {
+  /* Mas tenue en movil: con el contenido apilado el trazado cruza por
+     detras del texto en vez de por los margenes. */
+  .d2 .d2-ega-hero__lineas { opacity: .26; }
 }

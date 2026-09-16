@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/d2.css">
 <link rel="stylesheet" href="css/d2-variantes.css">
+<link rel="stylesheet" href="css/d2-ega.css">
 <link rel="stylesheet" href="css/v1.css">
 </head>
 <body class="d2">
@@ -216,44 +217,67 @@
 <!-- ==========================================================================
      HERO
      ========================================================================== -->
-<section class="serv-hero">
-  <div class="serv-hero__inner">
+<!-- EL HERO, EN LA PLANTILLA DE ENERGY GAP ANALYSIS (15/9/2026)
 
-    <nav class="miga" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#solutions">Solutions</a></li>
-        <li aria-current="page">Recommissioning</li>
-      </ol>
-    </nav>
+     Antes usaba .serv-hero: una columna de texto a ancho completo, sin
+     imagen y con sus propios tamanos. Las cuatro paginas de solucion
+     comparten ahora la misma pieza --.d2-ega-hero-- asi que tipografia,
+     espacios, botones y migas son los mismos en todas.
 
-    <p class="eyebrow">Recommissioning</p>
-    <h1 class="serv-hero__titulo">
-      Your buildings are probably not running the way they were designed to.
-    </h1>
-    <p class="serv-hero__lead">
-      Think of it as a tune-up. Over time, building automation systems drift from their
-      original settings. Schedules get changed, setpoints shift, sequences fall out of
-      sync. Recommissioning corrects that drift and recovers the energy performance you
-      have been losing.
-    </p>
+     El copy es el que ya habia; solo cambia el envoltorio.
 
-    <div class="serv-hero__acciones">
-      <a href="#" class="btn btn--primary btn--lg">
-        Talk to us about your buildings
-        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="index.html#calculator" class="btn btn--outline btn--lg">
-        Check your opportunity
-        <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+     LA IMAGEN VA EN <picture> CON DOS ANCHOS
+
+     Escritorio 1209px, movil 760. El <img> lleva la de movil, que es el
+     respaldo si el navegador no entiende <picture>: mejor caer del lado
+     ligero. Recortada del original, que traia margenes blancos. -->
+<section class="d2-ega-hero rc-hero d2-entra" data-comp-rol="hero" aria-labelledby="rc-hero-t">
+  <!-- El trazado de fondo: mismo lenguaje que el de Reviews en el home
+       --recorridos ortogonales que quiebran en diagonal, con nodos
+       calados en los cruces-- pero con un recorrido propio en cada
+       pagina, para que las cuatro no se vean iguales.
+  
+       Va al fondo con z-index -1 y aria-hidden: es textura, no
+       contenido, y no debe anunciarse ni recibir foco. -->
+  <svg class="d2-ega-hero__lineas" viewBox="0 0 1440 620"
+  preserveAspectRatio="none" aria-hidden="true">
+  <path d="M1440 90H1180L1080 190H820L720 290H360L260 390H0M1080 190V420H1320M720 290V120"/>
+  <circle cx="1080" cy="190" r="6"/>
+  <circle cx="720" cy="290" r="6"/>
+  <circle cx="360" cy="290" r="6"/>
+  </svg>
+
+  <div class="d2-ega-hero__inner">
+
+    <div class="d2-ega-hero__copy">
+      <nav class="d2-ega-hero__migas" aria-label="Breadcrumb">
+        <a href="index.html#solutions">Solutions</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Recommissioning</span>
+      </nav>
+
+      <p class="eyebrow">Recommissioning</p>
+      <h1 class="d2-ega-hero__titulo" id="rc-hero-t">Your buildings are probably not running the way they were designed to.</h1>
+      <p class="d2-ega-hero__lead">Think of it as a tune-up. Over time, building automation systems drift from their original settings. Schedules get changed, setpoints shift, sequences fall out of sync. Recommissioning corrects that drift and recovers the energy performance you have been losing.</p>
+
+      <div class="d2-ega-hero__acciones">
+        <a class="d2-btn d2-btn--solido" href="contact.html">Talk to us about your situation
+          <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="d2-btn d2-btn--linea" href="index.html#calculator">Check your opportunity</a>
+      </div>
     </div>
+
+    <div class="d2-ega-hero__arte">
+      <picture>
+        <source media="(min-width: 901px)"
+                srcset="assets/img/servicios/recommissioning.webp">
+        <img src="assets/img/servicios/recommissioning-movil.webp"
+             alt="Isometric cutaway of a building’s mechanical systems, with equipment under review highlighted in green."
+             width="760" height="500" decoding="async">
+      </picture>
+    </div>
+
   </div>
 </section>
 
@@ -562,6 +586,11 @@
                 <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
               </svg>
             </a>
+            <a class="d2-pie-social" href="#" target="_blank" rel="noopener" aria-label="Rede Energy Solutions on Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
+              </svg>
+            </a>
           </p>
         </div>
 
@@ -590,13 +619,14 @@
           <div class="d2-pie-dir__col">
             <h2 class="d2-pie-dir__titulo">Get in touch</h2>
             <ul class="d2-pie-dir__lista">
-              <li><a href="tel:+17783276851">778.327.6851</a></li>
-              <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+              <li><a href="tel:+17782376851">778.237.6851</a></li>
+              <li><a href="mailto:info@getrede.ca">info@getrede.ca</a></li>
             </ul>
             <address class="d2-pie-dir__direccion">
               PO Box 23<br>
               Bowen Island, BC V0N 1G0
             </address>
+            <p class="d2-pie-dir__horario">Hours: 9 am to 5 pm PST</p>
           </div>
         </nav>
       </div>
@@ -621,6 +651,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/d2.js"></script>
+<script src="js/d2-composicion.js"></script>
 <script src="js/d2-header.js"></script>
 </body>
 </html>

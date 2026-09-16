@@ -214,11 +214,22 @@
   </div>
 </header>
 <main id="contenido">
-<section class="d2-ega-hero d2-entra" data-comp-rol="hero" aria-labelledby="ab-hero-t">
+<section class="d2-ega-hero ab-hero d2-entra" data-comp-rol="hero" aria-labelledby="ab-hero-t">
     <div class="d2-ega-hero__inner">
 
       <div class="d2-ega-hero__copy">
-        
+        <!-- Migas: Home y no Solutions, porque About no es una solucion.
+             Mismo marcado que las cuatro paginas de solucion, para que
+             el usuario encuentre el rastro en el mismo sitio en todas.
+
+             El ultimo escalon es <span aria-current="page"> y no un
+             enlace: enlazar a la pagina en la que ya estas no lleva a
+             ninguna parte y un lector de pantalla lo anuncia igual. -->
+        <nav class="d2-ega-hero__migas" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">About</span>
+        </nav>
 
         <p class="eyebrow">About Rede</p>
         <h1 class="d2-ega-hero__titulo" id="ab-hero-t">
@@ -229,17 +240,34 @@
             organisations we work with.
           </p>
 
-          <!-- Los tres datos salen del copy oficial: 150+ organizaciones y
-               Western Canada estan en la bio de Matthew, y 2008 en el
-               titular. No se inventa ninguno.
+          <!-- Los tres datos, y de donde sale cada uno (15/9/2026)
+
+               150+ organisations . bio de Matthew en el copy oficial, y
+                                    tambien en getrede.ca: "over 150
+                                    schools and organizations".
+               59 communities ..... contados sobre el mapa "Our
+                                    Communities" del propio cliente, el
+                                    mismo que se replica mas abajo.
+               Across Canada ...... sustituye a "Western Canada", que
+                                    acotaba de mas: el sitio ya nombra BC,
+                                    Alberta, Saskatchewan, Manitoba y Yukon.
+
+               EL 2008 SE FUE DE AQUI: repetia el titular de al lado
+               --"We've been doing this since 2008"--, que ya lo dice con
+               mas fuerza. Dos veces el mismo numero en la misma pantalla
+               resta en vez de sumar.
+
+               Nada inventado: "400 buildings" se busco el 15/9/2026 en el
+               copy del cliente, en getrede.ca y en getrede.ca/about, y no
+               aparece en ninguno de los tres.
 
                Van aqui porque el hero se veia vacio con solo dos lineas, y
                porque las firmas canadienses que sirven de referencia ponen
                ano de fundacion y tamano en el primer parrafo. -->
           <dl class="ab-hero__datos">
             <div>
-              <dt>Working since</dt>
-              <dd>2008</dd>
+              <dt>Communities served</dt>
+              <dd>59</dd>
             </div>
             <div>
               <dt>Organisations served</dt>
@@ -247,7 +275,7 @@
             </div>
             <div>
               <dt>Where</dt>
-              <dd>Western Canada</dd>
+              <dd>Across Canada</dd>
             </div>
           </dl>
 
@@ -257,9 +285,36 @@
       </div>
 
       <div class="d2-ega-hero__arte">
-        <img src="assets/img/ega/portfolio-isometrico.webp"
-             alt="A portfolio of commercial buildings with selected facilities illuminated in green"
-             width="1209" height="783" decoding="async">
+        <picture>
+          <!-- EL CAMPUS, EN DOS TAMANOS
+
+               Sustituye a la isometrica generica que estaba aqui, que
+               ademas es la misma que usa Energy Gap Analysis. Esta es un
+               campus escolar, que es de lo que habla el copy.
+
+               Dos versiones porque lo util cambia con el ancho:
+
+                 escritorio  1209px, el mismo ancho que la imagen que
+                             sustituye, asi la maqueta no se mueve.
+
+                 movil       760px, y la escena ENTERA, no un recorte:
+                             aqui el conjunto es el mensaje --un campus,
+                             no un edificio-- y ampliar un trozo lo
+                             perderia. Pesa 33 KB en vez de 85.
+
+               El <img> lleva la de movil, que es el respaldo si el
+               navegador no entiende <picture>: mejor caer en la ligera.
+
+               Recortada del original, que traia 159px de blanco arriba y
+               185 abajo: quitandolos el edificio ocupa el mismo hueco a
+               mayor tamano. -->
+          <source media="(min-width: 901px)"
+                  srcset="assets/img/about/about-campus.webp"
+                  width="1209" height="613">
+          <img src="assets/img/about/about-campus-movil.webp"
+               alt="Isometric view of a school campus: several buildings with mechanical rooms, rooftop units and lit interiors highlighted in green."
+               width="760" height="385" decoding="async">
+        </picture>
       </div>
 
     </div>
@@ -296,44 +351,98 @@
     </div>
 
     <div class="ab-origen__arte">
-      <!-- LOS ANILLOS: un aro por ano, de 2008 a 2026.
+      <!-- EL MAPA DE COMUNIDADES
 
-           Es el gesto de esta pagina y no repite ninguno de los dos que ya
-           existen: la de acceso tiene una senal que VIAJA, la de contacto
-           un campo que REVELA. Aqui la figura SE ACUMULA.
+           Replica del mapa "Our Communities" del cliente: las mismas tres
+           siluetas y los mismos 59 emplazamientos, medidos sobre su imagen
+           --no colocados a ojo ni inventados--.
 
-           El radio crece por raiz --exponente .62-- y no linealmente: con
-           crecimiento lineal los primeros anos se apinan en el centro y
-           los ultimos quedan sueltos. Asi se lee como un tronco.
+           COMO SE SACARON LOS PUNTOS
 
-           pathLength="100" normaliza cada aro, de modo que los diecinueve
-           comparten la misma animacion aunque midan distinto. -->
-      <svg class="ab-anillos" viewBox="0 0 320 320" fill="none" role="img"
-           aria-label="Diagram: one ring for each year Rede has been working, from 2008 to 2026.">
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="18.0" pathLength="100" style="--i:0"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="39.7" pathLength="100" style="--i:1"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="51.3" pathLength="100" style="--i:2"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="60.8" pathLength="100" style="--i:3"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="69.2" pathLength="100" style="--i:4"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="76.8" pathLength="100" style="--i:5"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="83.8" pathLength="100" style="--i:6"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="90.4" pathLength="100" style="--i:7"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="96.6" pathLength="100" style="--i:8"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="102.6" pathLength="100" style="--i:9"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="108.3" pathLength="100" style="--i:10"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="113.8" pathLength="100" style="--i:11"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="119.1" pathLength="100" style="--i:12"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="124.2" pathLength="100" style="--i:13"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="129.2" pathLength="100" style="--i:14"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="134.1" pathLength="100" style="--i:15"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="138.8" pathLength="100" style="--i:16"/>
-        <circle class="ab-anillos__aro" cx="160" cy="160" r="143.5" pathLength="100" style="--i:17"/>
-        <circle class="ab-anillos__aro ab-anillos__aro--hoy" cx="160" cy="160" r="148.0" pathLength="100" style="--i:18"/>
+           Se detecto el verde de la imagen y se separaron los discos
+           pegados por transformada de distancia. El control es el area:
+           59 puntos explican la mancha verde, y eso es lo que hay. Donde
+           dos circulos se solapan casi por completo la referencia tampoco
+           deja distinguirlos, asi que ahi el numero es el del original.
 
-        <line class="ab-anillos__eje" x1="160" y1="160" x2="160" y2="12"/>
-        <text class="ab-anillos__marca" x="160" y="176" text-anchor="middle" style="--i:0">2008</text>
-        <text class="ab-anillos__marca ab-anillos__marca--hoy" x="160" y="8"
-              text-anchor="middle" style="--i:18">2026</text>
+           NO LLEVAN NOMBRE A PROPOSITO
+
+           El cliente no ha pasado la lista de comunidades. Poner topónimos
+           inventados junto a una silueta real haria pasar por dato algo
+           que no lo es, asi que los puntos son posiciones y nada mas.
+
+           SIN HOVER, COMO SE PIDIO
+
+           No hay tarjeta ni tooltip: los puntos solo laten. El pulso va
+           escalonado de oeste a este --el orden en que Rede crecio-- y
+           cada uno lleva su propio factor de velocidad, para que respire
+           en vez de parpadear a compas.
+
+           aria-hidden y no role="img": al lado vive el texto que cuenta lo
+           mismo, y un lector de pantalla no gana nada oyendo "59 puntos". -->
+      <svg class="ab-mapa" viewBox="0 0 1000 539" fill="none" aria-hidden="true">
+        <path class="ab-mapa__tierra" d="M0.0 0.0L51.9 139.6L84.4 181.8L53.6 284.1L89.3 349.0L103.9 414.0L180.2 496.8L211.0 511.4L414.0 529.2L414.0 462.7L435.1 522.7L534.1 526.0L542.2 360.4L553.6 527.6L767.9 509.7L722.4 251.6L698.1 188.3L704.5 128.2L691.6 68.2L545.5 76.3L543.8 86.0L608.8 99.0L547.1 113.6L534.1 154.2L529.2 131.5L511.4 125.0L526.0 86.0L517.9 74.7L331.2 66.6L306.8 230.5L314.9 68.2L159.1 43.8Z"/>
+        <path class="ab-mapa__tierra" d="M840.9 43.8L720.8 60.1L706.2 71.4L725.6 238.6L769.5 465.9L780.8 501.6L790.6 508.1L798.7 506.5L808.4 521.1L821.4 524.4L868.5 511.4L883.1 490.3L915.6 487.0L925.3 478.9L902.6 368.5L902.6 334.4L998.4 138.0L996.8 133.1L930.2 144.5L920.5 134.7L901.0 92.5L891.2 84.4L865.3 82.8L855.5 71.4L849.0 47.1Z"/>
+        <path class="ab-mapa__tierra" d="M77.9 420.5L77.9 431.8L86.0 441.6L86.0 443.2L97.4 454.5L97.4 456.2L108.8 467.5L108.8 469.2L120.1 480.5L120.1 482.1L131.5 493.5L131.5 495.1L151.0 514.6L151.0 516.2L164.0 529.2L165.6 529.2L168.8 532.5L173.7 532.5L185.1 537.3L189.9 537.3L193.2 532.5L191.6 526.0L188.3 522.7L185.1 516.2L178.6 509.7L178.6 506.5L170.5 496.8L170.5 495.1L157.5 482.1L154.2 475.6L154.2 472.4L151.0 469.2L149.4 464.3L125.0 441.6L120.1 439.9L112.0 433.4L107.1 431.8L90.9 420.5Z"/>
+      <circle class="ab-mapa__sitio" cx="241.9" cy="393.7" r="15.4" style="--i:23;--f:1.01"/>
+      <circle class="ab-mapa__sitio" cx="194.8" cy="301.9" r="15.4" style="--i:15;--f:0.93"/>
+      <circle class="ab-mapa__sitio" cx="823.1" cy="485.4" r="15.4" style="--i:56;--f:1.18"/>
+      <circle class="ab-mapa__sitio" cx="112.0" cy="277.6" r="15.4" style="--i:5;--f:0.89"/>
+      <circle class="ab-mapa__sitio" cx="274.4" cy="248.4" r="15.4" style="--i:29;--f:1.12"/>
+      <circle class="ab-mapa__sitio" cx="301.9" cy="248.4" r="15.4" style="--i:31;--f:1.03"/>
+      <circle class="ab-mapa__sitio" cx="383.1" cy="165.6" r="15.4" style="--i:37;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="207.8" cy="442.4" r="15.4" style="--i:18;--f:1.10"/>
+      <circle class="ab-mapa__sitio" cx="191.6" cy="478.1" r="15.4" style="--i:14;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="134.7" cy="246.8" r="15.4" style="--i:7;--f:1.07"/>
+      <circle class="ab-mapa__sitio" cx="420.5" cy="170.5" r="15.4" style="--i:41;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="508.1" cy="265.4" r="15.4" style="--i:49;--f:0.90"/>
+      <circle class="ab-mapa__sitio" cx="181.8" cy="280.8" r="15.4" style="--i:12;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="329.5" cy="285.7" r="15.4" style="--i:33;--f:1.26"/>
+      <circle class="ab-mapa__sitio" cx="517.9" cy="345.8" r="15.4" style="--i:52;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="215.9" cy="378.2" r="15.4" style="--i:20;--f:0.96"/>
+      <circle class="ab-mapa__sitio" cx="266.2" cy="417.2" r="15.4" style="--i:27;--f:1.16"/>
+      <circle class="ab-mapa__sitio" cx="399.4" cy="441.6" r="15.4" style="--i:40;--f:1.32"/>
+      <circle class="ab-mapa__sitio" cx="269.5" cy="121.8" r="15.4" style="--i:28;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="345.8" cy="149.4" r="15.4" style="--i:34;--f:1.05"/>
+      <circle class="ab-mapa__sitio" cx="125.0" cy="225.6" r="15.4" style="--i:6;--f:1.34"/>
+      <circle class="ab-mapa__sitio" cx="446.4" cy="274.4" r="15.4" style="--i:43;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="383.4" cy="279.2" r="15.4" style="--i:38;--f:1.28"/>
+      <circle class="ab-mapa__sitio" cx="164.8" cy="365.3" r="15.4" style="--i:9;--f:0.99"/>
+      <circle class="ab-mapa__sitio" cx="431.8" cy="448.1" r="15.4" style="--i:42;--f:0.92"/>
+      <circle class="ab-mapa__sitio" cx="254.9" cy="459.4" r="15.4" style="--i:25;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="73.5" cy="129.4" r="15.4" style="--i:1;--f:1.00"/>
+      <circle class="ab-mapa__sitio" cx="500.0" cy="228.9" r="15.4" style="--i:48;--f:1.26"/>
+      <circle class="ab-mapa__sitio" cx="68.2" cy="274.4" r="15.4" style="--i:0;--f:0.94"/>
+      <circle class="ab-mapa__sitio" cx="285.7" cy="297.1" r="15.4" style="--i:30;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="454.5" cy="306.8" r="15.4" style="--i:44;--f:1.17"/>
+      <circle class="ab-mapa__sitio" cx="86.0" cy="314.9" r="15.4" style="--i:2;--f:1.04"/>
+      <circle class="ab-mapa__sitio" cx="314.9" cy="333.6" r="15.4" style="--i:32;--f:1.12"/>
+      <circle class="ab-mapa__sitio" cx="195.6" cy="406.7" r="15.4" style="--i:16;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="482.1" cy="456.2" r="15.4" style="--i:46;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="462.7" cy="491.1" r="15.4" style="--i:45;--f:0.95"/>
+      <circle class="ab-mapa__sitio" cx="103.9" cy="108.8" r="15.4" style="--i:4;--f:1.19"/>
+      <circle class="ab-mapa__sitio" cx="526.0" cy="170.5" r="15.4" style="--i:53;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="370.9" cy="184.3" r="15.4" style="--i:35;--f:1.01"/>
+      <circle class="ab-mapa__sitio" cx="151.8" cy="284.1" r="15.4" style="--i:8;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="180.2" cy="385.6" r="15.4" style="--i:11;--f:1.08"/>
+      <circle class="ab-mapa__sitio" cx="509.7" cy="478.9" r="15.4" style="--i:50;--f:1.00"/>
+      <circle class="ab-mapa__sitio" cx="259.7" cy="360.4" r="15.4" style="--i:26;--f:1.25"/>
+      <circle class="ab-mapa__sitio" cx="840.1" cy="469.2" r="15.4" style="--i:57;--f:1.20"/>
+      <circle class="ab-mapa__sitio" cx="498.4" cy="292.2" r="15.4" style="--i:47;--f:0.97"/>
+      <circle class="ab-mapa__sitio" cx="230.5" cy="431.8" r="15.4" style="--i:21;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="855.5" cy="488.6" r="15.4" style="--i:58;--f:1.11"/>
+      <circle class="ab-mapa__sitio" cx="379.9" cy="144.5" r="15.4" style="--i:36;--f:1.29"/>
+      <circle class="ab-mapa__sitio" cx="396.1" cy="258.6" r="15.4" style="--i:39;--f:1.21"/>
+      <circle class="ab-mapa__sitio" cx="96.6" cy="294.6" r="15.4" style="--i:3;--f:0.99"/>
+      <circle class="ab-mapa__sitio" cx="215.9" cy="292.2" r="15.4" style="--i:19;--f:1.34"/>
+      <circle class="ab-mapa__sitio" cx="173.7" cy="305.2" r="15.4" style="--i:10;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="207.8" cy="319.8" r="15.4" style="--i:17;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="513.8" cy="368.5" r="15.4" style="--i:51;--f:1.23"/>
+      <circle class="ab-mapa__sitio" cx="238.6" cy="370.1" r="15.4" style="--i:22;--f:0.93"/>
+      <circle class="ab-mapa__sitio" cx="245.1" cy="415.6" r="15.4" style="--i:24;--f:1.09"/>
+      <circle class="ab-mapa__sitio" cx="189.9" cy="456.2" r="15.4" style="--i:13;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="806.0" cy="471.6" r="15.4" style="--i:54;--f:1.18"/>
+      <circle class="ab-mapa__sitio" cx="814.1" cy="508.1" r="15.4" style="--i:55;--f:1.23"/>
       </svg>
     </div>
 
@@ -652,6 +761,11 @@
                 <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
               </svg>
             </a>
+            <a class="d2-pie-social" href="#" target="_blank" rel="noopener" aria-label="Rede Energy Solutions on Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
+              </svg>
+            </a>
           </p>
         </div>
 
@@ -680,13 +794,14 @@
           <div class="d2-pie-dir__col">
             <h2 class="d2-pie-dir__titulo">Get in touch</h2>
             <ul class="d2-pie-dir__lista">
-              <li><a href="tel:+17783276851">778.327.6851</a></li>
-              <li><a href="mailto:matthew@getrede.ca">matthew@getrede.ca</a></li>
+              <li><a href="tel:+17782376851">778.237.6851</a></li>
+              <li><a href="mailto:info@getrede.ca">info@getrede.ca</a></li>
             </ul>
             <address class="d2-pie-dir__direccion">
               PO Box 23<br>
               Bowen Island, BC V0N 1G0
             </address>
+            <p class="d2-pie-dir__horario">Hours: 9 am to 5 pm PST</p>
           </div>
         </nav>
       </div>

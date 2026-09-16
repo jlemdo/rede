@@ -83,74 +83,81 @@
   color: var(--c-texto-cuerpo, #333333);
 }
 
-/* --- LOS ANILLOS -------------------------------------------------------- */
+/* --- EL MAPA DE COMUNIDADES ---------------------------------------------
 
-.d2 .ab-anillos {
+   Replica del mapa "Our Communities" del cliente. La silueta y los 59
+   emplazamientos salen de medir su imagen, no de colocarlos a ojo.
+
+   POR QUE LATEN Y NO SE ENCIENDEN AL PASAR EL RATON
+
+   Se pidio expresamente sin recuadros ni tarjetas. Un mapa quieto se lee
+   como un adorno; uno que respira dice "esto sigue vivo" sin pedir nada
+   al visitante. Ademas el hover no existe en tactil, asi que la mitad de
+   las visitas no veria ningun movimiento.
+
+   EL PULSO VA ESCALONADO, NO A COMPAS
+
+   Dos cosas lo desincronizan: el retardo por indice --de oeste a este,
+   el orden en que Rede crecio-- y un factor propio de duracion en cada
+   punto (--f). Sin el segundo, cincuenta y nueve circulos laten como un
+   estrobo; con el, el conjunto respira.
+
+   SE ANIMA opacity Y transform, NADA MAS
+
+   Las dos propiedades que el navegador resuelve en el compositor. Animar
+   r o fill obligaria a repintar el SVG entero en cada fotograma, y aqui
+   hay 59 elementos a la vez. */
+
+.d2 .ab-mapa {
   display: block;
   width: 100%;
   height: auto;
-  /* Que el resplandor del borde no se recorte: el viewBox va justo. */
+  /* El halo del pulso se sale del viewBox, que va justo a la silueta. */
   overflow: visible;
 }
 
-.d2 .ab-anillos__aro {
-  fill: none;
-  stroke: var(--c-verde-marca, #39B54A);
-  stroke-width: 1.4;
-  /* En reposo se ven todos: si el guion no corre, la figura sigue
-     completa en vez de quedarse en blanco. */
-  opacity: .34;
+.d2 .ab-mapa__tierra {
+  fill: var(--c-superficie-alt, #EDEDED);
 }
 
-/* El aro del ano en curso: el unico que lleva el verde entero. */
-.d2 .ab-anillos__aro--hoy {
-  stroke-width: 2.2;
-  opacity: 1;
+.d2 .ab-mapa__sitio {
+  fill: var(--c-verde-marca, #39B54A);
+  /* El origen en el centro de cada circulo: por defecto seria la esquina
+     del SVG y el latido se convertiria en un desplazamiento. */
+  transform-box: fill-box;
+  transform-origin: center;
+  /* En reposo se ven todos. Si el guion no corre o el usuario pidio menos
+     movimiento, el mapa sigue completo en vez de quedarse vacio. */
+  opacity: .88;
 }
-
-.d2 .ab-anillos__eje {
-  stroke: var(--c-borde, #E4E4E4);
-  stroke-width: 1;
-}
-
-.d2 .ab-anillos__marca {
-  font-size: 11px;
-  font-weight: var(--fw-bold, 700);
-  letter-spacing: .06em;
-  fill: var(--c-texto-suave, #6B6B6B);
-}
-
-.d2 .ab-anillos__marca--hoy { fill: var(--c-verde-hover, #026F00); }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Cada aro se dibuja al entrar la seccion, uno por ano.
-
-     stroke-dasharray/offset sobre un circulo con pathLength="100": el
-     recorrido se escribe en porcentaje y no depende del radio, asi que
-     los dieciocho aros comparten la misma animacion aunque midan
-     distinto. */
-  .d2 .ab-origen .ab-anillos__aro {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+  /* 1) La entrada: los puntos aparecen de oeste a este. */
+  .d2 .ab-origen .ab-mapa__sitio {
+    opacity: 0;
+    transform: scale(.4);
   }
 
-  .d2 .ab-origen.es-visible .ab-anillos__aro {
-    animation: ab-aro .9s cubic-bezier(.32, .72, 0, 1) both;
-    /* 70ms por ano: los dieciocho tardan 1.2s en aparecer y el conjunto
-       se lee como una acumulacion, no como un parpadeo. */
-    animation-delay: calc(var(--i, 0) * 70ms);
-  }
-
-  .d2 .ab-origen .ab-anillos__marca { opacity: 0; }
-
-  .d2 .ab-origen.es-visible .ab-anillos__marca {
-    animation: ab-marca .5s ease-out both;
-    animation-delay: calc(.4s + var(--i, 0) * 70ms);
+  .d2 .ab-origen.es-visible .ab-mapa__sitio {
+    animation:
+      ab-sitio-entra .5s cubic-bezier(.22, 1, .36, 1) both,
+      /* 2) Y despues el latido, en bucle. Arranca cuando ya han entrado
+            todos: 59 x 18ms + el medio segundo de la entrada. */
+      ab-sitio-late calc(2.6s * var(--f, 1)) ease-in-out
+        calc(1.6s + var(--i, 0) * 18ms) infinite;
+    animation-delay: calc(var(--i, 0) * 18ms), calc(1.6s + var(--i, 0) * 18ms);
   }
 }
 
-@keyframes ab-aro  { to { stroke-dashoffset: 0; } }
-@keyframes ab-marca { to { opacity: 1; } }
+@keyframes ab-sitio-entra {
+  to { opacity: .88; transform: scale(1); }
+}
+
+@keyframes ab-sitio-late {
+  0%, 100% { opacity: .88; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.18); }
+}
+
 
 /* --- More than engineers ------------------------------------------------ */
 
@@ -320,7 +327,16 @@
 .d2 .ab-hero__datos {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(var(--sp-5), 4vw, var(--sp-7));
+  /* Los tres datos, en UNA linea (15/9/2026)
+
+     Con el gap anterior --48px en escritorio-- no cabian por diez pixeles:
+     150 + 164 + 210 de contenido son 524, mas dos huecos de 48 son 620, y
+     la columna da 610. "Where" caia solo a una segunda linea y el bloque
+     se leia como dos grupos en vez de como una fila de tres.
+
+     Con 32px de techo suman 588 y entran con margen. El clamp sigue
+     cediendo en pantallas estrechas, donde envolver SI es lo correcto. */
+  gap: clamp(var(--sp-4), 2.6vw, var(--sp-6));
   margin: clamp(var(--sp-5), 3vw, var(--sp-6)) 0 0;
 }
 
@@ -357,4 +373,94 @@
 
 @media (max-width: 560px) {
   .d2 .ab-oficios { grid-template-columns: 1fr; }
+}
+
+
+/* --- EL CIERRE DEL HERO: UNA LINEA QUE SE ALIMENTA ----------------------
+
+   Sustituye al borde gris de 1px que separaba el hero de la seccion de
+   abajo. Ese borde vive en .d2-ega-hero y lo comparten EGA, RUN y las
+   demas, asi que aqui se ANULA solo para About y se pinta otro encima.
+
+   POR QUE LA LINEA VA DENTRO Y NO EN bottom:-1px
+
+   El primer intento la puso en bottom:-1px, fuera de la caja, para tapar
+   el borde heredado. No se veia: .d2-ega-hero lleva overflow:hidden --lo
+   necesita, porque la ilustracion sangra a la derecha y mide un 112% de
+   su hueco-- y ese recorte se come cualquier pseudoelemento que asome.
+
+   La salida no es pelearse con el overflow sino quitar el borde con
+   border-bottom:0 y dibujar la linea en bottom:0, ya dentro. Mismo sitio
+   en pantalla, y nada que recortar.
+
+   QUE HACE
+
+   Un filamento que se enciende de izquierda a derecha al entrar la
+   seccion y deja, en reposo, un degradado que se apaga hacia los
+   extremos: la corriente entra por un lado y recorre el tramo. No
+   parpadea ni se repite --seria ruido justo donde el ojo baja al texto--.
+
+   COMO SE PINTA
+
+   scaleX sobre un elemento de 1px de alto: la animacion vive en el
+   compositor y no provoca reflujo. Animar width recalcularia la maqueta
+   en cada fotograma.
+
+   El degradado usa transparent en los extremos y no blanco: sobre un
+   fondo que no fuera blanco, el blanco se veria como dos tapones. */
+
+.d2 .ab-hero {
+  position: relative;
+  /* Fuera el borde heredado: lo sustituye el ::after de aqui abajo. */
+  border-bottom: 0;
+}
+
+.d2 .ab-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* Dentro de la caja, que el overflow:hidden del hero recorta lo que
+     sobresalga. */
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--c-borde, #E4E4E4) 10%,
+    var(--c-verde-marca, #39B54A) 34%,
+    var(--c-verde-hover, #026F00) 50%,
+    var(--c-verde-marca, #39B54A) 66%,
+    var(--c-borde, #E4E4E4) 90%,
+    transparent 100%
+  );
+  /* SIN opacity, y el verde oscuro en el centro (15/9/2026)
+
+     La primera version iba a .55 "para que no compitiera con el titular".
+     Medido: el verde acababa en rgb(146,214,155) y daba 1.71:1 contra el
+     blanco. A ese contraste la linea no se distingue del borde gris que
+     sustituye --el usuario la vio igual que antes--.
+
+     Ahora el color va entero. El centro usa el verde oscuro de marca, que
+     da 5.6:1, y los flancos el verde claro: asi el punto de entrada se
+     lee de verdad y el degradado sigue muriendo en gris.
+
+     El tramo verde tambien es mas ancho --del 34 al 66 en vez del 46 al
+     54--, porque en una pantalla de 1900px un 8% eran 150px perdidos en
+     medio de la linea. Un tercio del ancho se lee a cualquier tamano. */
+  transform-origin: left center;
+  /* Por encima de la ilustracion, que llega hasta el borde inferior. */
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .ab-hero::after { transform: scaleX(0); }
+
+  .d2 .ab-hero.es-visible::after {
+    animation: ab-linea 1.1s cubic-bezier(.22, .61, .36, 1) .25s both;
+  }
+}
+
+@keyframes ab-linea {
+  to { transform: scaleX(1); }
 }

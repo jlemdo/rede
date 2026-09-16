@@ -6056,6 +6056,29 @@ span.d2-panel__filtro:hover {
   color: rgba(255, 255, 255, .62);   /* 6.74:1, no el 4.24:1 de antes */
 }
 
+/* El horario, en las tres variantes del pie (15/9/2026)
+
+   Mismo cuerpo y mismo tono que la direccion de al lado --.62 sobre el
+   verde, que ya estaba medido en 6.74:1-- porque es informacion del mismo
+   rango: ni un dato de contacto pulsable ni letra pequena legal.
+
+   Va en un <p> y no dentro del <address> a proposito: ese elemento es
+   para datos de contacto, y un horario de atencion no lo es. Ademas los
+   navegadores le ponen cursiva, que aqui habria que quitar.
+
+   SIN color propio: el pie es gris #666666, no verde, y mas arriba hay una
+   regla que sube todos los <p> del pie a blanco .92 porque por debajo no
+   se cumple el 4.5:1. Poner aqui el .62 de la direccion la dejaria en
+   3.4:1 --y no se notaria, porque esa regla gana por orden de todos
+   modos--. Se hereda a proposito. */
+
+.d2 .d2-pie-dir__horario {
+  margin: var(--d2-e1) 0 0;
+  font-size: .8125rem;
+  line-height: 1.7;
+}
+
+
 /* --- Franja inferior --- */
 
 .d2 .d2-pie-dir__base { border-top: 1px solid rgba(255, 255, 255, .16); }
@@ -6195,7 +6218,7 @@ span.d2-panel__filtro:hover {
 }
 
 /* El correo puede ser largo: se parte antes que desbordar la ficha. A
-   390px "matthew@getrede.ca" cabe, pero si Erick cambia el dato por uno
+   390px "info@getrede.ca" cabe, pero si Erick cambia el dato por uno
    mas largo esto evita el scroll horizontal. */
 .d2 .d2-pie-desp__vias a span {
   min-width: 0;
@@ -6219,6 +6242,13 @@ span.d2-panel__filtro:hover {
   line-height: 1.7;
   color: rgba(255, 255, 255, .62);
 }
+
+.d2 .d2-pie-desp__horario {
+  margin: var(--d2-e1) 0 0;
+  font-size: .8125rem;
+  line-height: 1.7;
+}
+
 
 /* --- El mapa del sitio, comprimido ------------------------------------
    Dos grupos en dos columnas; dentro de cada uno, los enlaces fluyen en
@@ -6411,6 +6441,13 @@ span.d2-panel__filtro:hover {
   line-height: 1.6;
   color: rgba(255, 255, 255, .62);
 }
+
+.d2 .d2-pie-cierre__horario {
+  margin: 0;
+  font-size: .8125rem;
+  line-height: 1.6;
+}
+
 
 /* --- Franja 3: todos los enlaces en fila envolvente --------------------
    El separador es un punto generado por CSS, sin texto: no llega al arbol
@@ -13826,6 +13863,11 @@ span.d2-panel__filtro:hover {
   position: relative;
   overflow: hidden;
   padding-block: clamp(48px, 5.4vw, 76px);
+  /* El lateral va aqui, en la seccion, y no en el inner: es el mismo
+     reparto que usa .d2-res-cen (linea 9506), cuyo eje sigue esta
+     seccion. Sin el, en movil el texto llega pegado al borde, porque
+     ahi el max-width de 1040px ya no recorta nada. */
+  padding-inline: var(--pad-lateral, 28px);
   background: #1A5121;
 
   /* Los tokens se redefinen aqui, igual que en la firma: las reglas de
@@ -13861,9 +13903,18 @@ span.d2-panel__filtro:hover {
 .d2 .d2-equipo-voz__inner {
   position: relative;
   z-index: 1;
-  max-width: var(--d2-ancho);
+  /* El eje de Reviews, no el contenedor general (16/9/2026)
+
+     Erick veia la seccion cargada a la izquierda. Medido, no estaba
+     descuadrada: arrancaba en 40px como el hero. Pero .d2-res-cen --su
+     vecina directa hacia arriba-- no usa el gutter: centra con un
+     max-width mas estrecho. Al pasar de una a otra el texto saltaba de
+     113px a 40px, y ese salto es lo que se lee como desalineado.
+
+     Los dos valores son los de .d2-res-cen__inner (linea 9556) a
+     proposito: si un dia se reajusta aquel, este debe seguirlo. */
+  max-width: 1040px;
   margin-inline: auto;
-  padding-inline: var(--d2-gutter);
 }
 
 /* --- La cabecera --- */
@@ -14823,12 +14874,60 @@ span.d2-panel__filtro:hover {
   object-position: 50% 10%;
 }
 
-/* Enrique no necesita ajuste: su foto es cuadrada, asi que `cover` no
-   recorta nada por arriba y el object-position no cambia lo que se ve. */
+/* Enrique: foto nueva del 15/9/2026, ya centrada en origen.
+
+   Venia con el circulo y un borde gris quemados en el pixel sobre fondo
+   BLANCO, no transparente. Puesta tal cual se veian las esquinas blancas
+   dentro del circulo del sitio y un anillo doble, asi que se recorto a
+   mascara circular con alfa antes de entrar.
+
+   El 28% anterior compensaba el encuadre de la foto vieja. Esta trae la
+   cabeza centrada, y con ese valor se veia mas cerca que sus tres
+   companeros; al 50% la escala coincide. */
 .d2 [src*="equipo/enrique"] {
   object-fit: cover;
-  object-position: 50% 28%;
+  object-position: 50% 50%;
 }
+
+/* --- Los retratos de la banda: ajustar por ALTURA, no por anchura ---
+
+   En la banda de About los hombros salian cortados y la coronilla rozaba
+   el borde. La causa no era el object-position sino la caja:
+
+   El <img> llevaba width:100% y las fotos son verticales --300x420, o
+   sea 0.71--, asi que en un circulo de 230px la imagen se pintaba a
+   230x322. Sobraban 92px de alto que el circulo tiraba, y como ademas el
+   object-position estaba en 6-10% ese descarte se iba casi entero por
+   abajo: por eso se comia los hombros.
+
+   Medido en los archivos: en Matthew y Marco la coronilla esta en la
+   fila 0 --vienen recortadas al ras-- y los hombros arrancan al 22-24%.
+   Son fotos de busto corto, no hay aire que recuperar moviendo el
+   encuadre. Habia que dejar de ampliarlas.
+
+   Con height:100% y width:auto la foto se ajusta por el lado corto: entra
+   completa en vertical y el recorte pasa a los lados, que es donde sobra
+   fondo liso. El min-width evita que quede franja sin cubrir si algun dia
+   entra una foto mas estrecha.
+
+   Solo aqui, dentro de .d2-equipo-banda: los selectores por [src] de mas
+   arriba son globales y los comparten las otras variantes de equipo, que
+   estan bien como estan. */
+
+.d2 .d2-equipo-banda .d2-equipo-retrato > img {
+  height: 100%;
+  width: auto;
+  min-width: 100%;
+  object-fit: cover;
+}
+
+/* El aire sobre la cabeza, uno por foto. Erica es la unica que trae
+   margen propio --su coronilla esta al 6% del archivo, no al 0-- y por
+   eso baja mas que los otros dos. */
+.d2 .d2-equipo-banda [src*="equipo/matthew.jpg"] { object-position: 50% 12%; }
+.d2 .d2-equipo-banda [src*="equipo/marco.jpg"]   { object-position: 50% 14%; }
+.d2 .d2-equipo-banda [src*="equipo/erica.jpg"]   { object-position: 50% 20%; }
+
 
 /* En la avioneta, mirando a camara desde la derecha del encuadre. */
 .d2 [src*="matthew-hover"] {
@@ -15890,116 +15989,4 @@ span.d2-panel__filtro:hover {
   .d2 .calc--pasos .espera .adelanto {
     width: 100%;
   }
-}
-
-
-/* ==========================================================================
-   LA BARRA DE MANDOS DE MARCAS, EN NEGRO (14/9/2026)
-
-   Lo pidio el usuario. La barra general es blanca al 90% con desenfoque
-   detras, que funciona sobre las secciones claras. La de marcas se sale:
-   su franja es blanca y una barra blanca sobre fondo blanco solo se
-   distingue por la sombra.
-
-   NO BASTA CON CAMBIAR EL FONDO
-
-   Todo lo de dentro esta pensado para leerse sobre claro, y sobre negro
-   se cae:
-
-     el texto de la flecha  #333333 ... 1.38:1
-     los puntos             #6B7280 ... 3.60:1
-
-   Asi que se invierten los tres estados --reposo, activo y hover-- y se
-   comprueba cada uno:
-
-     texto e iconos    #E8E8E8 ... 14.20:1
-     punto en reposo   #BFBFBF ...  9.46:1
-     verde de hover    #39B54A ...  6.53:1
-
-   El borde pasa a un blanco translucido: el #EFEFEF original sobre negro
-   dibujaba un marco claro alrededor de la pastilla.
-   ========================================================================== */
-
-#caru-logos .d2-caru__mandos {
-  background: rgba(26, 26, 26, .92);
-  border-color: rgba(255, 255, 255, .16);
-  box-shadow: 0 2px 18px rgba(0, 0, 0, .28);
-}
-
-#caru-logos .d2-caru__flecha,
-#caru-logos .d2-caru__ocultar {
-  color: #E8E8E8;
-}
-
-#caru-logos .d2-caru__flecha:hover,
-#caru-logos .d2-caru__ocultar:hover {
-  background: var(--c-verde-marca, #39B54A);
-  /* Gris de marca sobre el verde: 4.74:1. El blanco aqui se queda en
-     2.66 y es el mismo criterio que sigue el boton solido del sitio. */
-  color: var(--c-sobre-verde, #333333);
-}
-
-#caru-logos .d2-caru__punto {
-  color: #BFBFBF;
-}
-
-#caru-logos .d2-caru__punto:hover {
-  color: #FFFFFF;
-}
-
-/* El elegido: verde de marca, que sobre negro da 6.53:1 y es el mismo
-   verde que identifica al resto del sitio. */
-#caru-logos .d2-caru__punto.es-activo {
-  background: rgba(57, 181, 74, .16);
-  color: var(--c-verde-marca, #39B54A);
-}
-
-/* El anillo de foco tambien: el oscuro por defecto no se veria. */
-#caru-logos .d2-caru__flecha:focus-visible,
-#caru-logos .d2-caru__punto:focus-visible,
-#caru-logos .d2-caru__ocultar:focus-visible {
-  outline: 2px solid var(--c-verde-marca, #39B54A);
-  outline-offset: 2px;
-}
-
-
-/* ==========================================================================
-   LA SECCION DE MARCAS, EN NEGRO (14/9/2026)
-
-   Lo pidio el usuario. Primero entendi que hablaba de la barra de mandos
-   --que tambien esta en negro, unas reglas mas arriba-- pero era el FONDO
-   de la seccion.
-
-   NO SE INVENTA NADA: EL MECANISMO YA EXISTIA
-
-   Esta seccion tiene su propio selector de fondo --el bloque "MARCAS, EL
-   SELECTOR DE FONDO LOCAL"-- con cinco opciones y los contrastes de cada
-   una ya medidos. El marcado ya declaraba data-logos-tono="oscuro" y un
-   --logos-fondo de #333333.
-
-   Asi que lo unico que faltaba era fijar el color mas oscuro de los dos
-   que ese sistema contempla --"sirve para #333333 y para #1A1A1A"-- y
-   dejar que el resto se adapte solo.
-
-   Mi primer intento fue peor: un background con !important y un
-   data-comp-tono anadido al marcado. Eso montaba un segundo mecanismo
-   encima del que ya habia, y dos sistemas peleando por el mismo color es
-   el fallo que ya costo una vuelta en el CTA de Energy Gap Analysis.
-
-   LO QUE VIENE SOLO
-
-   El tono oscuro de este bloque ya redefine --c-texto, --c-texto-cuerpo
-   y --c-texto-suave, y el sistema general invierte los logos de cliente
-   con grayscale + invert, porque son marcas grises que sobre negro
-   desapareceriran.
-
-   Contrastes sobre negro, ya medidos en la tabla de arriba:
-
-     titular  17.40:1
-     cifra    17.40:1
-     etiqueta  9.46:1
-   ========================================================================== */
-
-.d2 .d2-logos--dos {
-  --logos-fondo: var(--c-superficie-oscura, #1A1A1A);
 }

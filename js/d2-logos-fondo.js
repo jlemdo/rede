@@ -44,16 +44,22 @@
     { id: 'verde',     et: 'Green',     color: '#1A5121', tono: 'verde' }
   ];
 
-  var CLAVE = 'rede-logos-fondo';
-  /* Arranca en gris oscuro (9/9/2026). El feedback decia "no consensus among
-     the team: two prefer grey, one prefers green, definitely not white", y de
-     los dos grises de la lista se eligio este --el otro es el #F3F3F3 claro--
-     porque mantiene los logos en blanco y el salto desde el negro anterior es
-     suave.
+  /* La clave lleva sufijo v2 (15/9/2026).
 
-     Antes era 3 --negro-- y antes de eso 0 --blanco--. Al quedarse la lista
-     en tres, el gris oscuro pasa a ser el indice 0. */
-  var actual = 0;
+     El valor elegido se guarda en sessionStorage, asi que cambiar el
+     indice de arranque no bastaba: quien ya tuviera el gris guardado de
+     una visita anterior lo seguiria viendo, y el cambio parece no haberse
+     aplicado. Con una clave nueva, la eleccion vieja se ignora y todos
+     arrancan en el negro. */
+  var CLAVE = 'rede-logos-fondo-v2';
+  /* Arranca en NEGRO --indice 1, #1A1A1A-- por peticion del cliente
+     (15/9/2026): la barra de marcas va en negro tanto en el home como en
+     Energy Gap Analysis.
+
+     Antes era 0, el gris oscuro #333333, elegido el 9/9 cuando el feedback
+     decia "no consensus among the team: two prefer grey, one prefers
+     green, definitely not white". Ya hay decision, y es el negro. */
+  var actual = 1;
 
   try {
     var g = parseInt(sessionStorage.getItem(CLAVE), 10);
