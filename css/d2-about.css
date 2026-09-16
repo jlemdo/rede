@@ -150,10 +150,14 @@
   .d2 .ab-origen.es-visible .ab-mapa__sitio {
     animation:
       ab-sitio-entra .5s cubic-bezier(.22, 1, .36, 1) both,
-      /* 2) Y despues el latido, en bucle. Arranca cuando ya han entrado
-            todos: 59 x 18ms + el medio segundo de la entrada. */
+      /* 2) Y despues el latido, UNA sola vez. Arranca cuando ya han
+            entrado todos: 59 x 18ms + el medio segundo de la entrada.
+
+            Sin bucle por decision del cliente (16/9/2026). Un latido
+            continuo compite con el texto de al lado y no hay nada que
+            siga cambiando: el gesto dice "aqui estamos" y se acaba. */
       ab-sitio-late calc(2.6s * var(--f, 1)) ease-in-out
-        calc(1.6s + var(--i, 0) * 18ms) infinite;
+        calc(1.6s + var(--i, 0) * 18ms) 1;
     animation-delay: calc(var(--i, 0) * 18ms), calc(1.6s + var(--i, 0) * 18ms);
   }
 }
