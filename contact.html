@@ -292,16 +292,49 @@
               <input id="ct-role" name="ct-role" type="text" autocomplete="organization-title" required>
               <p class="ct-campo__error" hidden></p>
             </div>
-            <div class="ct-campo ct-campo--ancho">
+            <!-- Email sube a la fila de Role: los dos a media columna, que
+                 aprovecha el hueco que quedaba al lado y acorta el
+                 formulario en una fila. -->
+            <div class="ct-campo">
               <label class="ct-campo__label" for="ct-email">Email</label>
               <input id="ct-email" name="ct-email" type="email" autocomplete="email" required>
               <p class="ct-campo__error" hidden></p>
             </div>
-            <div class="ct-campo">
-              <label class="ct-campo__label" for="ct-phone">Phone <span class="ct-campo__opcional">(optional)</span></label>
-              <input id="ct-phone" name="ct-phone" type="tel" autocomplete="tel">
-              <p class="ct-campo__error" hidden></p>
-            </div>
+
+            <!-- LOS DOS TELEFONOS
+
+                 Direct line y Phone comparten fila. Ninguno es obligatorio
+                 por separado, pero hace falta UNO de los dos: eso no lo
+                 puede expresar el atributo required --que obliga campo a
+                 campo-- asi que lo comprueba el JS al enviar y lo dice el
+                 texto de debajo, que es lo que lee quien rellena.
+
+                 El grupo va en un fieldset con su leyenda porque los dos
+                 campos son una sola pregunta --como contactar-- y asi se
+                 anuncian juntos.
+
+                 La condicion no se adelanta en la leyenda: se probo con un
+                 "(one of the two)" y sobraba, porque el aviso ya sale solo
+                 cuando no se rellena ninguno. Decision del cliente. -->
+            <fieldset class="ct-campo ct-campo--ancho ct-grupo-tel">
+              <legend class="ct-grupo-tel__leyenda">How can we reach you?</legend>
+
+              <div class="ct-grupo-tel__par">
+                <div class="ct-campo">
+                  <label class="ct-campo__label" for="ct-directo">Direct line</label>
+                  <input id="ct-directo" name="ct-directo" type="tel" autocomplete="tel-extension"
+                         data-tel-par>
+                  <p class="ct-campo__error" hidden></p>
+                </div>
+                <div class="ct-campo">
+                  <label class="ct-campo__label" for="ct-phone">Phone</label>
+                  <input id="ct-phone" name="ct-phone" type="tel" autocomplete="tel" data-tel-par>
+                  <p class="ct-campo__error" hidden></p>
+                </div>
+              </div>
+
+              <p class="ct-grupo-tel__error" data-tel-error hidden></p>
+            </fieldset>
             <div class="ct-campo ct-campo--ancho">
               <label class="ct-campo__label" for="ct-msg">What are you looking for?</label>
               <textarea id="ct-msg" name="ct-msg" rows="4" required></textarea>
@@ -496,5 +529,6 @@
 <script src="js/d2-header.js"></script>
 
 <script src="js/d2-contacto.js"></script>
+<script src="js/d2-contacto-form.js"></script>
 </body>
 </html>

@@ -168,6 +168,61 @@
    que no se parten. */
 .d2 .ct-campo--ancho { grid-column: 1 / -1; }
 
+/* --------------------------------------------------------------------------
+   EL PAR DE TELEFONOS
+
+   Direct line y Phone comparten fila dentro de un fieldset. Va agrupado y
+   no como dos campos sueltos porque la condicion --uno de los dos-- es del
+   PAR, no de cada uno: con dos campos independientes no hay donde anunciar
+   esa regla ni donde poner el error que les toca a ambos.
+
+   El fieldset se resetea: trae borde, margen y padding propios de
+   navegador que romperian la rejilla.
+   -------------------------------------------------------------------------- */
+.d2 .ct-grupo-tel {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;   /* un fieldset no encoge sin esto y desborda la rejilla */
+}
+
+.d2 .ct-grupo-tel__leyenda {
+  /* Se pinta como una etiqueta mas.
+
+     Sin float: se probo y fue peor. El float saca la leyenda del flujo,
+     pero entonces el hijo siguiente --la pareja de campos-- deja de
+     comportarse como rejilla y los dos telefonos salian apilados en vez
+     de en linea. MEDIDO en pantalla.
+
+     Con display:block y el fieldset sin borde ni padding, la leyenda cae
+     donde debe sin tocar el flujo. */
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: var(--sp-2, 8px);
+  font-size: var(--fs-small, 14px);
+  font-weight: var(--fw-bold, 700);
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ct-grupo-tel__par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+/* El error del grupo, no de un campo: va debajo de los dos. */
+.d2 .ct-grupo-tel__error {
+  margin: var(--sp-2, 8px) 0 0;
+  font-size: var(--fs-small, 14px);
+  color: var(--c-error, #C0392B);
+}
+
+@media (max-width: 640px) {
+  /* En una columna los dos telefonos se apilan, como el resto. */
+  .d2 .ct-grupo-tel__par { grid-template-columns: 1fr; }
+}
+
 /* La etiqueta, con el tamano y el peso de .campo__label de la
    calculadora: --fs-small y peso medio. Yo habia puesto --fs-xs en
    negrita, que grita mas de lo que debe una etiqueta.
