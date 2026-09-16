@@ -53,8 +53,17 @@
   /* El texto a la izquierda y el panel a la derecha. .92fr/1fr: el panel
      lleva seis filas con barra y necesita el ancho. */
   grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
+  /* Las dos columnas, a la misma altura (16/9/2026)
+
+     Medido antes: el texto daba 354px y el panel 745 --391 de diferencia--
+     y con align-items:center el texto flotaba a media altura del panel.
+     La seccion se veia descuadrada.
+
+     align-items:stretch las estira a la altura de la mas alta, y el
+     contenido de cada una se reparte dentro. Asi los dos bloques empiezan
+     y acaban en la misma linea, que es lo que se pidio. */
+  align-items: stretch;
   gap: clamp(var(--sp-6), 5vw, var(--sp-8));
-  align-items: center;
 }
 
 /* --- El fondo: las diagonales --------------------------------------------
@@ -92,9 +101,21 @@
 
 .d2 .ega-rank__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h1);
-  line-height: 1.06;
-  letter-spacing: -.028em;
+  /* Los valores de los demas titulares de esta pagina (16/9/2026)
+
+     Llevaba --fs-h1, el tamano de HERO: 64px. El resto de secciones de
+     Energy Gap Analysis usan clamp(34px, 3.4vw, 52px), y por eso esta se
+     leia como un segundo hero en mitad del recorrido.
+
+     No se usa --fs-h2 porque en esta pagina da 40px y las demas secciones
+     no lo usan: llevan su propio clamp.
+
+     El techo queda en 50 y no en los 52 de las demas, a peticion del
+     usuario: este titular tiene once palabras --mas que ninguno de los
+     otros-- y a 52 pesaba de mas frente al panel de la derecha. */
+  font-size: clamp(34px, 3.4vw, 50px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
   font-weight: var(--fw-extrabold, 800);
   color: #FFFFFF;
   text-wrap: balance;
@@ -316,8 +337,21 @@
 /* --- El pie del panel ---------------------------------------------------- */
 
 .d2 .ega-rank__pie {
-  margin-top: var(--sp-5);
-  padding-top: var(--sp-5);
+  /* Cruza las DOS columnas (16/9/2026)
+
+     Antes vivia dentro del panel derecho y por eso quedaba cargado a ese
+     lado. Ahora es hermano de las dos columnas y grid-column:1/-1 lo hace
+     ocupar el ancho completo: cierra la seccion en vez de pertenecer a
+     una mitad.
+
+     El filete de arriba lo separa de las columnas, que es lo que hace que
+     se lea como cierre y no como una tercera pieza suelta. */
+  grid-column: 1 / -1;
+  /* Sin margen propio: el gap de la rejilla ya separa el pie de las
+     columnas. Con el margen encima se sumaban los dos y quedaban casi 90px
+     de aire, que es lo que hacia que la seccion se viera desarmada. */
+  margin-top: 0;
+  padding-top: var(--sp-4);
   border-top: 1px solid rgba(176, 225, 183, .22);
   text-align: center;
 }
@@ -368,4 +402,23 @@
   .d2 .ega-rank__n      { grid-area: n; }
   .d2 .ega-rank__nombre { grid-area: nombre; }
   .d2 .ega-rank__barra  { grid-area: barra; }
+}
+
+
+/* La columna de texto: arriba, no centrada -------------------------------
+
+   Primero se centro su contenido (justify-content:center) y quedaba peor:
+   el texto arrancaba 72px por debajo del panel y dejaba 160px de hueco
+   entre su ultima linea y el pie. Medido, no supuesto.
+
+   Las dos columnas deben EMPEZAR en la misma linea, que es lo que se lee
+   como orden. Que acaben a distinta altura no se nota --el pie las cierra
+   a las dos-- pero un arranque desigual si.
+
+   flex-start y no el valor por defecto: la columna sigue estirada por el
+   stretch de la rejilla, asi que sin esto el contenido se repartiria. */
+.d2 .ega-rank__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

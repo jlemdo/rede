@@ -76,7 +76,16 @@
   text-wrap: balance;
 }
 
-.d2 .ab-origen__texto p {
+/* :not(.eyebrow) (16/9/2026)
+
+   Este selector alcanzaba TODOS los <p> del bloque, y el eyebrow es uno
+   de ellos: le imponia la tinta del cuerpo y se comia el verde que le da
+   la regla general del sistema. Por eso "Who we are" salia gris mientras
+   los otros eyebrow de la pagina estaban en verde.
+
+   Es el mismo fallo que ya aparecio con `.bloque span`: un selector por
+   etiqueta alcanza mas de lo que su nombre sugiere. */
+.d2 .ab-origen__texto p:not(.eyebrow) {
   margin: var(--sp-4) 0 0;
   font-size: var(--fs-body);
   line-height: 1.7;
@@ -463,4 +472,49 @@
 
 @keyframes ab-linea {
   to { transform: scaleX(1); }
+}
+
+
+/* --- "Who we are" en espejo: mapa a la izquierda (16/9/2026) ------------
+
+   Clon de la seccion de arriba con las columnas cambiadas. Es una prueba
+   visual para comparar las dos orientaciones.
+
+   EL ORDEN SE INVIERTE CON order, NO REORDENANDO EL MARCADO
+
+   En el HTML el texto sigue yendo primero en las dos secciones. Asi, al
+   apilarse en movil, se lee el texto antes que el mapa en ambas, y el
+   recorrido con teclado o lector de pantalla es el mismo. Con el marcado
+   invertido, en movil esta seccion abriria con un mapa sin contexto.
+
+   Las proporciones tambien se dan la vuelta: la columna ancha sigue
+   siendo la del TEXTO --1.25fr-- que ahora es la segunda. */
+
+.d2 .ab-origen--espejo .ab-origen__inner {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+}
+
+.d2 .ab-origen--espejo .ab-origen__texto { order: 2; }
+.d2 .ab-origen--espejo .ab-origen__arte  { order: 1; }
+
+@media (max-width: 900px) {
+  /* Apilado: el mapa arriba, igual que en la seccion original.
+
+     Alli la regla .ab-origen__arte{order:-1} lo sube a proposito --"la
+     ilustracion anuncia de que va la seccion antes de leer el texto"--
+     y mi order:1 la estaba anulando en el clon. Las dos secciones deben
+     comportarse igual en movil; la diferencia entre ellas es solo el
+     lado en escritorio. */
+  .d2 .ab-origen--espejo .ab-origen__texto { order: 0; }
+  .d2 .ab-origen--espejo .ab-origen__arte  { order: -1; }
+
+  /* Y a UNA columna, como la original.
+
+     Mi .ab-origen--espejo .ab-origen__inner de mas arriba pisaba la regla
+     que apila --tiene una clase mas, asi que mas peso-- y el clon seguia
+     en dos columnas de 134 y 168px en movil. Medido, no supuesto: la
+     original daba 335px de columna unica y el clon dos columnas. */
+  .d2 .ab-origen--espejo .ab-origen__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

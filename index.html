@@ -1977,13 +1977,6 @@
           placeholder="Optional" autocomplete="off">
           </div>
           </div>
-          <div class="campo">
-          <label class="campo__label" for="c-sites">Number of sites</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="c-sites" type="text" inputmode="numeric"
-          placeholder="22" autocomplete="off">
-          </div>
-          </div>
           </div>
 
           <!-- Navegacion -->
@@ -2410,13 +2403,6 @@
           <span class="campo__prefijo">$</span>
           <input class="campo__input" id="c-spend" type="text" inputmode="numeric"
           placeholder="Optional" autocomplete="off">
-          </div>
-          </div>
-          <div class="campo">
-          <label class="campo__label" for="c-sites">Number of sites</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="c-sites" type="text" inputmode="numeric"
-          placeholder="22" autocomplete="off">
           </div>
           </div>
           </div>
@@ -2897,16 +2883,6 @@
           <span class="opcion__texto">A portfolio where comparison matters.</span>
           </button>
           </div>
-          <!-- Cuelga de la eleccion de arriba: con "One building" la respuesta
-          es 1 y el guion la escribe solo, asi que preguntarla sobraria. Se
-          muestra al elegir "Multiple buildings". (14/9/2026) -->
-          <div class="campo" data-campo="sitios" hidden>
-          <label class="campo__label" for="c-sites">How many sites in total?</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="c-sites" type="text" inputmode="numeric"
-          placeholder="22" autocomplete="off">
-          </div>
-          </div>
 
           </div>
 
@@ -3284,65 +3260,46 @@
           </div>
           </div>
 
-          <div class="campo campo--claro" data-campo="org">
-          <label class="campo__label" for="h-org">Organization</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-org" name="company" type="text"
-          autocomplete="organization" required>
-          </div>
+          <!-- Organization y Role comparten fila (16/9/2026): dos campos
+               cortos apilados alargan el formulario sin ganar nada.
+
+               El cargo lo pidio el cliente (feedback 9/9/2026, Parte 4):
+               un director de operaciones y un tecnico no son el mismo
+               lead. -->
+          <div class="captura__pareja">
+            <div class="campo campo--claro" data-campo="org">
+              <label class="campo__label" for="h-org">Organization</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-org" name="company" type="text"
+                       autocomplete="organization" required>
+              </div>
+            </div>
+
+            <div class="campo campo--claro" data-solo="cualificado">
+              <label class="campo__label" for="h-role">Role</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-role" name="jobtitle" type="text"
+                       autocomplete="organization-title" required>
+              </div>
+            </div>
           </div>
 
           <div class="campo campo--claro">
-          <label class="campo__label" for="h-email">Work email</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-email" name="email" type="email"
-          autocomplete="email" required>
-          </div>
-          </div>
-
-          <!-- Cargo: lo pidio el cliente (feedback 9/9/2026, Parte 4). Un
-          director de operaciones y un tecnico no son el mismo lead. -->
-          <div class="campo campo--claro" data-solo="cualificado">
-          <label class="campo__label" for="h-role">Role</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-role" name="jobtitle" type="text"
-          autocomplete="organization-title" required>
-          </div>
+            <label class="campo__label" for="h-email">Work email</label>
+            <div class="campo__wrap">
+              <input class="campo__input" id="h-email" name="email" type="email"
+                     autocomplete="email" required>
+            </div>
           </div>
 
           <!-- Dos telefonos y ya no opcionales: el equipo comercial necesita
           poder llamar. La linea directa solo en el camino cualificado. -->
-          <div class="campo campo--claro" data-solo="cualificado">
-          <label class="campo__label" for="h-direct">Direct line</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-direct" name="hs_phone_number" type="tel"
-          inputmode="tel" autocomplete="tel" required>
-          </div>
-          </div>
 
           <div class="campo campo--claro" data-campo="movil">
-          <label class="campo__label" for="h-phone">Mobile phone</label>
+          <label class="campo__label" for="h-phone">Phone</label>
           <div class="campo__wrap">
           <input class="campo__input" id="h-phone" name="mobilephone" type="tel"
           inputmode="tel" autocomplete="tel" required>
-          </div>
-          </div>
-
-          <!-- Provincia y ciudad: SOLO en el camino de descartado por tamano
-          --Parte 1, pantalla 1--. Ocultos en el resto. -->
-          <div class="campo campo--claro" data-solo="descartado" hidden>
-          <label class="campo__label" for="h-prov">Province</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-prov" name="state" type="text"
-          autocomplete="address-level1">
-          </div>
-          </div>
-
-          <div class="campo campo--claro" data-solo="descartado" hidden>
-          <label class="campo__label" for="h-city">City</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-city" name="city" type="text"
-          autocomplete="address-level2">
           </div>
           </div>
 
@@ -4735,7 +4692,7 @@
 
 <!-- Fijado en "Data panel" (11/9/2026): Erick eligio esta y las
      otras se retiran. data-caru-fijo es 0-based. -->
-<div class="d2-caru" id="caru-faq" data-caru data-caru-fijo="0">
+<div class="d2-caru" id="caru-faq" data-caru>
 
   <!-- ====================================================================
        OPCION 1 — LA FICHA QUE RESPONDE
@@ -5136,6 +5093,261 @@
 
       </div>
     </section>
+
+
+  </div>
+
+  <!-- OPCION 2 (nueva, 16/9/2026) - LA MISMA FICHA CON LA GRAFICA DEL HERO
+       El clon estaba DENTRO de la diapo 1, asi que se veian los dos a la
+       vez y la pagina repetia las 11 preguntas. Pasa a su propia diapo
+       para poder alternarlos desde la barra, como el resto. -->
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: With chart" hidden>
+<!-- LA MISMA FAQ, CON LA GRAFICA DEL HERO AL LADO (16/9/2026)
+
+     Clon de la seccion de arriba para comparar dos acompanamientos: el
+     mapa de barrios --que responde "donde"-- frente a la grafica acumulada
+     --que responde "cuanto"--.
+
+     Es una prueba visual. Si no se queda, se borra la seccion entera y el
+     bloque .d2-faq-dato--grafica del CSS, y no deja rastro. -->
+<section class="d2-faq-dato d2-faq-dato--grafica" aria-labelledby="faq-g-titulo">
+      <div class="d2-faq-dato__inner">
+
+        <div class="d2-faq-dato__cabecera">
+          <p class="d2-faq-dato__eyebrow">Before you ask</p>
+          <h2 class="d2-faq-dato__titulo" id="faq-g-titulo">
+            Straight answers.<br><span>Including the numbers.</span>
+          </h2>
+        </div>
+
+        <div class="d2-faq-dato__cuerpo">
+
+          <div class="d2-faq-dato__lista">
+
+                        <details class="d2-faq-dato__item" name="faq-dato" open>
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">01</span>
+                <span class="d2-faq-dato__q">Do all our buildings need a detailed energy audit?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Not necessarily. Rede&rsquo;s Energy Gap Analysis compares energy use and cost across your portfolio to identify which buildings need attention and where a detailed energy audit is most likely to be worthwhile.</p>
+                <p>Rede can also check whether BC Hydro rebates, FortisBC rebates, SaskPower incentives, or other energy efficiency funding may be available before you decide how to proceed.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="$5,000" data-eti="Energy Gap Analysis" data-nota="Four to six weeks, using existing utility data.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">02</span>
+                <span class="d2-faq-dato__q">Is there a lower-cost alternative to conducting an energy audit on every building?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Yes. Rede&rsquo;s Energy Gap Analysis costs <strong>$5,000</strong> and typically takes four to six weeks.</p>
+                <p>It uses existing utility data to screen your portfolio before you invest in individual building energy audits, and helps clarify whether BC Hydro rebates, FortisBC rebates, SaskPower incentives, or other energy efficiency funding may support the recommended next steps.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">03</span>
+                <span class="d2-faq-dato__q">What does an energy management system do for a multi-building portfolio?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>An energy management system brings utility data from multiple buildings into one place so your team can compare performance, track energy costs, and identify changes over time.</p>
+                <p>RUN is Rede&rsquo;s energy management system for organizations managing multiple buildings. It brings utility data into one portfolio view so your team can compare building performance, track energy use and costs, and identify unexpected changes earlier.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">04</span>
+                <span class="d2-faq-dato__q">How can energy monitoring software help identify wasted energy?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Energy monitoring software reveals patterns that are difficult to see in individual utility bills.</p>
+                <p>Rede&rsquo;s RUN organizes and weather-normalizes energy data so your team can compare buildings, detect energy drift, verify whether improvements are working, and prioritize the sites with the greatest opportunity.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">05</span>
+                <span class="d2-faq-dato__q">Are BC Hydro rebates, FortisBC rebates, or other commercial energy rebates available for our buildings?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>They may be. Available BC Hydro rebates, FortisBC rebates, and other commercial energy rebates depend on your location, utility provider, building type, and proposed work.</p>
+                <p>Rede can help identify relevant programs and determine whether your project may qualify.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">06</span>
+                <span class="d2-faq-dato__q">Can SaskPower incentives help fund energy efficiency projects?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Potentially. Eligibility depends on the building type, location, energy use, proposed work, and current program requirements.</p>
+                <p>Rede can help Saskatchewan organizations identify relevant SaskPower incentives and determine whether a project may qualify before moving forward.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">07</span>
+                <span class="d2-faq-dato__q">How do we apply for energy efficiency funding and incentives?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Rede can help identify energy efficiency funding and incentives that match your buildings and proposed improvements.</p>
+                <p>When a relevant program is available, the team can help you understand the eligibility requirements and application process.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">08</span>
+                <span class="d2-faq-dato__q">What is building recommissioning, also known as retro commissioning?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Building recommissioning, sometimes called retro commissioning, improves how existing building systems operate without beginning with major equipment replacements.</p>
+                <p>Rede uses building automation system data and engineering analysis to uncover problems in schedules, controls, setpoints, and equipment sequences. The team then turns those findings into a prioritized action plan, works alongside your authorized controls contractor, and helps track whether the changes deliver results.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">09</span>
+                <span class="d2-faq-dato__q">Can older commercial or institutional buildings improve energy efficiency without major equipment replacements?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Yes. Many commercial and institutional buildings can reduce energy waste by improving how their existing systems operate.</p>
+                <p>Rede first evaluates the building, available controls, and system information to determine which energy efficiency services are appropriate.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato" data-cifra="No" data-eti="Energy manager required" data-nota="Support that complements your existing team.">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">10</span>
+                <span class="d2-faq-dato__q">Do we need an energy manager to use energy management services?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p><strong>No.</strong> Rede&rsquo;s energy management services can provide the planning, analysis, and ongoing engineering support your organization needs.</p>
+                <p>The level of support can complement your existing team without requiring you to hire a full-time energy manager.</p>
+              </div>
+            </details>
+
+            <details class="d2-faq-dato__item" name="faq-dato">
+              <summary>
+                <span class="d2-faq-dato__n" aria-hidden="true">11</span>
+                <span class="d2-faq-dato__q">How can we reduce building energy costs without adding more work to our team?</span>
+              </summary>
+              <div class="d2-faq-dato__r">
+                <p>Rede helps identify opportunities, organize energy data, maintain the action plan, and monitor results over time.</p>
+                <p>Your team remains informed and involved without having to build a complete internal energy management function.</p>
+              </div>
+            </details>
+
+          </div>
+
+          <!-- La ficha. Se rellena desde los data- del item abierto.
+               aria-hidden porque repite lo que ya dice la respuesta: para un
+               lector de pantalla seria una duplicacion, no una ayuda. -->
+          <aside class="d2-faq-dato__ficha" aria-hidden="true">
+          <!-- EL PANEL DEL HERO ENTERO (16/9/2026)
+
+               No solo la grafica: el eyebrow, las dos cifras, la nota de
+               los anos y la leyenda de cuatro entradas. Sin ellas la
+               grafica no dice de que va --que son las barras, que las
+               lineas, de que periodo hablamos--.
+
+               Los ids llevan sufijo propio --faq- en vez de hero--
+               porque repetidos romperian el aria-labelledby: el lector
+               anunciaria el panel del hero. -->
+          <div class="d2-faq-dato__ficha-caja d2-hero__panel">
+            <p class="d2-hero__panel-eyebrow" id="faq-panel-t">One school district, 12 years of data</p>
+            
+                        <!-- Las tres cifras en una sola fila (11/9/2026). Antes el $4.4M
+                        iba solo arriba y las otras dos debajo, lo que daba mas peso al
+                        acumulado del que le toca: las tres son la misma clase de dato y
+                        se leen mejor juntas.
+            
+                        Las dos anuales vienen del panel anterior --el feedback las
+                        elogia, "High level metrics are great"-- y se conservaron al
+                        cambiar de panel. -->
+                        <dl class="d2-hero__metricas d2-hero__metricas--dos">
+                          <div>
+                            <dt>Energy avoided last year</dt>
+                            <dd class="d2-hero__metricas-alta">6.8M <small>ekWh</small></dd>
+                          </div>
+                          <div>
+                            <dt>Below the do-nothing baseline</dt>
+                            <dd class="d2-hero__metricas-alta">24%</dd>
+                          </div>
+                        </dl>
+            
+                        <svg class="hero-gr" viewBox="0 0 560 300" role="img" aria-labelledby="faq-gr-t faq-gr-d" preserveAspectRatio="xMidYMid meet">
+                          <title id="faq-gr-t">Cumulative savings for one school district</title>
+                          <desc id="faq-gr-d">Bar and line chart. Avoided costs stack up to 4.4 million dollars over twelve years, while energy use stays below the do-nothing baseline.</desc>
+                          <g class="hero-gr__rejilla">
+                            <line x1="6" y1="258" x2="498" y2="258"/>
+                            <line x1="6" y1="200.0" x2="498" y2="200.0"/>
+                            <line x1="6" y1="142.0" x2="498" y2="142.0"/>
+                            <line x1="6" y1="84.0" x2="498" y2="84.0"/>
+                            <line x1="6" y1="26" x2="498" y2="26"/>
+                          </g>
+                          <g class="hero-gr__barras">
+                            <rect x="63.3" y="253.9" width="19.7" height="4.1" rx="2" style="--i:1"><title>14/15: $110,000 saved</title></rect>
+                            <rect x="108.0" y="215.0" width="19.7" height="43.0" rx="2" style="--i:2"><title>15/16: $1,150,000 saved</title></rect>
+                            <rect x="152.7" y="207.1" width="19.7" height="50.9" rx="2" style="--i:3"><title>16/17: $1,360,000 saved</title></rect>
+                            <rect x="197.4" y="196.3" width="19.7" height="61.7" rx="2" style="--i:4"><title>17/18: $1,650,000 saved</title></rect>
+                            <rect x="242.2" y="181.3" width="19.7" height="76.7" rx="2" style="--i:5"><title>18/19: $2,050,000 saved</title></rect>
+                            <rect x="286.9" y="160.0" width="19.7" height="98.0" rx="2" style="--i:6"><title>19/20: $2,620,000 saved</title></rect>
+                            <rect x="331.6" y="140.9" width="19.7" height="117.1" rx="2" style="--i:7"><title>20/21: $3,130,000 saved</title></rect>
+                            <rect x="376.3" y="119.9" width="19.7" height="138.1" rx="2" style="--i:8"><title>21/22: $3,690,000 saved</title></rect>
+                            <rect x="421.1" y="111.7" width="19.7" height="146.3" rx="2" style="--i:9"><title>22/23: $3,910,000 saved</title></rect>
+                            <rect x="465.8" y="91.9" width="19.7" height="166.1" rx="2" style="--i:10"><title>23/24: $4,440,000 saved</title></rect>
+                          </g>
+                          <path class="hero-gr__linea hero-gr__linea--nada" d="M28.4 117.0 L73.1 158.1 L117.8 165.2 L162.5 133.1 L207.3 49.2 L252.0 38.5 L296.7 45.6 L341.5 76.0 L386.2 70.6 L430.9 79.5 L475.6 101.0"/>
+                          <path class="hero-gr__linea hero-gr__linea--meta" d="M28.4 117.0 L73.1 183.0 L117.8 215.2 L162.5 209.8 L207.3 149.1 L252.0 152.7 L296.7 177.7 L341.5 222.3 L386.2 229.4 L430.9 224.1 L475.6 247.3"/>
+                          <path class="hero-gr__linea hero-gr__linea--real" d="M28.4 117.0 L73.1 172.3 L117.8 204.5 L162.5 200.9 L207.3 133.1 L252.0 142.0 L296.7 193.8 L341.5 195.5 L386.2 188.4 L430.9 190.2 L475.6 222.3"/>
+                          <g class="hero-gr__anos">
+                            <text x="28.4" y="284" text-anchor="middle">&#8217;14</text>
+                            <text x="73.1" y="284" text-anchor="middle">&#8217;15</text>
+                            <text x="117.8" y="284" text-anchor="middle">&#8217;16</text>
+                            <text x="162.5" y="284" text-anchor="middle">&#8217;17</text>
+                            <text x="207.3" y="284" text-anchor="middle">&#8217;18</text>
+                            <text x="252.0" y="284" text-anchor="middle">&#8217;19</text>
+                            <text x="296.7" y="284" text-anchor="middle">&#8217;20</text>
+                            <text x="341.5" y="284" text-anchor="middle">&#8217;21</text>
+                            <text x="386.2" y="284" text-anchor="middle">&#8217;22</text>
+                            <text x="430.9" y="284" text-anchor="middle">&#8217;23</text>
+                            <text x="475.6" y="284" text-anchor="middle">&#8217;24</text>
+                          </g>
+                          <g class="hero-gr__escala">
+                            <text x="504" y="26.0" text-anchor="start" dominant-baseline="middle">$6M</text>
+                            <text x="504" y="142.0" text-anchor="start" dominant-baseline="middle">$3M</text>
+                            <text x="504" y="258.0" text-anchor="start" dominant-baseline="middle">$0</text>
+                          </g>
+                        </svg>
+            
+                        <p class="d2-hero__nota-anos">School years ending</p>
+            
+                        <ul class="d2-hero__leyenda">
+                          <li><span class="d2-hero__punto d2-hero__punto--ahorro" aria-hidden="true"></span>Avoided cost</li>
+                          <li><span class="d2-hero__punto d2-hero__punto--nada" aria-hidden="true"></span>Do nothing</li>
+                          <li><span class="d2-hero__punto d2-hero__punto--meta" aria-hidden="true"></span>Target</li>
+                          <li><span class="d2-hero__punto d2-hero__punto--real" aria-hidden="true"></span>Actual</li>
+                        </ul>
+          </div>
+        </aside>
+
+        </div>
+
+        <p class="d2-faq-dato__pie">
+          Still have a question?
+          <a href="#">Book a call</a> and we will answer it directly.
+        </p>
+
+      </div>
+    </section>
   </div>
 
   <!-- ====================================================================
@@ -5153,7 +5365,7 @@
        funciona en Chromium. En Safari y Firefox el panel abre de golpe. Es
        mejora progresiva deliberada, no un fallo.
        ==================================================================== -->
-  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: Numbered" hidden>
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: Numbered" hidden>
     <section class="d2-faq-num" aria-labelledby="faq-n-titulo">
       <div class="d2-faq-num__inner">
 
@@ -5272,7 +5484,7 @@
        infrautiliza porque "puede que los usuarios nunca descubran su
        contenido". Las tres columnas se ven a la vez.
        ==================================================================== -->
-  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: By role" hidden>
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 4: By role" hidden>
     <section class="d2-faq-rol" aria-labelledby="faq-rol-titulo">
       <div class="d2-faq-rol__inner">
 
@@ -5367,8 +5579,9 @@
 
     <div class="d2-caru__puntos" role="tablist" aria-label="Section version">
       <button class="d2-caru__punto es-activo" type="button" role="tab" aria-selected="true"  data-caru-a="0"><span>1</span><small>Data panel</small></button>
-      <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="1"><span>2</span><small>Numbered</small></button>
-      <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="2"><span>3</span><small>By role</small></button>
+      <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="1"><span>2</span><small>With chart</small></button>
+      <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="2"><span>3</span><small>Numbered</small></button>
+      <button class="d2-caru__punto"           type="button" role="tab" aria-selected="false" data-caru-a="3"><span>4</span><small>By role</small></button>
     </div>
 
     <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option">

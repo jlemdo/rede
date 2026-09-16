@@ -92,9 +92,17 @@
 
 /* El verde cae en "energy audit.", que es donde el titular hace pie.
 
-   Va el --c-verde-hover, que es el que usa la home para texto en verde:
-   el de marca da 2,66:1 sobre blanco y no llega al minimo de 4,5. */
-.d2 .d2-ega-hero__titulo span { color: var(--c-verde-hover, #026F00); }
+   VERDE VIVO, NO EL OSCURO
+
+   Es la misma regla que sigue la home: el verde del logo para el texto
+   grande --el acento de 60px de "your team"-- y el #026F00 solo para el
+   texto pequeno, donde el minimo de contraste es 4,5:1.
+
+   Aqui el titular esta en 64px, asi que cuenta como texto grande y el
+   minimo baja a 3:1. El #39B54A puro da 2,66:1 y ni asi llega; el
+   #33A343 --el de marca al 90%, el mismo de las cifras de la home-- da
+   3,25:1 y si cumple. Se ve como el verde del logo y pasa la norma. */
+.d2 .d2-ega-hero__titulo span { color: #33A343; }
 
 .d2 .d2-ega-hero__lead {
   margin: 0 0 26px;
@@ -1429,4 +1437,298 @@
   /* Mas tenue en movil: con el contenido apilado el trazado cruza por
      detras del texto en vez de por los margenes. */
   .d2 .d2-ega-hero__lineas { opacity: .26; }
+}
+
+
+/* --- La ilustracion de Energy Management y Recommissioning (16/9/2026) --
+
+   El usuario la veia grande y pidio bajarla entre un 10 y un 20%.
+
+   MEDIDO ANTES DE ELEGIR EL VALOR
+
+   En Energy Gap Analysis --el hero de referencia-- la imagen y la columna
+   de texto miden casi lo mismo de alto: 596 contra 587, un ratio de 1.01.
+   Ese equilibrio es lo que hace que el hero se lea como una pieza.
+
+   En estas dos el texto es mas alto que la ilustracion --756 contra 622,
+   ratio 0.82-- porque su copy es mas largo. La imagen no acompana al
+   texto: flota.
+
+   Se aplica un 15%, el punto medio del rango pedido. La ilustracion baja
+   de 920 a 782px de ancho y deja de competir con el titular.
+
+   Se escala con width y no con transform: aqui SI interesa que la caja
+   encoja con la imagen, para que no quede hueco muerto debajo. */
+
+.d2 :is(.em-hero, .rc-hero) .d2-ega-hero__arte img {
+  width: 85%;
+  /* A la derecha: la ilustracion sangra hacia el borde de la ventana, y
+     encogiendo desde la izquierda se separaria del margen de la pagina. */
+  margin-left: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla y
+     encogerla solo la haria mas dificil de ver. */
+  .d2 :is(.em-hero, .rc-hero) .d2-ega-hero__arte img {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   EL FORMULARIO CORTO DEL CTA DE CIERRE (16/9/2026)
+
+   Dos campos --nombre y correo-- en las cuatro paginas de solucion. Una
+   sola hoja para las cuatro: todas cargan d2-ega.css y lo unico que
+   cambia entre ellas es el envoltorio de la seccion.
+
+   POR QUE DOS CAMPOS Y NO MAS
+
+   En un CTA de cierre cada campo extra es una razon para no enviarlo. Con
+   el correo basta para crear el contacto en HubSpot y poder responder; el
+   nombre permite contestar de forma personal y cuesta poco. El telefono
+   se deja fuera: pedirlo implica una llamada que el visitante no ha
+   pedido.
+
+   TRES COSAS QUE HUBO QUE CORREGIR
+
+   1. El .campo__input venia con padding 16px/2px de la calculadora y no
+      llenaba su envoltorio: 1166px dentro de 1200. Aqui se le da el
+      relleno horizontal que le falta.
+   2. La casilla del consentimiento MEDIA CERO --invisible, y es
+      obligatoria--. Se le da tamano explicito y se le quita el
+      appearance por defecto, que es lo que la colapsaba.
+   3. El formulario ocupaba todo el ancho de la seccion. Se acota, que un
+      campo de 1200px de largo para escribir un nombre no se lee como un
+      formulario sino como una franja.
+   ========================================================================== */
+
+.d2 .cta-final__form {
+  margin-top: clamp(20px, 2.4vw, 28px);
+  /* 30rem: ancho de formulario, no de seccion. Dos campos en fila caben
+     holgados y el conjunto se lee como una pieza compacta.
+
+     Se fija tambien el ancho base --width:100%-- porque al quitar el
+     bloque de botones el formulario paso a ser el unico hijo y la caja
+     flexible de la seccion lo estiraba a 652px. */
+  width: 100%;
+  max-width: 30rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.d2 .cta-final__campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 560px) {
+  .d2 .cta-final__campos { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- Los campos --- */
+
+.d2 .cta-final__form .campo { margin: 0; }
+
+.d2 .cta-final__form .campo__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: .75rem;
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: .02em;
+}
+
+.d2 .cta-final__form .campo__wrap {
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.d2 .cta-final__form .campo__input {
+  display: block;
+  width: 100%;
+  /* El relleno que le faltaba: con el de la calculadora --16px arriba y
+     2px a los lados-- el texto se pegaba al borde. */
+  padding: 11px 13px;
+  font: inherit;
+  font-size: .9375rem;
+  line-height: 1.4;
+  border-radius: var(--d2-radio-sm, 6px);
+  transition: border-color .18s ease, background .18s ease;
+}
+
+/* --- El consentimiento --- */
+
+.d2 .cta-final__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: .75rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.d2 .cta-final__consent input {
+  /* appearance:none y tamano explicito: sin esto la casilla medía CERO
+     --medido-- y no se veia. Se dibuja a mano para poder darle el verde
+     de marca en el estado marcado. */
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  /* Borde explicito y no currentColor: en el CTA de EGA la seccion
+     declara color y background iguales --#333333 los dos-- asi que
+     currentColor daba un borde del color del fondo. La regla de fondo
+     oscuro de mas abajo lo sobreescribe con blanco. */
+  border: 1.5px solid #6B6B6B;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background .16s ease, border-color .16s ease;
+}
+
+.d2 .cta-final__consent input:checked {
+  background: var(--c-verde-marca, #39B54A);
+  border-color: var(--c-verde-marca, #39B54A);
+}
+
+/* La marca de verificacion, dibujada con dos lados de un borde girados */
+.d2 .cta-final__consent input:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.d2 .cta-final__consent input:focus-visible {
+  outline: 2px solid var(--c-verde-marca, #39B54A);
+  outline-offset: 2px;
+}
+
+.d2 .cta-final__consent span { opacity: .82; }
+
+/* --- El boton --- */
+
+.d2 .cta-final__form button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* --- Sobre fondo CLARO: el estado por defecto ---------------------------
+
+   Las secciones .cta-final de Energy Management y Recommissioning van
+   sobre blanco. Los campos necesitan su propio borde, que sin el se
+   pierden en el fondo. */
+
+.d2 .cta-final__form .campo__input {
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  color: var(--c-texto, #333333);
+}
+
+.d2 .cta-final__form .campo__input:focus {
+  border-color: var(--c-verde-marca, #39B54A);
+  outline: none;
+}
+
+.d2 .cta-final__form .campo__label { color: var(--c-texto, #333333); }
+.d2 .cta-final__consent { color: var(--c-texto-cuerpo, #333333); }
+
+/* --- Sobre fondo oscuro: solo .d2-cta-bal ------------------------------
+
+   El selector incluia .cta-final, que es la seccion CLARA de Energy
+   Management y Recommissioning: les aplicaba campos translucidos y
+   etiquetas blancas sobre blanco --contraste 1.0, medido--.
+
+   La unica seccion de cierre con fondo oscuro es .d2-cta-bal, la de
+   Energy Gap Analysis. */
+
+.d2 .d2-cta-bal .cta-final__form .campo__input {
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .3);
+  color: #FFFFFF;
+}
+
+.d2 .d2-cta-bal .cta-final__form .campo__input::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.d2 .d2-cta-bal .cta-final__form .campo__input:focus {
+  border-color: var(--c-verde-marca, #39B54A);
+  background: rgba(255, 255, 255, .13);
+  outline: none;
+}
+
+/* Blanco explicito y NO inherit: la seccion .d2-cta-bal declara color y
+   background con el mismo valor --#333333 los dos-- y con inherit la
+   etiqueta heredaba ese gris sobre el mismo gris: contraste 1.0, medido. */
+.d2 .d2-cta-bal .cta-final__form .campo__label,
+.d2 .d2-cta-bal .cta-final__consent {
+  color: #FFFFFF;
+}
+
+/* La casilla sobre fondo oscuro: borde blanco al 55%, que se ve sin
+   gritar, y verde de marca al marcarse. */
+.d2 .d2-cta-bal .cta-final__consent input {
+  border-color: rgba(255, 255, 255, .55);
+}
+
+.d2 .d2-cta-bal .cta-final__consent input:checked {
+  background: var(--c-verde-marca, #39B54A);
+  border-color: var(--c-verde-marca, #39B54A);
+}
+
+
+/* ==========================================================================
+   ENERGY MANAGEMENT Y RECOMMISSIONING: IGUALAR CON EL RESTO (16/9/2026)
+
+   Las dos paginas venian de la plantilla antigua y conservaban sus propios
+   tamanos. Medido contra Energy Gap Analysis, que es la referencia
+   aprobada:
+
+     titulares de seccion   40px   frente a 52 en las demas
+     padding vertical       96px   frente a 84
+     un eyebrow en #39B54A  2.66:1, por debajo del minimo
+
+   Se igualan los tres. El hero ya se migro en su momento, asi que lo que
+   falta es el cuerpo de la pagina.
+
+   POR QUE NO SE TOCA --fs-h2 DIRECTAMENTE
+
+   Ese token lo usan mas sitios --la calculadora, el pie, secciones del
+   home-- y cambiarlo moveria cosas ya aprobadas. Se acota a las clases de
+   estas dos paginas.
+   ========================================================================== */
+
+.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .ciclo-sec) :is(h2, .dos-col__titulo, .requisitos__titulo, .fondos__titulo, .rutas__titulo, .cta-final__titulo, .ciclo-sec__titulo) {
+  /* El mismo clamp que usan las secciones de Energy Gap Analysis. */
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+/* El aire vertical, al de las demas. */
+.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .prueba-sec, .ciclo-sec) {
+  padding-block: clamp(56px, 6.4vw, 84px);
+}
+
+/* El eyebrow de .prueba-sec iba en verde de marca --2.66:1 sobre blanco,
+   por debajo del minimo de 4.5-- mientras el resto de la pagina usa el
+   oscuro. Se alinea con los demas. */
+.d2 .prueba-sec .eyebrow {
+  color: var(--c-verde-hover, #026F00);
 }

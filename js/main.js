@@ -247,7 +247,6 @@
   }
 
   var PASO_TIPO = pasoDe('#c-type');
-  var PASO_SITIOS = pasoDe('#c-sites');
 
   /* Donde acaba la precalificacion y empieza el perfil del edificio.
      Se lee del marcado, igual que los dos de arriba: si los pasos se
@@ -814,6 +813,14 @@
 
      Eso es lo que veia el usuario: "Sites: 1 site" con "Multiple
      buildings" elegido y el campo vacio. */
+  /* Como vaciarFila pero ademas saca la fila del panel: para datos que
+     ya no se piden y por tanto nunca van a rellenarse. */
+  function ocultarFila(clave) {
+    var f = fila(clave);
+    if (!f) { return; }
+    f.hidden = true;
+  }
+
   function vaciarFila(clave) {
     var f = fila(clave);
     if (!f) { return; }
@@ -995,16 +1002,18 @@
        Con "One building" el guion escribe un 1 en el campo --la respuesta
        es evidente y el campo se oculta-- pero eso no es un dato que haya
        dado nadie: el perfil mostraba "Sites: 1 site" desde el paso 5. */
-    var sitiosPerfil = numero($('#c-sites').value);
-    if (sitiosPerfil && (abierta || estado.paso >= PASO_SITIOS)) {
-      ponerFila('sites', sitiosPerfil === 1 ? '1 site' : sitiosPerfil + ' sites');
-    } else {
-      /* Sin dato, la fila se vacia en vez de conservar el anterior. El
-         caso que lo destapo: elegir "un edificio" --que escribe un 1 en
-         el campo-- y cambiar despues a "varios", que lo borra. La fila
-         seguia diciendo "1 site". */
-      vaciarFila('sites');
-    }
+    /* El campo se retiro el 16/9/2026 --el alcance, "un edificio" o
+       "varios", ya da esta informacion-- asi que puede no existir. */
+    /* La fila "Sites" se retira del panel (16/9/2026)
+    
+       Su campo se quito: el alcance --"un edificio" o "varios"-- ya da
+       esa informacion. Sin campo que leer, la fila se quedaba con un
+       guion permanente, que en un panel que se va rellenando se lee
+       como un dato que falta y no como uno que no aplica.
+    
+       El valor SIGUE viajando a HubSpot: lo calcula calcular() a partir
+       del alcance. Lo que desaparece es la fila, no el dato. */
+    ocultarFila('sites');
 
     plegarElegibilidad();
 
@@ -1443,7 +1452,11 @@
 
     var area   = numero($('#c-area').value);
     var gasto  = numero($('#c-spend').value);
-    var sitios = numero($('#c-sites').value) || (estado.scope === 'single' ? 1 : 2);
+    /* Sin el campo --retirado el 16/9/2026-- el numero sale del alcance:
+       un edificio es 1, varios es 2. Es lo unico que el calculo
+       necesita: solo distingue entre "una sola" y "cartera". */
+    var cs = $('#c-sites');
+    var sitios = (cs ? numero(cs.value) : 0) || (estado.scope === 'single' ? 1 : 2);
 
     // Si no indica gasto, se estima con el coste por pie cuadrado del benchmark
     var gastoFinal = gasto || (area ? area * b.costPerFt2 : 0);
@@ -1698,7 +1711,10 @@
   var CAMINOS = {
     cualificado: {
       boton: 'Send me the deeper look',
-      pide: ['h-name', 'h-org', 'h-role', 'h-direct', 'h-email', 'h-phone'],
+      /* h-direct se retiro el 16/9/2026: "Direct line" y "Mobile phone"
+         eran dos campos para el mismo dato --un telefono al que llamar--
+         y se fusionaron en h-phone. */
+      pide: ['h-name', 'h-org', 'h-role', 'h-email', 'h-phone'],
       legal: 'Only used to prepare your analysis.'
     },
     municipal: {

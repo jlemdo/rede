@@ -335,11 +335,22 @@
 /* La caja de "no sabes por donde empezar": es del copy del cliente y hace
    de salida para quien no quiere escribir todavia. */
 .d2 .ct-caja {
+  /* Sin fondo propio (16/9/2026)
+
+     Antes era un bloque negro #1A1A1A junto a un formulario gris #F5F5F5:
+     tres superficies distintas --con los datos de contacto sin fondo--
+     compitiendo en la misma fila.
+
+     El formulario es la accion principal de esta pagina y debe ser lo
+     unico que destaque. La caja pasa a nota al margen: sin fondo, con un
+     filete verde que la marca como aparte sin disputarle peso.
+
+     Los textos bajan del blanco a la tinta del sitio; sobre blanco el
+     blanco no se ve. */
   margin-top: var(--sp-5);
-  padding: var(--sp-5);
-  background: var(--c-superficie-oscura, #1A1A1A);
-  border-radius: var(--radio-sm, 6px);
-  color: #FFFFFF;
+  padding: var(--sp-4) 0 var(--sp-4) var(--sp-5);
+  border-left: 3px solid var(--c-verde-marca, #39B54A);
+  color: var(--c-texto, #333333);
 }
 
 .d2 .ct-caja__eti {
@@ -348,25 +359,23 @@
   font-weight: var(--fw-bold, 700);
   letter-spacing: var(--ls-eyebrow, .08em);
   text-transform: uppercase;
-  /* Sobre negro el verde de marca da 6.53:1 y ademas identifica a Rede. */
-  color: var(--c-verde-marca, #39B54A);
+  /* Verde OSCURO y no el de marca: sobre blanco el #39B54A da 2.66:1 y
+     no llega al minimo. Este da 6.41. */
+  color: var(--c-verde-hover, #026F00);
 }
 
 .d2 .ct-caja__titulo {
   margin: 0 0 var(--sp-2);
   font-size: var(--fs-h3);
   font-weight: var(--fw-extrabold, 800);
-  color: #FFFFFF;
+  color: var(--c-texto, #333333);
 }
 
 .d2 .ct-caja__texto {
   margin: 0 0 var(--sp-3);
   font-size: var(--fs-small);
   line-height: 1.6;
-  /* --c-borde al 100% no sirve aqui --es un gris de linea, no de
-     texto-- asi que va el blanco a media opacidad: mismo resultado
-     visual y un valor menos que mantener. */
-  color: rgba(255, 255, 255, .84);
+  color: var(--c-texto-cuerpo, #333333);
 }
 
 .d2 .ct-caja__link {
@@ -376,11 +385,13 @@
   min-height: 44px;
   font-size: var(--fs-small);
   font-weight: var(--fw-bold, 700);
-  color: var(--c-verde-marca, #39B54A);
+  color: var(--c-verde-hover, #026F00);
   text-decoration: none;
 }
 
-.d2 .ct-caja__link:hover { color: #FFFFFF; }
+/* Al apuntar, subrayado: sobre fondo claro un cambio de color solo es
+   demasiado sutil para un enlace. */
+.d2 .ct-caja__link:hover { text-decoration: underline; }
 
 /* ==========================================================================
    EL CAMPO TERMICO

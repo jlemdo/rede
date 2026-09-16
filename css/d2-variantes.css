@@ -3111,7 +3111,11 @@ span.d2-panel__filtro:hover {
   gap: 6px;
 }
 
-.d2 .calc .campo + .campo {
+/* :not dentro de la pareja (16/9/2026): este selector separa campos
+   APILADOS, y dentro de .captura__pareja van en fila. Sin la exclusion le
+   daba 16px al segundo y "Role" caia por debajo de "Organization" --el
+   hueco se ve en cuanto los dos comparten linea--. */
+.d2 .calc .campo + .campo:not(.captura__pareja > .campo) {
   margin-top: var(--d2-e3);
 }
 
@@ -8724,9 +8728,18 @@ span.d2-panel__filtro:hover {
    asi que el boton sigue siendo el mismo a la vista.
    -------------------------------------------------------------------------- */
 
+/* El borde oscuro se retira (16/9/2026)
+
+   Existia porque el boton iba en verde de marca con texto gris y necesitaba
+   despegarse del fondo blanco. Ahora el reposo YA es el verde de marca y el
+   borde del mismo color lo define: un filete oscuro encima solo ensuciaria
+   el color que Erick quiere ver.
+
+   El contorno lo da ahora border-color, que acompana al fondo en los dos
+   estados. */
 .d2 .d2-btn--solido,
 .d2 .btn--primary {
-  border: 2px solid #026F00;
+  border: 2px solid transparent;
 }
 
 /* Sobre fondo oscuro el problema no existe --el verde da 4.74:1 contra el
@@ -8779,8 +8792,27 @@ span.d2-panel__filtro:hover {
    3:1, pero 2.66 tampoco llega.
    -------------------------------------------------------------------------- */
 
-.d2 :is(.d2-hero__eyebrow, .d2-eyebrow, .eyebrow, .acento) {
+.d2 :is(.d2-hero__eyebrow, .d2-eyebrow, .eyebrow) {
   color: #026F00;
+}
+
+/* El acento del titular, en verde de marca (16/9/2026)
+
+   Se separa de los eyebrow a peticion del cliente. La distincion es de
+   TAMANO, no de capricho:
+
+     eyebrow    14px  -> el color tiene que LEERSE, va el oscuro
+     acento     60px  -> el color DECORA, aguanta el verde vivo
+
+   A 60px la diferencia entre 2.66:1 y 3:1 es imperceptible --la masa de
+   letra compensa de sobra-- y es el sitio donde el verde de la marca luce
+   sin estorbar. En un texto de 14px el mismo color se vuelve un gris
+   verdoso ilegible.
+
+   La regla exige el tamano minimo para que nadie lo aplique por error a un
+   texto pequeno. */
+.d2 .acento {
+  color: var(--c-verde-marca, #39B54A);
 }
 
 /* --------------------------------------------------------------------------
@@ -10011,7 +10043,16 @@ span.d2-panel__filtro:hover {
   text-wrap: balance;
 }
 
-.d2 .d2-faq-dato__titulo span { color: var(--c-verde-hover, #026F00); }
+/* Verde vivo, igual que el resto de destacados en titular: a 49px es
+   texto grande y el minimo baja a 3:1.
+
+   UN PUNTO MAS OSCURO QUE LOS DEMAS, Y POR QUE
+
+   Esta seccion NO va sobre blanco: el fondo es #F3F3F3, y ese gris se
+   come contraste. El #33A343 que usan los otros destacados da 3,25:1
+   sobre blanco pero solo 2,93:1 aqui, y se queda corto. El #2E9A3C da
+   3,26:1 sobre el gris. A simple vista es el mismo verde. */
+.d2 .d2-faq-dato__titulo span { color: #2E9A3C; }
 
 .d2 .d2-faq-dato__cuerpo {
   display: grid;
@@ -11985,7 +12026,23 @@ span.d2-panel__filtro:hover {
 /* --- La cabecera, centrada --- */
 
 .d2 .d2-equipo-banda__cabecera {
-  max-width: 66ch;
+  /* 88ch y no 66 (16/9/2026)
+
+     Medido: el lead son 31 palabras y a 66ch caian en TRES lineas dentro
+     de 642px, con 79 caracteres por linea. El bloque se veia comprimido en
+     el centro mientras sobraba sitio a los lados.
+
+     Barrido de 78 a 88: a 86ch siguen siendo TRES lineas y a 88 pasan a
+     dos. No hay punto intermedio, asi que 88 es el valor.
+
+     Quedan 119 caracteres por linea, por encima del rango comodo de
+     lectura --45 a 90--. Se acepta a proposito: son dos renglones de una
+     entradilla centrada, no un parrafo largo, y el usuario pidio
+     expresamente que ocupara dos. En un bloque de texto corrido este
+     ancho no seria aceptable.
+
+     El titular de arriba, que es corto, no se ve afectado. */
+  max-width: 88ch;
   /* Antes hasta 72px. La cabecera y los retratos son el mismo bloque, no
      dos secciones distintas: no necesitan tanta separacion. */
   margin: 0 auto clamp(34px, 3.6vw, 50px);
@@ -12345,9 +12402,40 @@ span.d2-panel__filtro:hover {
    simetrica, entrada y salida iguales.
    ========================================================================== */
 
+/* INVERTIDO (16/9/2026), a peticion de Erick
+
+   El boton en reposo pasa al VERDE DE MARCA y el hover al oscuro. Antes era
+   al reves y Erick lo señalo: el color que mas se ve --el de reposo-- no era
+   el del logo, y el boton no cuadraba con la marca.
+
+   Su argumento gana al de la version anterior. Aquel buscaba que el boton se
+   "encendiera" al apuntarlo; pero un boton se ve mil veces en reposo y unas
+   pocas con el raton encima, asi que el estado que representa a la marca es
+   el primero.
+
+   EL TEXTO VA EN BLANCO POR DECISION DEL CLIENTE
+
+   Se le planteo el problema con las medidas delante y eligio el blanco
+   sobre el verde de marca exacto. Queda constancia de lo que eso implica:
+
+     reposo  #FFFFFF sobre #39B54A ....... 2.66:1   NO cumple AA (min 4.5)
+     hover   #FFFFFF sobre #026F00 ....... 6.41:1   cumple
+
+   A 2.66:1 el texto del boton se lee mal con brillo bajo, a la luz del dia
+   o con visión reducida. Se ofrecieron dos alternativas que si cumplian
+   --gris #333333 sobre el mismo verde (4.74), o blanco sobre un verde un
+   punto mas oscuro #268230 (4.86)-- y se descartaron para conservar el
+   verde del logo exacto con letras blancas.
+
+   SI ALGUN DIA HAY QUE CORREGIRLO, esto es lo que hay que cambiar: o el
+   color del texto, o el del fondo. Las dos opciones estan medidas arriba.
+
+   Las transiciones mantienen la gramatica del resto: 420ms, curva
+   simetrica. */
+
 .d2 :is(.d2-btn--solido, .btn--primary, .d2-btn--principal) {
-  background: var(--c-verde-hover, #026F00);
-  border-color: var(--c-verde-hover, #026F00);
+  background: var(--c-verde-marca, #39B54A);
+  border-color: var(--c-verde-marca, #39B54A);
   color: #FFFFFF;
   transition: background-color .42s cubic-bezier(.4, 0, .2, 1),
               border-color .42s cubic-bezier(.4, 0, .2, 1),
@@ -12356,22 +12444,22 @@ span.d2-panel__filtro:hover {
 
 .d2 :is(.d2-btn--solido, .btn--primary, .d2-btn--principal):hover,
 .d2 :is(.d2-btn--solido, .btn--primary, .d2-btn--principal):focus-visible {
-  background: var(--c-verde-marca, #39B54A);
-  border-color: var(--c-verde-marca, #39B54A);
-  color: #333333;
+  background: var(--c-verde-hover, #026F00);
+  border-color: var(--c-verde-hover, #026F00);
+  color: #FFFFFF;
 }
 
 /* Sobre seccion oscura vale lo mismo: el verde oscuro se distingue del
    fondo negro --3.29:1 contra #333333-- y el texto blanco se lee igual. */
 .d2 [data-comp-tono="oscuro"] :is(.d2-btn--solido, .btn--primary):not(:hover):not(:focus-visible) {
-  background: var(--c-verde-hover, #026F00);
+  background: var(--c-verde-marca, #39B54A);
   color: #FFFFFF;
 }
 
 .d2 [data-comp-tono="oscuro"] :is(.d2-btn--solido, .btn--primary):hover,
 .d2 [data-comp-tono="oscuro"] :is(.d2-btn--solido, .btn--primary):focus-visible {
-  background: var(--c-verde-marca, #39B54A);
-  color: #333333;
+  background: var(--c-verde-hover, #026F00);
+  color: #FFFFFF;
 }
 
 /* El boton del CTA carrusel llevaba su propia regla de color. Se alinea
@@ -15989,4 +16077,125 @@ span.d2-panel__filtro:hover {
   .d2 .calc--pasos .espera .adelanto {
     width: 100%;
   }
+}
+
+
+/* --- El formulario de la calculadora, mas compacto (16/9/2026) ----------
+
+   Tres cambios para bajar su altura sin perder datos utiles:
+
+   1. "Direct line" y "Mobile phone" eran dos campos para el MISMO dato
+      --un telefono al que llamar-- y se fusionaron en uno. Pedir dos
+      numeros a alguien que solo quiere un analisis es pedir de mas.
+
+   2. "Organization" y "Role" comparten fila. Son dos campos cortos y
+      apilados alargaban el formulario sin ganar legibilidad.
+
+   3. El resto se queda apilado: nombre, correo y telefono son de longitud
+      variable y en dos columnas se cortarian en pantallas medianas.
+
+   Por debajo de 520px la pareja se apila, que ahi no caben dos campos con
+   sus etiquetas. */
+
+.d2 .captura__pareja {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  /* Las dos etiquetas, a la misma altura. Sin esto los campos se alinean
+     por su centro --el reparto por defecto de la rejilla-- y como el de la
+     derecha puede llevar un aviso de error mas alto, "Role" caia 16px por
+     debajo de "Organization". Medido. */
+  align-items: start;
+}
+
+/* Los campos de dentro pierden sus margenes: los pone la rejilla.
+
+   El de arriba importa: una regla de hermanos adyacentes --campo + campo--
+   le daba 16px al segundo, y dentro de la pareja eso hundia "Role" por
+   debajo de "Organization". Medido en el navegador. */
+.d2 .captura__pareja > .campo {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 520px) {
+  .d2 .captura__pareja { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* --- Los botones siguen al contenido, no al borde (16/9/2026) -----------
+
+   El panel de la calculadora mide lo que mide su columna DERECHA --el
+   resumen, 636px-- y la izquierda se estira para igualarla. En los pasos
+   con un solo campo eso dejaba a "Back" y "Next" pegados al fondo con un
+   hueco vacio de varios centimetros encima.
+
+   Ahora los botones van justo detras del ultimo campo y el sobrante queda
+   DEBAJO, donde se lee como margen y no como un vacio.
+
+   POR QUE NO SE ENCOGE EL PANEL
+
+   Se penso en que la caja se ajustara al contenido de cada paso, pero eso
+   la haria saltar de 636 a 400 y vuelta al avanzar, y la pagina se
+   desplazaria bajo el cursor. La altura constante es lo que hace que
+   pasar de paso se sienta estable.
+
+   margin-bottom:auto en el ultimo elemento flexible empuja el sobrante
+   hacia abajo. No se usa justify-content porque repartiria el hueco entre
+   TODOS los elementos, separando la cabecera de los campos. */
+
+.d2 .calc--pasos .pasos__nav {
+  margin-bottom: auto;
+}
+
+/* La nota legal se queda pegada a los botones, no al fondo. */
+.d2 .calc--pasos .pasos__nav + .calc__nota {
+  margin-bottom: auto;
+}
+
+
+/* --- La FAQ con la grafica del hero al lado (16/9/2026) -----------------
+
+   Clon de la FAQ con el mapa sustituido por la grafica acumulada, para
+   comparar cual acompana mejor a las preguntas. Es una PRUEBA: si no se
+   queda, se borra la seccion y este bloque, y no deja rastro.
+
+   La grafica viene del hero, donde vive en una caja oscura y ancha. Aqui
+   cae en un panel claro y estrecho, asi que necesita su propio trato:
+   mas aire alrededor y las etiquetas un punto mas grandes, que a 411px
+   de ancho las del hero se quedan en 6px. */
+
+.d2 .d2-faq-dato--grafica .d2-faq-dato__ficha-caja {
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.d2 .d2-faq-dato__grafica {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* El viewBox del hero es 560x300 y aqui se pinta a 411: todo encoge un
+     27%. Se compensa en las etiquetas, que son lo unico que no aguanta. */
+  overflow: visible;
+}
+
+.d2 .d2-faq-dato--grafica :is(.hero-gr__anos, .hero-gr__escala) text {
+  font-size: 13px;
+}
+
+/* En el hero la grafica va sobre oscuro y las barras son verde translucido.
+   Sobre el panel claro de la FAQ eso se pierde: se sube la opacidad. */
+.d2 .d2-faq-dato--grafica .hero-gr__barras rect {
+  fill: rgba(57, 181, 74, .75);
+}
+
+.d2 .d2-faq-dato--grafica .hero-gr__rejilla line {
+  stroke: var(--c-borde, #E4E4E4);
+}
+
+.d2 .d2-faq-dato--grafica :is(.hero-gr__anos, .hero-gr__escala) text {
+  fill: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-faq-dato--grafica .d2-faq-dato__ficha-nota {
+  margin-top: 12px;
 }

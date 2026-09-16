@@ -449,6 +449,140 @@
   </div>
 </section>
 
+<!-- LA MISMA SECCION, EN ESPEJO (16/9/2026)
+
+     Clon de "Who we are" con el mapa a la izquierda y el texto a la
+     derecha. Es una PRUEBA VISUAL pedida por el usuario para comparar las
+     dos orientaciones; si no se queda, se borra entera y no deja rastro.
+
+     El orden se invierte solo en el CSS --.ab-origen--espejo-- y no en el
+     marcado: asi en movil las dos secciones apilan igual, con el texto
+     antes que el mapa. Un lector de pantalla y un teclado recorren
+     siempre el texto primero.
+
+     El id del titular lleva sufijo propio porque aria-labelledby apunta a
+     el: repetido, la segunda seccion quedaria etiquetada por el titular
+     de la primera. -->
+<section class="ab-origen ab-origen--espejo d2-entra" aria-labelledby="ab-origen-esp-t">
+  <div class="ab-origen__inner">
+
+    <div class="ab-origen__texto">
+      <p class="eyebrow">Who we are</p>
+      <h2 class="ab-origen__titulo" id="ab-origen-esp-t">Founded for communities that needed the work done well.</h2>
+      <p>
+        Rede was founded to serve Indigenous, Northern, and rural communities across
+        Western Canada &mdash; places where resources were tight and no one else was
+        doing the work. That origin shaped everything about how we operate: the
+        relationships we build, the data we rely on, the long-term view we take.
+      </p>
+      <p>
+        We&rsquo;ve grown since then, and the organisations we work with have grown
+        with us. But the approach hasn&rsquo;t changed. We&rsquo;re still a small,
+        nimble firm. We still show up for the long term. We still believe that the
+        people operating the buildings are essential to any energy management
+        program worth running.
+      </p>
+    </div>
+
+    <div class="ab-origen__arte">
+      <!-- EL MAPA DE COMUNIDADES
+
+           Replica del mapa "Our Communities" del cliente: las mismas tres
+           siluetas y los mismos 59 emplazamientos, medidos sobre su imagen
+           --no colocados a ojo ni inventados--.
+
+           COMO SE SACARON LOS PUNTOS
+
+           Se detecto el verde de la imagen y se separaron los discos
+           pegados por transformada de distancia. El control es el area:
+           59 puntos explican la mancha verde, y eso es lo que hay. Donde
+           dos circulos se solapan casi por completo la referencia tampoco
+           deja distinguirlos, asi que ahi el numero es el del original.
+
+           NO LLEVAN NOMBRE A PROPOSITO
+
+           El cliente no ha pasado la lista de comunidades. Poner topónimos
+           inventados junto a una silueta real haria pasar por dato algo
+           que no lo es, asi que los puntos son posiciones y nada mas.
+
+           SIN HOVER, COMO SE PIDIO
+
+           No hay tarjeta ni tooltip: los puntos solo laten. El pulso va
+           escalonado de oeste a este --el orden en que Rede crecio-- y
+           cada uno lleva su propio factor de velocidad, para que respire
+           en vez de parpadear a compas.
+
+           aria-hidden y no role="img": al lado vive el texto que cuenta lo
+           mismo, y un lector de pantalla no gana nada oyendo "59 puntos". -->
+      <svg class="ab-mapa" viewBox="0 0 1000 539" fill="none" aria-hidden="true">
+        <path class="ab-mapa__tierra" d="M0.0 0.0L51.9 139.6L84.4 181.8L53.6 284.1L89.3 349.0L103.9 414.0L180.2 496.8L211.0 511.4L414.0 529.2L414.0 462.7L435.1 522.7L534.1 526.0L542.2 360.4L553.6 527.6L767.9 509.7L722.4 251.6L698.1 188.3L704.5 128.2L691.6 68.2L545.5 76.3L543.8 86.0L608.8 99.0L547.1 113.6L534.1 154.2L529.2 131.5L511.4 125.0L526.0 86.0L517.9 74.7L331.2 66.6L306.8 230.5L314.9 68.2L159.1 43.8Z"/>
+        <path class="ab-mapa__tierra" d="M840.9 43.8L720.8 60.1L706.2 71.4L725.6 238.6L769.5 465.9L780.8 501.6L790.6 508.1L798.7 506.5L808.4 521.1L821.4 524.4L868.5 511.4L883.1 490.3L915.6 487.0L925.3 478.9L902.6 368.5L902.6 334.4L998.4 138.0L996.8 133.1L930.2 144.5L920.5 134.7L901.0 92.5L891.2 84.4L865.3 82.8L855.5 71.4L849.0 47.1Z"/>
+        <path class="ab-mapa__tierra" d="M77.9 420.5L77.9 431.8L86.0 441.6L86.0 443.2L97.4 454.5L97.4 456.2L108.8 467.5L108.8 469.2L120.1 480.5L120.1 482.1L131.5 493.5L131.5 495.1L151.0 514.6L151.0 516.2L164.0 529.2L165.6 529.2L168.8 532.5L173.7 532.5L185.1 537.3L189.9 537.3L193.2 532.5L191.6 526.0L188.3 522.7L185.1 516.2L178.6 509.7L178.6 506.5L170.5 496.8L170.5 495.1L157.5 482.1L154.2 475.6L154.2 472.4L151.0 469.2L149.4 464.3L125.0 441.6L120.1 439.9L112.0 433.4L107.1 431.8L90.9 420.5Z"/>
+      <circle class="ab-mapa__sitio" cx="241.9" cy="393.7" r="15.4" style="--i:23;--f:1.01"/>
+      <circle class="ab-mapa__sitio" cx="194.8" cy="301.9" r="15.4" style="--i:15;--f:0.93"/>
+      <circle class="ab-mapa__sitio" cx="823.1" cy="485.4" r="15.4" style="--i:56;--f:1.18"/>
+      <circle class="ab-mapa__sitio" cx="112.0" cy="277.6" r="15.4" style="--i:5;--f:0.89"/>
+      <circle class="ab-mapa__sitio" cx="274.4" cy="248.4" r="15.4" style="--i:29;--f:1.12"/>
+      <circle class="ab-mapa__sitio" cx="301.9" cy="248.4" r="15.4" style="--i:31;--f:1.03"/>
+      <circle class="ab-mapa__sitio" cx="383.1" cy="165.6" r="15.4" style="--i:37;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="207.8" cy="442.4" r="15.4" style="--i:18;--f:1.10"/>
+      <circle class="ab-mapa__sitio" cx="191.6" cy="478.1" r="15.4" style="--i:14;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="134.7" cy="246.8" r="15.4" style="--i:7;--f:1.07"/>
+      <circle class="ab-mapa__sitio" cx="420.5" cy="170.5" r="15.4" style="--i:41;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="508.1" cy="265.4" r="15.4" style="--i:49;--f:0.90"/>
+      <circle class="ab-mapa__sitio" cx="181.8" cy="280.8" r="15.4" style="--i:12;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="329.5" cy="285.7" r="15.4" style="--i:33;--f:1.26"/>
+      <circle class="ab-mapa__sitio" cx="517.9" cy="345.8" r="15.4" style="--i:52;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="215.9" cy="378.2" r="15.4" style="--i:20;--f:0.96"/>
+      <circle class="ab-mapa__sitio" cx="266.2" cy="417.2" r="15.4" style="--i:27;--f:1.16"/>
+      <circle class="ab-mapa__sitio" cx="399.4" cy="441.6" r="15.4" style="--i:40;--f:1.32"/>
+      <circle class="ab-mapa__sitio" cx="269.5" cy="121.8" r="15.4" style="--i:28;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="345.8" cy="149.4" r="15.4" style="--i:34;--f:1.05"/>
+      <circle class="ab-mapa__sitio" cx="125.0" cy="225.6" r="15.4" style="--i:6;--f:1.34"/>
+      <circle class="ab-mapa__sitio" cx="446.4" cy="274.4" r="15.4" style="--i:43;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="383.4" cy="279.2" r="15.4" style="--i:38;--f:1.28"/>
+      <circle class="ab-mapa__sitio" cx="164.8" cy="365.3" r="15.4" style="--i:9;--f:0.99"/>
+      <circle class="ab-mapa__sitio" cx="431.8" cy="448.1" r="15.4" style="--i:42;--f:0.92"/>
+      <circle class="ab-mapa__sitio" cx="254.9" cy="459.4" r="15.4" style="--i:25;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="73.5" cy="129.4" r="15.4" style="--i:1;--f:1.00"/>
+      <circle class="ab-mapa__sitio" cx="500.0" cy="228.9" r="15.4" style="--i:48;--f:1.26"/>
+      <circle class="ab-mapa__sitio" cx="68.2" cy="274.4" r="15.4" style="--i:0;--f:0.94"/>
+      <circle class="ab-mapa__sitio" cx="285.7" cy="297.1" r="15.4" style="--i:30;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="454.5" cy="306.8" r="15.4" style="--i:44;--f:1.17"/>
+      <circle class="ab-mapa__sitio" cx="86.0" cy="314.9" r="15.4" style="--i:2;--f:1.04"/>
+      <circle class="ab-mapa__sitio" cx="314.9" cy="333.6" r="15.4" style="--i:32;--f:1.12"/>
+      <circle class="ab-mapa__sitio" cx="195.6" cy="406.7" r="15.4" style="--i:16;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="482.1" cy="456.2" r="15.4" style="--i:46;--f:0.88"/>
+      <circle class="ab-mapa__sitio" cx="462.7" cy="491.1" r="15.4" style="--i:45;--f:0.95"/>
+      <circle class="ab-mapa__sitio" cx="103.9" cy="108.8" r="15.4" style="--i:4;--f:1.19"/>
+      <circle class="ab-mapa__sitio" cx="526.0" cy="170.5" r="15.4" style="--i:53;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="370.9" cy="184.3" r="15.4" style="--i:35;--f:1.01"/>
+      <circle class="ab-mapa__sitio" cx="151.8" cy="284.1" r="15.4" style="--i:8;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="180.2" cy="385.6" r="15.4" style="--i:11;--f:1.08"/>
+      <circle class="ab-mapa__sitio" cx="509.7" cy="478.9" r="15.4" style="--i:50;--f:1.00"/>
+      <circle class="ab-mapa__sitio" cx="259.7" cy="360.4" r="15.4" style="--i:26;--f:1.25"/>
+      <circle class="ab-mapa__sitio" cx="840.1" cy="469.2" r="15.4" style="--i:57;--f:1.20"/>
+      <circle class="ab-mapa__sitio" cx="498.4" cy="292.2" r="15.4" style="--i:47;--f:0.97"/>
+      <circle class="ab-mapa__sitio" cx="230.5" cy="431.8" r="15.4" style="--i:21;--f:1.14"/>
+      <circle class="ab-mapa__sitio" cx="855.5" cy="488.6" r="15.4" style="--i:58;--f:1.11"/>
+      <circle class="ab-mapa__sitio" cx="379.9" cy="144.5" r="15.4" style="--i:36;--f:1.29"/>
+      <circle class="ab-mapa__sitio" cx="396.1" cy="258.6" r="15.4" style="--i:39;--f:1.21"/>
+      <circle class="ab-mapa__sitio" cx="96.6" cy="294.6" r="15.4" style="--i:3;--f:0.99"/>
+      <circle class="ab-mapa__sitio" cx="215.9" cy="292.2" r="15.4" style="--i:19;--f:1.34"/>
+      <circle class="ab-mapa__sitio" cx="173.7" cy="305.2" r="15.4" style="--i:10;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="207.8" cy="319.8" r="15.4" style="--i:17;--f:1.06"/>
+      <circle class="ab-mapa__sitio" cx="513.8" cy="368.5" r="15.4" style="--i:51;--f:1.23"/>
+      <circle class="ab-mapa__sitio" cx="238.6" cy="370.1" r="15.4" style="--i:22;--f:0.93"/>
+      <circle class="ab-mapa__sitio" cx="245.1" cy="415.6" r="15.4" style="--i:24;--f:1.09"/>
+      <circle class="ab-mapa__sitio" cx="189.9" cy="456.2" r="15.4" style="--i:13;--f:0.87"/>
+      <circle class="ab-mapa__sitio" cx="806.0" cy="471.6" r="15.4" style="--i:54;--f:1.18"/>
+      <circle class="ab-mapa__sitio" cx="814.1" cy="508.1" r="15.4" style="--i:55;--f:1.23"/>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
 <!-- ==========================================================================
      MORE THAN ENGINEERS
 
@@ -834,6 +968,5 @@
      Poner el rol sin cargar el script es exactamente lo que hice en el
      intento anterior, y por eso seguia invisible. -->
 <script src="js/d2-composicion.js"></script>
-
 </body>
 </html>

@@ -384,7 +384,13 @@
 
        Cuando este decidido: data-caru-fijo="N" con el numero elegido.
        ================================================================== -->
-  <div class="d2-caru" id="caru-ega-pasos" data-caru>
+  <!-- OCULTA A PETICION DEL CLIENTE (16/9/2026)
+       Se oculta el carrusel ENTERO, no solo la opcion visible: dentro
+       viven las tres variantes y la barra para elegirlas, asi que
+       ocultar solo la activa dejaria las pestanas sin contenido.
+       El markup se conserva intacto: para recuperarla basta con
+       quitar el hidden de esta linea. -->
+  <div class="d2-caru" id="caru-ega-pasos" data-caru hidden>
 
     <!-- OPCION 1 - LA LISTA QUE SE ORDENA -->
     <!-- OPCION 1 - TERMOGRAFIA
@@ -918,20 +924,30 @@
             </li>
       </ol>
 
-      <div class="ega-rank__pie">
-        <p class="ega-rank__pie-eti">What you receive</p>
-        <p class="ega-rank__pie-txt">
-          A ranked shortlist, supporting numbers and a practical next step.
-        </p>
-      </div>
-
       <p class="ega-rank__aviso">
         Illustrative ranking. Your own result depends on your buildings and utility data.
       </p>
     </div>
 
-  </div>
-</section>
+  
+        <!-- "What you receive": fuera del panel, dentro del inner
+             (16/9/2026)
+
+             Estaba dentro de la columna derecha y quedaba cargado a ese
+             lado. Ahora es hermano de las dos columnas y con
+             grid-column:1/-1 las cruza, centrado.
+
+             Va DENTRO de .ega-rank__inner a proposito: fuera se salia
+             del contenedor de 1280 y su filete cruzaba la ventana
+             entera, de borde a borde. -->
+        <div class="ega-rank__pie">
+          <p class="ega-rank__pie-eti">What you receive</p>
+          <p class="ega-rank__pie-txt">
+            A ranked shortlist, supporting numbers and a practical next step.
+          </p>
+        </div>
+
+      </div></section>
 
 <!-- ====================================================================
          OPCION 3 — ASISTENTE POR PASOS
@@ -1546,7 +1562,7 @@
           </div>
 
           <button class="btn btn--primary btn--block" type="submit">
-          <span data-boton-envio="">Send me the deeper look</span>
+            <span data-boton-envio="">Send me the deeper look</span>
           <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
           <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
@@ -1623,7 +1639,13 @@
        Mismo copy en los tres. Lo que cambia es el PESO y el ORDEN, que es
        justo lo que la evidencia dice que importa aqui.
        ================================================================== -->
-  <div class="d2-caru" id="caru-ega-alcance" data-caru>
+  <!-- OCULTA A PETICION DEL CLIENTE (16/9/2026)
+       Se oculta el carrusel ENTERO, no solo la opcion visible: dentro
+       viven las tres variantes y la barra para elegirlas, asi que
+       ocultar solo la activa dejaria las pestanas sin contenido.
+       El markup se conserva intacto: para recuperarla basta con
+       quitar el hidden de esta linea. -->
+  <div class="d2-caru" id="caru-ega-alcance" data-caru hidden>
 
     <!-- OPCION 1 - DOS TARJETAS (la que ya existia) -->
     <!-- OPCION 1 - PERIMETRO
@@ -1999,7 +2021,13 @@
        utilities no lo hacen --BC Hydro dice "funding varies"-- y hacerlo
        aqui nos expondria.
        ================================================================== -->
-  <div class="d2-caru" id="caru-ega-fondos" data-caru>
+  <!-- OCULTA A PETICION DEL CLIENTE (16/9/2026)
+       Se oculta el carrusel ENTERO, no solo la opcion visible: dentro
+       viven las tres variantes y la barra para elegirlas, asi que
+       ocultar solo la activa dejaria las pestanas sin contenido.
+       El markup se conserva intacto: para recuperarla basta con
+       quitar el hidden de esta linea. -->
+  <div class="d2-caru" id="caru-ega-fondos" data-caru hidden>
 
     <!-- OPCION 1 - TRES TARJETAS (la que ya existia) -->
     <!-- OPCION 1 - LAS RUTAS
@@ -2579,24 +2607,59 @@
 
         <!-- ul y no ol: las dos vias son alternativas, no pasos. El orden
              no significa nada y un lector de pantalla no debe sugerirlo. -->
-        <ul class="d2-cta-bal__acciones">
-          <li class="d2-cta-bal__accion">
-            <a href="#calculator" class="d2-btn d2-btn--solido d2-cta-bal__btn">
-              Check available funding
+
+          <!-- EL FORMULARIO CORTO (16/9/2026)
+
+               Mismo criterio que en las otras tres paginas de solucion:
+               dos campos, nada mas. En un CTA de cierre cada campo extra
+               es una razon para no enviarlo, y aqui solo hace falta poder
+               responder --el correo crea el contacto en HubSpot, el
+               nombre permite contestar de forma personal--.
+
+               No se pide telefono: implica una llamada que el visitante
+               no ha pedido. El boton de arriba sigue llevando a la
+               calculadora para quien quiera el numero primero.
+
+               El consentimiento lo exige CASL antes de enviar correo
+               comercial: casilla sin marcar y aviso de que se puede
+               retirar.
+
+               Lleva la clase .cta-final__form --la misma que las otras
+               tres-- para no duplicar estilos: solo cambia el envoltorio
+               de la seccion. -->
+          <form class="cta-final__form" data-hubspot="ega-cierre" onsubmit="return false">
+            <div class="cta-final__campos">
+              <div class="campo">
+                <label class="campo__label" for="ega-cf-name">Name</label>
+                <div class="campo__wrap">
+                  <input class="campo__input" id="ega-cf-name" name="firstname" type="text"
+                         autocomplete="name" required>
+                </div>
+              </div>
+
+              <div class="campo">
+                <label class="campo__label" for="ega-cf-email">Work email</label>
+                <div class="campo__wrap">
+                  <input class="campo__input" id="ega-cf-email" name="email" type="email"
+                         autocomplete="email" required>
+                </div>
+              </div>
+            </div>
+
+            <label class="cta-final__consent">
+              <input type="checkbox" name="consent" required>
+              <span>I consent to receive electronic communications from Rede Energy
+              Solutions. I can withdraw this consent at any time.</span>
+            </label>
+
+            <button class="d2-btn d2-btn--solido" type="submit">
+              Start my gap analysis
               <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
+                      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </a>
-          </li>
-          <li class="d2-cta-bal__accion">
-            <a href="#contact" class="d2-btn d2-btn--linea d2-cta-bal__btn">
-              Book a call
-              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-          </li>
-        </ul>
+            </button>
+          </form>
 
       </div>
     </section>

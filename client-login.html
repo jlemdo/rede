@@ -269,28 +269,28 @@
 
     <!-- Los rieles, siempre visibles y muy tenues: son el circuito. -->
     <g class="d2-acceso__riel">
-      <path d="M0 150h300a20 20 0 0 1 20 20v104a20 20 0 0 0 20 20h180"/>
-      <path d="M0 610h240a20 20 0 0 0 20-20V430a20 20 0 0 1 20-20h240"/>
-      <path d="M1440 120h-330a20 20 0 0 0-20 20v122a20 20 0 0 1-20 20H890"/>
-      <path d="M1440 650h-280a20 20 0 0 1-20-20V452a20 20 0 0 0-20-20H900"/>
+      <path d="M0 210h430a22 22 0 0 1 22 22v88a22 22 0 0 0 22 22h292"/>
+      <path d="M0 590h370a22 22 0 0 0 22-22V468a22 22 0 0 1 22-22h352"/>
+      <path d="M1440 190h-400a22 22 0 0 0-22 22v96a22 22 0 0 1-22 22h-218"/>
+      <path d="M1440 600h-360a22 22 0 0 1-22-22V478a22 22 0 0 0-22-22h-218"/>
     </g>
 
     <!-- Y encima, la corriente: el mismo trazado con un guion corto que
          recorre la ruta. Cuatro senales con retardos distintos, para que
          el circuito lata en vez de parpadear a la vez. -->
     <g class="d2-acceso__senal" filter="url(#lg-glow)">
-      <path style="--i:0" pathLength="100" d="M0 150h300a20 20 0 0 1 20 20v104a20 20 0 0 0 20 20h180"/>
-      <path style="--i:1" pathLength="100" d="M0 610h240a20 20 0 0 0 20-20V430a20 20 0 0 1 20-20h240"/>
-      <path style="--i:2" pathLength="100" d="M1440 120h-330a20 20 0 0 0-20 20v122a20 20 0 0 1-20 20H890"/>
-      <path style="--i:3" pathLength="100" d="M1440 650h-280a20 20 0 0 1-20-20V452a20 20 0 0 0-20-20H900"/>
+      <path style="--i:0" pathLength="100" d="M0 210h430a22 22 0 0 1 22 22v88a22 22 0 0 0 22 22h292"/>
+      <path style="--i:1" pathLength="100" d="M0 590h370a22 22 0 0 0 22-22V468a22 22 0 0 1 22-22h352"/>
+      <path style="--i:2" pathLength="100" d="M1440 190h-400a22 22 0 0 0-22 22v96a22 22 0 0 1-22 22h-218"/>
+      <path style="--i:3" pathLength="100" d="M1440 600h-360a22 22 0 0 1-22-22V478a22 22 0 0 0-22-22h-218"/>
     </g>
 
-    <!-- Los nodos donde la corriente entra al panel -->
+    <!-- Los nodos: justo donde cada ruta toca el borde de la caja -->
     <g class="d2-acceso__nodo">
-      <circle cx="520" cy="294" r="6" style="--i:0"/>
-      <circle cx="520" cy="410" r="6" style="--i:1"/>
-      <circle cx="890" cy="282" r="6" style="--i:2"/>
-      <circle cx="900" cy="432" r="6" style="--i:3"/>
+      <circle cx="766" cy="342" r="5" style="--i:0"/>
+      <circle cx="766" cy="446" r="5" style="--i:1"/>
+      <circle cx="1178" cy="330" r="5" style="--i:2"/>
+      <circle cx="1178" cy="456" r="5" style="--i:3"/>
     </g>
   </svg>
 
