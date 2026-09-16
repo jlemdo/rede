@@ -195,7 +195,20 @@
 }
 
 .d2 .d2-acceso__copy  { grid-area: copy; }
-.d2 .d2-acceso__puerta { grid-area: puerta; }
+/* La tarjeta sube; su contenido NO.
+
+   Para que "Your dashboard" quede a la altura de "Client portal" hay dos
+   caminos: sacar el rotulo del padding --y entonces la tarjeta pierde el
+   aire de arriba, MEDIDO: el rotulo se salia del borde-- o mover la
+   tarjeta entera. Este es el segundo: el padding se queda intacto y la
+   caja conserva su aire.
+
+   Sube el padding menos el medio leading del rotulo, que es la sangria
+   que el texto ya trae de serie. */
+.d2 .d2-acceso__puerta {
+  grid-area: puerta;
+  margin-top: calc(-1 * (var(--acceso-pad, 44px) - 5px));
+}
 /* align-self: start y no end.
 
    La caja de la derecha ocupa las dos filas y es mas alta que la columna
@@ -264,7 +277,13 @@
 
 .d2 .d2-acceso__puerta {
   position: relative;
-  padding: clamp(28px, 3vw, 44px);
+  /* Dos medidas en variables porque otras reglas dependen de ellas: la
+     tarjeta se sube el padding para alinear con la columna izquierda, y
+     el simbolo del rayo se dimensiona con el cuerpo del titular. Con
+     valores sueltos solo cuadraban a un ancho. */
+  --acceso-pad: clamp(28px, 3vw, 44px);
+  --acceso-h2: clamp(24px, 2.2vw, 32px);
+  padding: var(--acceso-pad);
   background: #FFFFFF;
   border-radius: 6px;
   /* El filete verde arriba: es donde la corriente entra a la tarjeta. */
@@ -303,42 +322,61 @@
 
 /* --- EL SIMBOLO DE ENERGIA ---------------------------------------------- */
 
-/* LA FILA DEL ROTULO (16/9/2026)
+/* EL TITULAR Y EL SIMBOLO, EN UNA FILA (16/9/2026)
 
-   El rotulo a la izquierda y el simbolo a la derecha, en la misma linea.
-   Asi "Your dashboard" arranca a la altura de "Client portal" y las dos
-   columnas empiezan igual, que es lo que antes no pasaba: el simbolo iba
-   encima y empujaba el rotulo 122px hacia abajo.
+   El rayo a la derecha de "Access information". Va con el TITULAR y no
+   con el rotulo: puesto arriba empujaba la tarjeta entera hacia abajo, y
+   en la fila del rotulo se salia por el borde superior. MEDIDO las dos
+   veces.
 
-   El rotulo lleva su propia linea base; con align-items: center el
-   simbolo se centra contra ella y no contra la caja. */
-.d2 .d2-acceso__fila-eti {
+   align-items: center lo centra contra el titular, que es el eje que se
+   ve. El titular se queda con su margen; la fila no lo toca. */
+.d2 .d2-acceso__fila-titulo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
 
-  /* Sube el rotulo el padding de la caja.
+  /* Pegado al titular, no empujado al borde.
 
-     La caja empieza a la misma altura que "Client portal" --las dos en
-     220-- pero su contenido arranca 43px mas adentro, que es su padding.
-     Subiendo la fila ese mismo valor, los dos rotulos quedan a la misma
-     altura de verdad, no solo las cajas que los contienen.
-
-     El simbolo es mas alto que el rotulo, asi que se compensa solo la
-     diferencia y no el padding entero: si no, el aro se saldria por
-     arriba del borde de la tarjeta. */
-  margin-top: calc(-1 * (var(--acceso-pad, 43px) - 12px));
+     Con justify-content: space-between el simbolo se iba al extremo
+     derecho de la tarjeta y quedaba suelto, sin relacion visual con el
+     texto. Asi acompana a la ultima letra de "information". */
+  justify-content: flex-start;
+  gap: 14px;
 }
 
-/* El simbolo, de 56 a 34px: compartiendo fila con un rotulo de 12px, a
-   56 pesaba mas que el titular que viene debajo. */
+/* Del tamano de la fuente del titular: 1em, que son los 32px del h2.
+
+   Antes iba a 56 --pesaba mas que el texto-- y luego a 34, que no
+   correspondia a nada. A 1em el simbolo mide lo que las letras que
+   acompana y escala con ellas si el titular cambia de cuerpo.
+
+   El centrado en Y lo pone align-items: center de la fila. */
 .d2 .d2-acceso__marca {
-  width: 34px;
-  height: 34px;
+  /* 1em del TITULAR: la fila hereda el cuerpo del contenedor, no el del
+     h2, asi que se toma el mismo valor por la variable. */
+  font-size: var(--acceso-h2);
+  /* 1.18em y no 1: a la par exacta del cuerpo el aro se leia mas pequeno
+     que las mayusculas que acompana --el trazo del circulo deja aire por
+     dentro--. Un 18% mas y los dos pesan igual. */
+  width: 1.18em;
+  height: 1.18em;
+
+  /* Centrado con el TRAZO de las letras, no con su caja de linea.
+
+     align-items: center centra contra la caja de linea, que reserva
+     sitio para las descendentes --la "f" de information no baja, pero la
+     caja cuenta con ello-- y eso deja el simbolo ALTO respecto al texto
+     que se ve.
+
+     Se probo subirlo y fue peor: paso de -5 a -7. Lo que hacia falta era
+     BAJARLO. El desplazamiento es medio hueco de descendente, que es
+     justo lo que la caja reserva de mas por abajo. MEDIDO en pantalla,
+     no calculado. */
+  /* 0.065em: el desplazamiento se afino MIDIENDO el eje del aro contra
+     el eje del trazo en pantalla. Con 0.09 quedaba 0.8px pasado. */
+  transform: translateY(0.065em);
   flex: none;
-  margin-bottom: 0;
+  margin: 0;
   color: var(--c-verde-hover, #026F00);
 }
 
@@ -411,9 +449,37 @@
   color: var(--c-verde-hover, #026F00);
 }
 
+/* EL ROTULO DE LA TARJETA (16/9/2026)
+
+   Sube para arrancar a la altura de "Client portal".
+
+   La tarjeta empieza a la misma altura que la columna izquierda, pero su
+   contenido entra el padding, asi que sin esto el rotulo caia por debajo.
+   MEDIDO: 122px cuando el simbolo iba encima, 21 ya sin el.
+
+   EL SIMBOLO DEL RAYO SE RETIRO
+
+   Estaba encima del rotulo y empujaba toda la tarjeta hacia abajo. Se
+   probo ponerlo en fila a la derecha y tampoco: o se salia del borde de
+   la tarjeta o se descolgaba a la altura del titular, compitiendo con el.
+   Decision del cliente: fuera. Con el rotulo solo, la columna arranca
+   limpia.
+
+   Se retira tambien su CSS --el aro, el trazo y las dos animaciones-- que
+   sin el marcado no pintaba nada. */
+.d2 .d2-acceso__eti {
+  /* El hueco al titular, 4px y no 14.
+
+     Es lo que hace que el segundo par --"Access information" con
+     "Utility Subscription"-- cuadre a la vez que el primero. Con 14
+     quedaba a 26px de desnivel. MEDIDO por el trazo de la mayuscula, que
+     es lo que el ojo compara. */
+  margin-bottom: 4px;
+}
+
 .d2 .d2-acceso__puerta-titulo {
   margin: 10px 0 0;
-  font-size: clamp(24px, 2.2vw, 32px);
+  font-size: var(--acceso-h2);
   line-height: 1.15;
   letter-spacing: -.02em;
   font-weight: var(--fw-extrabold, 800);
@@ -516,6 +582,11 @@
 
   .d2 .d2-acceso__apoyo { align-self: auto; }
 
+  /* En una columna no hay con que alinearse: el margen negativo del
+     rotulo lo dejaba pegado al borde de la tarjeta. MEDIDO: 0px de aire
+     contra los 44 del padding. */
+  .d2 .d2-acceso__eti { margin-top: 0; }
+
   /* El circuito se atenua: en una columna los trazos pasan por detras del
      texto y compiten con el. */
   .d2 .d2-acceso__circuito { opacity: .45; }
@@ -529,6 +600,8 @@
      pide menos animacion no pide mas contraste de fondo. */
   .d2 .d2-acceso__senal path { opacity: .18; }
   .d2 .d2-acceso__nodo circle { opacity: .2; }
+  /* El aro y el rayo, en su estado final: quien pide menos animacion ve
+     el simbolo completo, no a medio dibujar. */
   .d2 .d2-acceso__aro { stroke-dashoffset: 0; }
   .d2 .d2-acceso__rayo { opacity: 1; }
   .d2 .d2-acceso__puerta::before { opacity: .6; }
