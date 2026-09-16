@@ -70,18 +70,48 @@
 }
 
 .d2 .ct__cab {
-  max-width: 44ch;
+  /* Apilado y a ancho completo (15/9/2026)
+
+     Antes tenia max-width:44ch --428px medidos en un contenedor de 1280--
+     y eso partia el titular en tres lineas y el lead en otras tres.
+
+     Ahora el titular ocupa una linea y el apoyo va debajo, alargado en
+     dos. Menos renglones que encadenar, que es lo que pedia el cliente.
+
+     Se probo con dos columnas (titular izquierda, apoyo derecha) y se
+     descarto: el apoyo quedaba en una columna estrecha de 330px y subia a
+     tres o cuatro lineas, justo lo contrario del objetivo. */
   margin-bottom: clamp(32px, 4vw, 52px);
 }
 
+/* El bloque izquierdo ya no reparte nada: se queda por si el marcado lo
+   conserva, sin efecto propio. */
+.d2 .ct__cab-izq { min-width: 0; }
+
+.d2 .ct__cab-izq { min-width: 0; }
+
 .d2 .ct__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h1);
+  /* El tamano cede con el ancho para que el titular quepa en UNA linea
+     (15/9/2026).
+
+     Medido: "Tell us about your buildings." pide 881px a 64px, y en un
+     contenedor de 1200 eso solo cabe en pantallas anchas. Con vw el
+     titular se ajusta al sitio que hay en vez de partirse.
+
+     El suelo de 38px es el tamano al que sigue leyendose como titular de
+     pagina; el techo, el --fs-h1 del sistema, que es lo que usan las
+     demas. En medio, 4.6vw mantiene la proporcion con el ancho. */
+  font-size: clamp(2.375rem, 4.6vw, var(--fs-h1));
   line-height: 1.08;
   letter-spacing: -.026em;
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
-  text-wrap: balance;
+  /* Sin balance (15/9/2026): reparte el texto en lineas parejas aunque
+     quepa en una, que es justo lo que aqui no se quiere. El objetivo es
+     una sola linea; si algun dia no cupiera, pretty da mejor corte que
+     balance para un titular corto. */
+  text-wrap: pretty;
 }
 
 .d2 .ct__lead {
@@ -89,6 +119,11 @@
   font-size: var(--fs-body-lg);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
+  /* 76ch: el lead son 16 palabras y a este ancho caen en DOS renglones
+     largos, que es lo que se pidio. Sin limite se irian a uno solo de
+     1200px --78 caracteres pasados, incomodo de leer-- y con el 44ch de
+     antes, a cuatro. */
+  max-width: 76ch;
 }
 
 /* Dos columnas: el formulario manda, las vias directas acompañan.
@@ -373,3 +408,5 @@
      formulario y compite con el. */
   .d2 .ct .ct__lienzo { opacity: .5; }
 }
+
+
