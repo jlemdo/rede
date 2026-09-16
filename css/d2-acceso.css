@@ -87,6 +87,40 @@
 
 /* --- EL CIRCUITO -------------------------------------------------------- */
 
+/* EL PATRON DE CIRCUITO (16/9/2026)
+
+   El mismo de la banda de equipo de About. Ahi va sobre el mismo verde
+   --#1A5121-- asi que los colores se copian tal cual y no hay que
+   recalcular contraste.
+
+   Estatico a proposito: sustituye a la animacion de senal, que queda
+   guardada y oculta en el marcado por si se recupera. */
+.d2 .d2-acceso__patron {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.d2 .d2-acceso__patron path {
+  fill: none;
+  stroke: rgba(176, 225, 183, .28);
+  stroke-width: 1.2px;
+}
+
+.d2 .d2-acceso__patron circle {
+  /* El mismo verde del fondo: los nodos tapan el trazo que cruzan */
+  fill: #1A5121;
+  stroke: rgba(176, 225, 183, .45);
+  stroke-width: 1.6px;
+}
+
+/* hidden no basta por si solo: la regla de abajo da position:absolute, que
+   pesa mas que el display:none que trae el atributo. */
+.d2 .d2-acceso__circuito[hidden] { display: none; }
+
 .d2 .d2-acceso__circuito {
   position: absolute;
   inset: 0;
@@ -333,7 +367,9 @@
    ve. El titular se queda con su margen; la fila no lo toca. */
 .d2 .d2-acceso__fila-titulo {
   display: flex;
-  align-items: center;
+  /* flex-end: el simbolo se apoya en la linea base del titular en vez de
+     centrarse contra su caja. */
+  align-items: flex-end;
 
   /* Pegado al titular, no empujado al borde.
 
@@ -372,9 +408,13 @@
      BAJARLO. El desplazamiento es medio hueco de descendente, que es
      justo lo que la caja reserva de mas por abajo. MEDIDO en pantalla,
      no calculado. */
-  /* 0.065em: el desplazamiento se afino MIDIENDO el eje del aro contra
-     el eje del trazo en pantalla. Con 0.09 quedaba 0.8px pasado. */
-  transform: translateY(0.065em);
+  /* Con align-items: flex-end el simbolo se apoya en el borde inferior de
+     la caja de linea, que cae por debajo de la base del texto: ahi es
+     donde la caja reserva sitio para las descendentes. El translate lo
+     sube hasta que su eje coincide con el del trazo.
+
+     MEDIDO en pantalla, eje del aro contra eje de las mayusculas. */
+  transform: translateY(-0.077em);
   flex: none;
   margin: 0;
   color: var(--c-verde-hover, #026F00);

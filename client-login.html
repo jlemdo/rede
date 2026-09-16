@@ -239,12 +239,22 @@
 
 <main class="d2-acceso" id="contenido">
 
+  <!-- ======================================================================
+       EL CIRCUITO ANIMADO, OCULTO (16/9/2026)
+
+       Se guarda entero por si se recupera: los cuatro trazos que convergen
+       en la tarjeta, el filtro de resplandor y la senal que viaja. Basta
+       quitar el hidden del <svg> y comentar el patron de abajo.
+
+       En su lugar va el mismo trazado de circuito que la banda de equipo
+       de About, que es estatico y ya esta en el lenguaje del sitio.
+       ====================================================================== -->
   <!-- El circuito de fondo. Cuatro trazos que convergen en la tarjeta.
 
        pathLength="100" normaliza cada trazo para que el dasharray se
        escriba en porcentaje: sin el habria que medir con getTotalLength()
        y recalcular en cada cambio de tamano. -->
-  <svg class="d2-acceso__circuito" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="d2-acceso__circuito" hidden viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
       <!-- El resplandor.
 
@@ -292,6 +302,20 @@
       <circle cx="1178" cy="330" r="5" style="--i:2"/>
       <circle cx="1178" cy="456" r="5" style="--i:3"/>
     </g>
+  </svg>
+
+  <!-- EL PATRON DE CIRCUITO, EL MISMO DE LA BANDA DE EQUIPO
+
+       Mismo trazado, mismos nodos y mismo viewBox que en About: ahi va
+       sobre el mismo verde #1A5121, asi que los colores valen tal cual. -->
+  <svg class="d2-acceso__patron" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 120H210L280 50H520M1440 90H1180L1120 150H860"/>
+    <path d="M120 620V470H330L400 400H610"/>
+    <path d="M1440 540H1150L1080 470H900"/>
+    <circle cx="280" cy="50" r="5"/>
+    <circle cx="1120" cy="150" r="5"/>
+    <circle cx="400" cy="400" r="5"/>
+    <circle cx="1080" cy="470" r="5"/>
   </svg>
 
   <div class="d2-acceso__inner">
