@@ -92,17 +92,17 @@
 
 .d2 .ct__titulo {
   margin: var(--sp-3) 0 0;
-  /* El tamano cede con el ancho para que el titular quepa en UNA linea
-     (15/9/2026).
+  /* EL MISMO TAMANO QUE EL HERO DE CLIENT LOGIN (16/9/2026)
 
-     Medido: "Tell us about your buildings." pide 881px a 64px, y en un
-     contenedor de 1200 eso solo cabe en pantallas anchas. Con vw el
-     titular se ajusta al sitio que hay en vez de partirse.
+     Las dos paginas abren igual --un rotulo, un titular y una linea de
+     apoyo-- y tenian escalas distintas: Contact llegaba a 64px por el
+     --fs-h1 del sistema y Login a 54. Al verlas seguidas no parecian la
+     misma plantilla.
 
-     El suelo de 38px es el tamano al que sigue leyendose como titular de
-     pagina; el techo, el --fs-h1 del sistema, que es lo que usan las
-     demas. En medio, 4.6vw mantiene la proporcion con el ancho. */
-  font-size: clamp(2.375rem, 4.6vw, var(--fs-h1));
+     Se parametriza copiando el clamp de Login tal cual. El tamano sigue
+     cediendo con el ancho, que es lo que hace que el titular quepa en una
+     linea; solo baja el techo. */
+  font-size: clamp(32px, 3.6vw, 54px);
   line-height: 1.08;
   letter-spacing: -.026em;
   font-weight: var(--fw-extrabold, 800);
@@ -116,7 +116,9 @@
 
 .d2 .ct__lead {
   margin: var(--sp-4) 0 0;
-  font-size: var(--fs-body-lg);
+  /* 17px fijos, los de Login. El --fs-body-lg del sistema sube hasta 20
+     en pantalla ancha y ahi el apoyo pesaba mas que el de Login. */
+  font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
   /* 76ch: el lead son 16 palabras y a este ancho caen en DOS renglones
