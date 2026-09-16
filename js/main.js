@@ -874,23 +874,47 @@
       ponerFila('tamano', estado.tamano === 'si' ? '25,000+ sq ft' : 'Under 25,000 sq ft');
     }
 
-    var prov = $('#c-prov');
-    var ciudad = $('#c-city');
-    if (prov && prov.value) {
-      var txtLugar = TXT_PROVINCIA[prov.value] || prov.value;
-      /* La ciudad delante cuando la han escrito: es el dato mas concreto
-         y el que el visitante reconoce como suyo. */
-      var c = ciudad && ciudad.value.trim();
-      ponerFila('lugar', c ? c + ', ' + prov.value : txtLugar);
+    /* CON "NO" EN EL FILTRO DE TAMANO, EL LUGAR NO APLICA
+
+       Un "no" a los 25.000 pies termina el recorrido en el acto: se salta
+       a la pantalla de consulta sin pasar por ubicacion ni por nada mas.
+
+       Pero si el visitante habia elegido provincia ANTES de volver atras y
+       cambiar su respuesta, la fila se quedaba escrita. Y ahi dice algo
+       que no viene al caso: la ubicacion importa para saber que programas
+       de utility aplican, y sin el tamano minimo no hay programa que
+       mirar.
+
+       Asi que con "no" la fila se vacia, aunque el campo tenga valor. */
+    if (estado.tamano === 'no') {
+      vaciarFila('lugar');
+    } else {
+      var prov = $('#c-prov');
+      var ciudad = $('#c-city');
+      if (prov && prov.value) {
+        var txtLugar = TXT_PROVINCIA[prov.value] || prov.value;
+        /* La ciudad delante cuando la han escrito: es el dato mas concreto
+           y el que el visitante reconoce como suyo. */
+        var c = ciudad && ciudad.value.trim();
+        ponerFila('lugar', c ? c + ', ' + prov.value : txtLugar);
+      }
     }
 
-    if (estado.utility) {
-      ponerFila('utility', estado.utility === 'si' ? 'BC Hydro / FortisBC' : 'Other provider');
-    }
+    /* Mismo caso: comercializadora y subvenciones son pantallas que solo
+       existen dentro del recorrido completo. Con "no" no se han visto, y
+       si quedaron escritas de un intento anterior, sobran. */
+    if (estado.tamano === 'no') {
+      vaciarFila('utility');
+      vaciarFila('fondos');
+    } else {
+      if (estado.utility) {
+        ponerFila('utility', estado.utility === 'si' ? 'BC Hydro / FortisBC' : 'Other provider');
+      }
 
-    var fondos = $('#c-funding');
-    if (fondos && fondos.value) {
-      ponerFila('fondos', fondos.options[fondos.selectedIndex].text);
+      var fondos = $('#c-funding');
+      if (fondos && fondos.value) {
+        ponerFila('fondos', fondos.options[fondos.selectedIndex].text);
+      }
     }
   }
 
