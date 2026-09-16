@@ -312,20 +312,31 @@
          boton no es un submit: es un enlace al panel, que vive fuera. -->
     <div class="d2-acceso__puerta d2-entra">
 
-      <div class="d2-acceso__marca" aria-hidden="true">
-        <!-- El simbolo de energia: un anillo que se carga. El trazo se
-             dibuja al entrar y despues respira muy despacio.
+      
 
-             pathLength="100" otra vez: el dasharray va en porcentaje y no
-             depende del radio. -->
-        <svg viewBox="0 0 64 64" fill="none">
-          <circle class="d2-acceso__aro-base" cx="32" cy="32" r="27"/>
-          <circle class="d2-acceso__aro" cx="32" cy="32" r="27" pathLength="100"/>
-          <path class="d2-acceso__rayo" d="M35.5 17L23 35h8.5L28.5 47L41 29h-8.5z"/>
-        </svg>
+      <!-- EL ROTULO Y EL RAYO, EN UNA FILA (16/9/2026)
+
+           Antes el rayo iba solo arriba y el rotulo debajo, con lo que
+           "Your dashboard" caia 122px por debajo de "Client portal" y las
+           dos columnas no arrancaban a la misma altura.
+
+           Ahora comparten fila: el rotulo a la izquierda --alineado con el
+           de la columna izquierda-- y el simbolo reducido a la derecha. -->
+      <div class="d2-acceso__fila-eti">
+        <p class="d2-acceso__eti">Your dashboard</p>
+  <div class="d2-acceso__marca" aria-hidden="true">
+          <!-- El simbolo de energia: un anillo que se carga. El trazo se
+               dibuja al entrar y despues respira muy despacio.
+  
+               pathLength="100" otra vez: el dasharray va en porcentaje y no
+               depende del radio. -->
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle class="d2-acceso__aro-base" cx="32" cy="32" r="27"/>
+            <circle class="d2-acceso__aro" cx="32" cy="32" r="27" pathLength="100"/>
+            <path class="d2-acceso__rayo" d="M35.5 17L23 35h8.5L28.5 47L41 29h-8.5z"/>
+          </svg>
+        </div>
       </div>
-
-      <p class="d2-acceso__eti">Your dashboard</p>
       <h2 class="d2-acceso__puerta-titulo">Access information</h2>
       <p class="d2-acceso__puerta-texto">
         Use the login and password provided by Rede to access your utility subscription

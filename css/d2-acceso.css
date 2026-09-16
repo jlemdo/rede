@@ -190,12 +190,49 @@
     "copy  puerta"
     "apoyo puerta";
   align-items: start;
-  gap: clamp(28px, 4vw, 64px);
+  --acceso-gap-fila: clamp(28px, 4vw, 64px);
+  gap: var(--acceso-gap-fila);
 }
 
 .d2 .d2-acceso__copy  { grid-area: copy; }
 .d2 .d2-acceso__puerta { grid-area: puerta; }
-.d2 .d2-acceso__apoyo { grid-area: apoyo; align-self: end; }
+/* align-self: start y no end.
+
+   La caja de la derecha ocupa las dos filas y es mas alta que la columna
+   izquierda, asi que sobra espacio en esta fila. Con "end" el bloque se
+   pegaba al fondo y TODO el sobrante se acumulaba encima de la linea:
+   MEDIDO, 106px arriba contra 37 abajo. La linea no separaba dos bloques,
+   colgaba de uno.
+
+   Con "start" el bloque sube y la linea queda a la misma distancia del
+   parrafo de arriba que del rotulo de abajo. El margen de separacion se
+   fija aqui, no lo decide el hueco sobrante. */
+.d2 .d2-acceso__apoyo {
+  grid-area: apoyo;
+  align-self: start;
+
+  /* La linea, a la misma distancia de los dos bloques.
+
+     Encima de ella el hueco lo ponen el gap de la rejilla MAS el margen;
+     debajo, solo el padding. Sumados daban 94 contra 37. MEDIDO.
+
+     Se anula el gap de esta fila y se repone el mismo valor que el
+     padding, asi que los dos lados miden lo mismo y dejan de depender de
+     lo alta que sea la fila. */
+  margin-top: calc(clamp(24px, 3vw, 36px) - var(--acceso-gap-fila, 64px));
+}
+
+/* La fila del copy no debe estirarse.
+
+   La caja de la derecha ocupa las dos filas y es mas alta que las dos de
+   la izquierda juntas. Ese sobrante lo repartia la rejilla en la PRIMERA
+   fila, que crecia y empujaba la linea hacia abajo: MEDIDO, 94px encima
+   contra 37 debajo aun despues de poner align-self: start.
+
+   Con la primera fila en max-content el copy ocupa lo que ocupa, el
+   sobrante cae al final --debajo del bloque de apoyo, donde no separa
+   nada-- y la linea queda a la distancia que fija el margen. */
+.d2 .d2-acceso__inner { grid-template-rows: max-content max-content; }
 
 /* --- LA COLUMNA DE ARGUMENTO -------------------------------------------- */
 
@@ -266,10 +303,42 @@
 
 /* --- EL SIMBOLO DE ENERGIA ---------------------------------------------- */
 
+/* LA FILA DEL ROTULO (16/9/2026)
+
+   El rotulo a la izquierda y el simbolo a la derecha, en la misma linea.
+   Asi "Your dashboard" arranca a la altura de "Client portal" y las dos
+   columnas empiezan igual, que es lo que antes no pasaba: el simbolo iba
+   encima y empujaba el rotulo 122px hacia abajo.
+
+   El rotulo lleva su propia linea base; con align-items: center el
+   simbolo se centra contra ella y no contra la caja. */
+.d2 .d2-acceso__fila-eti {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+
+  /* Sube el rotulo el padding de la caja.
+
+     La caja empieza a la misma altura que "Client portal" --las dos en
+     220-- pero su contenido arranca 43px mas adentro, que es su padding.
+     Subiendo la fila ese mismo valor, los dos rotulos quedan a la misma
+     altura de verdad, no solo las cajas que los contienen.
+
+     El simbolo es mas alto que el rotulo, asi que se compensa solo la
+     diferencia y no el padding entero: si no, el aro se saldria por
+     arriba del borde de la tarjeta. */
+  margin-top: calc(-1 * (var(--acceso-pad, 43px) - 12px));
+}
+
+/* El simbolo, de 56 a 34px: compartiendo fila con un rotulo de 12px, a
+   56 pesaba mas que el titular que viene debajo. */
 .d2 .d2-acceso__marca {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 20px;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  margin-bottom: 0;
   color: var(--c-verde-hover, #026F00);
 }
 
