@@ -211,11 +211,24 @@
 </header>
 <main class="ct" id="contenido">
 
-    <!-- El campo termico. aria-hidden porque es decoracion: no dice nada
-         que el texto no diga ya. Pero ojo, eso NO exime de WCAG 2.2.2
-         --la nota 2 del criterio cierra esa salida-- y por eso hay un
-         boton de pausa de verdad unas lineas mas abajo. -->
-    <canvas class="ct__lienzo" data-isolineas aria-hidden="true"></canvas>
+    <!-- ==================================================================
+         EL CAMPO TERMICO, OCULTO (16/9/2026)
+
+         Era un canvas con isolineas animadas por JS. Se guarda entero por
+         si se recupera: basta quitar el hidden y el JS vuelve a pintarlo,
+         porque sigue buscando [data-isolineas].
+
+         En su lugar va el trazado de la seccion de reviews de la home:
+         estatico, del mismo verde y sobre el mismo fondo blanco.
+         ================================================================== -->
+    <canvas class="ct__lienzo" data-isolineas aria-hidden="true" hidden></canvas>
+
+    <!-- El trazado de fondo, el mismo de reviews en la home. Decorativo. -->
+    <svg class="ct__lineas" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M720 0V170H910L1030 290H1440M910 170V50M1030 290V505H1290L1440 430"/>
+      <circle cx="910" cy="170" r="6"/>
+      <circle cx="1030" cy="290" r="6"/>
+    </svg>
 
   <div class="ct__inner">
 

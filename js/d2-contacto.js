@@ -46,6 +46,15 @@
   var lienzo = document.querySelector('[data-isolineas]');
   if (!lienzo || !lienzo.getContext) { return; }
 
+  /* Oculto: no se pinta nada (16/9/2026).
+
+     El campo termico se retiro en favor del trazado estatico de reviews,
+     pero el canvas se conserva en el marcado por si se recupera. Sin esta
+     salida el guion seguiria calculando isolineas cada fotograma --gasto
+     de CPU invisible-- y crearia el boton de pausa de algo que ya no se
+     mueve. Quitando el hidden del canvas, todo vuelve solo. */
+  if (lienzo.hasAttribute('hidden')) { return; }
+
   var ctx = lienzo.getContext('2d', { alpha: true });
   var sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

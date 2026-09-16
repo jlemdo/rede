@@ -397,6 +397,52 @@
    EL CAMPO TERMICO
    ========================================================================== */
 
+/* EL TRAZADO DE FONDO (16/9/2026)
+
+   El mismo de la seccion de reviews de la home: mismo recorrido, mismos
+   dos nodos y mismo viewBox. Ahi va sobre fondo blanco, igual que aqui,
+   asi que los colores se copian tal cual.
+
+   Sustituye al campo termico animado, que queda oculto en el marcado por
+   si se recupera.
+
+   z-index 0 y NO -1: en reviews vale el -1 porque esa seccion no pinta
+   fondo, pero .ct si es blanca, y con -1 el trazado quedaba detras de ese
+   blanco --dibujado y tapado--. MEDIDO: el path existia, a 943x1020, y no
+   se veia.
+
+   Con 0 pasa por delante del fondo. El contenido lleva su propio z-index
+   mas alto, asi que sigue por encima. */
+.d2 .ct .ct__lineas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .42;
+  pointer-events: none;
+}
+
+.d2 .ct .ct__lineas path {
+  fill: none;
+  stroke: rgba(57, 181, 74, .20);
+  stroke-width: 1.2px;
+}
+
+.d2 .ct .ct__lineas circle {
+  /* Del color del fondo: el nodo tapa el trazo que cruza */
+  fill: #FFFFFF;
+  stroke: rgba(57, 181, 74, .32);
+  stroke-width: 2px;
+}
+
+/* Oculto no debe ocupar sitio: la regla de abajo da position:absolute,
+   que pesa mas que el display:none del atributo hidden. */
+.d2 .ct .ct__lienzo[hidden] { display: none; }
+
+/* El contenido, por encima del trazado. */
+.d2 .ct .ct__inner { position: relative; z-index: 1; }
+
 .d2 .ct .ct__lienzo {
   position: absolute;
   inset: 0;
