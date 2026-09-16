@@ -301,7 +301,14 @@
 
 .d2 .d2-acceso__lead {
   margin: 20px 0 0;
-  max-width: 52ch;
+
+  /* 56ch y no 52: con 52 la medida daba 505px y la frase necesita 523,
+     asi que "organization." caia sola en un segundo renglon. Faltaban 17
+     px. MEDIDO.
+
+     Sigue dentro del rango comodo de lectura --45 a 75 caracteres-- y la
+     frase entra entera en una linea. */
+  max-width: 56ch;
   font-size: 1.0625rem;
   line-height: 1.65;
   color: #D8D8D8;   /* 6.57:1 sobre el verde, comprobado */
