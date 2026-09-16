@@ -4692,7 +4692,10 @@
 
 <!-- Fijado en "Data panel" (11/9/2026): Erick eligio esta y las
      otras se retiran. data-caru-fijo es 0-based. -->
-<div class="d2-caru" id="caru-faq" data-caru>
+<!-- Arranca en la 2 --la que lleva la grafica-- y no en la 1. Se hace con
+     data-caru-inicial y no moviendo es-activa en el marcado: el JS recalcula
+     cual se muestra al cargar, asi que un es-activa a mano se pierde. -->
+<div class="d2-caru" id="caru-faq" data-caru data-caru-inicial="1">
 
   <!-- ====================================================================
        OPCION 1 — LA FICHA QUE RESPONDE
@@ -5262,28 +5265,20 @@
                porque repetidos romperian el aria-labelledby: el lector
                anunciaria el panel del hero. -->
           <div class="d2-faq-dato__ficha-caja d2-hero__panel">
-            <p class="d2-hero__panel-eyebrow" id="faq-panel-t">One school district, 12 years of data</p>
-            
-                        <!-- Las tres cifras en una sola fila (11/9/2026). Antes el $4.4M
-                        iba solo arriba y las otras dos debajo, lo que daba mas peso al
-                        acumulado del que le toca: las tres son la misma clase de dato y
-                        se leen mejor juntas.
-            
-                        Las dos anuales vienen del panel anterior --el feedback las
-                        elogia, "High level metrics are great"-- y se conservaron al
-                        cambiar de panel. -->
-                        <dl class="d2-hero__metricas d2-hero__metricas--dos">
-                          <div>
-                            <dt>Energy avoided last year</dt>
-                            <dd class="d2-hero__metricas-alta">6.8M <small>ekWh</small></dd>
-                          </div>
-                          <div>
-                            <dt>Below the do-nothing baseline</dt>
-                            <dd class="d2-hero__metricas-alta">24%</dd>
-                          </div>
-                        </dl>
-            
-                        <svg class="hero-gr" viewBox="0 0 560 300" role="img" aria-labelledby="faq-gr-t faq-gr-d" preserveAspectRatio="xMidYMid meet">
+            <!-- SOLO LA GRAFICA (16/9/2026)
+
+                 Se retiran el rotulo "One school district, 12 years of data"
+                 y las dos cifras --6.8M ekWh y 24%-- que venian del panel del
+                 hero. Repetidas aqui, a media pagina de distancia de donde ya
+                 aparecen, restaban en vez de sumar.
+
+                 Se conservan la nota de anos y la leyenda: no son datos
+                 aparte, son lo que hace legible la grafica. Sin ellas, las
+                 cuatro series no se distinguen.
+
+                 El aria-labelledby del panel apuntaba al rotulo retirado, asi
+                 que pasa a describirse por el titulo de la propia grafica. -->
+            <svg class="hero-gr" viewBox="0 0 560 300" role="img" aria-labelledby="faq-gr-t faq-gr-d" preserveAspectRatio="xMidYMid meet">
                           <title id="faq-gr-t">Cumulative savings for one school district</title>
                           <desc id="faq-gr-d">Bar and line chart. Avoided costs stack up to 4.4 million dollars over twelve years, while energy use stays below the do-nothing baseline.</desc>
                           <g class="hero-gr__rejilla">
