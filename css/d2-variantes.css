@@ -12777,8 +12777,17 @@ span.d2-panel__filtro:hover {
    minimo de 4.5-- asi que ese fondo usa #CFDCD1.
    ========================================================================== */
 
+/* EL NEGRO, FIJADO EN EL CSS (16/9/2026)
+
+   El fondo lo escribia el JS del selector en --logos-fondo. Al retirar
+   ese control la variable se quedo sin valor y la seccion cayo al blanco
+   de reserva. MEDIDO: salia blanca.
+
+   Ahora el negro es el valor por defecto de la variable, asi que no
+   depende de ningun guion. El selector, si se recupera, seguira
+   pisandolo igual. */
 .d2 .d2-logos--dos {
-  background: var(--logos-fondo, #FFFFFF);
+  background: var(--logos-fondo, #1A1A1A);
   transition: background-color .42s cubic-bezier(.4, 0, .2, 1);
 }
 
