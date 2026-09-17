@@ -15886,6 +15886,22 @@ span.d2-panel__filtro:hover {
   margin-top: 22px;
 }
 
+/* EL AVISO DE DISPONIBILIDAD (16/9/2026)
+
+   Lo pide el documento del cliente. Va debajo del boton, que es donde
+   acaba la promesa: primero se dice que puede haber financiacion, luego
+   como comprobarlo, y al final de que depende.
+
+   13px y en gris suave, el mismo tratamiento que las demas notas al
+   margen del sitio. Se lee, pero no compite con el aval de BC Hydro que
+   va encima --ese si es un argumento, y lleva su fondo verde--. */
+.d2 .d2-financia__aviso {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
 .d2 .d2-financia__nota {
   margin: 14px 0 0;
   font-size: 13px;
