@@ -3140,20 +3140,46 @@
           </p>
 
           <form class="captura" data-hubspot="opportunity-check" onsubmit="return false">
-          <div class="campo campo--claro">
-          <label class="campo__label" for="h-name">Name</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-name" name="firstname" type="text"
-          autocomplete="name" required>
-          </div>
+
+          <!-- CINCO CAMPOS EN TRES FILAS (16/9/2026)
+
+               Antes eran cuatro filas: Name solo, Organization+Role,
+               Work email solo y Phone solo. Se pidio bajar un nivel.
+
+               Se agrupan por lo que preguntan, no por lo que miden:
+
+                 quien eres y como te llamo    Name + Phone
+                 donde trabajas y que haces    Organization + Role
+                 por donde te escribo          Work email
+
+               El correo se queda solo a proposito: es el campo mas largo
+               --una direccion de trabajo pasa de los 30 caracteres-- y a
+               media columna se corta al escribirlo. Es ademas el dato que
+               no puede fallar, asi que conviene que tenga sitio. -->
+
+          <div class="captura__pareja">
+            <div class="campo campo--claro">
+              <label class="campo__label" for="h-name">Name</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-name" name="firstname" type="text"
+                       autocomplete="name" required>
+              </div>
+            </div>
+
+            <!-- El telefono sube a la primera fila. No es opcional: el
+                 equipo comercial necesita poder llamar. -->
+            <div class="campo campo--claro" data-campo="movil">
+              <label class="campo__label" for="h-phone">Phone</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-phone" name="mobilephone" type="tel"
+                       inputmode="tel" autocomplete="tel" required>
+              </div>
+            </div>
           </div>
 
-          <!-- Organization y Role comparten fila (16/9/2026): dos campos
-               cortos apilados alargan el formulario sin ganar nada.
-
-               El cargo lo pidio el cliente (feedback 9/9/2026, Parte 4):
+          <!-- El cargo lo pidio el cliente (feedback 9/9/2026, Parte 4):
                un director de operaciones y un tecnico no son el mismo
-               lead. -->
+               lead. Solo aparece en el camino cualificado. -->
           <div class="captura__pareja">
             <div class="campo campo--claro" data-campo="org">
               <label class="campo__label" for="h-org">Organization</label>
@@ -3178,17 +3204,6 @@
               <input class="campo__input" id="h-email" name="email" type="email"
                      autocomplete="email" required>
             </div>
-          </div>
-
-          <!-- Dos telefonos y ya no opcionales: el equipo comercial necesita
-          poder llamar. La linea directa solo en el camino cualificado. -->
-
-          <div class="campo campo--claro" data-campo="movil">
-          <label class="campo__label" for="h-phone">Phone</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-phone" name="mobilephone" type="tel"
-          inputmode="tel" autocomplete="tel" required>
-          </div>
           </div>
 
           <!-- Contexto que viaja a HubSpot con el contacto -->

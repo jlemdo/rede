@@ -16139,6 +16139,17 @@ span.d2-panel__filtro:hover {
   align-items: start;
 }
 
+/* SI UNO DE LOS DOS SE OCULTA, EL OTRO OCUPA LA FILA
+
+   El guion esconde campos segun el camino --Role solo aparece en el
+   cualificado-- ocultando cada .campo por separado. Sin esto la pareja
+   se quedaba con una columna vacia al lado del campo que si se ve.
+
+   :has() mira si algun hijo esta oculto y pasa la fila a una columna. */
+.d2 .captura__pareja:has(> .campo[hidden]) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 /* Los campos de dentro pierden sus margenes: los pone la rejilla.
 
    El de arriba importa: una regla de hermanos adyacentes --campo + campo--
