@@ -949,6 +949,122 @@
 
       </div></section>
 
+<!-- ======================================================================
+     FINANCIACION, CLONADA DE LA HOME (16/9/2026)
+
+     Misma seccion, mismo marcado y mismo copy. Va despues del ranking:
+     primero se dice que buscar --el edificio que merece la auditoria-- y
+     despues que puede haber dinero para pagarla.
+
+     El enlace apunta a #calculator, que existe tambien en esta pagina.
+
+     Si el copy de la home cambia, hay que cambiarlo aqui tambien: son dos
+     copias, no una pieza compartida.
+     ====================================================================== -->
+<section class="d2-financia d2-entra" aria-labelledby="fondos-titulo">
+
+  <!-- DOS SVG, uno por esquina. No uno estirado.
+
+         El primer intento fue un solo SVG de 1440x700 cubriendo la
+         seccion. No funciono, y la razon es geometrica: la seccion es
+         mucho mas apaisada que el viewBox --3.17:1 frente a 2.06:1-- asi
+         que "slice" recortaba 322px de alto para mantener la forma, y se
+         comia justo las dos esquinas donde vive el dibujo. El resultado
+         era una seccion sin circuito.
+
+         "none" tampoco sirve: estira los codos y convierte los nodos en
+         ovalos.
+
+         Con un SVG por esquina cada uno conserva su tamano real, se ancla
+         donde le toca y no depende del alto de la seccion. -->
+    <svg class="d2-financia__circuito d2-financia__circuito--sup" viewBox="0 0 460 140" fill="none" aria-hidden="true">
+      <path d="M8 0v18a14 14 0 0 0 14 14h250a14 14 0 0 1 14 14v22a14 14 0 0 0 14 14h142"/>
+      <circle cx="450" cy="82" r="7"/>
+    </svg>
+
+    <!-- El nodo va a la DERECHA (14/9/2026): el usuario lo pidio asi. La
+         linea entra por el borde izquierdo, baja en escalon y termina en
+         el nodo, que queda al final del recorrido en vez de al principio.
+
+         Es tambien lo que hace el trazo de arriba --entra por un borde y
+         acaba en nodo-- asi que los dos se leen igual. -->
+    <svg class="d2-financia__circuito d2-financia__circuito--inf" viewBox="0 0 320 150" fill="none" aria-hidden="true">
+      <path d="M0 16h126a14 14 0 0 1 14 14v40a14 14 0 0 0 14 14h146"/>
+      <circle cx="311" cy="84" r="7"/>
+    </svg>
+
+    <svg class="d2-financia__circuito d2-financia__circuito--izq" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+      <path d="M0 15h56"/>
+      <circle cx="64" cy="15" r="7"/>
+    </svg>
+
+  <div class="d2-financia__inner">
+
+    <div class="d2-financia__texto">
+      <p class="eyebrow">Commercial energy funding</p>
+      <h2 class="d2-financia__titulo" id="fondos-titulo">
+        Funding may help cover your next energy project.
+      </h2>
+      <p class="d2-financia__lead">
+        Rede helps identify BC Hydro rebates, FortisBC rebates, SaskPower incentives,
+        and other commercial energy funding before you invest in an energy audit or
+        improvement project.
+      </p>
+    </div>
+
+    <div class="d2-financia__lado">
+      <p class="d2-financia__eti">Programs we can help you navigate</p>
+
+      <!-- ul y no ol: son tres utilities alternativas, no una secuencia.
+           Un lector de pantalla no debe sugerir orden donde no lo hay. -->
+      <ul class="d2-financia__programas">
+        <li>BC Hydro</li>
+        <li>FortisBC</li>
+        <li>SaskPower</li>
+      </ul>
+
+      <!-- CONFIRMADO (14/9/2026)
+
+           Se monto oculto porque la acreditacion no constaba en ningun
+           archivo del proyecto. El copy final del cliente --"Homepage
+           final copy (3).docx"-- la afirma DOS veces, en la seccion 03 y
+           otra vez en la 05:
+
+             "REDE is listed by BC Hydro as an approved service provider
+              for the Continuous Optimization program."
+
+           Con eso deja de ser una suposicion y se publica. El texto es el
+           del documento, literal. -->
+      <p class="d2-financia__aval">
+        <span class="d2-financia__tic" aria-hidden="true">
+          <svg width="13" height="10" viewBox="0 0 13 10"><path d="M1 5l3.5 3.5L12 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Rede is listed by BC Hydro as an approved service provider for the Continuous Optimization program.
+      </p>
+
+      <a class="d2-btn d2-btn--solido d2-financia__cta" href="#calculator">
+        Check funding eligibility
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- EL DISCLAIMER (16/9/2026)
+
+           Lo pide el documento del cliente y no estaba en ninguna parte.
+           Va aqui, junto a la promesa de financiacion, y no al final de la
+           calculadora: es donde el visitante lee que puede haber dinero,
+           asi que es donde tiene que leer que depende del programa.
+
+           Texto literal del documento. -->
+      <p class="d2-financia__aviso">
+        Program availability and final eligibility vary.
+      </p>
+
+      <p class="d2-financia__nota">Initial program-fit review at no cost.</p>
+    </div>
+
+  </div>
+</section>
+
 <!-- ====================================================================
          OPCION 3 — ASISTENTE POR PASOS
 
