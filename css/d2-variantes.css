@@ -10159,6 +10159,10 @@ span.d2-panel__filtro:hover {
   font-size: 13px;
   line-height: 1.5;
   color: var(--c-texto-suave, #6B6B6B);
+  /* Centrada sobre la tarjeta: alineada a la izquierda arrancaba en el
+     borde del aside, que es mas ancho que la caja, y la nota quedaba
+     descolgada a su izquierda en vez de sobre ella. */
+  text-align: center;
 }
 
 .d2 .d2-faq-dato__ficha {
