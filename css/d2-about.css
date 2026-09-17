@@ -431,12 +431,28 @@
    caja encoja con la imagen: con transform la imagen se ve mas pequena
    pero sigue ocupando el mismo sitio, y quedaria un hueco muerto debajo.
 
-   margin-left: auto la mantiene pegada al borde derecho. Encogiendo desde
-   la izquierda se separaria del margen de la pagina, que es de donde
-   sangra la ilustracion. */
+   SANGRA MENOS, ASI NO SE VA AL BORDE
+
+   El hero compartido lleva un margen derecho negativo calculado para que
+   la ilustracion llegue al filo de la pantalla. Con la imagen al 80% eso
+   la dejaba escorada contra el borde derecho.
+
+   Se probo anular la sangria entera y no vale: la columna de arte pasa a
+   medir 582px dentro del contenedor, y al 80% la imagen se quedaria en
+   465 --menos de la mitad de los 984 que tenia--. Calculado.
+
+   Asi que se recorta a la mitad: la imagen sigue rebasando el contenedor
+   --que es lo que le da tamano-- pero se queda a 80px del filo de la
+   ventana, con aire a la derecha como en la referencia. */
+.d2 .ab-hero .d2-ega-hero__arte {
+  margin-right: min(0px, calc((var(--d2-ancho, 1280px) - 100vw) / 4));
+}
+
+/* Y el 20% que se recorta sale por la DERECHA, no repartido: asi la
+   imagen se desplaza hacia la izquierda en vez de encoger centrada. */
 .d2 .ab-hero .d2-ega-hero__arte img {
   width: 80%;
-  margin-left: auto;
+  margin-right: auto;
   display: block;
 }
 
