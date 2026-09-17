@@ -422,6 +422,30 @@
    El degradado usa transparent en los extremos y no blanco: sobre un
    fondo que no fuera blanco, el blanco se veria como dos tapones. */
 
+/* LA IMAGEN DEL HERO, UN 20% MAS PEQUENA (16/9/2026)
+
+   Pedido por el cliente. Mismo recurso que ya se uso en Energy Management
+   y Recommissioning, donde se dejo al 85%.
+
+   Se escala con width y no con transform porque aqui SI interesa que la
+   caja encoja con la imagen: con transform la imagen se ve mas pequena
+   pero sigue ocupando el mismo sitio, y quedaria un hueco muerto debajo.
+
+   margin-left: auto la mantiene pegada al borde derecho. Encogiendo desde
+   la izquierda se separaria del margen de la pagina, que es de donde
+   sangra la ilustracion. */
+.d2 .ab-hero .d2-ega-hero__arte img {
+  width: 80%;
+  margin-left: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla y
+     encogerla solo la haria mas dificil de ver. */
+  .d2 .ab-hero .d2-ega-hero__arte img { width: 100%; }
+}
+
 .d2 .ab-hero {
   position: relative;
   /* Fuera el borde heredado: lo sustituye el ::after de aqui abajo. */
