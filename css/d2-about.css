@@ -178,9 +178,42 @@
   padding-block: clamp(var(--sp-6), 6vw, var(--sp-8));
   background: var(--c-superficie-oscura, #1A1A1A);
   color: #FFFFFF;
+  /* para la reticula de debajo */
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   LA RETICULA DEL FONDO (17/9/2026)
+
+   La misma que la cabecera negra de la calculadora --d2-variantes.css, la
+   regla .d2 .calc::before--: dos degradados cruzados que dejan una linea de
+   1px cada 130px. Verde de marca al 6%, que sobre el negro se intuye sin
+   competir con el texto.
+
+   Aqui NO lleva mascara. En la calculadora la banda negra ocupa solo los
+   primeros 480px y la reticula tiene que cortarse ahi; esta seccion es
+   oscura entera, asi que cubre todo el bloque.
+
+   Decorativa: va en un ::before y con pointer-events none, asi que no entra
+   en el arbol de accesibilidad ni intercepta el raton.
+   -------------------------------------------------------------------------- */
+.d2 .ab-mas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(126, 225, 142, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 225, 142, .06) 1px, transparent 1px);
+  background-size: 130px 130px;
 }
 
 .d2 .ab-mas__inner {
+  /* por encima de la reticula, igual que .calc__inner */
+  position: relative;
+  z-index: 1;
   max-width: var(--d2-ancho, 1280px);
   margin-inline: auto;
   padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
