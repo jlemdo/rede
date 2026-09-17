@@ -261,7 +261,19 @@
 }
 
 .d2 .ab-principios__cab {
-  max-width: 34ch;
+  /* El ancho, en px y no en ch (16/9/2026)
+
+     Estaba en 34ch y el titular caia en tres lineas. Subirlo a 44ch
+     tampoco basto: la unidad ch mide el ancho del caracter "0", que en
+     una extrabold de 50px no se parece al ancho real de las letras.
+     MEDIDO en pantalla las dos veces.
+
+     Con un valor en px el limite es el que se ve. 760 deja "Three things
+     we don't compromise on." en una linea y sigue siendo comodo para el
+     eyebrow que va encima.
+
+     min() para que en pantallas estrechas ceda antes que desbordar. */
+  max-width: min(760px, 100%);
   margin-bottom: clamp(var(--sp-5), 4vw, var(--sp-6));
 }
 
@@ -272,7 +284,17 @@
   letter-spacing: -.022em;
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
-  text-wrap: balance;
+
+  /* pretty y no balance (16/9/2026)
+
+     balance reparte el texto en lineas parejas AUNQUE quepa en una, que
+     es justo lo que aqui no se quiere: "Three things we don't compromise
+     on." entra en un renglon y balance lo partia en dos.
+
+     pretty deja la linea entera y solo evita que la ultima quede con una
+     palabra suelta si algun dia el titular crece. Mismo cambio que ya se
+     hizo en el titular de Contact. */
+  text-wrap: pretty;
 }
 
 .d2 .ab-principios__lista {
@@ -441,7 +463,103 @@
   text-wrap: balance;
 }
 
-/* Las tres columnas, del mismo ancho.
+/* LOS DATOS ROTAN: UNO A LA VEZ (16/9/2026)
+
+   Con los tres a la vez no caben en una linea --piden 797px contra los
+   610 de la columna, ni bajando el valor a 24-- y los valores largos
+   caian en dos renglones.
+
+   Mostrando uno solo caben de sobra: el mas ancho pide 438px a 36, asi
+   que ademas el dato puede ser mas grande, que es lo que se pidio.
+
+   LOS TRES OCUPAN LA MISMA CELDA
+
+   Apilados con grid en 1fr/1fr: asi la caja mide lo que el mas alto y no
+   da saltos al cambiar. Con position:absolute el contenedor se quedaria
+   sin alto. */
+.d2 .ab-hero__datos[data-rota] {
+  display: grid;
+  grid-template-areas: "dato";
+  min-height: 4.6em;
+}
+
+.d2 .ab-hero__datos[data-rota] > div {
+  grid-area: dato;
+  min-width: 0;
+
+  /* EL RELEVO: TODO SE MUEVE HACIA ARRIBA
+
+     El que entra sube desde abajo hasta su sitio; el que sale sigue
+     subiendo y se va por arriba. El movimiento no cambia de sentido, que
+     es lo que lo hace continuo en vez de un parpadeo.
+
+     Se probo con los dos a la vez y se veian superpuestos: "150+" encima
+     de "Multi-site portfolios" a medio desvanecer. MEDIDO en pantalla.
+     Por eso el entrante espera a que el saliente haya subido.
+
+     El estado de reposo --este-- es el de ABAJO: todo lo que no esta
+     visible espera debajo de la linea, listo para subir. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+
+  /* La curva: sale rapido y frena al final, como algo con peso.
+     cubic-bezier(.22, 1, .36, 1) es la misma que usa el resto del sitio
+     para las entradas. */
+  transition:
+    opacity .34s cubic-bezier(.22, 1, .36, 1),
+    transform .34s cubic-bezier(.22, 1, .36, 1),
+    visibility 0s .34s;
+}
+
+/* El que ESTA visible: en su sitio. */
+.d2 .ab-hero__datos[data-rota] > div.es-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity .5s cubic-bezier(.22, 1, .36, 1) .3s,
+    transform .5s cubic-bezier(.22, 1, .36, 1) .3s,
+    visibility 0s .3s;
+}
+
+/* El que SALE: no vuelve abajo, sigue subiendo y desaparece por arriba.
+
+   Sin esto el saliente se iria hacia abajo --al estado de reposo-- y el
+   entrante subiria: dos movimientos en sentidos opuestos, que es lo que
+   rompe la sensacion de continuidad. */
+.d2 .ab-hero__datos[data-rota] > div.esta-saliendo {
+  opacity: 0;
+  transform: translateY(-18px);
+  transition:
+    opacity .34s cubic-bezier(.22, 1, .36, 1),
+    transform .34s cubic-bezier(.22, 1, .36, 1),
+    visibility 0s .34s;
+}
+
+/* SIN JS SE VEN LOS TRES
+
+   El atributo data-rota lo trae el marcado, pero la clase es-visible la
+   pone el JS. Si no corre, esta regla --que solo se aplica cuando NINGUN
+   hijo la tiene-- devuelve la fila de tres. Nunca se pierde el dato. */
+.d2 .ab-hero__datos[data-rota]:not(:has(> .es-visible)) {
+  display: flex;
+  min-height: 0;
+}
+
+.d2 .ab-hero__datos[data-rota]:not(:has(> .es-visible)) > div {
+  flex: 1 1 0;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* El dato, mas grande al ir solo: de 24 a 36px. */
+.d2 .ab-hero__datos[data-rota] dd {
+  font-size: clamp(28px, 2.6vw, 36px);
+}
+
+/* Las tres columnas, del mismo ancho cuando se ven juntas.
 
    Con flex a secas cada una mide lo que su contenido, y "150+" quedaba
    estrecha al lado de dos frases: los tres datos son del mismo rango y
@@ -449,6 +567,12 @@
 .d2 .ab-hero__datos > div {
   flex: 1 1 0;
   min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Quien pide menos movimiento no ve la transicion, pero el dato sigue
+     cambiando: lo que molesta es el deslizamiento, no el relevo. */
+  .d2 .ab-hero__datos[data-rota] > div { transition: none; transform: none; }
 }
 
 /* --- Adaptacion ---------------------------------------------------------- */
