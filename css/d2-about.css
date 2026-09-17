@@ -290,7 +290,7 @@
      El icono en columna propia y de ancho fijo --no dentro del titulo--
      para que los tres queden alineados en vertical aunque sus titulos
      tengan una o dos lineas. */
-  grid-template-columns: 64px minmax(0, .82fr) minmax(0, 1fr);
+  grid-template-columns: 80px minmax(0, .82fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(var(--sp-4), 3vw, var(--sp-6));
   padding-block: clamp(var(--sp-5), 2.6vw, var(--sp-6));
@@ -305,8 +305,11 @@
    Hereda el color del texto con currentColor, asi que si la seccion
    cambia de tono el icono va detras sin tocar nada. */
 .d2 .ab-principio__icono {
-  width: 48px;
-  height: 48px;
+  /* 64px desde el 16/9/2026: a 48 quedaban pequenos al lado de un titulo
+     de 32, y el detalle del trazo --los nodos de la linea, los dedos del
+     apreton-- no se distinguia. */
+  width: 64px;
+  height: 64px;
   color: var(--c-texto, #333333);
 }
 
@@ -314,6 +317,23 @@
   display: block;
   width: 100%;
   height: 100%;
+
+}
+
+/* El trazo, fijo en pantalla y no escalado.
+
+   El stroke-width del SVG va en unidades del viewBox --2 sobre 48-- asi
+   que al dibujar el icono a 64 el trazo crece con el. Queda mas pesado de
+   lo que pedia la referencia.
+
+   vector-effect desactiva ese escalado: el grosor se mide en pixeles de
+   pantalla, asi que los tres iconos pesan lo mismo a cualquier tamano.
+
+   Va en los hijos y no en el <svg>: es una propiedad de cada forma, no
+   del lienzo. */
+.d2 .ab-principio__icono svg :is(path, rect, circle, ellipse, line, polyline) {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
 }
 
 /* El titulo, centrado con el icono.
@@ -444,11 +464,11 @@
      sueltas. Asi el icono y el titulo forman la cabecera de cada
      principio, que es lo que pidio el cliente. */
   .d2 .ab-principio {
-    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-columns: 64px minmax(0, 1fr);
     gap: var(--sp-3) var(--sp-4);
   }
 
-  .d2 .ab-principio__icono { width: 44px; height: 44px; }
+  .d2 .ab-principio__icono { width: 56px; height: 56px; }
 
   /* El texto salta a la segunda fila y ocupa las dos columnas: sangrado
      bajo el titulo, no bajo el icono, que es como se ve en la
