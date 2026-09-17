@@ -1079,49 +1079,152 @@
          Solo animacion de entrada. Animar el cambio de paso distraeria de
          la pregunta, que es lo unico que debe leerse en cada pantalla.
          ==================================================================== -->
-    <!-- ======================================================================
-     LA CALCULADORA, CLONADA DE LA HOME (16/9/2026)
-
-     Las dos paginas tenian calculadoras distintas: esta con siete pasos y
-     la de la home con cuatro. Se unifican con la de la home, que es la que
-     ha recibido los cambios --el formulario de tres filas, el campo de
-     telefono unificado, Organization opcional--.
-
-     Se conserva data-comp-rol="calc" del marcado anterior: es lo que hace
-     que el sistema de composicion le aplique su tono.
-
-     SON DOS COPIAS, NO UNA PIEZA COMPARTIDA. Lo que cambie en la home hay
-     que cambiarlo aqui.
-     ====================================================================== -->
-<section class="calc calc--unico" data-comp-rol="calc" id="calculator">
+    <section class="calc calc--pasos" data-comp-rol="calc" id="calculator">
       <div class="calc__inner">
 
         <div class="calc__intro">
-        <p class="eyebrow">Energy savings calculator</p>
-        <h2 class="calc__titulo">Estimate your building energy savings opportunity.</h2>
+        <p class="eyebrow">Check your opportunity</p>
+        <h2 class="calc__titulo">Find out what your buildings may be trying to tell you.</h2>
         <p class="calc__lead">
-          Enter a few basic details to compare your building or portfolio with historical
-          BC Hydro Continuous Optimization results. Your result is a planning estimate,
-          not a savings guarantee.
+        Use a few basic inputs to compare your building or portfolio against
+        historical BC Hydro Continuous Optimization results. The output is a
+        planning benchmark, not a savings guarantee.
         </p>
         </div>
 
 
         <div class="calc__panel">
 
-          <div class="pasos" id="pasos" data-abierto>
+          <div class="pasos" id="pasos">
 
           <div class="pasos__cabecera">
-          <p class="pasos__contador">Step <span id="paso-n">1</span> of 4</p>
-          <div class="barra" role="progressbar" aria-valuemin="1" aria-valuemax="4"
-          aria-valuenow="1" aria-label="Progress">
-          <span class="barra__fill" id="barra"></span>
+          <p class="pasos__contador">Step <span id="paso-n">1</span> of <span id="paso-total">6</span></p>
+          <div class="barra" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-label="Progress">
+          <span class="barra__fill" id="barra" style="width: 16.6667%;"></span>
           </div>
           </div>
 
-          <!-- PASO 1 -->
-          <div class="calc__campos">
+          <!-- ============================================================
+          PRECALIFICACION (feedback 9/9/2026, Parte 1)
+
+          Cuatro pantallas antes de la pregunta de siempre. La idea del
+          cliente: filtrar los edificios demasiado pequenos para llegar a
+          ser proyecto ANTES de que nadie invierta tiempo, ni el suyo ni el
+          nuestro.
+
+          El orden importa y fue una correccion suya: preguntar primero por
+          la UBICACION y solo despues por la comercializadora. Poner "eres
+          cliente de BC Hydro" como primera pregunta perdia a cualquiera de
+          fuera de la Columbia Britanica antes de que supiera si la pregunta
+          le aplicaba siquiera.
+          ============================================================ -->
+
+          <!-- PASO 1: el filtro de tamano -->
           <div class="paso-calc is-activo" data-paso="1">
+          <h3 class="paso-calc__titulo">Is your building at least 25,000 sq ft?</h3>
+          <p class="paso-calc__ayuda">
+          Recommissioning pays for itself on larger buildings. Below that size
+          the numbers rarely work.
+          </p>
+          <div class="opciones">
+          <button class="opcion" type="button" data-tamano="si">
+          <span class="opcion__titulo">Yes</span>
+          <span class="opcion__texto">25,000 sq ft or more.</span>
+          </button>
+          <button class="opcion" type="button" data-tamano="no">
+          <span class="opcion__titulo">No</span>
+          <span class="opcion__texto">Smaller than that.</span>
+          </button>
+          </div>
+          </div>
+
+          <!-- PASO 2: donde esta el edificio.
+          Se pregunta SIEMPRE, sea o no de la Columbia Britanica: es el dato
+          que necesita el equipo comercial para saber que subvenciones
+          provinciales o de comercializadora pueden aplicar. -->
+          <div class="paso-calc" data-paso="2">
+          <h3 class="paso-calc__titulo">Where is your building located?</h3>
+          <p class="paso-calc__ayuda">
+          Grant programs vary by province and by utility, so this tells us
+          which ones might apply to you.
+          </p>
+          <div class="campos">
+          <div class="campo">
+          <label class="campo__label" for="c-prov">Province or territory</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-prov">
+          <option value="">Select one</option>
+          <option value="BC">British Columbia</option>
+          <option value="AB">Alberta</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="ON">Ontario</option>
+          <option value="QC">Quebec</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          </select>
+          </div>
+          </div>
+          <div class="campo">
+          <label class="campo__label" for="c-city">City or district</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-city" type="text" autocomplete="address-level2" placeholder="Vancouver">
+          </div>
+          </div>
+          </div>
+          </div>
+
+          <!-- PASO 3: la comercializadora. Solo para quien dijo Columbia
+          Britanica en el paso 2; al resto se le salta. -->
+          <div class="paso-calc" data-paso="3">
+          <h3 class="paso-calc__titulo">Are you a BC Hydro or FortisBC customer?</h3>
+          <p class="paso-calc__ayuda">
+          Their programs fund a large share of recommissioning work in the
+          province.
+          </p>
+          <div class="opciones">
+          <button class="opcion" type="button" data-utility="si">
+          <span class="opcion__titulo">Yes</span>
+          <span class="opcion__texto">BC Hydro, FortisBC or both.</span>
+          </button>
+          <button class="opcion" type="button" data-utility="no">
+          <span class="opcion__titulo">No</span>
+          <span class="opcion__texto">Another provider.</span>
+          </button>
+          </div>
+          </div>
+
+          <!-- PASO 4: historial de subvenciones. Solo para clientes de BC
+          Hydro o FortisBC. Sin explicar por que se pregunta: lo pidio asi
+          el cliente. -->
+          <div class="paso-calc" data-paso="4">
+          <h3 class="paso-calc__titulo">
+          Have you received funding from a utility provider for recommissioning
+          or C-Op work before?
+          </h3>
+          <div class="campos">
+          <div class="campo">
+          <label class="campo__label" for="c-funding">Previous funding</label>
+          <div class="campo__wrap">
+          <select class="campo__input" id="c-funding">
+          <option value="">Select one</option>
+          <option value="lt5">Yes, less than 5 years ago</option>
+          <option value="5to10">Yes, 5 to 10 years ago</option>
+          <option value="gt10">Yes, more than 10 years ago</option>
+          <option value="never">Never</option>
+          </select>
+          </div>
+          </div>
+          </div>
+          </div>
+
+          <!-- PASO 5 (antes 1) -->
+          <div class="paso-calc" data-paso="5">
           <h3 class="paso-calc__titulo">How many buildings are in scope?</h3>
           <p class="paso-calc__ayuda">
           A portfolio needs comparison across buildings. A single facility needs a
@@ -1137,10 +1240,21 @@
           <span class="opcion__texto">A portfolio where comparison matters.</span>
           </button>
           </div>
+          <!-- Cuelga de la eleccion de arriba: con "One building" la respuesta
+          es 1 y el guion la escribe solo, asi que preguntarla sobraria. Se
+          muestra al elegir "Multiple buildings". (14/9/2026) -->
+          <div class="campo" data-campo="sitios" hidden>
+          <label class="campo__label" for="c-sites">How many sites in total?</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-sites" type="text" inputmode="numeric"
+          placeholder="22" autocomplete="off">
+          </div>
+          </div>
+
           </div>
 
           <!-- PASO 2 -->
-          <div class="paso-calc" data-paso="2">
+          <div class="paso-calc" data-paso="6">
           <h3 class="paso-calc__titulo">What kind of organization is this?</h3>
           <p class="paso-calc__ayuda">
           This helps us understand your operating context before we look at the
@@ -1169,63 +1283,70 @@
           </div>
 
           <!-- PASO 3 -->
-          <div class="paso-calc" data-paso="3">
+          <div class="paso-calc" data-paso="7">
           <h3 class="paso-calc__titulo">Which building type is the closest match?</h3>
           <p class="paso-calc__ayuda">
           Choose the closest available match from historical C-Op building categories.
           </p>
-          <div class="campo">
+          <div class="campo" data-campo="tipo">
           <label class="campo__label" for="c-type">Building type</label>
           <div class="campo__wrap">
-          <select class="campo__input" id="c-type"></select>
+          <select class="campo__input" id="c-type"><option value="extendedCare" data-i="0">Extended care</option><option value="foodRetail" data-i="1">Food retail</option><option value="hospital" data-i="2">Hospital</option><option value="largeOffice" data-i="3">Large office</option><option value="mediumOffice" data-i="4">Medium office</option><option value="murb" data-i="5">Multi-unit residential building</option><option value="nursingHome" data-i="6">Nursing home</option><option value="recreation" data-i="7">Recreation</option><option value="shoppingMall" data-i="8">Shopping mall</option><option value="university" data-i="9">University or college</option><option value="hotel" data-i="10">Hotel</option><option value="school" data-i="11">School</option><option value="other" data-i="12">Other</option></select>
+          </div>
+          </div>
+
+          <!-- Para ayuntamientos: no hay datos C-Op de parques de bomberos ni
+          de naves de obras publicas, asi que no se puede ofrecer una lista
+          de tipos. En su lugar se pide una descripcion, que le sirve al
+          equipo comercial para preparar la llamada. (Feedback 9/9/2026,
+          Parte 2.) -->
+          <div class="campo" data-campo="libre" hidden="">
+          <label class="campo__label" for="c-desc">Describe the building</label>
+          <div class="campo__wrap">
+          <input class="campo__input" id="c-desc" type="text" placeholder="Fire hall, public works yard, community centre..." autocomplete="off" tabindex="-1">
           </div>
           </div>
           <div class="campo">
           <label class="campo__label" for="c-area">Total area in square feet</label>
           <div class="campo__wrap">
-          <input class="campo__input" id="c-area" type="text" inputmode="numeric"
-          placeholder="1,850,000" autocomplete="off">
+          <input class="campo__input" id="c-area" type="text" inputmode="numeric" placeholder="1,850,000" autocomplete="off">
           <span class="campo__sufijo">sq ft</span>
           </div>
           </div>
-          <p class="paso-calc__nota">
-          If you manage multiple sites, use total portfolio area.
-          </p>
-          </div>
-
-          <!-- PASO 4 -->
-          <div class="paso-calc" data-paso="4">
-          <h3 class="paso-calc__titulo">What is your annual utility spend?</h3>
-          <p class="paso-calc__ayuda">
-          Use electricity and fuel combined if available. If you are not sure, we
-          will estimate using the historical cost per square foot for this
-          building type.
-          </p>
+          <!-- El gasto anual viaja aqui (14/9/2026): es el otro dato que alimenta
+          el calculo, y preguntarlo en su propia pantalla al final separaba dos
+          campos que se responden de una sola vez. -->
           <div class="campo">
           <label class="campo__label" for="c-spend">Annual utility spend</label>
           <div class="campo__wrap">
           <span class="campo__prefijo">$</span>
-          <input class="campo__input" id="c-spend" type="text" inputmode="numeric"
-          placeholder="Optional" autocomplete="off">
+          <input class="campo__input" id="c-spend" type="text" inputmode="numeric" placeholder="Optional" autocomplete="off">
           </div>
           </div>
+          <p class="paso-calc__nota">
+          If you manage multiple sites, use total portfolio area. Spend is optional
+          &mdash; without it we estimate from historical cost per square foot.
+          </p>
           </div>
 
+          <!-- PASO 4 -->
+          <!-- PASO 8 (retirado el 14/9/2026): preguntaba el gasto anual y el
+          numero de sitios. El gasto vive ahora junto a la superficie --los dos
+          alimentan el mismo calculo-- y los sitios junto al ambito, que es la
+          misma pregunta. La pantalla se quedaba sin nada que responder. -->
+
           <!-- Navegacion -->
-          </div>
           <div class="pasos__nav">
-          <button class="btn btn--fantasma" type="button" id="btn-atras" hidden>
+          <button class="btn btn--fantasma" type="button" id="btn-atras" hidden="">
           <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M6.5 1L1.5 6L6.5 11M2 6h15" fill="none" stroke="currentColor"
-          stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6.5 1L1.5 6L6.5 11M2 6h15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           Back
           </button>
           <button class="btn btn--primary btn--lg calc__btn" type="button" id="btn-siguiente">
           <span id="btn-texto">Next</span>
           <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-          stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           </button>
           </div>
@@ -1239,7 +1360,7 @@
           <!-- Al terminar, esto sustituye a las preguntas. La columna deja de estar
           muerta y ofrece contacto directo a quien prefiera hablar. -->
 
-          <div class="cierre" id="cierre" hidden>
+          <div class="cierre" id="cierre" hidden="">
           <p class="cierre__label">Your benchmark opportunity</p>
           <p class="cierre__cifra" id="cierre-cifra">$0</p>
           <p class="cierre__nota" id="cierre-nota">
@@ -1265,12 +1386,57 @@
           <p class="cierre__rec-titulo" id="c-rec-titulo">Recommended next step</p>
           <p class="cierre__rec-texto" id="c-rec-texto"></p>
           </div>
+          </div>
+
+          <!-- SALIDA SIN DATOS (14/9/2026)
+
+          Cuando no hay superficie ni gasto no hay nada que estimar. Antes se
+          enseñaba igual el benchmark y la recomendacion junto a un "Add your
+          area": una ficha tecnica que no le correspondia a quien no habia
+          dado ningun dato.
+
+          Esta es la otra salida. No pide disculpas ni señala un error: el
+          dato que falta puede no estar a mano, y para eso esta la
+          conversacion. -->
+          <div class="cierre cierre--consulta" id="cierre-consulta" hidden>
+          <p class="cierre__label">Your next step</p>
+          <p class="cierre__titulo-consulta">Talk to one of our experts.</p>
+          <p class="cierre__nota">
+          We can review your buildings with you and estimate the opportunity
+          together &mdash; no floor area needed to start the conversation.
+          </p>
+
+          <ul class="cierre__lista">
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          A 20-minute call, with no commitment
+          </li>
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          We bring the benchmark data for your building type
+          </li>
+          <li class="cierre__punto">
+          <span class="cierre__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          You leave knowing whether a deeper look is justified
+          </li>
+          </ul>
+
+          <div class="cierre__recomienda">
+          <p class="cierre__rec-titulo" id="cc-rec-titulo">Recommended next step</p>
+          <p class="cierre__rec-texto" id="cc-rec-texto"></p>
+          </div>
 
           </div>
 
           <!-- ================= COLUMNA DERECHA: la tarjeta de resultado ================= -->
 
-          <div class="flip" id="flip" data-flip-panel>
+          <div class="flip" id="flip" data-flip-panel="">
 
           <!-- ANVERSO -->
           <div class="flip__cara flip__cara--frente">
@@ -1282,12 +1448,38 @@
           <div class="espera" id="espera">
 
           <div class="resultado__head">
-          <p class="resultado__label">Assessment summary</p>
-          <span class="pastilla" id="etiqueta-progreso">Building it</span>
+          <p class="resultado__label">Your profile</p>
+          <span class="pastilla" id="etiqueta-progreso">0 of 6</span>
           </div>
 
           <ul class="perfil" id="perfil">
-          <li class="perfil__fila" data-fila="scope">
+          <li class="perfil__fila perfil__fila--eleg" data-fila="tamano">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Building size</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="lugar">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Location</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="utility">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Utility</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__fila perfil__fila--eleg" data-fila="fondos">
+          <span class="perfil__punto" aria-hidden="true"></span>
+          <span class="perfil__texto">Prior funding</span>
+          <span class="perfil__valor">-</span>
+          </li>
+          <li class="perfil__resumen" id="eleg-resumen" hidden>
+          <span class="perfil__tic" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12"><path d="M1.6 6.3l3 3 5.8-6.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="perfil__resumen-txt" id="eleg-resumen-txt"></span>
+          </li>
+          <li class="perfil__fila perfil__fila--corte" data-fila="scope">
           <span class="perfil__punto" aria-hidden="true"></span>
           <span class="perfil__texto">Scope</span>
           <span class="perfil__valor">-</span>
@@ -1320,7 +1512,7 @@
           </ul>
 
           <!-- Adelanto del benchmark. Aparece al elegir tipo de edificio. -->
-          <div class="adelanto" id="adelanto" hidden>
+          <div class="adelanto" id="adelanto" hidden="">
           <p class="adelanto__cifra"><span id="adelanto-pct">0</span>%</p>
           <p class="adelanto__texto" id="adelanto-txt">
           average historical cost reduction for this building type
@@ -1337,7 +1529,7 @@
           </div>
 
           <!-- Resultado, tras calcular -->
-          <div class="salida" id="salida" hidden aria-live="polite" aria-atomic="true">
+          <div class="salida" id="salida" hidden="" aria-live="polite" aria-atomic="true">
           <div class="resultado__head">
           <p class="resultado__label">Your benchmark opportunity</p>
           <span class="pastilla" id="etiqueta-tipo">Benchmark</span>
@@ -1368,12 +1560,10 @@
           <p class="recomienda__texto" id="rec-texto"></p>
           </div>
 
-          <button class="btn btn--primary btn--block resultado__cta" type="button"
-          data-flip="abrir" aria-controls="flip" aria-expanded="false">
+          <button class="btn btn--primary btn--block resultado__cta" type="button" data-flip="abrir" aria-controls="flip" aria-expanded="false">
           <span id="rec-boton">See the recommended path</span>
           <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-          stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           </button>
           </div>
@@ -1385,7 +1575,7 @@
           </div>
 
           <!-- REVERSO: captura para HubSpot -->
-          <div class="flip__cara flip__cara--dorso">
+          <div class="flip__cara flip__cara--dorso" inert="">
           <div class="resultado resultado--dorso">
           <div class="resultado__head">
           <p class="resultado__label" id="dorso-titulo">Your recommended path</p>
@@ -1398,36 +1588,70 @@
           </p>
 
           <form class="captura" data-hubspot="opportunity-check" onsubmit="return false">
-          <div class="campo campo--claro">
-          <label class="campo__label" for="h-name">Name</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-name" name="firstname" type="text"
-          autocomplete="name" required>
+
+          <!-- CINCO CAMPOS EN TRES FILAS (16/9/2026)
+
+               Antes eran cuatro filas: Name solo, Organization+Role,
+               Work email solo y Phone solo. Se pidio bajar un nivel.
+
+               Se agrupan por lo que preguntan, no por lo que miden:
+
+                 quien eres y como te llamo    Name + Phone
+                 donde trabajas y que haces    Organization + Role
+                 por donde te escribo          Work email
+
+               El correo se queda solo a proposito: es el campo mas largo
+               --una direccion de trabajo pasa de los 30 caracteres-- y a
+               media columna se corta al escribirlo. Es ademas el dato que
+               no puede fallar, asi que conviene que tenga sitio. -->
+
+          <div class="captura__pareja">
+            <div class="campo campo--claro">
+              <label class="campo__label" for="h-name">Name</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-name" name="firstname" type="text"
+                       autocomplete="name" required>
+              </div>
+            </div>
+
+            <!-- El telefono sube a la primera fila. No es opcional: el
+                 equipo comercial necesita poder llamar. -->
+            <div class="campo campo--claro" data-campo="movil">
+              <label class="campo__label" for="h-phone">Direct line or phone</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-phone" name="mobilephone" type="tel"
+                       inputmode="tel" autocomplete="tel" required>
+              </div>
+            </div>
           </div>
+
+          <!-- El cargo lo pidio el cliente (feedback 9/9/2026, Parte 4):
+               un director de operaciones y un tecnico no son el mismo
+               lead. Solo aparece en el camino cualificado. -->
+          <div class="captura__pareja">
+            <div class="campo campo--claro" data-campo="org">
+              <label class="campo__label" for="h-org">Organization <span class="campo__opt">(optional)</span></label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-org" name="company" type="text"
+                       autocomplete="organization" required>
+              </div>
+            </div>
+
+            <div class="campo campo--claro" data-solo="cualificado">
+              <label class="campo__label" for="h-role">Role</label>
+              <div class="campo__wrap">
+                <input class="campo__input" id="h-role" name="jobtitle" type="text"
+                       autocomplete="organization-title" required>
+              </div>
+            </div>
           </div>
 
           <div class="campo campo--claro">
-          <label class="campo__label" for="h-org">Organization</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-org" name="company" type="text"
-          autocomplete="organization" required>
-          </div>
-          </div>
-
-          <div class="campo campo--claro">
-          <label class="campo__label" for="h-email">Work email</label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-email" name="email" type="email"
-          autocomplete="email" required>
-          </div>
-          </div>
-
-          <div class="campo campo--claro">
-          <label class="campo__label" for="h-phone">Phone <span class="campo__opt">(optional)</span></label>
-          <div class="campo__wrap">
-          <input class="campo__input" id="h-phone" name="phone" type="tel"
-          inputmode="tel" autocomplete="tel">
-          </div>
+            <label class="campo__label" for="h-email">Work email</label>
+            <div class="campo__wrap">
+              <input class="campo__input" id="h-email" name="email" type="email"
+                     autocomplete="email" required>
+            </div>
           </div>
 
           <!-- Contexto que viaja a HubSpot con el contacto -->
@@ -1440,8 +1664,25 @@
           <input type="hidden" name="sites" value="">
           <input type="hidden" name="benchmark_opportunity" value="">
 
+          <!-- Consentimiento. Obligatorio en los TRES caminos.
+
+          El texto es el que mando el cliente y es PROVISIONAL: su equipo lo
+          esta revisando. Importa que sea literal, porque es lo que se guarda
+          en HubSpot como prueba del consentimiento --y en Canada esto cae
+          bajo CASL--. Si cambia en pantalla, hay que cambiarlo tambien en el
+          guion que lo envia. -->
+          <div class="campo campo--claro campo--casilla">
+          <label class="casilla">
+          <input class="casilla__input" type="checkbox" id="h-consent" name="consent" required>
+          <span class="casilla__texto" id="texto-consentimiento">I consent to receive
+          electronic communications from Rede Energy Solutions about energy
+          management services, program updates, and related content. I can
+          withdraw this consent at any time.</span>
+          </label>
+          </div>
+
           <button class="btn btn--primary btn--block" type="submit">
-          Send me the deeper look
+          <span data-boton-envio>Send me the deeper look</span>
           <svg class="btn__arrow" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
           <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1456,14 +1697,13 @@
           <!-- Contacto directo y reinicio. Aparecen dentro de la tarjeta
           blanca, bajo el mensaje de confirmacion, para no cargar la
           columna izquierda. -->
-          <div class="tras-envio" id="cierre-extra" hidden>
+          <div class="tras-envio" id="cierre-extra" hidden="">
           <div class="tras-envio__contacto">
           <a class="contacto contacto--claro" href="tel:+17782376851">
           <span class="contacto__icono" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1
-          A16 16 0 014 5a1 1 0 011-1z" stroke="currentColor"
-          stroke-width="1.7" stroke-linejoin="round"/>
+          A16 16 0 014 5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
           </svg>
           </span>
           <span>
@@ -1475,9 +1715,8 @@
           <a class="contacto contacto--claro" href="mailto:info@getrede.ca">
           <span class="contacto__icono" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/>
-          <path d="M3.5 6.5L12 13l8.5-6.5" stroke="currentColor" stroke-width="1.7"
-          stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"></rect>
+          <path d="M3.5 6.5L12 13l8.5-6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           </span>
           <span>
@@ -1489,10 +1728,8 @@
 
           <button class="reiniciar" type="button" id="btn-reiniciar">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3"
-          stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           Run another check
           </button>

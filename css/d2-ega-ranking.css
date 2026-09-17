@@ -464,4 +464,14 @@
 @media (max-width: 900px) {
   /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla. */
   .d2 .d2-ega-hero .d2-ega-hero__arte img { width: 100%; }
+
+  /* LA ILUSTRACION, DEBAJO DEL TEXTO (16/9/2026)
+
+     Como en RUN, Energy Management, Recommissioning y About: el hero abre
+     con el titular y los botones, y la escena es el cierre.
+
+     Gap era la unica que la subia --la regla general le da order:-1-- y
+     eso dejaba al visitante viendo un dibujo antes de saber de que va la
+     pagina. Se alinea con las demas. */
+  .d2 .d2-ega-hero .d2-ega-hero__arte { order: 0; }
 }
