@@ -140,12 +140,56 @@
 
 /* --- El formulario ----------------------------------------------------- */
 
+/* LA CAJA, EN VERDE (16/9/2026)
+
+   Elegido por el cliente entre gris, negro, gris oscuro y verde. El
+   #1A5121 es el mismo de la banda de equipo de About y del hero de Client
+   Login, asi que no entra un color nuevo al sistema.
+
+   El texto se invierte redefiniendo las variables DENTRO de la caja: todo
+   lo que las usa se adapta, incluido lo que aun no existe. */
 .d2 .ct-form {
   position: relative;
   padding: clamp(24px, 3vw, 38px);
-  background: var(--c-fondo-alt, #F5F5F5);
+  background: #1A5121;
   border-radius: var(--radio-sm, 6px);
+
+  --c-texto:        #FFFFFF;
+  --c-texto-cuerpo: #E8E8E8;
+  --c-texto-suave:  #BFBFBF;
+  --c-linea:        rgba(255, 255, 255, .22);
+  color: #FFFFFF;
 }
+
+/* El titulo y las notas llevan color propio y no heredan. */
+.d2 .ct-form__titulo { color: #FFFFFF; }
+.d2 :is(.ct-form__nota, .ct-form__legal) { color: #BFBFBF; }
+
+/* Las etiquetas de campo y la leyenda del grupo de telefonos. */
+.d2 :is(.ct-campo__label, .ct-grupo-tel__leyenda) { color: #FFFFFF; }
+
+/* DENTRO DEL CAMPO EL FONDO SIGUE SIENDO BLANCO
+
+   Los inputs tienen fondo propio, asi que su texto se queda oscuro. Sin
+   esto heredarian el blanco de arriba y seria blanco sobre blanco: el
+   fallo que ya aparecio una vez en las tarjetas de RUN. */
+.d2 .ct-form :is(input, textarea, select) {
+  color: #333333;
+  background: #FFFFFF;
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.d2 .ct-form :is(input, textarea)::placeholder { color: #6B6B6B; }
+
+/* El foco tiene que verse sobre el verde: el de marca da 2.4:1 contra
+   #1A5121 y no llega al 3:1 que pide WCAG 1.4.11 para un indicador. */
+.d2 .ct-form :is(input, textarea):focus-visible {
+  outline: 2px solid #6FD97E;
+  outline-offset: 2px;
+}
+
+/* Los errores: el rojo de siempre se hunde sobre el verde oscuro. */
+.d2 :is(.ct-campo__error, .ct-grupo-tel__error) { color: #FF9B8F; }
 
 .d2 .ct-form__titulo {
   margin: 0 0 var(--sp-1);
