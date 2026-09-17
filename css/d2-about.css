@@ -285,11 +285,43 @@
    la explicacion tres lineas. */
 .d2 .ab-principio {
   display: grid;
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  /* Tres columnas desde el 16/9/2026: el icono, el que y el por que.
+
+     El icono en columna propia y de ancho fijo --no dentro del titulo--
+     para que los tres queden alineados en vertical aunque sus titulos
+     tengan una o dos lineas. */
+  grid-template-columns: 64px minmax(0, .82fr) minmax(0, 1fr);
+  align-items: start;
   gap: clamp(var(--sp-4), 3vw, var(--sp-6));
   padding-block: clamp(var(--sp-5), 2.6vw, var(--sp-6));
   border-top: 1px solid var(--c-borde, #E4E4E4);
 }
+
+/* EL ICONO
+
+   Trazo, no relleno: es el lenguaje que ya usan los iconos del sitio
+   --el mapa, los del footer, los de la calculadora--.
+
+   Hereda el color del texto con currentColor, asi que si la seccion
+   cambia de tono el icono va detras sin tocar nada. */
+.d2 .ab-principio__icono {
+  width: 48px;
+  height: 48px;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ab-principio__icono svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* El titulo, centrado con el icono.
+
+   El icono mide 48 y la primera linea del titulo unos 29, asi que sin
+   esto el titulo arrancaba pegado al borde de arriba y no se leian como
+   una pareja. Un pelo de margen los alinea opticamente. */
+.d2 .ab-principio__que { padding-top: 6px; }
 
 /* El filete verde solo en el primero: marca donde empieza la lista sin
    repetir el gesto tres veces. */
@@ -404,7 +436,26 @@
 @media (max-width: 900px) {
   .d2 .ab-origen__inner,
   .d2 .ab-mas__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
-  .d2 .ab-principio { grid-template-columns: 1fr; gap: var(--sp-3); }
+  /* EN MOVIL: el icono a la izquierda y el titulo a su lado, con el
+     texto debajo ocupando las dos columnas (16/9/2026).
+
+     Apilar los tres en una columna --icono, titulo, texto-- dejaba el
+     icono solo en su renglon y el bloque se leia como tres cosas
+     sueltas. Asi el icono y el titulo forman la cabecera de cada
+     principio, que es lo que pidio el cliente. */
+  .d2 .ab-principio {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: var(--sp-3) var(--sp-4);
+  }
+
+  .d2 .ab-principio__icono { width: 44px; height: 44px; }
+
+  /* El texto salta a la segunda fila y ocupa las dos columnas: sangrado
+     bajo el titulo, no bajo el icono, que es como se ve en la
+     referencia. */
+  .d2 .ab-principio__por { grid-column: 2; }
+
+  .d2 .ab-principio__que { padding-top: 4px; }
   /* Los anillos, primero: en una columna la ilustracion arriba anuncia
      de que va la seccion antes de leer el texto. */
   .d2 .ab-origen__arte { order: -1; }
