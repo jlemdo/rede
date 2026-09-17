@@ -1410,12 +1410,25 @@
 .d2 .d2-ega-hero__lineas {
   position: absolute;
   inset: 0;
-  z-index: -1;
+
+  /* z-index 0 y no -1 (16/9/2026)
+
+     El hero pinta su propio fondo --background: var(--comp-rol, blanco)--
+     asi que con -1 el trazado quedaba DETRAS de ese fondo: dibujado y
+     tapado. MEDIDO: el hero salia limpio, sin una sola linea.
+
+     Es el mismo fallo que ya aparecio en el fondo de Contact. Con 0 pasa
+     por delante del fondo; el contenido lleva su propio z-index mas alto
+     y sigue por encima. */
+  z-index: 0;
   width: 100%;
   height: 100%;
   opacity: .42;
   pointer-events: none;
 }
+
+/* El contenido, por encima del trazado. */
+.d2 .d2-ega-hero__inner { position: relative; z-index: 1; }
 
 .d2 .d2-ega-hero__lineas path {
   fill: none;
