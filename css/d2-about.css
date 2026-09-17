@@ -430,29 +430,39 @@
 
 .d2 .ab-hero__datos dt {
   margin: 0 0 var(--sp-1);
-  font-size: var(--fs-xs);
+
+  /* Cede con la ventana, como el valor.
+
+     Por debajo de 1100px es la ETIQUETA la que manda el ancho, no el
+     valor: "ORGANISATIONS SERVED" a 12px pide 149px por si sola, y bajar
+     solo el valor deja de servir. Calculado. Asi que ceden las dos. */
+  /* El suelo en 9px: a 10 la etiqueta mas larga --"ORGANISATIONS
+     SERVED"-- se partia en dos lineas a 1024 de ventana. MEDIDO en
+     pantalla. Y el letter-spacing cede tambien, que a este cuerpo suma
+     mas de lo que aporta. */
+  font-size: clamp(9px, .64vw, 12px);
   font-weight: var(--fw-bold, 700);
-  letter-spacing: .07em;
+  letter-spacing: clamp(.02em, .04vw, .07em);
   text-transform: uppercase;
   color: var(--c-texto-suave, #6B6B6B);
+  /* Que no se parta: si no cabe, cede el tamano, no el renglon. */
+  white-space: nowrap;
 }
 
 .d2 .ab-hero__datos dd {
   margin: 0;
 
-  /* 24px y no el --fs-h3 de 32 (16/9/2026)
+  /* 13.5px de techo, y cede con la ventana (16/9/2026)
 
-     El estilo estaba pensado para cifras cortas --"59", "150+"-- y ahora
-     dos de los tres valores son frases: "Multi-site portfolios" y
-     "Embedded partnerships".
+     A 24px los valores largos --"Multi-site portfolios" y "Embedded
+     partnerships"-- caian en dos renglones. A 13.5 los tres entran en una
+     linea: la fila pide 518px y la columna da 563 a 1880 de ventana.
+     Calculado.
 
-     A 32px los tres suman 992 y la columna da 610: se pasan en 382.
-     Calculado. Ni bajando a 18 caben en una linea.
-
-     A 24 y dejando que el texto envuelva en dos renglones, la fila suma
-     519 y entra con holgura. El dato sigue leyendose como dato: es el
-     doble que su etiqueta y mantiene el peso extrabold. */
-  font-size: 24px;
+     El clamp lo ata al ancho para que siga cabiendo en pantallas
+     menores. El suelo de 11 es donde el texto deja de leerse comodo;
+     por debajo de 900 el hero se apila y esto ya no aplica. */
+  font-size: clamp(11px, .72vw, 13.5px);
   line-height: 1.15;
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
@@ -499,6 +509,22 @@
   .d2 .ab-principio__por { grid-column: 2; }
 
   .d2 .ab-principio__que { padding-top: 4px; }
+
+  /* LOS DATOS DEL HERO, EN COLUMNA
+
+     A 390px tres columnas dan 100px cada una y "Embedded partnerships"
+     se partia en dos renglones. MEDIDO en pantalla.
+
+     Apilados, cada dato recupera el ancho entero y cabe en una linea,
+     que es lo que se pidio. El tamano vuelve al techo: aqui no hay tres
+     compitiendo por el sitio. */
+  .d2 .ab-hero__datos {
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .d2 .ab-hero__datos dt { font-size: 12px; }
+  .d2 .ab-hero__datos dd { font-size: 15px; }
   /* Los anillos, primero: en una columna la ilustracion arriba anuncia
      de que va la seccion antes de leer el texto. */
   .d2 .ab-origen__arte { order: -1; }
@@ -542,64 +568,21 @@
    El degradado usa transparent en los extremos y no blanco: sobre un
    fondo que no fuera blanco, el blanco se veria como dos tapones. */
 
-/* LA IMAGEN DEL HERO (16/9/2026)
+/* EL HERO DE ABOUT SIGUE EL PATRON DE LOS DEMAS (16/9/2026)
 
-   EL PROBLEMA QUE HABIA
+   Se habian metido tres desviaciones que ninguna otra pagina tiene: la
+   columna de texto flexible, la sangria a la mitad y la imagen al 88%.
+   Juntas encogian la ilustracion y la dejaban centrada con hueco al lado,
+   y a 1024 se veia pequena.
 
-   La imagen encogia sin freno al estrechar la ventana: 594px a 1920 y
-   261 a 1024. Calculado sobre la rejilla, no supuesto.
+   Se retiran las tres. El hero compartido --el de d2-ega.css, que usan
+   Gap Analysis, RUN, Energy Management y Recommissioning-- ya resuelve
+   esto: columna de texto de 610px, la ilustracion ocupa el resto y sangra
+   hasta el borde de la ventana, sin encogerse.
 
-   La causa no era el porcentaje sino la COLUMNA DE TEXTO. El hero
-   compartido la fija en 610px, y ese ancho no cede: todo lo que pierde la
-   ventana se lo come la columna de la imagen. A 1024 le quedaban 326px.
-
-   LA SOLUCION
-
-   Que ceda el texto, que es lo que puede cederse. Un clamp con techo de
-   610 --el valor de siempre, asi que por encima de 1300 nada cambia-- y
-   suelo de 420, que es el ancho al que el titular sigue cayendo en tres
-   lineas.
-
-   Asi la imagen baja de 694 a 432 entre 1920 y 1024, en vez de a 261, y
-   lo hace de forma pareja.
-
-   Debajo de 900 el hero se apila y esto deja de aplicar: manda la regla
-   de movil, que le da el ancho completo. */
-.d2 .ab-hero .d2-ega-hero__inner {
-  grid-template-columns: minmax(0, clamp(420px, 46%, 610px)) minmax(0, 1fr);
-}
-
-/* La sangria, a la mitad de la del hero compartido.
-
-   La regla general lleva la ilustracion hasta el filo de la pantalla.
-   Eso deja la imagen escorada contra el borde derecho; recortando la
-   sangria se mete hacia dentro y queda con aire a la derecha.
-
-   Se probo anularla del todo y no vale: sin rebasar el contenedor la
-   columna se queda en 582px y la imagen no llega ni a 500. */
-.d2 .ab-hero .d2-ega-hero__arte {
-  margin-right: min(0px, calc((var(--d2-ancho, 1280px) - 100vw) / 4));
-}
-
-/* 88%: el 80% que se pidio primero, mas el 10% de despues.
-
-   Se escala con width y no con transform porque interesa que la caja
-   encoja con la imagen; con transform seguiria ocupando el mismo sitio y
-   quedaria hueco muerto debajo.
-
-   margin-right:auto hace que lo recortado salga por la derecha, asi la
-   imagen se desplaza a la izquierda en vez de encoger centrada. */
-.d2 .ab-hero .d2-ega-hero__arte img {
-  width: 88%;
-  margin-right: auto;
-  display: block;
-}
-
-@media (max-width: 900px) {
-  /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla y
-     encogerla solo la haria mas dificil de ver. */
-  .d2 .ab-hero .d2-ega-hero__arte img { width: 100%; }
-}
+   Aqui solo queda lo propio de About: en movil la imagen va DEBAJO del
+   texto, porque el hero abre con el titulo y los datos y la escena del
+   campus es el cierre. Esa regla vive mas abajo, en el bloque de movil. */
 
 .d2 .ab-hero {
   position: relative;
