@@ -1771,7 +1771,17 @@
          bloquea el envio sin que se pueda ver por que. El navegador ni
          siquiera puede enfocarlo para senalarlo. */
       if (visible) {
-        campo.setAttribute('required', '');
+        /* Organization no es obligatorio (16/9/2026, peticion del
+           cliente). El resto de campos visibles si.
+
+           Se decide aqui y no en el marcado porque este bucle pone
+           required a todo lo que se ve: un atributo puesto en el HTML se
+           perderia en el primer cambio de camino. */
+        if (/(^|-)h-org$/.test(campo.id)) {
+          campo.removeAttribute('required');
+        } else {
+          campo.setAttribute('required', '');
+        }
         campo.removeAttribute('tabindex');
       } else {
         campo.removeAttribute('required');

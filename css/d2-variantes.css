@@ -16141,14 +16141,24 @@ span.d2-panel__filtro:hover {
 
 /* SI UNO DE LOS DOS SE OCULTA, EL OTRO OCUPA LA FILA
 
-   El guion esconde campos segun el camino --Role solo aparece en el
-   cualificado-- ocultando cada .campo por separado. Sin esto la pareja
-   se quedaba con una columna vacia al lado del campo que si se ve.
+   El guion esconde campos segun el camino. En la rama de quien responde
+   "no" al filtro de tamano no se pide Role, asi que su pareja se quedaba
+   con Organization a media anchura y un hueco al lado. MEDIDO en la
+   captura del cliente.
 
-   :has() mira si algun hijo esta oculto y pasa la fila a una columna. */
+   No vale con esconder la columna: la rejilla reserva el sitio igual. Lo
+   que hace falta es pasar la fila a UNA columna, y :has() lo detecta sin
+   que el JS tenga que avisar. */
 .d2 .captura__pareja:has(> .campo[hidden]) {
   grid-template-columns: minmax(0, 1fr);
 }
+
+/* El campo oculto, fuera de la rejilla del todo.
+
+   hidden lo esconde pero sigue siendo un item de la rejilla: con
+   grid-template-columns a una sola columna, el oculto ocupaba la PRIMERA
+   fila y el visible caia a la segunda, dejando un hueco arriba. */
+.d2 .captura__pareja > .campo[hidden] { display: none; }
 
 /* Los campos de dentro pierden sus margenes: los pone la rejilla.
 
