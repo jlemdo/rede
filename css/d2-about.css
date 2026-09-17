@@ -462,7 +462,10 @@
      El clamp lo ata al ancho para que siga cabiendo en pantallas
      menores. El suelo de 11 es donde el texto deja de leerse comodo;
      por debajo de 900 el hero se apila y esto ya no aplica. */
-  font-size: clamp(11px, .72vw, 13.5px);
+  /* El suelo baja a 10px: al estrechar la columna de texto --el hero
+     compartido la pasa a 40vw-- "Embedded partnerships" volvia a
+     partirse a 1024. MEDIDO en pantalla. */
+  font-size: clamp(10px, .72vw, 13.5px);
   line-height: 1.15;
   font-weight: var(--fw-extrabold, 800);
   color: var(--c-texto, #333333);
@@ -479,8 +482,17 @@
    estrecha al lado de dos frases: los tres datos son del mismo rango y
    deben leerse como una fila pareja. */
 .d2 .ab-hero__datos > div {
-  flex: 1 1 0;
-  min-width: 0;
+  /* flex-basis: auto y sin min-width:0.
+
+     Con "1 1 0" y min-width:0 la columna podia encogerse por debajo de su
+     contenido, y el white-space:nowrap del valor no lo impedia: nowrap
+     evita que el TEXTO se parta, pero si la caja es mas estrecha el texto
+     se sale o se parte igual. MEDIDO: "Embedded partnerships" seguia en
+     dos renglones.
+
+     Asi cada columna mide al menos lo que su contenido y la fila reparte
+     lo que sobra. */
+  flex: 0 1 auto;
 }
 
 
@@ -568,21 +580,68 @@
    El degradado usa transparent en los extremos y no blanco: sobre un
    fondo que no fuera blanco, el blanco se veria como dos tapones. */
 
-/* EL HERO DE ABOUT SIGUE EL PATRON DE LOS DEMAS (16/9/2026)
+/* LA ILUSTRACION DEL HERO: UN RANGO, NO UN PORCENTAJE (16/9/2026)
 
-   Se habian metido tres desviaciones que ninguna otra pagina tiene: la
-   columna de texto flexible, la sangria a la mitad y la imagen al 88%.
-   Juntas encogian la ilustracion y la dejaban centrada con hueco al lado,
-   y a 1024 se veia pequena.
+   La referencia del cliente marca la proporcion: la imagen ocupa el 46%
+   del ancho de la ventana y deja un 2% de aire a la derecha. MEDIDO sobre
+   su captura.
 
-   Se retiran las tres. El hero compartido --el de d2-ega.css, que usan
-   Gap Analysis, RUN, Energy Management y Recommissioning-- ya resuelve
-   esto: columna de texto de 610px, la ilustracion ocupa el resto y sangra
-   hasta el borde de la ventana, sin encogerse.
+   POR QUE UN clamp Y NO UN PORCENTAJE
 
-   Aqui solo queda lo propio de About: en movil la imagen va DEBAJO del
-   texto, porque el hero abre con el titulo y los datos y la escena del
-   campus es el cierre. Esa regla vive mas abajo, en el bloque de movil. */
+   Se probo atando la columna de texto a vw y el tamano quedaba a merced
+   de la ventana: enorme en pantalla ancha, diminuto a 1024. El cliente
+   lo dijo claro --"ese tamano debe quedar adoc en todas, e irse haciendo
+   chico sin romper la estructura y sin hacerlo tan pequeño"--.
+
+   Un clamp hace justo eso: crece con la ventana entre dos limites y no
+   se sale de ellos.
+
+     suelo   460px   por debajo la escena no se distingue
+     ideal   46vw    la proporcion de la referencia
+     techo   900px   por encima empieza a dominar la pagina
+
+   El margin-right negativo del hero compartido se anula: con un ancho
+   propio la imagen ya no necesita sangrar al borde, y sangrando se comia
+   el aire que la referencia deja a la derecha. */
+/* Por debajo de 1280 la columna de texto tiene que ceder.
+
+   Con 610px fijos, a 1024 solo quedan 354px para la ilustracion --1024
+   menos 56 de padding, 610 de texto y 32 de gap-- y ningun suelo la
+   salva: el sitio no existe. Calculado.
+
+   Solo aqui, no en el hero compartido: por encima de 1280 la columna se
+   queda en sus 610, que es lo que las otras paginas necesitan. */
+@media (max-width: 1280px) {
+  .d2 .ab-hero .d2-ega-hero__inner {
+    grid-template-columns: minmax(0, clamp(400px, 42vw, 610px)) minmax(0, 1fr);
+  }
+}
+
+.d2 .ab-hero .d2-ega-hero__arte {
+  margin-right: 0;
+}
+
+/* El ancho va en el <picture> y no en el <img>.
+
+   El picture es un envoltorio inline que ocupa todo el contenedor, asi
+   que dimensionar solo la imagen no servia: el img al 46vw seguia dentro
+   de un picture al 100% y la regla del hero compartido --width:100%--
+   ganaba por orden. MEDIDO: salia al 70% en los tres anchos.
+
+   Dandole el ancho al picture, la imagen lo hereda con su width:100%
+   original y no hay que pelear con esa regla. */
+.d2 .ab-hero .d2-ega-hero__arte picture {
+  display: block;
+  width: clamp(460px, 46vw, 900px);
+  max-width: 100%;
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla y
+     encogerla solo la haria mas dificil de ver. */
+  .d2 .ab-hero .d2-ega-hero__arte img { width: 100%; }
+}
 
 .d2 .ab-hero {
   position: relative;
