@@ -80,15 +80,19 @@
     d3:     mapa.querySelector('[data-zonas-d3]')
   };
 
-  /* Lorem ipsum, uno por zona, para que al recorrer el mapa se vea que la
-     ficha responde a cada una y no es un bloque fijo. */
-  var RELLENO = [
-    ['Dolor sit',   'Adipiscing', 'Tempor'],
-    ['Amet',        'Elit sed',   'Incididunt'],
-    ['Consectetur', 'Eiusmod',    'Ut labore'],
-    ['Magna',       'Aliqua',     'Enim ad'],
-    ['Minim',       'Veniam',     'Quis nostrud']
-  ];
+  /* SIN DATOS REALES POR SITIO (17/9/2026)
+
+     Antes habia lorem ipsum, uno por zona, para que al recorrer el mapa se
+     viera que la ficha responde a cada una. Se leia como texto sin
+     terminar en una pagina publicada.
+
+     Ahora va un guion em en los tres valores: el rotulo dice QUE dato ira
+     ahi y el guion dice que todavia no lo hay. Es la convencion de tabla
+     --celda vacia, no cero-- y no finge una cifra.
+
+     El dia que lleguen los datos por edificio, esto pasa a leerlos del
+     data- de cada sitio. */
+  var SIN_DATO = '—';
 
   var actual = ORDEN[0];
   var reloj = null;
@@ -125,12 +129,11 @@
        y eso vale para las trece. Se escribe igualmente desde aqui para que
        el dia que lleguen los datos reales baste con cambiar esta linea y
        no haya que acordarse de tocar tambien el HTML. */
-    if (FICHA.titulo) { FICHA.titulo.textContent = 'Placeholder content'; }
+    if (FICHA.titulo) { FICHA.titulo.textContent = 'Illustrative site'; }
 
-    var r = RELLENO[ORDEN.indexOf(id) % RELLENO.length];
-    if (FICHA.d1) { FICHA.d1.textContent = r[0]; }
-    if (FICHA.d2) { FICHA.d2.textContent = r[1]; }
-    if (FICHA.d3) { FICHA.d3.textContent = r[2]; }
+    if (FICHA.d1) { FICHA.d1.textContent = SIN_DATO; }
+    if (FICHA.d2) { FICHA.d2.textContent = SIN_DATO; }
+    if (FICHA.d3) { FICHA.d3.textContent = SIN_DATO; }
 
     if (conFicha) { colocar(elegido); }
   }

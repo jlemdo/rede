@@ -12209,10 +12209,25 @@ span.d2-panel__filtro:hover {
      nombre era mas ancho que su columna.
 
      Por debajo de 1050px vuelve a dos lineas --la columna baja de 230px--
-     hasta los 900, donde la rejilla pasa a dos columnas y sobra sitio. */
+     hasta los 900, donde la rejilla pasa a dos columnas y sobra sitio.
+
+     DOS LINEAS RESERVADAS (17/9/2026)
+
+     Al devolver a Matthew la credencial LEED AP que pedia el documento, su
+     nombre paso a ser el mas largo y se parte en dos lineas. Con altura
+     libre, su cargo bajaba y los cuatro dejaban de estar a la misma altura.
+
+     min-height de dos lineas en TODOS: el que ocupa una deja el hueco, el
+     que ocupa dos lo llena, y los cuatro cargos arrancan en la misma linea
+     de base. Es la misma regla de alineacion que el resto del sitio: las
+     columnas empiezan a la misma altura. */
   font-size: clamp(13px, 1.15vw, 15px);
   font-weight: 700;
   line-height: 1.3;
+  min-height: calc(2 * 1.3em);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   color: #FFFFFF;
 }
 
