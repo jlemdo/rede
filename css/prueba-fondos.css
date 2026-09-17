@@ -1,0 +1,254 @@
+/* ==========================================================================
+   PRUEBA DE FONDO PARA LA SECCION BAJO EL HERO (16/9/2026)
+
+   TEMPORAL. Se retira al elegir un fondo por pagina.
+
+   EL PROBLEMA
+
+   El hero es blanco y la seccion que va debajo tambien, asi que no hay
+   corte: las dos se leen como un solo bloque y la pagina arranca plana.
+   Pasa en About, RUN, Energy Management y Recommissioning.
+
+   LAS TRES OPCIONES
+
+   Ninguna es un color nuevo. Los tres ya estan en el sitio, que es lo que
+   hace que la prueba valga: si gana uno, ya encaja con el resto.
+
+     gris   #F5F5F5   el --c-fondo-alt de siempre (Contact, About principios)
+     verde  #1A5121   el de la banda de equipo y el de Client Login
+     negro  #1A1A1A   el de la seccion "More than engineers" de About
+
+   COMO SE APLICA
+
+   El fondo va en la seccion, pero el texto NO se toca clase por clase: para
+   eso ya existe data-comp-tono="oscuro" en d2-variantes.css, que redefine
+   --c-texto y compania DENTRO de la seccion. Todo lo que use esas variables
+   se adapta solo. El JS pone ese atributo en verde y en negro, y lo quita
+   en gris y en blanco.
+
+   DOS ATRIBUTOS
+
+     data-pf         en <html>, dice QUE color esta elegido
+     data-pf-diana   en la seccion, dice CUAL se pinta
+
+   El segundo lo pone el JS. Por que, en el bloque de abajo.
+   ========================================================================== */
+
+:root {
+  --pf-gris:  #F5F5F5;   /* --c-fondo-alt */
+  --pf-verde: #1A5121;   /* banda de equipo, Client Login */
+  --pf-negro: #1A1A1A;   /* "More than engineers" de About */
+}
+
+/* --------------------------------------------------------------------------
+   QUE SECCION ES "LA DE DEBAJO DEL HERO"
+
+   No se nombra por clase. Se probo y no funciona: .dos-col es la primera
+   seccion en Recommissioning pero la TERCERA en Energy Management, asi que
+   un selector por clase pintaria la seccion equivocada en una de las dos.
+   Y ninguna pagina lleva identificador en el <body> con el que separarlas.
+
+   Asi que lo marca el JS: busca el hero, coge la seccion siguiente y le
+   pone data-pf-diana. Si la que sigue es del mismo tipo --el par espejo de
+   About y de RUN-- la marca tambien, que si no queda una gris y otra
+   blanca.
+
+   Ventaja de hacerlo asi: funciona en las cuatro paginas sin una lista de
+   clases que mantener, y seguiria funcionando si se reordenan secciones.
+   -------------------------------------------------------------------------- */
+[data-pf="gris"]  [data-pf-diana] { background: var(--pf-gris); }
+[data-pf="verde"] [data-pf-diana] { background: var(--pf-verde); }
+[data-pf="negro"] [data-pf-diana] { background: var(--pf-negro); }
+
+/* --------------------------------------------------------------------------
+   LO QUE EL TONO OSCURO NO CUBRE SOLO
+
+   data-comp-tono se encarga del texto. Queda el eyebrow, que lleva color
+   propio: va en #026F00, que sobre verde oscuro da 1.4:1 y sobre negro
+   2.1:1 --ilegible en los dos--. El verde claro del logo si se lee: 5.6:1
+   sobre #1A5121 y 8.9:1 sobre #1A1A1A, y ademas es el acento de la marca.
+   -------------------------------------------------------------------------- */
+/* Sin .d2 delante a proposito: data-pf va en <html> y .d2 en <body>, que
+   es su hijo. Un ".d2 [data-pf=...]" pediria un data-pf DENTRO del body y
+   no encaja con nada. Se probo y no aplicaba. */
+:is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana]
+  :is(.eyebrow, .ciclo__n, .ciclo__repite, .acento) {
+  color: #6FD97E;
+}
+
+/* ...pero no dentro de una tarjeta clara: ahi el fondo sigue siendo claro
+   y el verde claro da 1,5:1. Las tarjetas se listan abajo; esta regla va
+   despues para poder revertirlo. */
+:is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana]
+  :is(.rp-panel, .plataforma__panel, .rp-bepi, .rp-gr, .dos-col__izq,
+      .ciclo, .ciclo__paso)
+  :is(.eyebrow, .ciclo__n, .ciclo__repite, .acento) {
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* Se probo con [class*="__eti"] para cubrir de golpe todas las etiquetas y
+   fue demasiado ancho: alcanzaba a .rp-bepi__eti, que es un <text> DENTRO
+   del SVG de las gráficas de RUN. Ese texto se pinta con fill --y su fill
+   es #333333 sobre panel blanco, correcto-- asi que cambiarle el color no
+   hacia nada visible, pero dejaba la regla mintiendo. Mejor nombrar las
+   clases que de verdad lo necesitan. */
+
+/* --------------------------------------------------------------------------
+   LAS TARJETAS CLARAS DENTRO DE LA SECCION OSCURA
+
+   data-comp-tono pone el texto en blanco para toda la seccion. Pero los
+   paneles de gráficas de RUN tienen fondo blanco PROPIO, asi que heredan
+   ese texto claro y queda gris claro sobre blanco: 1,2:1, ilegible.
+
+   d2-variantes.css ya resuelve esto para las tarjetas que conocia --tiene
+   una lista que devuelve las variables a su valor oscuro-- pero los paneles
+   de RUN no estaban en ella. Se anaden aqui.
+   -------------------------------------------------------------------------- */
+:is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana]
+  :is(.rp-panel, .plataforma__panel, .rp-bepi, .rp-gr, .dos-col__izq,
+      .ciclo, .ciclo__paso) {
+  --c-texto:        #333333;
+  --c-texto-cuerpo: #333333;
+  --c-texto-suave:  #6B6B6B;
+  --c-linea:        rgba(0, 0, 0, .12);
+  color: var(--c-texto);
+}
+
+/* AVISO PARA EL GRIS
+
+   El gris no es fondo oscuro, asi que no entra por la regla de arriba y
+   conserva sus colores. Ojo con eso: los detalles en verde de marca a 14px
+   dan 2,44:1 sobre #F5F5F5. Ya fallan hoy sobre blanco --2,66:1-- asi que
+   no lo rompe el gris, pero si gana esta opcion conviene revisarlos.
+   -------------------------------------------------------------------------- */
+
+/* Las lineas y bordes finos: son negros a baja opacidad y sobre fondo
+   oscuro desaparecen. */
+:is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana] {
+  --c-linea: rgba(255, 255, 255, .18);
+}
+
+/* El mapa de About: las provincias van en #EDEDED, un gris casi blanco que
+   sobre fondo oscuro se lee como una mancha recortada --pesa mas que el
+   texto que tiene al lado--. Bajado a blanco translucido sigue leyendose la
+   silueta y los 59 puntos verdes siguen siendo lo que destaca, que es de lo
+   que trata la seccion. */
+:is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana] .ab-mapa__tierra {
+  fill: rgba(255, 255, 255, .13);
+}
+
+/* --------------------------------------------------------------------------
+   EL SELECTOR
+
+   Mismo lenguaje que el selector de version que ya existe: pildora fija
+   abajo a la derecha, oscura, plegable. Se distingue por la etiqueta.
+   -------------------------------------------------------------------------- */
+.pf-selector {
+  position: fixed;
+  right: clamp(12px, 2vw, 24px);
+  bottom: clamp(12px, 2vw, 24px);
+  z-index: 900;
+
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: #14161A;
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .22);
+  overflow: hidden;
+
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1), opacity .2s;
+}
+
+.pf-selector__etiqueta {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0 14px;
+  color: rgba(255, 255, 255, .42);
+  white-space: nowrap;
+}
+
+.pf-selector button:not(.pf-selector__tirador) {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  padding-inline: 15px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, .62);
+  font: inherit;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.pf-selector button:not(.pf-selector__tirador):hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .1);
+}
+
+.pf-selector button[aria-pressed="true"] {
+  color: #14161A;
+  background: var(--c-verde-marca, #39B54A);
+}
+
+/* La muestra de color: asi se ve CUAL es antes de pulsarlo. */
+.pf-selector__muestra {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .28);
+}
+
+.pf-selector__tirador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  width: 34px;
+  flex: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: transform .25s;
+}
+.pf-selector__tirador:hover { background: rgba(255, 255, 255, .1); }
+
+.pf-selector :focus-visible {
+  outline: 2px solid var(--c-verde-marca, #39B54A);
+  outline-offset: -2px;
+}
+
+/* Plegado: deja solo el tirador */
+.pf-selector.esta-plegado { transform: translateX(calc(100% - 34px)); }
+.pf-selector.esta-plegado button:not(.pf-selector__tirador),
+.pf-selector.esta-plegado .pf-selector__etiqueta { opacity: 0; pointer-events: none; }
+.pf-selector.esta-plegado .pf-selector__tirador { transform: rotate(180deg); }
+
+/* Se aparta al pasar por encima para leer lo que tapa */
+@media (hover: hover) {
+  .pf-selector:not(.esta-plegado):hover { opacity: .35; }
+  .pf-selector:not(.esta-plegado):hover:focus-within { opacity: 1; }
+}
+
+/* Convive con el selector de version, que ocupa el mismo rincon */
+.selector-v ~ .pf-selector { bottom: calc(clamp(12px, 2vw, 24px) + 54px); }
+.modo-edicion .pf-selector { bottom: 90px; }
+
+@media (max-width: 900px) {
+  .pf-selector { font-size: 12px; }
+  .pf-selector__etiqueta { display: none; }
+  .pf-selector button:not(.pf-selector__tirador) { padding-inline: 12px; }
+  .modo-edicion .pf-selector { bottom: 134px; }
+}
+
+/* Al imprimir no pinta nada */
+@media print { .pf-selector { display: none; } }

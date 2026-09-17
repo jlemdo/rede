@@ -16282,3 +16282,87 @@ span.d2-panel__filtro:hover {
 .d2 .d2-faq-dato--grafica .d2-faq-dato__ficha-nota {
   margin-top: 12px;
 }
+
+/* ==========================================================================
+   FUERA EL VERDE PALIDO #E8F5E8 (17/9/2026)
+
+   La home no lo usa en ninguna parte --comprobado recorriendo el DOM
+   pintado-- y Energy Gap Analysis solo lo arrastraba en las etiquetas de
+   "Other services". Es un color que venia de la plantilla antigua.
+
+   COMO LO RESUELVE LA HOME
+
+   Su equivalente --.d2-rutas-sec__eyebrow-- no lleva fondo: es texto en
+   color, a secas. Se sigue ese patron, que ademas quita un problema de
+   contraste: .ruta__tag ponia #39B54A sobre #E8F5E8, que da 2,2:1.
+
+   Donde el elemento es un CIRCULO numerado --.ciclo__n, .requisito__n-- si
+   hace falta fondo, porque la forma es parte del diseno. Ahi va el gris del
+   sistema, que es lo que usan los circulos equivalentes del resto del sitio.
+
+   POR QUE ESTE BLOQUE VIVE AQUI Y NO EN v1.css
+
+   Se escribio primero en v1.css y Energy Gap Analysis se quedaba con el
+   verde palido en sus etiquetas: esa pagina NO carga v1.css. Tampoco la
+   home. d2-variantes.css la cargan las ocho, asi que es donde tienen que ir
+   las reglas que valen para todo el sitio.
+   ========================================================================== */
+
+/* Las etiquetas de "Other services": sin fondo, como en la home. */
+.d2 .ruta__tag {
+  background: transparent;
+  padding-inline: 0;
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* Sobre seccion oscura, el verde claro de marca. */
+.d2 [data-comp-tono="oscuro"] .ruta__tag,
+.d2.run-page .funciones .ruta__tag,
+.d2.rc-page .prueba-sec .ruta__tag,
+.d2.em-page .prueba-sec .ruta__tag {
+  color: #6FD97E;
+}
+
+/* Los circulos numerados: gris del sistema en vez del verde palido. El
+   numero en verde oscuro da 6,41:1 sobre ese gris. */
+.d2 .ciclo__n,
+.d2 .requisito__n {
+  background: var(--c-fondo-alt, #F5F5F5);
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* La nota de requisitos y el aparte de Energy Management: el gris de
+   superficie que usa el resto del sitio para cajas de apoyo. */
+.d2 .requisitos__nota,
+.d2 .run-callout {
+  background: var(--c-fondo-alt, #F5F5F5);
+  border-color: var(--c-borde, #E4E4E4);
+}
+
+
+/* ==========================================================================
+   LOS BOTONES DE LA PLANTILLA ANTIGUA, CON EL RADIO DEL SISTEMA (17/9/2026)
+
+   .btn viene de style.css con border-radius: var(--radio-sm) --6px-- y se
+   ve cuadrado al lado de los CTA, que son pildora. Medido: los .d2-btn del
+   hero, del cierre, del formulario de Contact y de la home dan todos 999px.
+
+   Pasan a pildora los dos sitios que el cliente señalo:
+
+     RUN ............... .nivel__cta   ("Choose your level")
+     Energy Management . .dos-col__cta ("The partnership")
+
+   NO SE TOCA .btn EN GENERAL
+
+   La clase la usan tambien los mandos de la calculadora --.calc__btn, los
+   "Back"/"Next" de los pasos-- y ahi el radio pequeno es el correcto: son
+   controles de formulario, no llamadas a la accion. Cambiar .btn de raiz
+   los redondearia todos.
+
+   Por eso se nombran las dos clases concretas y no la generica.
+   ========================================================================== */
+
+.d2 .nivel__cta,
+.d2 .dos-col__cta {
+  border-radius: var(--radio-pill, 999px);
+}

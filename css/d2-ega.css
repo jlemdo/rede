@@ -1727,15 +1727,31 @@
    estas dos paginas.
    ========================================================================== */
 
-.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .ciclo-sec) :is(h2, .dos-col__titulo, .requisitos__titulo, .fondos__titulo, .rutas__titulo, .cta-final__titulo, .ciclo-sec__titulo) {
+/* DOS SECCIONES QUE SE QUEDARON FUERA (17/9/2026)
+
+   .plataforma --las dos de RUN-- y .prueba-sec --Recommissioning y Energy
+   Management-- no estaban en esta lista y conservaban el titular de la
+   plantilla antigua.
+
+   .plataforma__titulo se quedaba en var(--fs-h2), que topa en 40px: al
+   lado de los 48,4px del resto se veia mas pequeno sin motivo.
+
+   .prueba-sec__titulo era peor: no tenia NINGUNA regla propia, asi que
+   salia con el h2 por defecto del navegador --25,5px y peso 700-- cuando
+   el resto de titulares van a 48,4 y peso 800. Casi la mitad de tamano.
+
+   .prueba-sec ya estaba en la regla de espaciado de mas abajo; solo faltaba
+   aqui, lo que confirma que fue un olvido y no una decision. */
+.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .ciclo-sec, .plataforma, .prueba-sec) :is(h2, .dos-col__titulo, .requisitos__titulo, .fondos__titulo, .rutas__titulo, .cta-final__titulo, .ciclo-sec__titulo, .plataforma__titulo, .prueba-sec__titulo) {
   /* El mismo clamp que usan las secciones de Energy Gap Analysis. */
   font-size: clamp(34px, 3.4vw, 52px);
   line-height: 1.08;
   letter-spacing: -.025em;
+  font-weight: var(--fw-extrabold);
 }
 
 /* El aire vertical, al de las demas. */
-.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .prueba-sec, .ciclo-sec) {
+.d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .prueba-sec, .ciclo-sec, .plataforma) {
   padding-block: clamp(56px, 6.4vw, 84px);
 }
 

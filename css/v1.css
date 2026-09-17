@@ -603,3 +603,170 @@
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
   }
 }
+
+/* ==========================================================================
+   EL RITMO DE CONTRASTE EN RUN, RECOMMISSIONING Y ENERGY MANAGEMENT
+   (17/9/2026)
+
+   Las tres paginas eran casi todo blanco: seccion tras seccion en #FFFFFF
+   con alguna en #FAFAFA. La home y Energy Gap Analysis si alternan
+   --blanco, negro #1A1A1A, verde #1A5121, gris #F3F3F3-- y esa alternancia
+   es la que da el ritmo del sitio.
+
+   Ademas quedaba verde palido --#E8F5E8-- en tarjetas sueltas. Ese verde no
+   se usa como fondo de bloque ni en la home ni en Gap: alli el verde de
+   bloque es SIEMPRE el oscuro con texto blanco.
+
+   POR QUE ESTE BLOQUE VIVE EN v1.css
+
+   Se escribio primero en d2-ega.css y no funcionaba: v1.css se carga
+   DESPUES --es la ultima hoja de las tres paginas-- y su regla
+   `.prueba-sec { background: var(--c-blanco) }` volvia a pintar el fondo de
+   blanco. Los colores de texto si se aplicaban, porque mis selectores eran
+   mas especificos, asi que quedaba blanco sobre blanco: contraste 1.00:1,
+   medido. El fondo hay que ponerlo desde la hoja que manda al final.
+
+   QUE SECCION SE PINTA EN CADA PAGINA
+
+   Una por pagina, la que presenta resultados o datos:
+
+     RUN ................ .funciones      (que muestra RUN)
+     Recommissioning .... .prueba-sec     (resultados)
+     Energy Management .. .prueba-sec     (resultados a largo plazo)
+
+   Hero, FAQ y CTA quedan como estaban, por peticion.
+   ========================================================================== */
+
+.d2.run-page .funciones,
+.d2.rc-page .prueba-sec,
+.d2.em-page .prueba-sec {
+  background: #1A5121;
+  color: #FFFFFF;
+}
+
+/* El texto de dentro. Se nombran las clases que llevan color propio: sin
+   esto heredarian el #333333 de las hojas antiguas. */
+.d2.run-page .funciones :is(h2, h3, p, li, dt, dd, span, strong, b),
+.d2.rc-page .prueba-sec :is(h2, h3, p, li, dt, dd, span, strong, b),
+.d2.em-page .prueba-sec :is(h2, h3, p, li, dt, dd, span, strong, b) {
+  color: #FFFFFF;
+}
+
+/* El eyebrow, en verde claro: sobre #1A5121 da 5.6:1 y es el mismo acento
+   que usan las demas secciones oscuras del sitio. */
+.d2.run-page .funciones .eyebrow,
+.d2.rc-page .prueba-sec .eyebrow,
+.d2.em-page .prueba-sec .eyebrow {
+  color: #6FD97E;
+}
+
+/* UN PUNTO MAS CLARO DENTRO DE LA TARJETA (17/9/2026)
+
+   En Recommissioning y Energy Management el eyebrow no va sobre el verde
+   de la seccion, sino dentro de .prueba-sec__dato, que es blanco al 7%.
+   Ese blanco aclara el fondo y el #6FD97E se queda en 4,39:1 --medido
+   componiendo la transparencia-- cuando el minimo para 12px es 4,5.
+
+   El #8FE89C da 5,21:1 sobre ese mismo fondo compuesto. A simple vista es
+   el mismo verde; la diferencia solo existe para el medidor. */
+.d2.rc-page .prueba-sec__dato .eyebrow,
+.d2.em-page .prueba-sec__dato .eyebrow {
+  color: #8FE89C;
+}
+
+/* LA TARJETA DE DATO, SIN EL VERDE PALIDO
+
+   .prueba-sec__dato venia con fondo #E8F5E8. Dentro de una seccion ya
+   verde oscuro, una caja verde palido se lee como un parche. Pasa a blanco
+   translucido, el tratamiento que usan las tarjetas sobre fondo oscuro en
+   el resto del sitio. */
+.d2.rc-page .prueba-sec__dato,
+.d2.em-page .prueba-sec__dato {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .18);
+}
+
+.d2.rc-page .prueba-sec__cifra,
+.d2.em-page .prueba-sec__cifra { color: #FFFFFF; }
+
+.d2.rc-page .prueba-sec__pie,
+.d2.em-page .prueba-sec__pie { color: #E8E8E8; }
+
+/* Las lineas finas: negras a baja opacidad, sobre oscuro desaparecen. */
+.d2.run-page .funciones hr,
+.d2.rc-page .prueba-sec hr,
+.d2.em-page .prueba-sec hr {
+  border-color: rgba(255, 255, 255, .18);
+}
+
+/* LAS TARJETAS BLANCAS DENTRO DE LA SECCION VERDE (RUN)
+
+   .funcion tiene fondo blanco PROPIO. La regla de arriba pone el texto de
+   toda la seccion en blanco, y dentro de esas tarjetas eso da blanco sobre
+   blanco --1.00:1, medido--.
+
+   Es el mismo caso que ya resolvio prueba-fondos.css para los paneles de
+   RUN y que d2-variantes.css resuelve para otras tarjetas: la seccion es
+   oscura, la tarjeta no, y hay que devolverle sus colores.
+
+   Las translucidas --.proceso y .bepi, blanco al 5%-- NO entran aqui: el
+   verde se ve a traves y el texto blanco encima es correcto. */
+.d2.run-page .funciones .funcion :is(h2, h3, p, li, dt, dd, span, strong, b) {
+  color: var(--c-texto, #333333);
+}
+
+.d2.run-page .funciones .funcion .eyebrow {
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* ==========================================================================
+   EL CIRCUITO DE FONDO EN LAS SECCIONES VERDES (17/9/2026)
+
+   El mismo lenguaje que "Why work with Rede?" de la home --trazos finos con
+   nodos, como un circuito-- para que las secciones verdes de estas tres
+   paginas no queden como un bloque de color plano.
+
+   EN CSS Y NO EN EL MARCADO
+
+   La home lo lleva como <svg> dentro de la seccion. Aqui va como SVG
+   incrustado en un ::before: son tres paginas y tres secciones distintas, y
+   con CSS no hay que editar el HTML de ninguna.
+
+   Los valores son los de la home: trazo de 1.2px en verde claro al 28%,
+   nodos de r=5 rellenos del verde de la seccion con borde al 45%, y el
+   conjunto al 50% de opacidad.
+
+   preserveAspectRatio="none" deja que el dibujo se estire con la seccion,
+   igual que en la home: son lineas de circuito, no una ilustracion, asi que
+   la deformacion no se nota y garantiza que siempre cubra el ancho.
+   ========================================================================== */
+
+.d2.run-page .funciones,
+.d2.rc-page .prueba-sec,
+.d2.em-page .prueba-sec {
+  position: relative;
+  overflow: hidden;
+}
+
+.d2.run-page .funciones::before,
+.d2.rc-page .prueba-sec::before,
+.d2.em-page .prueba-sec::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .5;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 620' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='rgba(176,225,183,.28)' stroke-width='1.2'%3E%3Cpath d='M1440 90H1180L1120 150H840'/%3E%3Cpath d='M0 620V500H250L320 430H560'/%3E%3Cpath d='M1440 560H1120L1050 490H820'/%3E%3C/g%3E%3Cg fill='%231A5121' stroke='rgba(176,225,183,.45)' stroke-width='1.6'%3E%3Ccircle cx='1120' cy='150' r='5'/%3E%3Ccircle cx='320' cy='430' r='5'/%3E%3Ccircle cx='1050' cy='490' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* El contenido por encima del circuito. Sin esto el ::before se pinta sobre
+   las tarjetas, no debajo. */
+.d2.run-page .funciones > *,
+.d2.rc-page .prueba-sec > *,
+.d2.em-page .prueba-sec > * {
+  position: relative;
+  z-index: 1;
+}
