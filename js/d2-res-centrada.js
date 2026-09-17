@@ -43,7 +43,7 @@
       cita: 'The Rede team is all about proactively implementing energy solutions. ' +
             'They see a gap and they take care of it.',
       nombre: 'Alex Telford',
-      cargo: 'Director of Operations',
+      cargo: 'Manager of Facilities and Transportation',
       org: 'SD27 · British Columbia',
       cifras: [
         { valor: '20',      etiqueta: 'Buildings connected' },
@@ -56,7 +56,7 @@
             'plan at all. We recognized quickly that we can save money with an energy ' +
             'management program.',
       nombre: 'Wayne Turpin',
-      cargo: 'Superintendent',
+      cargo: 'Construction Manager',
       org: 'Northland School Division',
       provisional: true,
       cifras: [

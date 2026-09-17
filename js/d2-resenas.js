@@ -29,7 +29,7 @@
             'at all. We recognized quickly that we can save money with an energy ' +
             'management program.',
       nombre: 'Wayne Turpin',
-      cargo: 'Superintendent',
+      cargo: 'Construction Manager',
       org: 'Northland School Division',
       logo: 'assets/img/logos-clientes/northland.png'
     },
@@ -37,7 +37,7 @@
       cita: 'The Rede team is all about proactively implementing energy solutions. They ' +
             'see a gap and they take care of it.',
       nombre: 'Alex Telford',
-      cargo: 'Director of Operations',
+      cargo: 'Manager of Facilities and Transportation',
       org: 'SD27 British Columbia',
       logo: 'assets/img/logos-clientes/cariboo-chilcotin.png'
     },
