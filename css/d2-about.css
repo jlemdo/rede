@@ -463,103 +463,7 @@
   text-wrap: balance;
 }
 
-/* LOS DATOS ROTAN: UNO A LA VEZ (16/9/2026)
-
-   Con los tres a la vez no caben en una linea --piden 797px contra los
-   610 de la columna, ni bajando el valor a 24-- y los valores largos
-   caian en dos renglones.
-
-   Mostrando uno solo caben de sobra: el mas ancho pide 438px a 36, asi
-   que ademas el dato puede ser mas grande, que es lo que se pidio.
-
-   LOS TRES OCUPAN LA MISMA CELDA
-
-   Apilados con grid en 1fr/1fr: asi la caja mide lo que el mas alto y no
-   da saltos al cambiar. Con position:absolute el contenedor se quedaria
-   sin alto. */
-.d2 .ab-hero__datos[data-rota] {
-  display: grid;
-  grid-template-areas: "dato";
-  min-height: 4.6em;
-}
-
-.d2 .ab-hero__datos[data-rota] > div {
-  grid-area: dato;
-  min-width: 0;
-
-  /* EL RELEVO: TODO SE MUEVE HACIA ARRIBA
-
-     El que entra sube desde abajo hasta su sitio; el que sale sigue
-     subiendo y se va por arriba. El movimiento no cambia de sentido, que
-     es lo que lo hace continuo en vez de un parpadeo.
-
-     Se probo con los dos a la vez y se veian superpuestos: "150+" encima
-     de "Multi-site portfolios" a medio desvanecer. MEDIDO en pantalla.
-     Por eso el entrante espera a que el saliente haya subido.
-
-     El estado de reposo --este-- es el de ABAJO: todo lo que no esta
-     visible espera debajo de la linea, listo para subir. */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(18px);
-
-  /* La curva: sale rapido y frena al final, como algo con peso.
-     cubic-bezier(.22, 1, .36, 1) es la misma que usa el resto del sitio
-     para las entradas. */
-  transition:
-    opacity .34s cubic-bezier(.22, 1, .36, 1),
-    transform .34s cubic-bezier(.22, 1, .36, 1),
-    visibility 0s .34s;
-}
-
-/* El que ESTA visible: en su sitio. */
-.d2 .ab-hero__datos[data-rota] > div.es-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition:
-    opacity .5s cubic-bezier(.22, 1, .36, 1) .3s,
-    transform .5s cubic-bezier(.22, 1, .36, 1) .3s,
-    visibility 0s .3s;
-}
-
-/* El que SALE: no vuelve abajo, sigue subiendo y desaparece por arriba.
-
-   Sin esto el saliente se iria hacia abajo --al estado de reposo-- y el
-   entrante subiria: dos movimientos en sentidos opuestos, que es lo que
-   rompe la sensacion de continuidad. */
-.d2 .ab-hero__datos[data-rota] > div.esta-saliendo {
-  opacity: 0;
-  transform: translateY(-18px);
-  transition:
-    opacity .34s cubic-bezier(.22, 1, .36, 1),
-    transform .34s cubic-bezier(.22, 1, .36, 1),
-    visibility 0s .34s;
-}
-
-/* SIN JS SE VEN LOS TRES
-
-   El atributo data-rota lo trae el marcado, pero la clase es-visible la
-   pone el JS. Si no corre, esta regla --que solo se aplica cuando NINGUN
-   hijo la tiene-- devuelve la fila de tres. Nunca se pierde el dato. */
-.d2 .ab-hero__datos[data-rota]:not(:has(> .es-visible)) {
-  display: flex;
-  min-height: 0;
-}
-
-.d2 .ab-hero__datos[data-rota]:not(:has(> .es-visible)) > div {
-  flex: 1 1 0;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-}
-
-/* El dato, mas grande al ir solo: de 24 a 36px. */
-.d2 .ab-hero__datos[data-rota] dd {
-  font-size: clamp(28px, 2.6vw, 36px);
-}
-
-/* Las tres columnas, del mismo ancho cuando se ven juntas.
+/* Las tres columnas, del mismo ancho.
 
    Con flex a secas cada una mide lo que su contenido, y "150+" quedaba
    estrecha al lado de dos frases: los tres datos son del mismo rango y
@@ -569,11 +473,6 @@
   min-width: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  /* Quien pide menos movimiento no ve la transicion, pero el dato sigue
-     cambiando: lo que molesta es el deslizamiento, no el relevo. */
-  .d2 .ab-hero__datos[data-rota] > div { transition: none; transform: none; }
-}
 
 /* --- Adaptacion ---------------------------------------------------------- */
 

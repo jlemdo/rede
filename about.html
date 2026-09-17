@@ -264,18 +264,7 @@
                Van aqui porque el hero se veia vacio con solo dos lineas, y
                porque las firmas canadienses que sirven de referencia ponen
                ano de fundacion y tamano en el primer parrafo. -->
-          <!-- LOS TRES DATOS, ROTANDO (16/9/2026)
-
-               Se muestran de uno en uno. Con los tres a la vez no caben en
-               una linea: piden 797px y la columna da 610, ni bajando el
-               valor a 24px. Calculado.
-
-               data-rota lo activa el JS. Sin JS se ven los tres apilados,
-               que es el estado del marcado: nunca se pierde informacion.
-
-               aria-live="polite" para que un lector de pantalla anuncie el
-               cambio sin interrumpir lo que este leyendo. -->
-          <dl class="ab-hero__datos" data-rota aria-live="polite">
+          <dl class="ab-hero__datos">
             <div>
               <dt>Organisations served</dt>
               <dd>150+</dd>
@@ -909,7 +898,5 @@
      Poner el rol sin cargar el script es exactamente lo que hice en el
      intento anterior, y por eso seguia invisible. -->
 <script src="js/d2-composicion.js"></script>
-<script src="js/d2-about-datos.js"></script>
-
 </body>
 </html>
