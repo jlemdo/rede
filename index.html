@@ -4583,7 +4583,14 @@
 <!-- Arranca en la 2 --la que lleva la grafica-- y no en la 1. Se hace con
      data-caru-inicial y no moviendo es-activa en el marcado: el JS recalcula
      cual se muestra al cargar, asi que un es-activa a mano se pierde. -->
-<div class="d2-caru" id="caru-faq" data-caru data-caru-inicial="1">
+<!-- Fijado en la variante con grafica (16/9/2026): ya no hay nada que
+     elegir, asi que data-caru-fijo deja esa puesta y RETIRA los mandos
+     del DOM. No basta con esconderlos por CSS: seguirian en la ruta del
+     tabulador.
+
+     Las otras tres variantes se quedan en el marcado por si se recuperan.
+     Para volver a elegir, cambiar fijo por data-caru-inicial="1". -->
+<div class="d2-caru" id="caru-faq" data-caru data-caru-fijo="1">
 
   <!-- ====================================================================
        OPCION 1 — LA FICHA QUE RESPONDE
@@ -5138,6 +5145,15 @@
 
           </div>
 
+          <!-- NOTA DE MUESTRA, DE RELLENO (16/9/2026)
+
+               Lorem ipsum a proposito: el cliente lo pidio asi para ver el
+               TAMANO y el sitio antes de escribir el texto de verdad.
+
+               Lo que ira aqui es el aviso de que las cifras del panel son
+               ilustrativas, en la linea de lo que ya dice el ranking de
+               Energy Gap Analysis. Hay que sustituirlo antes de entregar.
+               -->
           <!-- La ficha. Se rellena desde los data- del item abierto.
                aria-hidden porque repite lo que ya dice la respuesta: para un
                lector de pantalla seria una duplicacion, no una ayuda. -->
@@ -5152,7 +5168,11 @@
                Los ids llevan sufijo propio --faq- en vez de hero--
                porque repetidos romperian el aria-labelledby: el lector
                anunciaria el panel del hero. -->
-          <div class="d2-faq-dato__ficha-caja d2-hero__panel">
+          <p class="d2-faq-dato__muestra">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.
+            </p>
+
+            <div class="d2-faq-dato__ficha-caja d2-hero__panel">
             <p class="d2-hero__panel-eyebrow" id="faq-panel-t">One school district, 12 years of data</p>
             
                         <!-- Las tres cifras en una sola fila (11/9/2026). Antes el $4.4M

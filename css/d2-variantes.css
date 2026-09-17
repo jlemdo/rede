@@ -10143,6 +10143,24 @@ span.d2-panel__filtro:hover {
 
 /* --- La ficha --- */
 
+/* LA NOTA DE MUESTRA, SOBRE LA TARJETA (16/9/2026)
+
+   Texto de relleno --lorem ipsum-- puesto a peticion del cliente para ver
+   el tamano y el sitio antes de escribir el aviso de verdad.
+
+   13px: el mismo cuerpo que usan las notas al margen del sitio. Por
+   debajo de 12 el texto deja de leerse comodo y esto no es letra
+   pequena de contrato, es una aclaracion que conviene leer.
+
+   En gris suave, que es lo que la distingue del contenido: acompaña a la
+   tarjeta sin competir con el dato. */
+.d2 .d2-faq-dato__muestra {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
 .d2 .d2-faq-dato__ficha {
   position: sticky;
   top: 104px;
