@@ -678,3 +678,24 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* EL CTA DE CIERRE, CON UN SOLO BOTON (16/9/2026)
+
+   Se retiro "Book a call" y quedo solo "Get in touch". La rejilla de
+   .d2-cta-bal__acciones esta en dos columnas fijas --repeat(2, 1fr)-- asi
+   que el boton unico se quedaba en la mitad izquierda con un hueco a su
+   derecha.
+
+   Con auto-fit las columnas se ajustan a los elementos que haya: un
+   boton ocupa su ancho natural y, si algun dia vuelven a ser dos, se
+   reparten solos sin tocar nada.
+
+   El max-width baja a 260: los 520 eran para dos botones y uno solo
+   estirado a ese ancho se lee como una barra, no como un boton. */
+/* :has() y no una clase: la regla se aplica sola cuando la lista tiene
+   un unico elemento, aqui y en cualquier otra pagina que quede con un
+   solo boton. Soportado en todos los navegadores desde 2023. */
+.d2 .d2-cta-bal__acciones:has(> :only-child) {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 260px;
+}

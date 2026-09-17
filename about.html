@@ -784,21 +784,18 @@
           </p>
         </div>
 
-        <!-- ul y no ol: las dos vias son alternativas, no pasos. El orden
-             no significa nada y un lector de pantalla no debe sugerirlo. -->
+        <!-- Una sola via desde el 16/9/2026: se retira "Book a call" y se
+             queda "Get in touch". El enlace de la llamada apuntaba a "#" y
+             no llevaba a ningun sitio, asi que ofrecia una salida que no
+             existia.
+
+             Se conserva la lista aunque solo tenga un elemento: el CSS del
+             CTA cuelga de .d2-cta-bal__acciones y cambiar la estructura
+             obligaria a rehacerlo para nada. -->
         <ul class="d2-cta-bal__acciones">
           <li class="d2-cta-bal__accion">
             <a href="contact.html" class="d2-btn d2-btn--solido d2-cta-bal__btn">
               Get in touch
-              <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-                <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li class="d2-cta-bal__accion">
-            <a href="#" class="d2-btn d2-btn--linea d2-cta-bal__btn">
-              Book a call
               <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
                 <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
                       stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
