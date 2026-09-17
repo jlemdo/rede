@@ -11,10 +11,14 @@
   'use strict';
 
   var OPCIONES = [
-    { id: 'blanco', eti: 'Blanco', muestra: '#FFFFFF', oscuro: false },
-    { id: 'gris',   eti: 'Gris',   muestra: '#F5F5F5', oscuro: false },
-    { id: 'verde',  eti: 'Verde',  muestra: '#1A5121', oscuro: true  },
-    { id: 'negro',  eti: 'Negro',  muestra: '#1A1A1A', oscuro: true  }
+    /* La etiqueta va en ingles: es la lengua del sitio y el cliente ve esta
+       pildora en la web publicada. El id se queda en espanol a proposito:
+       no se lee nunca --es la clave de data-pf en el CSS y la que guarda
+       sessionStorage-- y cambiarlo obligaria a tocar prueba-fondos.css. */
+    { id: 'blanco', eti: 'White', muestra: '#FFFFFF', oscuro: false },
+    { id: 'gris',   eti: 'Grey',  muestra: '#F5F5F5', oscuro: false },
+    { id: 'verde',  eti: 'Green', muestra: '#1A5121', oscuro: true  },
+    { id: 'negro',  eti: 'Black', muestra: '#1A1A1A', oscuro: true  }
   ];
 
   var CLAVE = 'rede-prueba-fondo';   // por pagina, para que no se pise
