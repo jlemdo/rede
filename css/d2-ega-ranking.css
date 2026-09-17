@@ -422,3 +422,46 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+
+
+/* ==========================================================================
+   LA ILUSTRACION DEL HERO, MAS PEQUENA (16/9/2026)
+
+   Mismo tratamiento que se le dio al hero de About: un rango acotado en
+   vez de dejar el tamano a merced de la ventana.
+
+     suelo   460px   por debajo la escena no se distingue
+     ideal   46vw    la proporcion que el cliente aprobo en About
+     techo   900px   por encima empieza a dominar la pagina
+
+   El margin-right negativo del hero compartido se anula: con un ancho
+   propio la imagen ya no necesita sangrar hasta el borde, y sangrando se
+   comia el aire que debe quedar a su derecha.
+
+   Va en esta hoja porque es la ultima que carga la pagina, asi que gana
+   sin necesidad de !important.
+   ========================================================================== */
+
+.d2 .d2-ega-hero .d2-ega-hero__arte {
+  margin-right: 0;
+}
+
+.d2 .d2-ega-hero .d2-ega-hero__arte img {
+  /* Solo el tamano. Ni margenes ni rejilla: el hero compartido ya
+     coloca la ilustracion donde toca, en escritorio y en movil.
+
+     Se probo anadiendo margin-left:auto y una consulta a 1280 que
+     estrechaba la columna de texto --lo que se hizo en About-- y ahi
+     rompia: a anchos medios el texto y la imagen se cambiaban de lado.
+     About lo necesita porque su hero se compone distinto; este no. */
+  width: clamp(460px, 46vw, 900px);
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+@media (max-width: 900px) {
+  /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla. */
+  .d2 .d2-ega-hero .d2-ega-hero__arte img { width: 100%; }
+}
