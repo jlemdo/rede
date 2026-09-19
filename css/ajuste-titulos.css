@@ -163,3 +163,38 @@
 @media (max-width: 700px) {
   .aj-panel { width: calc(100vw - 32px); }
 }
+
+/* ==========================================================================
+   EL TECHO PROPIO DE TRES HEROES
+
+   La home, Contact y Client Login tienen un titular mas bajo que los 64px
+   generales, y por un motivo escrito en su momento:
+
+     home          60px  su titular es mas largo
+     contact       54px  comparte plantilla con Client Login
+     client-login  54px  las dos abren igual y deben leerse iguales
+
+   Llevaban su propio clamp, asi que el regulador no las alcanzaba; y al
+   apuntarlas a var(--fs-h1, respaldo) adoptaron el techo general y subieron
+   a 64, porque el respaldo de var() solo entra si la variable NO existe --y
+   --fs-h1 existe en :root--.
+
+   Va en ESTA hoja porque es la unica que cargan las tres y carga la ultima:
+   la home y Client Login no incluyen v1.css, y en Contact v1 va antes que
+   d2-contacto.css. Comprobado leyendo los <link> de cada pagina.
+
+   En reposo manda el clamp de abajo. En cuanto se toca el regulador, este
+   escribe --fs-h1 en linea en <body> y la segunda regla --que solo existe
+   entonces-- lo recoge.
+   ========================================================================== */
+.d2 .d2-hero__titulo {
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.75rem);
+}
+
+.d2 :is(.ct__titulo, .d2-acceso__titulo) {
+  font-size: clamp(32px, 3.6vw, 54px);
+}
+
+body[style*="--fs-h1"] :is(.d2-hero__titulo, .ct__titulo, .d2-acceso__titulo) {
+  font-size: var(--fs-h1);
+}

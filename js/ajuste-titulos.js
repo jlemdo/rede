@@ -29,7 +29,17 @@
 (function () {
   'use strict';
 
-  var raiz = document.documentElement;
+  /* SE ESCRIBE EN <body>, NO EN <html>, y el motivo importa.
+
+     Energy Management redefine --fs-h1 en .em-page, que es una clase de
+     <body>. Como body es hijo de html, esa redefinicion pisaba lo que el
+     regulador escribiera arriba: esa pagina era la unica cuyo hero no
+     respondia --comprobado: --fs-h1 valia 90px en <html> y seguia siendo
+     el clamp en <body>--.
+
+     Escribiendo en el propio <body> como estilo en linea, gana a cualquier
+     hoja que apunte a body y lo heredan todas las secciones. */
+  var raiz = document.body || document.documentElement;
 
   /* Las dos medidas que se regulan. `muestra` es un elemento real de la
      pagina: de el se lee el tamano que el navegador pinta ahora mismo. */
@@ -102,6 +112,9 @@
     function aplica(v) {
       v = Math.min(m.max, Math.max(m.min, parseFloat(v) || 0));
       raiz.style.setProperty(m.variable, v + 'px');
+      (m.tambien || []).forEach(function (otra) {
+        raiz.style.setProperty(otra, v + 'px');
+      });
       barra.value = String(v);
       /* La caja no se reescribe mientras se teclea: partiria "4" en "4px"
          antes de poder escribir "48". */
@@ -124,6 +137,9 @@
 
     caja.__reset = function () {
       raiz.style.removeProperty(m.variable);
+      (m.tambien || []).forEach(function (otra) {
+        raiz.style.removeProperty(otra);
+      });
       var a = leeActual(m.muestra);
       if (a !== null) {
         barra.value = String(a);

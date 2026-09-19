@@ -113,7 +113,7 @@
      El techo queda en 50 y no en los 52 de las demas, a peticion del
      usuario: este titular tiene once palabras --mas que ninguno de los
      otros-- y a 52 pesaba de mas frente al panel de la derecha. */
-  font-size: clamp(34px, 3.4vw, 50px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: var(--fw-extrabold, 800);

@@ -513,7 +513,10 @@
 
 .d2-hero__titulo {
   margin: 0;
-  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.75rem);
+  /* A --fs-h1, como el resto de heroes. Llevaba su propio clamp con techo
+     3.75rem --60px-- asi que era el unico hero que no respondia al
+     regulador de titulares. El valor por defecto se conserva. */
+  font-size: var(--fs-h1);
   font-weight: var(--fw-extrabold);
   line-height: 1.08;
   letter-spacing: -.03em;

@@ -2914,7 +2914,24 @@
    375px el titular se quedaba en 60 mientras Gap y Recommissioning bajaban
    a 36, medido--. Aqui solo cambia el maximo, de 4rem a 3.75rem, asi que
    por debajo de 1024 escala exactamente igual que las otras dos. */
-.d2.em-page .d2-ega-hero__titulo {
+/* El techo propio de Energy Management: su titular necesita 60px para
+   entrar en tres lineas, contra los 64 de los demas.
+
+   VA EN --fs-h1 Y NO EN UNA VARIABLE APARTE. Se probo con --fs-h1-em y no
+   servia: el regulador escribe en <html> y una redefinicion en .em-page
+   esta mas cerca del elemento, asi que ganaba siempre y esta pagina era la
+   unica que no respondia al control.
+
+   Aqui se redefine la MISMA variable que el regulador escribe. Una
+   propiedad en linea en <html> gana a cualquier hoja, asi que en reposo
+   manda este clamp --60px, tres lineas-- y en cuanto se toca el regulador
+   manda el regulador. */
+.d2.em-page {
   --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem);
+}
+
+.d2.em-page .d2-ega-hero__titulo {
   text-wrap: balance;
 }
+
+

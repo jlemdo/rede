@@ -102,7 +102,11 @@
      Se parametriza copiando el clamp de Login tal cual. El tamano sigue
      cediendo con el ancho, que es lo que hace que el titular quepa en una
      linea; solo baja el techo. */
-  font-size: clamp(32px, 3.6vw, 54px);
+  /* A --fs-h1, para que responda al regulador como los demas heroes.
+     El techo propio de 54px se conserva como valor por defecto: es
+     deliberado que Contact y Client Login compartan escala, segun
+     queda explicado arriba. */
+  font-size: var(--fs-h1);
   line-height: 1.08;
   letter-spacing: -.026em;
   font-weight: var(--fw-extrabold, 800);
