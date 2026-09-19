@@ -79,9 +79,22 @@
 /* ...pero no dentro de una tarjeta clara: ahi el fondo sigue siendo claro
    y el verde claro da 1,5:1. Las tarjetas se listan abajo; esta regla va
    despues para poder revertirlo. */
+/* .ciclo SALE DE LA LISTA (18/9/2026)
+
+   Esta lista enumera las TARJETAS CLARAS que hay dentro de una seccion
+   oscura, para devolverles el verde oscuro: dentro de una tarjeta blanca
+   el verde claro da 1,5:1.
+
+   .ciclo ya no es una tarjeta: se le quito el fondo y el borde al ver que
+   sus cuatro pasos no se distinguian de ella --1,04 de contraste en los
+   cuatro colores--. Ahora es solo un agrupador transparente, asi que su
+   "and repeat" va directamente sobre el fondo oscuro de la seccion y
+   necesita el verde CLARO, no el oscuro.
+
+   .ciclo__paso si sigue: esa tarjeta mantiene su fondo blanco. */
 :is([data-pf="verde"], [data-pf="negro"]) [data-pf-diana]
   :is(.rp-panel, .plataforma__panel, .rp-bepi, .rp-gr, .dos-col__izq,
-      .ciclo, .ciclo__paso)
+      .ciclo__paso)
   :is(.eyebrow, .ciclo__n, .ciclo__repite, .acento) {
   color: var(--c-verde-hover, #026F00);
 }

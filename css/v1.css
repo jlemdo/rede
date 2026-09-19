@@ -668,7 +668,18 @@
    componiendo la transparencia-- cuando el minimo para 12px es 4,5.
 
    El #8FE89C da 5,21:1 sobre ese mismo fondo compuesto. A simple vista es
-   el mismo verde; la diferencia solo existe para el medidor. */
+   el mismo verde; la diferencia solo existe para el medidor.
+
+   ES LA UNICA EXCEPCION DEL SITIO (18/9/2026)
+
+   Este tono no esta en tokens.css: se anadio para este caso concreto. Al
+   revisarlo se habia colado en cuatro sitios mas --el rotulo de la medida,
+   la barra, el pie de escala y las fases de "How it works"-- donde el
+   #6FD97E del sistema cumple de sobra, porque ahi el fondo es el verde
+   solido y no hay tarjeta translucida que lo aclare.
+
+   Esos cuatro han vuelto al verde del sistema. Aqui se queda porque es el
+   unico punto donde el del sistema NO llega al minimo. */
 .d2.rc-page .prueba-sec__dato .eyebrow,
 .d2.em-page .prueba-sec__dato .eyebrow {
   color: #8FE89C;
@@ -769,4 +780,2141 @@
 .d2.em-page .prueba-sec > * {
   position: relative;
   z-index: 1;
+}
+
+/* ==========================================================================
+   LAS DOS COLUMNAS, A LA MISMA ALTURA  (18/9/2026)
+
+   En "How it works" de Recommissioning, los dos eyebrow no arrancaban
+   igual: "How it works" a 942px y "What is involved" a 975. Treinta y tres
+   pixeles de desfase, medidos en el navegador.
+
+   LA CAUSA
+
+   No es un margen mal puesto. Las dos columnas son piezas distintas:
+
+     .dos-col__der   texto suelto, sin relleno
+     .dos-col__izq   una CAJA, con fondo, borde y 32px de relleno
+
+   Los dos contenedores empiezan a la misma altura --942 los dos-- pero el
+   relleno de la caja empuja su contenido hacia abajo. Es el relleno
+   haciendo su trabajo; el problema es que la columna de al lado no lo
+   tiene.
+
+   LA SOLUCION, LA MISMA QUE EN CLIENT LOGIN
+
+   Subir la caja lo que mide su propio relleno. Asi su PRIMERA LINEA queda
+   al nivel de la primera linea de al lado, que es lo que el ojo compara
+   --nadie compara bordes de caja invisibles--.
+
+   Se usa la misma variable que el relleno, no un 32px escrito a mano: el
+   relleno es un clamp() que cambia con la ventana, y un valor fijo
+   descuadraria en cuanto la ventana creciera.
+   ========================================================================== */
+
+.d2 .dos-col__inner > .dos-col__izq {
+  --padding: clamp(var(--sp-5), 2.5vw, var(--sp-6));
+  /* El relleno MAS el borde de 1px: la caja lleva borde y el texto de al
+     lado no, asi que sin contarlo quedaba 1px por debajo. Medido: 943
+     contra 942. */
+  margin-top: calc(-1 * (var(--padding) + 1px));
+}
+
+/* En una sola columna no hay nada con que alinear, y subirla dejaria la
+   caja pegada a lo de arriba. */
+@media (max-width: 900px) {
+  .d2 .dos-col__inner > .dos-col__izq {
+    margin-top: 0;
+  }
+}
+
+/* ==========================================================================
+   "WHAT YOU WILL NEED": EL TITULAR MAS ANCHO Y LOS ICONOS  (18/9/2026)
+
+   1. EL TITULAR, DE TRES LINEAS A DOS
+
+   .requisitos__intro topaba en 720px y ahi el titular caia en tres
+   renglones, con la mitad derecha de la seccion vacia.
+
+   Se probaron anchos crecientes midiendo cuantas lineas salian:
+
+     720px -> 3 lineas
+     780px -> 2 lineas   <- el minimo que basta
+     860px -> 2 lineas
+
+   Se elige 860 y no 780: con el minimo justo, cualquier palabra que se
+   anada manana devuelve el titular a tres lineas. Con 860 hay holgura y la
+   linea sigue comoda de leer --unos 70 caracteres, dentro del intervalo
+   que recomiendan las WCAG--.
+
+   El lead se queda en dos lineas en los dos casos, asi que no lo afecta.
+
+   2. LOS NUMEROS, CAMBIADOS POR ICONOS
+
+   Un 1, 2, 3, 4 no dice nada: el orden ya lo da la posicion. Cada icono
+   habla de SU recuadro:
+
+     edificio con nodo  -> el sistema de automatizacion
+     candado            -> el acceso remoto seguro
+     plano plegado      -> los planos digitales
+     persona con llave  -> el responsable de controles
+
+   Mismo lenguaje que los iconos de About: trazo de 2px, sin relleno y
+   `non-scaling-stroke`, para que el grosor no engorde al escalar.
+   ========================================================================== */
+
+.d2 .requisitos__intro {
+  max-width: 860px;
+}
+
+.d2 .requisito__icono {
+  display: grid;
+  place-items: center;
+
+  /* 56px, no 44. A 44 el detalle se apelmazaba: el edificio con su antena
+     se leia como una torre de telecomunicaciones, y la persona con el visto
+     de aprobado quedaba hecha un borron.
+
+     Es el mismo motivo por el que los de About subieron de 48 a 64: un
+     icono de linea necesita sitio o sus trazos se tocan. */
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--sp-4);
+
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .requisito__icono svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.d2 .requisito__icono svg :is(path, rect, circle, line, polyline) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* En una columna el titular vuelve a necesitar todo el ancho disponible */
+@media (max-width: 900px) {
+  .d2 .requisitos__intro { max-width: none; }
+}
+
+/* ==========================================================================
+   "RESULTS": LAS DOS CAJAS, A LA MISMA LINEA  (18/9/2026)
+
+   "Results" arrancaba 12px por debajo de "What gets measured". Medido: las
+   dos cajas empiezan en el mismo punto, pero su primer texto no.
+
+   LA CAUSA SON DOS, Y SE SUMAN
+
+   Los rellenos son distintos --la caja del dato usa una escala mas grande--
+   y ademas una lleva borde y la otra no:
+
+     .prueba-sec__dato   relleno 43,2px + borde 1px  ->  44 hasta el texto
+     .proceso            relleno 32px,   sin borde   ->  32 hasta el texto
+
+   No se puede subir ninguna con margen negativo, como en "How it works":
+   alli una era caja y la otra texto suelto, asi que la caja sobraba de
+   relleno. Aqui las DOS son cajas y las dos deben mantener su aire.
+
+   LA SOLUCION
+
+   Igualar la distancia desde el borde de la caja hasta la primera linea.
+   Se toma la mayor --la del dato-- y se lleva la otra a ese valor, solo por
+   arriba: asi ninguna pierde aire y las dos primeras lineas coinciden.
+
+   Se calcula con las mismas variables, no con un 44px escrito a mano: los
+   rellenos son clamp() y cambian con la ventana.
+   ========================================================================== */
+
+.d2 .prueba-sec__inner > .proceso {
+  /* el relleno de la caja del dato, mas su borde de 1px */
+  padding-top: calc(clamp(var(--sp-6), 3vw, var(--sp-7)) + 1px);
+}
+
+/* Apiladas no hay nada con que alinear, y el relleno de mas solo seria
+   hueco perdido en una pantalla estrecha. */
+@media (max-width: 900px) {
+  .d2 .prueba-sec__inner > .proceso {
+    padding-top: clamp(var(--sp-5), 2.5vw, var(--sp-6));
+  }
+}
+
+/* ==========================================================================
+   "ACCESS FUNDING": LAS DOS COLUMNAS, A LA MISMA LINEA  (18/9/2026)
+
+   "Programs we work with" arrancaba 33px por debajo de "Access funding".
+   Misma causa que en "How it works": la derecha es una CAJA con 32px de
+   relleno y 1px de borde, y la izquierda es texto suelto.
+
+   POR QUE AQUI NO VALE EL MARGEN NEGATIVO SIN MAS
+
+   Esta rejilla lleva `align-items: center`, no `start`. Las dos columnas
+   miden casi lo mismo --346 y 345px-- asi que hoy quedan a la par por
+   casualidad. Subir la caja con un margen negativo la descentraria, y en
+   cuanto una de las dos crezca el desajuste se vera.
+
+   Se pasa la caja a `align-self: start` y se sube lo que mide su relleno.
+   Asi su primera linea queda al nivel de la de al lado, que es lo que el
+   ojo compara, y deja de depender de que las dos midan parecido.
+   ========================================================================== */
+
+/* LAS DOS columnas a `start`, no solo la caja.
+   Con `align-items: center` heredado, la columna que mide menos se centra
+   y baja. A 1440 las dos median casi igual --346 y 345-- y no se notaba;
+   a 1024 la caja crece a 388 contra 325 del texto, y volvian a descuadrar
+   18px. Fijar solo la caja no basta: hay que fijar el par. */
+.d2 .fondos__inner > .fondos__texto,
+.d2 .fondos__inner > .fondos__caja {
+  align-self: start;
+}
+
+.d2 .fondos__inner > .fondos__caja {
+  --padding: clamp(var(--sp-5), 2.5vw, var(--sp-6));
+  /* el relleno MAS el borde de 1px, que la columna de texto no tiene */
+  margin-top: calc(-1 * (var(--padding) + 1px));
+}
+
+/* Apiladas no hay con que alinear, y subirla la pegaria a lo de arriba. */
+@media (max-width: 900px) {
+  .d2 .fondos__inner > .fondos__caja {
+    align-self: auto;
+    margin-top: 0;
+  }
+}
+
+/* ==========================================================================
+   "OTHER SERVICES": EL TITULAR EN UN SOLO RENGLON  (18/9/2026)
+
+   "Before and after the tune-up." se partia en dos lineas a 1920px de
+   ventana. En pantallas de 1440 para abajo ya cabia en una, asi que el
+   fallo solo se veia en monitores grandes.
+
+   LA CAUSA
+
+   .rutas__intro topa en 720px, un ancho fijo. Pero el titular NO es fijo:
+   usa clamp() y crece con la ventana. A 1440 mide 48,96px y cabe en 720; a
+   1920 sube a 52px y ya no.
+
+   Un ancho que no crece con un texto que si crece: tarde o temprano se
+   parte.
+
+   EL ANCHO ELEGIDO
+
+   Se midio cuanto hace falta a 1920, probando anchos crecientes:
+
+     720px -> 2 lineas
+     780px -> 1 linea    <- el minimo que basta
+     860px -> 1 linea
+
+   Se toma 860 y no 780, igual que en "What you will need": con el minimo
+   justo, cualquier palabra que se anada manana vuelve a partirlo.
+
+   NO se toca el tamano de fuente. Encogerlo tambien lo metia en una linea,
+   pero rompe la escala de titulares que comparten todas las secciones.
+   ========================================================================== */
+
+.d2 .rutas__intro {
+  max-width: 860px;
+}
+
+/* Por debajo de 900px el titular se parte igualmente --no cabe en 480 ni
+   en 390-- y ahi es lo correcto: forzarlo seria dejarlo ilegible. */
+@media (max-width: 900px) {
+  .d2 .rutas__intro { max-width: none; }
+}
+
+/* ==========================================================================
+   "WHAT YOU WILL NEED" — OPCION 2: LA LISTA DE COMPROBACION  (18/9/2026)
+
+   QUE CAMBIA RESPECTO A LA ACTUAL
+
+   La actual presenta los cuatro requisitos como tarjetas iguales en fila.
+   Eso es como se presentan unas VENTAJAS. Pero estos cuatro no son
+   ventajas: son CONDICIONES que un edificio cumple o no, y de las que
+   depende que el servicio pueda darse en remoto.
+
+   Aqui se leen como lo que son: una comprobacion. Cuatro filas con su marca
+   de verificado, un contador que dice cuantas son antes de leerlas, y a la
+   izquierda la escala medida del sistema.
+
+   LA ESCALA, QUE NO ES ADORNO
+
+   Es el mismo recurso de d2-ega-pasos-opciones: dos repeating-linear-gradient
+   superpuestos --marcas finas cada 7px, mayores cada 35-- con una mascara
+   que desvanece los extremos. El CSS de aquella seccion lo explica: sustituyo
+   al filo de acento porque "una escala dice 'esto esta medido', que es
+   exactamente lo que Rede hace".
+
+   Aqui cumple ademas una funcion: ata las cuatro filas en una sola lista y
+   deja claro que se leen juntas, no sueltas.
+
+   NO es un filo de color a la izquierda, que el sistema prohibe: un filo es
+   una barra lisa de acento; esto es una regla graduada.
+   ========================================================================== */
+
+.d2 .rq-check {
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+  background: var(--c-fondo, #FAFAFA);
+}
+
+.d2 .rq-check__inner {
+  display: grid;
+  /* El texto necesita mas sitio que la comprobacion: el titular es largo y
+     a 0.95fr caia en cuatro lineas. Con 1.25fr baja a dos, que es donde
+     esta seccion se lee bien --lo mismo que se ajusto en la opcion 1--. */
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: clamp(36px, 4.5vw, 72px);
+  align-items: start;
+
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+}
+
+/* 34ch dejaba el titular en SEIS lineas --"Remote / recommissioning /
+   starts with / the right / building / systems."--, que es peor que las
+   tres de las que veniamos. El ch mide el ancho del "0", y en extrabold a
+   49px no se parece a las letras reales: por eso salio tan corto.
+   Se fija en pixeles, medido. */
+.d2 .rq-check__intro { max-width: 680px; }
+
+/* --- El panel de comprobacion ------------------------------------------ */
+
+.d2 .rq-check__panel {
+  position: relative;
+  padding-left: clamp(20px, 2.4vw, 34px);
+}
+
+/* La escala graduada. Va en un ::before para no meter marcado que no
+   significa nada. */
+.d2 .rq-check__panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 9px;
+
+  background-image:
+    /* las marcas mayores, cada 35px */
+    repeating-linear-gradient(to bottom,
+      var(--c-verde, #39B54A) 0 1.5px, transparent 1.5px 35px),
+    /* y las finas, cada 7 */
+    repeating-linear-gradient(to bottom,
+      rgba(2, 111, 0, .28) 0 1px, transparent 1px 7px);
+  background-size: 9px 100%, 5px 100%;
+  background-position: 0 0, 0 0;
+  background-repeat: no-repeat;
+
+  /* Los extremos se desvanecen: una regla que empieza y acaba de golpe se
+     lee como un borde, que es justo lo que no queremos. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* --- El contador -------------------------------------------------------- */
+
+.d2 .rq-check__contador {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 var(--sp-5, 24px);
+  padding-bottom: var(--sp-4, 16px);
+  border-bottom: 1px solid var(--c-borde, #E4E4E4);
+}
+
+.d2 .rq-check__n {
+  /* 40px es el techo del sistema para una cifra: por encima compite con el
+     titular y la seccion se lee como una diapositiva. */
+  font-size: 40px;
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--c-texto, #333333);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .rq-check__eti {
+  font-size: var(--fs-small, .875rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* --- Las filas ---------------------------------------------------------- */
+
+.d2 .rq-check__lista {
+  display: grid;
+  gap: var(--sp-4, 16px);
+  margin: 0 0 var(--sp-5, 24px);
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .rq-fila {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.d2 .rq-fila__marca {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--c-verde, #39B54A);
+  border-radius: 50%;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .rq-fila__marca svg {
+  width: 15px;
+  height: 15px;
+}
+
+.d2 .rq-fila__marca svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  /* El visto se DIBUJA al entrar en pantalla. pathLength normaliza el trazo
+     a 100 para poder escribir el dasharray sin medirlo con JS. */
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.d2 .rq-fila__texto {
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.55;
+  color: var(--c-texto, #333333);
+}
+
+/* --- La entrada, escalonada --------------------------------------------
+   Las cuatro filas entran una tras otra y el visto se dibuja detras. Es el
+   mismo patron por capas del ranking de Gap: primero la fila, luego su
+   marca, para que se lea como una comprobacion que AVANZA y no como cuatro
+   cosas que aparecen de golpe.
+   ---------------------------------------------------------------------- */
+
+.d2 .rq-check .rq-fila {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.d2 .rq-check.es-visible .rq-fila {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--curva, cubic-bezier(.32, .72, 0, 1)),
+              transform .5s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(var(--i) * 110ms);
+}
+
+.d2 .rq-check.es-visible .rq-fila__marca svg path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .45s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  /* 180ms despues de su fila: primero llega el texto, luego se marca */
+  transition-delay: calc(var(--i) * 110ms + 180ms);
+}
+
+/* Sin movimiento: todo en su estado final. Nunca en blanco. */
+@media (prefers-reduced-motion: reduce) {
+  .d2 .rq-check .rq-fila { opacity: 1; transform: none; }
+  .d2 .rq-check .rq-fila__marca svg path { stroke-dashoffset: 0; }
+}
+
+/* --- Una columna -------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .d2 .rq-check__inner { grid-template-columns: minmax(0, 1fr); }
+  .d2 .rq-check__intro { max-width: none; }
+}
+
+/* ==========================================================================
+   "HOW IT WORKS" — OPCION 2: LA SECUENCIA  (18/9/2026)
+
+   La actual pone los cinco puntos en una caja con checks. Un check dice
+   "cumplido"; estos cinco son FASES de un trabajo que avanza --revisar,
+   analizar, recomendar, medir, tramitar--. Numeradas y unidas por una linea
+   se leen como el proceso que son.
+
+   La linea es un ::before de la lista, no un elemento de marcado: no
+   significa nada por si misma y no debe entrar en el arbol de accesibilidad.
+   ========================================================================== */
+
+.d2 .hw-sec {
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+}
+
+.d2 .hw-sec__inner {
+  display: grid;
+  /* La columna ancha es la SEGUNDA, que es donde va el texto. Los pasos
+     necesitan menos sitio: son lineas cortas. */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+}
+
+/* LOS PASOS A LA IZQUIERDA Y EL TEXTO A LA DERECHA  (18/9/2026)
+
+   Se invierte con `order`, NO cambiando el marcado. Es el patron que ya usa
+   .plataforma--invertida en RUN, y el motivo esta escrito alli:
+
+   En el marcado el texto va PRIMERO. Al apilar en movil, eso hace que se
+   lea el titular y el parrafo antes que la lista de pasos, que es el orden
+   que tiene sentido leyendo. Si se invirtiera el marcado, en movil
+   aparecerian cinco pasos sueltos antes de explicar de que van. */
+.d2 .hw-sec__texto { order: 2; }
+.d2 .hw-sec__pasos { order: 1; }
+
+.d2 .hw-sec__lista {
+  position: relative;
+  display: grid;
+  gap: clamp(20px, 2.2vw, 30px);
+  margin: var(--sp-4, 16px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* La linea que une los pasos. De centro a centro del primer y ultimo
+   numero: 15px es el radio, asi que arranca y acaba ahi. */
+.d2 .hw-sec__lista::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  bottom: 15px;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--c-verde, #39B54A), rgba(2, 111, 0, .25));
+}
+
+.d2 .hw-paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.d2 .hw-paso__n {
+  position: relative;
+  z-index: 1;                      /* por encima de la linea */
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-blanco, #FFFFFF);
+  background: var(--c-verde-hover, #026F00);
+  border-radius: 50%;
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .hw-paso__cuerpo { display: grid; gap: 3px; }
+
+.d2 .hw-paso__fase {
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .hw-paso__texto {
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.5;
+  color: var(--c-texto, #333333);
+}
+
+/* Entran uno tras otro, como el proceso que describen */
+.d2 .hw-sec .hw-paso { opacity: 0; transform: translateX(-8px); }
+
+.d2 .hw-sec.es-visible .hw-paso {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--curva, cubic-bezier(.32, .72, 0, 1)),
+              transform .5s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(var(--i) * 100ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .hw-sec .hw-paso { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .d2 .hw-sec__inner { grid-template-columns: minmax(0, 1fr); }
+  /* Apilado: vuelve el orden del marcado, texto y luego pasos */
+  .d2 .hw-sec__texto { order: 0; }
+  .d2 .hw-sec__pasos { order: 0; }
+}
+
+
+/* ==========================================================================
+   "RESULTS" — OPCION 2: LA MEDIDA  (18/9/2026)
+
+   El titular promete "improvements you can measure" y la version actual no
+   mide nada: es texto y una lista de cuatro cosas.
+
+   Aqui se ve la medida: cuatro barras que van de "drift" a "corrected".
+
+   SIN CIFRAS, Y ES DELIBERADO
+
+   El documento del cliente prohibe publicar porcentajes sin confirmar
+   fuente, muestra y periodo --por eso se retiraron el 5,7% y el payback de
+   1,7 anos--. La barra dice la DIRECCION del cambio, no una cantidad.
+
+   Se anima con scaleX desde transform-origin:left, no con width: animar el
+   ancho es un reflow por fotograma. Es el metodo del ranking de Gap.
+   ========================================================================== */
+
+.d2 .rs-sec__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+}
+
+/* LA CAJA SUBE, EL AIRE SE QUEDA -- como en Client Login
+
+   Primero se anulo el relleno superior para alinear "What gets measured"
+   con "Results". Alineaba, pero dejaba el label pegado al borde de la caja
+   y esta se veia apretada.
+
+   Client Login resuelve esto sin quitar aire: su tarjeta mantiene los
+   43,2px de relleno y lo que hace es ARRANCAR MAS ARRIBA que la columna de
+   al lado --medido: la tarjeta en y=225, la columna en y=263--. El label
+   queda a la altura del texto de la izquierda y la tarjeta conserva su
+   respiracion.
+
+   Se copia ese metodo: el relleno vuelve completo y la caja sube con un
+   margen negativo del mismo valor. El resultado en pantalla es el mismo
+   arriba, pero la caja crece hacia arriba en vez de encogerse por dentro. */
+.d2 .rs-sec__medida {
+  padding: clamp(24px, 2.6vw, 34px);
+  margin-top: calc(-1 * clamp(24px, 2.6vw, 34px));
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: var(--radio-lg, 16px);
+}
+
+/* LA ESPECIFICIDAD, MEDIDA  (18/9/2026)
+
+   La regla de arriba --.d2.rc-page .prueba-sec :is(..., p, ...)-- pinta de
+   blanco TODO el texto de la seccion. Y esta seccion lleva las dos clases
+   en el mismo elemento: class="prueba-sec rs-sec".
+
+   Con `.d2.rc-page .rs-sec__label` se empata en clases pero se pierde por
+   orden, porque aquella va antes... y encima suma el descendiente. Hace
+   falta repetir la misma estructura --seccion + hijo-- para ganarle.
+
+   Se probo primero con una sola clase y con dos, y en las dos el rotulo
+   seguia saliendo blanco. Preguntado al navegador, no supuesto. */
+/* EL TONO CLARO, AQUI SI  (18/9/2026)
+
+   Se intento devolver estos dos al #6FD97E del sistema y NO llega: dan
+   4,39:1 contra el minimo de 4,5. Medido.
+
+   El motivo es el mismo que ya documenta el bloque de arriba: no van sobre
+   el verde solido, sino dentro de .rs-sec__medida, que es blanco al 7% y
+   aclara el fondo. Es el unico caso del sitio donde el verde del sistema
+   se queda corto, y por eso existe este tono.
+
+   El resto de usos que se habian colado --la barra y las fases de "How it
+   works"-- SI volvieron al #6FD97E, porque ahi el fondo es verde solido. */
+.d2.rc-page .prueba-sec .rs-sec__label,
+.d2.em-page .prueba-sec .rs-sec__label,
+.d2 .rs-sec__label {
+  margin: 0 0 var(--sp-5, 24px);
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #8FE89C;
+}
+
+.d2 .rs-sec__lista {
+  display: grid;
+  gap: var(--sp-4, 16px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d2 .rs-barra { display: grid; gap: 7px; }
+
+.d2 .rs-barra__eti {
+  font-size: var(--fs-small, .875rem);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .rs-barra__pista {
+  display: block;
+  height: 6px;
+  background: rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.d2 .rs-barra__relleno {
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, #6BE873, #6FD97E);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Cada barra llega a su propio punto. Todas al 100% no dicen nada: si las
+   cuatro acaban igual, la barra sobra y es decoracion.
+
+   Los valores NO son datos: son la escala relativa de lo que se corrige en
+   un trabajo de recommissioning --la programacion es lo que mas margen
+   suele dar, el rendimiento verificado es consecuencia de los otros tres--.
+   Por eso no llevan cifra ni porcentaje escrito: el documento del cliente
+   prohibe publicar numeros sin confirmar. La barra dice la DIRECCION y el
+   peso relativo, no una cantidad. */
+.d2 .rs-barra:nth-child(1) .rs-barra__relleno { --hasta: .92; }
+.d2 .rs-barra:nth-child(2) .rs-barra__relleno { --hasta: .78; }
+.d2 .rs-barra:nth-child(3) .rs-barra__relleno { --hasta: .85; }
+.d2 .rs-barra:nth-child(4) .rs-barra__relleno { --hasta: .68; }
+
+.d2 .rs-sec.es-visible .rs-barra__relleno {
+  transform: scaleX(var(--hasta, 1));
+  transition: transform 1.1s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(.25s + var(--i) * 120ms);
+}
+
+/* Los dos extremos de la escala: de donde sale y a donde llega */
+.d2 .rs-sec__pie {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--sp-4, 16px) 0 0;
+  padding-top: var(--sp-3, 12px);
+  border-top: 1px solid rgba(255, 255, 255, .18);
+  font-size: var(--fs-xs, .75rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2.rc-page .prueba-sec .rs-sec__pie-a,
+.d2.em-page .prueba-sec .rs-sec__pie-a,
+.d2 .rs-sec__pie-a { color: #8FE89C; }
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .rs-sec .rs-barra__relleno { transform: scaleX(var(--hasta, 1)); }
+}
+
+@media (max-width: 900px) {
+  .d2 .rs-sec__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* ==========================================================================
+   "ACCESS FUNDING" — OPCION 2: LAS DOS VIAS  (18/9/2026)
+
+   La actual pone las dos provincias con el mismo peso, una debajo de otra.
+   Pero no son iguales: en BC hay un programa CON NOMBRE --BC Hydro y
+   FortisBC-- y en Saskatchewan la disponibilidad se confirma caso a caso.
+
+   El trazado lo dice: la via de BC llega entera, la de Saskatchewan va
+   discontinua. Es el recurso de .d2-ega-ruta-sec, cuyo CSS deja escrito que
+   "el discontinuo ES el dato, no decoracion".
+
+   pathLength="100" normaliza el trazo para escribir el dasharray en
+   porcentaje sin medir con JS ni recalcular al redimensionar.
+   ========================================================================== */
+
+.d2 .fn-sec__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(40px, 5vw, 76px);
+  align-items: start;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+}
+
+/* La caja sube para que "Programs we work with" quede a la altura de
+   "Access funding": son 33px, justo su relleno superior --medido--.
+
+   Mismo metodo que en Results y que en la tarjeta de Client Login: el
+   relleno se queda entero y la caja sube con un margen negativo del mismo
+   valor. Asi el label se alinea sin que la caja pierda su aire. */
+.d2 .fn-sec__vias {
+  padding: clamp(24px, 2.5vw, 32px);
+  margin-top: calc(-1 * clamp(24px, 2.5vw, 32px));
+  background: var(--c-fondo, #FAFAFA);
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: var(--radio-lg, 16px);
+}
+
+.d2 .fn-via { padding-block: var(--sp-4, 16px); }
+.d2 .fn-via + .fn-via { border-top: 1px solid var(--c-borde, #E4E4E4); }
+
+.d2 .fn-via__traza {
+  display: block;
+  height: 8px;
+  margin-bottom: 10px;
+}
+
+.d2 .fn-via__traza svg { display: block; width: 100%; height: 8px; }
+
+.d2 .fn-via__traza path {
+  fill: none;
+  stroke: var(--c-verde, #39B54A);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  /* EL TRAZO SE DIBUJA CON scaleX, NO CON dasharray  (18/9/2026)
+
+     El primer intento uso stroke-dasharray con pathLength="100". No
+     funciono: el SVG lleva preserveAspectRatio="none" para estirarse al
+     ancho de la caja, y eso descuadra la relacion entre las unidades del
+     viewBox y los pixeles reales. Medido: el trazo daba 196 de largo, no
+     los 100 que pathLength deberia fijar, asi que el hueco del dasharray
+     entraba por el otro lado y la linea salia PARTIDA EN DOS.
+
+     Escalar el contenedor desde la izquierda hace lo mismo --la linea
+     crece de un extremo al otro-- y no depende de cuanto mida el trazo. */
+} 
+
+/* La via abierta: discontinua. El hueco dice "por confirmar". */
+.d2 .fn-via--abierta .fn-via__traza path {
+  stroke: var(--c-verde-hover, #026F00);
+  stroke-dasharray: 6 5;
+  stroke-dashoffset: 0;
+  opacity: 0;
+}
+
+.d2 .fn-via__traza {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.d2 .fn-sec.es-visible .fn-via__traza {
+  transform: scaleX(1);
+  transition: transform 1s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(.2s + var(--i) * 260ms);
+}
+
+.d2 .fn-via--abierta .fn-via__traza path { opacity: .85; }
+
+.d2 .fn-via__lugar {
+  margin: 0 0 4px;
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .fn-via__nombre {
+  margin: 0;
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.5;
+  color: var(--c-texto, #333333);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .fn-sec .fn-via__traza { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .d2 .fn-sec__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- "HOW IT WORKS" OPCION 2 SOBRE FONDO OSCURO  (18/9/2026) -------------
+
+   Con el selector de fondos en verde o negro, los rotulos de fase
+   --REVIEW, ANALYSE...-- quedaban en 1,46:1. Van en var(--c-verde-hover),
+   que es #026F00: un verde pensado para texto sobre CLARO, y sobre oscuro
+   desaparece.
+
+   Mismo caso en el numero del paso: circulo verde oscuro sobre fondo
+   oscuro, que deja de distinguirse del fondo.
+
+   Sobre oscuro van los verdes claros del sistema, los mismos que usa
+   .ega-rank y la banda verde de Results.
+   ---------------------------------------------------------------------- */
+
+.d2 [data-comp-tono="oscuro"] .hw-paso__fase {
+  color: #6FD97E;
+}
+
+.d2 [data-comp-tono="oscuro"] .hw-paso__n {
+  color: var(--c-negro, #1A1A1A);
+  background: #6BE873;
+}
+
+.d2 [data-comp-tono="oscuro"] .hw-sec__lista::before {
+  background: linear-gradient(to bottom, #6BE873, rgba(107, 232, 115, .28));
+}
+
+/* --- RUN: LA ALTURA QUE DEJO EL CONTROL DE TAMANO  (18/9/2026) ----------
+
+   El panel de "Building energy benchmarking" llevaba debajo un control de
+   trabajo --"Size / -30 / -20 / -10 / Max"-- para probar escalas. Se
+   retiro por no ser parte del diseno.
+
+   Al quitarlo, la seccion perdio 77px: los 14 de margen, los 12 de
+   relleno, el filete y la fila de botones. Medido antes y despues.
+
+   La seccion mantiene su altura original. No es capricho: la pagina esta
+   compuesta con esas alturas, y cambiar una desplaza todo lo que viene
+   debajo. Se devuelve el espacio como relleno del panel, que es lo que el
+   control ocupaba.
+   ---------------------------------------------------------------------- */
+
+.d2 .plataforma--invertida .rp-panel {
+  padding-bottom: calc(20px + 77px);
+}
+
+/* Apilado el panel ya no compite con nada al lado: el hueco sobra. */
+@media (max-width: 900px) {
+  .d2 .plataforma--invertida .rp-panel { padding-bottom: 20px; }
+}
+
+/* --- "WHAT RUN SHOWS YOU": EL TITULAR EN DOS RENGLONES  (18/9/2026) -----
+
+   "Monitor energy performance across your portfolio." caia en TRES lineas
+   a 1920 y a 1440. El intro topaba en 640px, un ancho fijo, mientras el
+   titular usa clamp() y crece con la ventana: a 1440 mide 48,96px y a 1920
+   sube a 52.
+
+   Medido probando anchos crecientes:
+
+     640px -> 3 lineas en los dos
+     720px -> 2 a 1440, pero sigue en 3 a 1920
+     780px -> 2 en los dos    <- el minimo que basta
+     860px -> 2 en los dos
+
+   Se toma 860, como en las otras secciones que se ajustaron: con el minimo
+   justo, cualquier palabra que se anada manana lo devuelve a tres lineas.
+
+   No se toca el tamano de fuente: encogerlo tambien lo metia en dos, pero
+   rompe la escala de titulares que comparten todas las secciones.
+   ---------------------------------------------------------------------- */
+
+.d2 .funciones__intro {
+  max-width: 860px;
+}
+
+/* Por debajo de 900px vuelve a caer en tres, y ahi es lo correcto:
+   forzarlo dejaria el texto ilegible. */
+@media (max-width: 900px) {
+  .d2 .funciones__intro { max-width: none; }
+}
+
+/* --- "CHOOSE YOUR LEVEL": EL INTRO, AL ANCHO DE LA SECCION DE ARRIBA ----
+   (18/9/2026)
+
+   AQUI NO HABIA NADA ROTO
+
+   A diferencia de las otras, el titular ya caia en dos lineas en todos los
+   anchos de escritorio. Esto es una mejora, no una correccion:
+
+   1. El LEAD ocupaba tres lineas a 640px y baja a dos desde 780. El bloque
+      de entrada queda mas compacto y deja de dejar medio ancho vacio.
+
+   2. Coherencia entre secciones seguidas. "What RUN shows you" acaba de
+      pasar a 860px, y esta venia a 640: al bajar de una a otra se notaba
+      que los textos arrancaban con anchos distintos.
+
+   Mismo valor que las demas, por lo mismo: con el minimo justo --780--
+   cualquier palabra nueva devolveria el lead a tres lineas.
+   ---------------------------------------------------------------------- */
+
+.d2 .niveles__intro {
+  max-width: 860px;
+}
+
+@media (max-width: 900px) {
+  .d2 .niveles__intro { max-width: none; }
+}
+
+/* ==========================================================================
+   "THE WORK": LAS DOS COLUMNAS, A LA MISMA LINEA  (18/9/2026)
+
+   QUE SE ALINEA CON QUE
+
+   La caja de la derecha no tiene titulo, asi que no hay dos titulares que
+   emparejar. Lo que el ojo compara al recorrer de izquierda a derecha son
+   los PRIMEROS elementos de cada columna:
+
+     "The work"               el eyebrow, a la izquierda
+     "Identify opportunities" el primer paso, a la derecha
+
+   No se alinea con el titular: ese va mas abajo por su propio margen, y
+   emparejarlo con el dejaria la caja arrancando por debajo del eyebrow,
+   que se lee como un desfase.
+
+   POR QUE AQUI NO VALE SOLO EL MARGEN NEGATIVO
+
+   Esta rejilla lleva `align-items: center`. Las dos columnas miden
+   distinto --393 la caja, 350 el texto-- asi que la caja EMPIEZA MAS
+   ARRIBA que el texto: -2844 contra -2823. No hay que subirla, hay que
+   fijar las dos arriba primero y compensar despues.
+
+   Y el relleno son DOS anidados: los 32px de .ciclo mas los 16 de
+   .ciclo__paso. Se cuentan los dos, mas el borde de 1px que la columna de
+   texto no tiene.
+   ========================================================================== */
+
+.d2 .ciclo-sec__inner > .ciclo-sec__texto,
+.d2 .ciclo-sec__inner > .ciclo {
+  align-self: start;
+}
+
+.d2 .ciclo-sec__inner > .ciclo {
+  --padding: clamp(var(--sp-5), 2.5vw, var(--sp-6));
+  /* el relleno de la caja + el del primer paso + el borde */
+  margin-top: calc(-1 * (var(--padding) + var(--sp-4, 16px) + 1px));
+}
+
+/* Apiladas no hay con que alinear, y subirla la pegaria a lo de arriba. */
+@media (max-width: 900px) {
+  .d2 .ciclo-sec__inner > .ciclo {
+    align-self: auto;
+    margin-top: 0;
+  }
+}
+
+/* ==========================================================================
+   "THE WORK": FUERA LA CAJA DE LA CAJA  (18/9/2026)
+
+   LO QUE SE MIDIO
+
+   El contraste de SUPERFICIE --no el del texto-- entre cada pieza y lo que
+   tiene debajo. El minimo para distinguir una superficie es 3:1 (WCAG
+   1.4.11). Salia esto:
+
+     fondo    caja/seccion   paso/caja
+     blanco      1.04           1.04
+     gris        1.04           1.04
+     verde       8.97           1.04
+     negro      16.67           1.04
+
+   Dos fallos, y el segundo en los CUATRO colores:
+
+   1. Sobre blanco y gris la caja no se ve. Es #FAFAFA sobre #FFFFFF.
+   2. Las tarjetas no se distinguen NUNCA de su caja: #FFFFFF sobre
+      #FAFAFA, cinco puntos de diferencia.
+
+   Sobre fondo oscuro se veia una caja clara con cuatro rectangulos casi
+   del mismo tono flotando dentro. Una caja dentro de otra caja.
+
+   LA SOLUCION
+
+   Se quita la caja exterior. Los cuatro pasos no necesitan un contenedor:
+   ya son cuatro piezas y el orden lo dan sus numeros. Quedan sueltos sobre
+   el fondo de la seccion, que es de donde tienen que despegarse.
+
+   Y suben a 16px de radio. Estaban en 6, que en este sistema es la medida
+   de los CONTROLES DE FORMULARIO --los "Back"/"Next" de la calculadora--,
+   no la de una superficie. Es la misma regla que ya cumplen .nivel y
+   .ruta.
+   ========================================================================== */
+
+/* LA CAJA EXTERIOR DEJA DE SER CAJA, Y LAS DOS COLUMNAS ARRANCAN A LA MISMA ALTURA
+
+   Es el acuerdo del sitio, el mismo de "what is involved" / "how it works"
+   en Recommissioning: el ojo lee las dos columnas como una fila, y si una
+   empieza antes que la otra la seccion se ve caida.
+
+   Al quitar la caja los pasos se fueron 49px POR ENCIMA del eyebrow. La
+   causa no era el relleno perdido: es el margen negativo que la regla de
+   columnas aplica a este lado. Con la caja quedaba absorbido por su relleno;
+   sin ella tira de los pasos hacia arriba.
+
+   Por eso va a 0 y no a 49: sumar 49 lo mandaba 49px por DEBAJO --probado--.
+   Anulado, las dos columnas arrancan en +84. Medido, no calculado. */
+.d2 .ciclo-sec .ciclo {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  margin-top: 0;
+}
+
+/* Y cada paso pasa a ser la superficie que se despega del fondo. */
+.d2 .ciclo-sec .ciclo__paso {
+  padding: var(--sp-4, 16px) var(--sp-5, 24px);
+  border-radius: var(--radio-lg, 16px);
+  border: 1px solid var(--c-borde, #E4E4E4);
+}
+
+/* Sobre fondo oscuro la tarjeta blanca ya destaca de sobra y el borde
+   claro solo la ensucia. */
+.d2 .ciclo-sec[data-comp-tono="oscuro"] .ciclo__paso {
+  border-color: transparent;
+}
+
+/* El "and repeat" iba dentro de la caja; sin ella necesita su propio aire */
+.d2 .ciclo-sec .ciclo__repite {
+  margin-top: var(--sp-2, 8px);
+}
+
+/* --- Y LO QUE APARECIO AL QUITAR LA CAJA  (18/9/2026) -------------------
+
+   Con la caja fuera, medido tarjeta contra FONDO DE SECCION:
+
+     blanco  1.00    la tarjeta blanca sobre blanco: solo la sostiene el borde
+     gris    1.09
+     verde   9.36
+     negro  17.40
+
+   Sobre claro la tarjeta no se despega. No se resuelve oscureciendola --se
+   perderia la jerarquia de superficie del sistema-- sino dando peso al
+   borde, que es lo que ya hace .ruta y .nivel sobre fondo claro.
+
+   Y "and repeat" fallaba en los CUATRO: 2.66 / 2.44 / 1.46 / 2.72. Va en
+   var(--c-verde), el verde de marca, que a 14px no llega al 4,5 sobre
+   ningun fondo. Es la regla que el sistema ya tiene escrita: el de marca
+   NO sirve para texto pequeno.
+   ---------------------------------------------------------------------- */
+
+/* SOBRE FONDO CLARO LA SOSTIENE LA SOMBRA, NO EL FONDO NI EL BORDE
+
+   La tarjeta da 1,04 contra el fondo blanco y gris. Parece un fallo y no lo
+   es: NINGUNA tarjeta del sitio se separa por superficie sobre fondo claro.
+   Medido en la home y en Gap, .d2-prob-mapa__ficha y .d2-res-tres__item dan
+   1,11 contra su seccion gris.
+
+   Lo que las sostiene es tarjeta BLANCA mas una sombra suave. Copiada tal
+   cual de .d2-prob-mapa__ficha, que es el patron y sale en dos paginas.
+
+   Sobre verde y negro la tarjeta ya se despega sola --9,36 y 17,40-- y la
+   sombra no estorba. */
+.d2 .ciclo-sec .ciclo__paso {
+  background: var(--c-blanco, #FFFFFF);
+  border-color: var(--c-borde-suave, #EFEFEF);
+  box-shadow: 0 4px 16px rgba(51, 51, 51, .07);
+}
+
+/* "and repeat": verde oscuro sobre claro, verde claro sobre oscuro */
+.d2 .ciclo-sec .ciclo__repite {
+  color: var(--c-verde-hover, #026F00);
+}
+
+/* El atributo va en la PROPIA seccion, no en un ancestro: el selector
+   necesita .ciclo-sec[data-comp-tono], no un descendiente. Con el
+   descendiente no aplicaba y sobre negro quedaba en 2,72. */
+.d2 .ciclo-sec[data-comp-tono="oscuro"] .ciclo__repite {
+  color: #6FD97E;
+}
+
+/* ==========================================================================
+   "LONG-TERM RESULTS" — LAS DOS COLUMNAS ARRANCAN A LA MISMA ALTURA
+
+   Mismo acuerdo que "The work" y que "what is involved" en Recommissioning:
+   el ojo lee las dos columnas como una fila.
+
+   Aqui la causa era otra: no un margen negativo, sino relleno superior
+   desigual --43,2px en la columna de texto contra 32 en el grafico, medido--.
+   El grafico arrancaba 44px por encima del eyebrow.
+
+   Se iguala el relleno del grafico al de la columna de texto, COPIANDO SU
+   FORMULA y no el numero. La primera version puso 43,2px fijos, que es lo
+   que mide a 1440px, y ahi cuadraba... pero solo ahi: el relleno de la
+   izquierda escala --48px a 1920, 43,2 a 1440, 32 a 960-- y el fijo no.
+   Medido: el desfase iba de -6 a +10 segun el ancho.
+
+   Con la misma clamp los dos lados suben y bajan juntos en cualquier ancho.
+   ========================================================================== */
+.d2 .prueba-sec .bepi {
+  padding-top: clamp(var(--sp-6), 3vw, var(--sp-7));
+}
+
+/* ==========================================================================
+   EL GRAFICO DE "LONG-TERM RESULTS", EN BLANCO
+
+   La seccion tiene fondo verde oscuro fijo --rgb(26,81,33)-- y el grafico
+   estaba pintado en el verde de marca: 3,51 de contraste. Pasa el minimo
+   de un grafico por poco, pero es verde sobre verde y apenas se lee.
+
+   Peor: el punto FINAL --el 198 de hoy, el dato que remata la historia--
+   estaba en var(--c-texto), el gris de texto sobre fondo claro. Sobre este
+   verde da 1,35: practicamente invisible.
+
+   Todo pasa a blanco, que es el color del resto del texto de la seccion y
+   da 9,36. El area se queda translucida para que sea volumen y no mancha.
+   ========================================================================== */
+.d2 .prueba-sec .bepi__linea {
+  stroke: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .prueba-sec .bepi__area {
+  fill: var(--c-blanco, #FFFFFF);
+  opacity: .12;
+}
+
+.d2 .prueba-sec .bepi__punto {
+  fill: var(--c-blanco, #FFFFFF);
+}
+
+/* El punto final se distingue por un anillo verde, no por color propio:
+   asi sigue destacando sin volver a perderse contra el fondo. */
+.d2 .prueba-sec .bepi__punto--fin {
+  fill: var(--c-blanco, #FFFFFF);
+  stroke: var(--c-verde, #39B54A);
+  stroke-width: 3;
+}
+
+/* ==========================================================================
+   EL "34%" VIVE EN EL GRAFICO, NO JUNTO AL TITULAR
+
+   Estaba en la columna de texto a 40px, debajo de un titular de 49: la cifra
+   protagonista quedaba mas pequena que su propio titulo y se leia como un
+   subtitulo. Medido.
+
+   Su sitio es el grafico. La caida de 302 a 198 ES el 34%, asi que la cifra
+   deja de competir con el titular y pasa a explicar la linea. En la columna
+   de texto solo repetia lo que el parrafo de abajo ya cuenta.
+
+   Aqui si puede ser grande --56px-- porque no compite con nada: en esa
+   columna es el unico titular.
+   ========================================================================== */
+/* El numero y su texto son UN BLOQUE, alineados arriba y abajo.
+
+   Con align-items:baseline el numero salia 34px por encima del texto:
+   baseline alinea la BASE del numero con la primera linea del texto, asi
+   que un numero de 56px empuja su caja muy por encima. Medido.
+
+   Con stretch los dos hijos ocupan el mismo alto, y el texto se centra
+   dentro del suyo: arrancan y acaban a la vez. */
+.d2 .prueba-sec .bepi__destacado {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(14px, 1.4vw, 20px);
+  margin: var(--sp-5, 24px) 0 0;
+  padding-top: var(--sp-5, 24px);
+  border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+.d2 .prueba-sec .bepi__destacado-n {
+  flex: none;
+  font-size: clamp(40px, 3.9vw, 56px);
+  font-weight: var(--fw-extrabold, 800);
+  /* El interlineado hace de alto de caja: con 1 la caja mide justo el
+     numero, y es lo que el texto de al lado tiene que igualar. */
+  line-height: 1;
+  color: var(--c-blanco, #FFFFFF);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sube de 14px a 17px --el tamano de cuerpo del sitio--: a 14 la diferencia
+   con el numero era de cuatro veces y no se leian como pareja. Y se centra
+   en vertical para que las dos lineas queden a la altura del numero. */
+.d2 .prueba-sec .bepi__destacado-t {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .86);
+}
+
+@media (max-width: 600px) {
+  .d2 .prueba-sec .bepi__destacado { display: block; }
+  .d2 .prueba-sec .bepi__destacado-n { display: block; margin-bottom: 6px; }
+}
+
+/* ==========================================================================
+   "THE PARTNERSHIP" SOBRE GRIS
+
+   La seccion pasa de blanco a #F5F5F5, el gris de la opcion "Grey" del
+   selector de fondos --el que ya esta aprobado para secciones enteras--.
+
+   El cambio arrastra dos cajas interiores que eran grises sobre blanco y
+   ahora serian gris sobre gris:
+
+     .dos-col__izq   #FAFAFA sobre #F5F5F5  ->  1,02, invisible
+     .run-callout    #F5F5F5 sobre #F5F5F5  ->  1,00, invisible
+
+   Las dos pasan a blanco, que es como el sitio resuelve tarjeta sobre gris
+   --medido en .d2-prob-mapa__ficha de la home-- con su sombra suave.
+   ========================================================================== */
+/* EL GRIS SOLO CUANDO "THE WORK" ESTA EN BLANCO
+
+   Las dos secciones son vecinas, asi que lo que importa es que se
+   distingan entre si, no el color de cada una por separado:
+
+     The work en blanco  ->  gris aqui, o serian dos blancos seguidos
+     The work en gris    ->  blanco aqui, o serian dos grises iguales
+     The work en verde   ->  blanco aqui, que ya contrasta de sobra
+     The work en negro   ->  blanco aqui, idem
+
+   data-pf vive en <html> y lo pone el selector de fondos, asi que esto se
+   resuelve en CSS y no hace falta tocar el JS. El blanco es el valor por
+   defecto y el gris la excepcion, de modo que si algun dia apareciera un
+   color nuevo la seccion seguiria siendo blanca --que es lo seguro--. */
+.d2 .dos-col--gris {
+  background: var(--c-blanco, #FFFFFF);
+}
+
+[data-pf="blanco"] .d2 .dos-col--gris,
+.d2[data-pf="blanco"] .dos-col--gris {
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+/* La tarjeta de "What the program includes" SIGUE AL FONDO DE SU SECCION.
+
+   Se pinto blanca para contrastar sobre el gris. Pero la seccion solo es
+   gris cuando "The work" esta en blanco: en los otros tres colores vuelve a
+   ser blanca, y una tarjeta blanca sobre seccion blanca da 1,00 --medido--.
+
+   Asi que la tarjeta es blanca SOLO cuando la seccion es gris, y gris
+   cuando la seccion es blanca. Siempre una de las dos, nunca las mismas. */
+.d2 .dos-col--gris .dos-col__izq {
+  background: var(--c-fondo, #FAFAFA);
+  border-color: var(--c-borde, #E4E4E4);
+  box-shadow: none;
+}
+
+[data-pf="blanco"] .d2 .dos-col--gris .dos-col__izq,
+.d2[data-pf="blanco"] .dos-col--gris .dos-col__izq {
+  background: var(--c-blanco, #FFFFFF);
+  border-color: var(--c-borde-suave, #EFEFEF);
+  box-shadow: 0 4px 16px rgba(51, 51, 51, .07);
+}
+
+/* El aviso del pie SE QUEDA GRIS, y esto es lo contrario de lo que parece.
+
+   No esta sobre el fondo de la seccion: vive DENTRO de .dos-col__izq, que
+   acaba de volverse blanca. Pintarlo de blanco lo dejaba a 1,00 contra su
+   propia tarjeta --invisible--.
+
+   Asi que aqui el gris es el que contrasta: gris sobre blanco, no blanco
+   sobre gris. Se le anade el borde para que se sostenga igual que antes. */
+.d2 .dos-col--gris .run-callout {
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+}
+
+/* Cuando la tarjeta que lo contiene es blanca, el callout vuelve a ser gris */
+[data-pf="blanco"] .d2 .dos-col--gris .run-callout,
+.d2[data-pf="blanco"] .dos-col--gris .run-callout {
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+/* ==========================================================================
+   OPCION 2 DE "THE PARTNERSHIP": LOS NUEVE PUNTOS, POR FASES
+
+   La actual los pone en una lista seguida. Nueve puntos seguidos se leen
+   como un inventario: no dicen que pasa primero ni con que ritmo.
+
+   Agrupados en montar / planear / operar se ve que el programa tiene un
+   principio y una cadencia. LOS NUEVE SIGUEN AHI, palabra por palabra.
+   ========================================================================== */
+
+.d2 .fases-sec {
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+.d2 .fases-sec__inner {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: clamp(40px, 5vw, 76px);
+  align-items: start;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+}
+
+.d2 .fases-sec__titulo {
+  margin: var(--sp-3, 12px) 0 var(--sp-4, 16px);
+  font-size: clamp(30px, 3.4vw, 49px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.1;
+}
+
+.d2 .fases-sec__lead {
+  margin: 0 0 var(--sp-4, 16px);
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.55;
+}
+
+.d2 .fases-sec__cta { margin-top: var(--sp-4, 16px); }
+
+.d2 .fases {
+  display: grid;
+  gap: var(--sp-4, 16px);
+  margin-top: var(--sp-4, 16px);
+}
+
+/* Tarjeta blanca sobre el gris de la seccion, con la sombra del sitio:
+   es como resuelve .d2-prob-mapa__ficha en la home. */
+.d2 .fase {
+  padding: clamp(18px, 1.9vw, 24px);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: var(--radio-lg, 16px);
+  box-shadow: 0 4px 16px rgba(51, 51, 51, .07);
+}
+
+.d2 .fase__cab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.d2 .fase__n {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-extrabold, 800);
+  color: var(--c-blanco, #FFFFFF);
+  background: var(--c-verde-hover, #026F00);
+  border-radius: 50%;
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .fase__nombre {
+  font-size: var(--fs-body, 1rem);
+  font-weight: var(--fw-extrabold, 800);
+}
+
+.d2 .fase__apunte {
+  margin: 8px 0 var(--sp-3, 12px);
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.45;
+  color: var(--c-texto-suave, #666666);
+}
+
+.d2 .fase__lista {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: var(--sp-3, 12px) 0 0;
+  border-top: 1px solid var(--c-borde-suave, #EFEFEF);
+  list-style: none;
+}
+
+/* El punto verde delante de cada linea, como en las listas del sitio */
+.d2 .fase__lista li {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.45;
+}
+
+.d2 .fase__lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 6px;
+  height: 6px;
+  background: var(--c-verde, #39B54A);
+  border-radius: 50%;
+}
+
+/* El aviso del pie: gris dentro de la columna, como en la opcion 1 */
+.d2 .fases-sec__nota {
+  margin-top: var(--sp-4, 16px);
+  padding: var(--sp-4, 16px);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: var(--radio-md, 12px);
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
+}
+
+.d2 .fases-sec .fase { opacity: 0; transform: translateY(10px); }
+
+.d2 .fases-sec.es-visible .fase {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--curva, cubic-bezier(.32, .72, 0, 1)),
+              transform .5s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(var(--i) * 110ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .fases-sec .fase { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .d2 .fases-sec__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==========================================================================
+   OPCION 2 DE "LONG-TERM RESULTS": ANTES Y DESPUES
+
+   Es literalmente lo que pide el documento del cliente:
+
+     "show a 302-to-198 COMPARISON rather than implying annual data points
+      that have not been supplied"
+
+   Dos cifras enfrentadas y dos barras. LAS BARRAS SON PROPORCIONALES DE
+   VERDAD: 198/302 = 65,6%, asi que la de hoy mide ese porcentaje de la de
+   2016. La proporcion es el dato, no decoracion.
+
+   Fondo verde oscuro fijo, como la opcion 1, asi que todo va en blanco.
+   ========================================================================== */
+
+.d2 .comp-sec__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 76px);
+  align-items: start;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+}
+
+.d2 .comp-sec__titulo {
+  margin: var(--sp-3, 12px) 0 var(--sp-4, 16px);
+  font-size: clamp(30px, 3.4vw, 49px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.1;
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .comp-sec__lead {
+  margin: 0 0 var(--sp-4, 16px);
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .88);
+}
+
+.d2 .comp-sec__medida {
+  padding: clamp(24px, 2.6vw, 34px);
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: var(--radio-lg, 16px);
+}
+
+.d2 .comp-sec__label {
+  margin: 0 0 var(--sp-5, 24px);
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #8FE89C;
+}
+
+/* Las dos columnas, ancladas abajo: las barras crecen desde la misma base
+   para que la altura se pueda comparar de un vistazo. */
+.d2 .comp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.4vw, 34px);
+  align-items: end;
+  min-height: 190px;
+}
+
+.d2 .comp__lado {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  align-content: end;
+}
+
+.d2 .comp__cuando {
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2 .comp__n {
+  font-size: clamp(34px, 3.4vw, 48px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1;
+  color: var(--c-blanco, #FFFFFF);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .comp__barra {
+  display: block;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+/* 302 es la referencia: 120px. 198 es el 65,6% de 302, asi que 79px.
+   La proporcion entre las dos barras ES la proporcion entre las cifras. */
+.d2 .comp__barra--antes {
+  height: 120px;
+  background: rgba(255, 255, 255, .28);
+}
+
+.d2 .comp__barra--hoy {
+  height: 79px;
+  background: linear-gradient(to top, #6BE873, #8FE89C);
+}
+
+.d2 .comp-sec.es-visible .comp__barra {
+  transform: scaleY(1);
+  transition: transform .9s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(.25s + var(--i) * 160ms);
+}
+
+/* El resumen, alineado como el de la opcion 1 */
+.d2 .comp__resumen {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(14px, 1.4vw, 20px);
+  margin: var(--sp-5, 24px) 0 0;
+  padding-top: var(--sp-5, 24px);
+  border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+.d2 .comp__resumen-n {
+  flex: none;
+  font-size: clamp(40px, 3.9vw, 56px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1;
+  color: var(--c-blanco, #FFFFFF);
+  font-variant-numeric: tabular-nums;
+}
+
+.d2 .comp__resumen-t {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .86);
+}
+
+.d2 .comp__nota {
+  margin: var(--sp-4, 16px) 0 0;
+  font-size: var(--fs-xs, .75rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .comp-sec .comp__barra { transform: scaleY(1); }
+}
+
+@media (max-width: 900px) {
+  .d2 .comp-sec__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .d2 .comp__resumen { display: block; }
+  .d2 .comp__resumen-n { display: block; margin-bottom: 6px; }
+}
+
+/* ==========================================================================
+   OPCION 2 DE "THE WORK": EL CICLO QUE GIRA
+
+   La primera version de esta opcion era, sin darme cuenta, la misma pieza
+   que "How it works" de Recommissioning: linea vertical, circulo numerado y
+   texto al lado. Dos paginas con el mismo recurso no son dos propuestas.
+
+   Esta es otra cosa: los cuatro pasos en cuadrantes alrededor de un centro,
+   y un anillo discontinuo con dos flechas que dice hacia donde gira. El
+   titular promete "a continuous cycle" y aqui el ciclo se ve, no se narra.
+   ========================================================================== */
+
+.d2 .giro-sec__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  max-width: var(--ancho-max, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+}
+
+.d2 .giro-sec__titulo {
+  margin: var(--sp-3, 12px) 0 var(--sp-4, 16px);
+  font-size: clamp(30px, 3.4vw, 49px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.1;
+}
+
+.d2 .giro-sec__lead {
+  margin: 0 0 var(--sp-4, 16px);
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.55;
+}
+
+.d2 .giro { position: relative; }
+
+/* Cuatro cuadrantes. El orden de lectura --arriba-izq, arriba-der,
+   abajo-der, abajo-izq-- es el del reloj, que es como gira el ciclo. */
+.d2 .giro__pasos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 1.6vw, 20px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* El tercero y el cuarto se cruzan para que el recorrido sea circular y no
+   en zigzag: 1 2 / 4 3 en pantalla. */
+.d2 .giro__paso:nth-child(3) { order: 4; }
+.d2 .giro__paso:nth-child(4) { order: 3; }
+
+.d2 .giro__paso {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: clamp(18px, 1.9vw, 24px) clamp(12px, 1.4vw, 18px);
+  text-align: center;
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: var(--radio-lg, 16px);
+  box-shadow: 0 4px 16px rgba(51, 51, 51, .07);
+}
+
+.d2 .giro__icono {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: var(--c-verde-hover, #026F00);
+  background: rgba(57, 181, 74, .12);
+  border-radius: 50%;
+}
+
+.d2 .giro__nombre {
+  font-size: var(--fs-small, .875rem);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.35;
+}
+
+/* El anillo del centro: dice que esto gira y no termina. Se sale de la
+   rejilla para quedar entre los cuatro, y no captura el raton. */
+.d2 .giro__centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(76px, 7vw, 96px);
+  height: clamp(76px, 7vw, 96px);
+  transform: translate(-50%, -50%);
+  color: var(--c-verde, #39B54A);
+  pointer-events: none;
+}
+
+.d2 .giro__centro svg { width: 100%; height: 100%; }
+
+.d2 .giro-sec.es-visible .giro__centro svg {
+  animation: giro-vuelta 26s linear infinite;
+}
+
+@keyframes giro-vuelta { to { transform: rotate(360deg); } }
+
+.d2 .giro__pie {
+  margin: var(--sp-4, 16px) 0 0;
+  text-align: center;
+  font-size: var(--fs-small, .875rem);
+  color: var(--c-texto-suave, #666666);
+}
+
+/* Sobre fondo oscuro */
+.d2 .giro-sec[data-comp-tono="oscuro"] .giro__pie { color: rgba(255, 255, 255, .78); }
+.d2 .giro-sec[data-comp-tono="oscuro"] .giro__centro { color: #6FD97E; }
+
+/* Entran girando: uno detras de otro, en el sentido del ciclo */
+.d2 .giro-sec .giro__paso { opacity: 0; transform: scale(.96); }
+
+.d2 .giro-sec.es-visible .giro__paso {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--curva, cubic-bezier(.32, .72, 0, 1)),
+              transform .5s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(var(--i) * 110ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .giro-sec .giro__paso { opacity: 1; transform: none; }
+  .d2 .giro-sec.es-visible .giro__centro svg { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .d2 .giro-sec__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .d2 .giro__pasos { grid-template-columns: minmax(0, 1fr); }
+  .d2 .giro__centro { display: none; }   /* en una columna no hay centro */
+  .d2 .giro__paso:nth-child(3),
+  .d2 .giro__paso:nth-child(4) { order: 0; }
+}
+
+
+/* ==========================================================================
+   LOS NUMEROS PASAN A ICONOS
+
+   En Cards --.ciclo__n-- y en Phases --.fase__n-- el circulo llevaba un
+   numero. Ahora lleva un icono de lo que ese paso hace: lupa para buscar
+   oportunidades, plano para trazar la estrategia, llave para ejecutar y
+   pulso para vigilar el resultado.
+
+   El circulo era una caja de texto y ahora es una caja de dibujo: cambia el
+   centrado --place-items en vez de line-height-- y hay que decirle al SVG
+   que no se estire.
+   ========================================================================== */
+
+.d2 .ciclo__n,
+.d2 .fase__n {
+  display: grid;
+  place-items: center;
+}
+
+.d2 .ciclo__n svg,
+.d2 .fase__n svg,
+.d2 .giro__icono svg { flex: none; }
+
+/* El circulo de Cards crece para alojar el dibujo: un icono de 24 dentro de
+   un circulo de 28 queda ahogado. */
+.d2 .ciclo-sec .ciclo__n {
+  width: 42px;
+  height: 42px;
+  color: var(--c-verde-hover, #026F00);
+  background: rgba(57, 181, 74, .12);
+  border-radius: 50%;
+}
+
+.d2 .ciclo-sec[data-comp-tono="oscuro"] .ciclo__n {
+  color: #6FD97E;
+  background: rgba(255, 255, 255, .12);
+}
+
+/* El de Phases se queda pequeno --va en la cabecera de la tarjeta-- pero
+   pasa de verde macizo con numero blanco a verde claro con icono verde:
+   un icono blanco de 18px sobre verde se pierde. */
+.d2 .fases-sec .fase__n {
+  width: 30px;
+  height: 30px;
+  color: var(--c-verde-hover, #026F00);
+  background: rgba(57, 181, 74, .12);
+}
+
+/* ==========================================================================
+   "THE PARTNERSHIP": LA LISTA A LA IZQUIERDA, EL TEXTO A LA DERECHA
+
+   Se invierte con `order` y no moviendo el marcado, a proposito: en el HTML
+   el titulo sigue yendo antes que la lista, que es el orden en que hay que
+   leerlo --y el que oye quien usa un lector de pantalla o navega con el
+   tabulador--. Solo cambia donde se pinta cada columna.
+
+   Los anchos tambien se cruzan: la columna de texto es la mas ancha de las
+   dos, y al cambiar de lado su ancho tiene que irse con ella.
+   ========================================================================== */
+
+/* --- Opcion 1, "List" --- */
+.d2 .dos-col--gris .dos-col__inner--invertido {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.d2 .dos-col--gris .dos-col__inner--invertido > .dos-col__der  { order: 2; }
+.d2 .dos-col--gris .dos-col__inner--invertido > .dos-col__izq  { order: 1; }
+
+/* --- Opcion 2, "Phases" --- */
+.d2 .fases-sec__inner {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+}
+
+.d2 .fases-sec__inner > .fases-sec__texto { order: 2; }
+.d2 .fases-sec__inner > .fases-sec__fases { order: 1; }
+
+/* En una columna el orden vuelve a ser el del marcado: primero el titulo,
+   luego la lista. Apilado, leer la lista antes que su titulo no tiene
+   sentido. */
+@media (max-width: 900px) {
+  .d2 .dos-col--gris .dos-col__inner--invertido > .dos-col__der,
+  .d2 .dos-col--gris .dos-col__inner--invertido > .dos-col__izq,
+  .d2 .fases-sec__inner > .fases-sec__texto,
+  .d2 .fases-sec__inner > .fases-sec__fases { order: 0; }
+}
+
+/* ==========================================================================
+   "WHAT YOU WILL NEED": EL GRIS DE SECCION, NO EL DE TARJETA
+
+   En esta pagina habia tres grises a cinco puntos de distancia:
+
+     #F5F5F5  la seccion bajo el hero, la que pinta el selector
+     #FAFAFA  esta
+     #F3F3F3  el FAQ
+
+   Tres grises casi iguales no se leen como tres tonos: se leen como un
+   error de impresion.
+
+   El que sobra es este. Contado en las seis paginas: #F3F3F3 aparece en 9
+   secciones --todos los FAQ-- y #F5F5F5 en 3, pero #FAFAFA solo aqui, en
+   toda la web. Y su token lo dice: --c-fondo es "fondo del hero", el tono
+   de TARJETA. Esta seccion lo usaba como si fuera de seccion.
+
+   Pasa a --c-fondo-alt, que es el gris de seccion y el que ya pinta el
+   selector de fondos, asi que las dos vecinas dejan de discutir.
+   ========================================================================== */
+/* Y EL GRIS SOLO CUANDO SU VECINA ESTA EN BLANCO, como en Energy
+   Management. Las dos secciones son vecinas --"What is involved" es la
+   diana del selector y esta va justo debajo--, asi que lo que importa es
+   que se distingan entre si:
+
+     What is involved en blanco  ->  gris aqui
+     en gris, verde o negro      ->  blanco aqui
+
+   El blanco es el valor por defecto y el gris la excepcion: si algun dia
+   aparece un color nuevo, esta seguira siendo blanca, que es lo seguro. */
+.d2 .requisitos {
+  background: var(--c-blanco, #FFFFFF);
+}
+
+[data-pf="blanco"] .d2 .requisitos,
+.d2[data-pf="blanco"] .requisitos {
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+/* Los numeros de "Sequence" pasan a iconos: el circulo deja de ser una caja
+   de texto y pasa a ser una caja de dibujo. Crece de 30 a 38 --un icono de
+   18 dentro de un circulo de 30 queda ahogado-- y cambia a verde claro con
+   trazo verde oscuro: un icono blanco sobre verde macizo se pierde a este
+   tamano, cosa que un numero no sufre porque es mas compacto. */
+.d2 .hw-sec .hw-paso {
+  grid-template-columns: 38px minmax(0, 1fr);
+}
+
+/* El fondo del circulo tiene que ser OPACO, y esa es toda la diferencia.
+
+   Estaba en rgba(57,181,74,.12) --verde al 12%-- asi que la linea que une
+   los pasos se transparentaba a traves de el y se veia cruzando por encima
+   de cada icono. El z-index:1 no lo evitaba: el circulo SI estaba delante,
+   pero se le veia a traves.
+
+   #EBF5EC es ese mismo verde al 12% ya mezclado sobre blanco, asi que el
+   color a la vista no cambia; lo que cambia es que ahora tapa. */
+.d2 .hw-sec .hw-paso__n {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--c-verde-hover, #026F00);
+  background: #EBF5EC;
+}
+
+/* Sobre gris el circulo lleva el gris mezclado, no el blanco */
+[data-pf="gris"] .d2 .hw-sec .hw-paso__n,
+.d2[data-pf="gris"] .hw-sec .hw-paso__n {
+  background: #E4EFE5;
+}
+
+/* LA LINEA VA POR DETRAS, PARA QUE SOLO SE VEAN LAS CONEXIONES
+
+   La linea recorre la lista entera, asi que atraviesa cada circulo. Con el
+   fondo del circulo translucido se veia cruzando los iconos; ya es opaco,
+   pero seguia asomando en el hueco entre el borde del circulo y el dibujo
+   --medido leyendo pixeles: 5 de 5 iconos en blanco, verde y negro--.
+
+   z-index:-1 la manda detras del circulo entero, no solo detras del icono.
+   Asi solo se ve en los tramos ENTRE pasos, que es donde significa algo: la
+   conexion. Dentro del circulo no pinta nada.
+
+   La lista necesita su propio contexto de apilado --isolation:isolate-- o
+   el -1 se iria detras del fondo de la seccion y la linea desapareceria.
+
+   Y se recentra: el circulo paso de 30 a 38, su centro de 15 a 19. */
+.d2 .hw-sec__lista {
+  isolation: isolate;
+}
+
+.d2 .hw-sec__lista::before {
+  left: 19px;
+  top: 19px;
+  bottom: 19px;
+  z-index: -1;
+}
+
+/* Sobre fondo oscuro, el mismo criterio: opaco, no translucido. Son los
+   dos fondos oscuros del selector con el blanco al 12% ya mezclado. */
+[data-pf="verde"] .d2 .hw-sec .hw-paso__n,
+.d2[data-pf="verde"] .hw-sec .hw-paso__n {
+  color: #6FD97E;
+  background: #2D6033;
+}
+
+[data-pf="negro"] .d2 .hw-sec .hw-paso__n,
+.d2[data-pf="negro"] .hw-sec .hw-paso__n {
+  color: #6FD97E;
+  background: #303030;
+}
+
+/* ==========================================================================
+   RECOMMISSIONING, DENTRO DEL CONTENEDOR DEL SITIO
+
+   Las secciones se veian cargadas a la izquierda, y lo estaban: su
+   contenido arrancaba en 51 cuando el del sitio arranca en 80.
+
+   La causa es una sola linea: .dos-col__inner y sus hermanas se dan
+   max-width:var(--ancho-max), y esa variable vale 1440px en tokens.css --el
+   ancho COMPLETO de la ventana a 1440--. Con un maximo igual al ancho
+   disponible no queda margen que repartir, asi que margin:auto no centra
+   nada y el contenido lo coloca solo el relleno de 51px.
+
+   Que 1280 es el ancho del sitio esta contado en las seis paginas: es el
+   unico que aparece en todas y About lo usa en exclusiva. Las dos secciones
+   que ya estaban bien aqui --el FAQ y el CTA-- tambien lo usan.
+
+   Se redefine la VARIABLE en la pagina, no la propiedad en cada seccion:
+   asi lo hereda todo lo que ya la usa, incluido lo que se anada despues, y
+   no hay una lista de selectores que mantener. No se toca tokens.css
+   porque eso movería las ocho paginas a la vez.
+
+   Y EL RELLENO TAMBIEN, que es la otra mitad del problema. Con el ancho ya
+   correcto las secciones seguian viendose mas estrechas que el hero, y lo
+   estaban: su texto arrancaba en 131 y el del hero en 108. Medido en los
+   cuatro que mandan:
+
+     HEADER  1280 + 40 de relleno  ->  texto en 120
+     HERO    1280 + 28             ->  texto en 108
+     FAQ     1280 + 28             ->  texto en 108
+     FOOTER  1280 + 40             ->  texto en 120
+     estas   1280 + 51,2           ->  texto en 131   <- 23px de mas
+
+   Se iguala al hero y al FAQ, que son los vecinos directos de estas
+   secciones y los que el ojo usa para comparar.
+   ========================================================================== */
+.d2.rc-page {
+  --ancho-max: 1280px;
+}
+
+.d2.rc-page .dos-col__inner,
+.d2.rc-page .requisitos__inner,
+.d2.rc-page .prueba-sec__inner,
+.d2.rc-page .fondos__inner,
+.d2.rc-page .rutas__inner,
+.d2.rc-page .hw-sec__inner,
+.d2.rc-page .rs-sec__inner,
+.d2.rc-page .fn-sec__inner {
+  padding-inline: 28px;
+}
+
+/* ==========================================================================
+   EL ARTE DEL HERO, COMO EN GAP, EN LAS OTRAS TRES PAGINAS (18/9/2026)
+
+   Gap es la unica que tenia la ilustracion contenida en su columna. Medido
+   a 1440px, con la misma rejilla en las cuatro --610 + 582, gap 32--:
+
+     Gap    arte 582 de ancho, margin-right 0        cabe justo
+     RUN    arte 582 pero el SVG dentro mide 681     se sale 99px
+     RC     arte 690, margin-right -108              se sale 108px
+     EM     arte 690, margin-right -108              se sale 108px
+
+   Las tres tiran del margen negativo de la regla general --que las saca
+   hasta el borde de la ventana-- y por eso se veian mucho mas grandes y
+   descuadradas entre si.
+
+   Se les da el mismo tratamiento que a Gap: margen a cero y el ancho por
+   clamp, que escala con la ventana pero nunca desborda la columna.
+
+   Va en v1.css y no en d2-ega-ranking.css --donde se escribio primero--
+   porque esa hoja SOLO la carga Gap: las otras tres cargan tokens, style,
+   d2, d2-variantes, d2-ega, v1 y prueba-fondos. Escrita alli no le llegaba
+   a ninguna de las tres. v1 es la ultima suya, asi que gana sin
+   !important. Y no se toca la regla general: la usan otras secciones.
+   ========================================================================== */
+
+.d2 :is(.run-hero, .rc-hero, .em-hero) .d2-ega-hero__arte {
+  margin-right: 0;
+}
+
+/* El mismo clamp de Gap. Vale para <img>, para <picture> y para el <svg>
+   de RUN: los tres se dimensionan por ancho. */
+.d2 :is(.run-hero, .rc-hero, .em-hero) .d2-ega-hero__arte :is(img, picture, svg) {
+  width: clamp(460px, 46vw, 900px);
+  max-width: 100%;
+  height: auto;
+}
+
+/* El <picture> es una caja en linea: sin esto no transmite el ancho a la
+   imagen que lleva dentro. */
+.d2 :is(.rc-hero, .em-hero) .d2-ega-hero__arte picture {
+  display: block;
+}
+
+.d2 :is(.rc-hero, .em-hero) .d2-ega-hero__arte picture img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Apilado, el ancho lo pone la pantalla, igual que en Gap. */
+@media (max-width: 1000px) {
+  .d2 :is(.run-hero, .rc-hero, .em-hero) .d2-ega-hero__arte :is(img, picture, svg) {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   EL TITULAR DE ENERGY MANAGEMENT, EN TRES LINEAS COMO LOS DEMAS
+
+   Comparados los tres heroes a 1280px, la unica diferencia real entre ellos
+   era esta:
+
+     Gap    "Know which buildings are worth an energy audit."   3 lineas
+     RC     "Restore the performance your buildings have lost." 3 lineas
+     EM     "Energy management takes more than spare time."     4 lineas
+
+   Y no por falta de sitio: la linea mas larga de EM mide 514px en una caja
+   de 610. Le sobran casi 100px. Se parte en cuatro porque "management" es
+   larga y fuerza el salto antes de tiempo, dejando las otras lineas cortas.
+
+   Las cuatro lineas suben el bloque de texto 66px, y con la imagen del
+   mismo tamano que en las otras dos el hero se descompensa: el titular pesa
+   de mas y el dibujo parece pequeno al lado.
+
+   La solucion es bajar el titular de 64 a 60px. Probado uno por uno:
+
+     64px  4 lineas, la mas larga 514   <- hoy
+     62px  4 lineas, la mas larga 498
+     60px  3 lineas, la mas larga 610   <- llena la columna exacta
+     58px  3 lineas, la mas larga 589
+
+   60 es el punto donde entra en tres lineas Y aprovecha los 610 enteros.
+   Son 4px de diferencia que a simple vista no se distinguen, pero quitan
+   79px de alto al titular y devuelven al hero la proporcion de los otros
+   dos.
+
+   Lo que NO funciona, por si se vuelve a intentar:
+     - text-wrap:balance   reparte entre las lineas que ya hay; no quita
+                           ninguna, asi que se quedaba en cuatro.
+     - ensanchar la columna  necesitaria 660 y hay 610; los 50 que faltan
+                           saldrian de la imagen, que es lo contrario de
+                           lo que se busca.
+
+   Se redefine la variable --fs-h1 y no la propiedad, que es como el
+   sistema espera que se ajuste el tamano.
+
+   Y SOLO SE BAJA EL TECHO, no el valor entero. La original es
+   clamp(2.25rem, 1.5rem + 3.2vw, 4rem): de 36px en movil a 64 en
+   escritorio. Un 60px fijo arreglaba el escritorio y rompia el movil --a
+   375px el titular se quedaba en 60 mientras Gap y Recommissioning bajaban
+   a 36, medido--. Aqui solo cambia el maximo, de 4rem a 3.75rem, asi que
+   por debajo de 1024 escala exactamente igual que las otras dos. */
+.d2.em-page .d2-ega-hero__titulo {
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem);
+  text-wrap: balance;
 }

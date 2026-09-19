@@ -86,7 +86,7 @@
 
 .d2 .d2-ega-pasos3__titulo {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -732,7 +732,7 @@
 
 .d2 .d2-ega-termo__titulo {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -933,7 +933,7 @@
 
 .d2 .d2-ega-per__titulo {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -1686,7 +1686,7 @@
 
 .d2 :is(.d2-ega-piv__titulo) {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -2048,7 +2048,7 @@
 
 .d2 .d2-ega-met__titulo {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -2949,7 +2949,7 @@
 
 .d2 .d2-ega-ruta-sec__titulo {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -3242,7 +3242,7 @@
 
 .d2 :is(.d2-ega-eta__titulo, .d2-ega-sen__titulo) {
   margin: 12px 0 0;
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;

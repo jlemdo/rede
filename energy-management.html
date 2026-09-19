@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="css/v1.css">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
 <link rel="stylesheet" href="css/prueba-fondos.css">
+<!-- Regulador de tamano de titulares: herramienta de trabajo -->
+<link rel="stylesheet" href="css/ajuste-titulos.css">
 </head>
 <body class="d2 em-page">
 
@@ -289,6 +291,23 @@
      El brief pide que esta pagina haga primero el trabajo de educar: muchos
      visitantes no saben que significa en la practica.
      ========================================================================== -->
+<!-- ==================================================================
+     "THE WORK" -- DOS PROPUESTAS (18/9/2026)
+
+     1 Cards  la actual: cuatro tarjetas en fila
+     2 Loop   los cuatro pasos como un recorrido que vuelve al principio,
+              unidos por una linea, y cada uno con lo que responde
+
+     El titular promete "a continuous cycle" y cuatro tarjetas en fila no
+     cierran ningun ciclo: se leen como una lista que termina. Aqui la
+     linea baja, enlaza los cuatro y el "and repeat" la devuelve arriba.
+
+     Copy IDENTICO en las dos. El apunte de cada paso es la pregunta que
+     ese paso responde, no copy nuevo del cliente.
+     ================================================================== -->
+<div class="d2-caru" id="caru-work" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="ciclo-sec" id="how-it-works">
   <div class="ciclo-sec__inner">
 
@@ -308,19 +327,19 @@
     <!-- El ciclo, como diagrama. El copy sugiere justamente esto. -->
     <ol class="ciclo">
       <li class="ciclo__paso">
-        <span class="ciclo__n">1</span>
+        <span class="ciclo__n" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/></g></svg></span>
         <span class="ciclo__nombre">Identify opportunities</span>
       </li>
       <li class="ciclo__paso">
-        <span class="ciclo__n">2</span>
+        <span class="ciclo__n" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6l5 3 6-3 5 3v12l-5-3-6 3-5-3z"/><path d="M9 9v9M15 6v9"/></g></svg></span>
         <span class="ciclo__nombre">Develop strategies</span>
       </li>
       <li class="ciclo__paso">
-        <span class="ciclo__n">3</span>
+        <span class="ciclo__n" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 00-6 6L4 17v3h3l4.7-4.7a4.5 4.5 0 006-6l-2.6 2.6-2.1-2.1 2.7-2.5z"/></g></svg></span>
         <span class="ciclo__nombre">Implement projects</span>
       </li>
       <li class="ciclo__paso">
-        <span class="ciclo__n">4</span>
+        <span class="ciclo__n" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14L16 12h5"/></g></svg></span>
         <span class="ciclo__nombre">Monitor outcomes</span>
       </li>
       <li class="ciclo__repite" aria-hidden="true">
@@ -335,12 +354,97 @@
     </ol>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="ciclo-sec giro-sec d2-entra" id="how-it-works">
+  <div class="giro-sec__inner">
+
+    <div class="giro-sec__texto">
+      <p class="eyebrow">The work</p>
+      <h2 class="giro-sec__titulo">Energy management is a continuous cycle.</h2>
+      <p class="giro-sec__lead">
+        Without someone dedicated to running that cycle, energy costs can drift upward
+        and capital decisions can be made without the data needed to support them.
+      </p>
+      <p class="giro-sec__lead">
+        Rede runs the cycle alongside your team, using portfolio data to prioritize the
+        work that matters.
+      </p>
+    </div>
+
+    <div class="giro-sec__ciclo">
+      <div class="giro">
+        <ol class="giro__pasos">
+          <li class="giro__paso" style="--i:0">
+            <span class="giro__icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/></g></svg></span>
+            <span class="giro__nombre">Identify opportunities</span>
+          </li>
+          <li class="giro__paso" style="--i:1">
+            <span class="giro__icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6l5 3 6-3 5 3v12l-5-3-6 3-5-3z"/><path d="M9 9v9M15 6v9"/></g></svg></span>
+            <span class="giro__nombre">Develop strategies</span>
+          </li>
+          <li class="giro__paso" style="--i:2">
+            <span class="giro__icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 00-6 6L4 17v3h3l4.7-4.7a4.5 4.5 0 006-6l-2.6 2.6-2.1-2.1 2.7-2.5z"/></g></svg></span>
+            <span class="giro__nombre">Implement projects</span>
+          </li>
+          <li class="giro__paso" style="--i:3">
+            <span class="giro__icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14L16 12h5"/></g></svg></span>
+            <span class="giro__nombre">Monitor outcomes</span>
+          </li>
+        </ol>
+        <span class="giro__centro" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width="1.5"
+                    stroke-dasharray="4 7" opacity=".55"/>
+            <path d="M60 16l6 5-6 5" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M60 104l-6-5 6-5" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+      <p class="giro__pie">The cycle does not stop &mdash; each pass builds on the last.</p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Cards</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Loop</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
      LA SOCIEDAD Y LO QUE INCLUYE
+
+     Fondo gris --#F5F5F5, el de la opcion "Grey" del selector-- para separarla
+     de las secciones blancas de alrededor. Clase propia y no .dos-col a secas
+     porque esa clase la comparten otras secciones de la pagina.
      ========================================================================== -->
-<section class="dos-col">
+<!-- ==================================================================
+     "THE PARTNERSHIP" -- DOS PROPUESTAS (18/9/2026)
+
+     1 List    la actual: los nueve puntos en una lista seguida
+     2 Phases  los mismos nueve, agrupados por la fase a la que pertenecen
+
+     Nueve puntos seguidos se leen como un inventario y no dicen en que
+     orden pasan las cosas. Agrupados en montar / planear / operar se ve
+     que el programa tiene un principio y un ritmo.
+
+     LOS NUEVE PUNTOS ESTAN LOS NUEVE, palabra por palabra. Solo cambia
+     como se agrupan. Los nombres de fase y sus apuntes son ANADIDOS
+     PARA ESTA MAQUETA: no vienen del copy maestro y hay que aprobarlos.
+     ================================================================== -->
+<div class="d2-caru" id="caru-part" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
+<section class="dos-col dos-col--gris">
   <div class="dos-col__inner dos-col__inner--invertido">
 
     <div class="dos-col__der">
@@ -397,6 +501,83 @@
     </div>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="dos-col dos-col--gris fases-sec d2-entra">
+  <div class="fases-sec__inner">
+
+    <div class="fases-sec__texto">
+      <p class="eyebrow">The partnership</p>
+      <h2 class="fases-sec__titulo">We bring the expertise. You bring the buildings.</h2>
+      <p class="fases-sec__lead">
+        This is a genuine partnership. Rede works as an extension of your team, not as
+        an outside consultant delivering a report and moving on.
+      </p>
+      <p class="fases-sec__lead">
+        We combine portfolio data with the operational knowledge your staff already
+        have, so the plan reflects how your buildings actually run.
+      </p>
+      <a class="btn btn--primary fases-sec__cta" href="contact.html">Book a consultation</a>
+    </div>
+
+    <div class="fases-sec__fases">
+      <p class="eyebrow">What the program includes</p>
+      <div class="fases">
+        <div class="fase" style="--i:0">
+          <div class="fase__cab">
+            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 3.5L16 11H5"/></g></svg></span>
+            <span class="fase__nombre">Set up</span>
+          </div>
+          <p class="fase__apunte">Agreeing what to measure and where you stand today.</p>
+          <ul class="fase__lista">
+            <li>Structured onboarding</li>
+            <li>Target setting and baseline definition</li>
+            <li>Portfolio assessment</li>
+          </ul>
+        </div>
+        <div class="fase" style="--i:1">
+          <div class="fase__cab">
+            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></svg></span>
+            <span class="fase__nombre">Plan</span>
+          </div>
+          <p class="fase__apunte">Turning the assessment into a prioritized, funded plan.</p>
+          <ul class="fase__lista">
+            <li>Energy project list and prioritization</li>
+            <li>Three-year capital project plan</li>
+            <li>Incentive identification and applications</li>
+          </ul>
+        </div>
+        <div class="fase" style="--i:2">
+          <div class="fase__cab">
+            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 018.5-8.5 8.5 8.5 0 016.3 2.8M20.5 12a8.5 8.5 0 01-8.5 8.5 8.5 8.5 0 01-6.3-2.8"/><path d="M18 3.5v4h-4M6 20.5v-4h4"/></g></svg></span>
+            <span class="fase__nombre">Run</span>
+          </div>
+          <p class="fase__apunte">Keeping the cycle turning, month after month.</p>
+          <ul class="fase__lista">
+            <li>Building automation scheduling</li>
+            <li>Regular team engagement</li>
+            <li>Calculated greenhouse gas emissions reporting</li>
+          </ul>
+        </div>
+      </div>
+      <p class="run-callout fases-sec__nota">
+        Every Energy Management engagement is scoped to your portfolio, your data and
+        your team&rsquo;s capacity.
+      </p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 List</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Phases</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
@@ -404,16 +585,41 @@
      Caso real del brief: 302 a 198 ekWh/m2 desde 2016. El copy pide un
      grafico de la evolucion, asi que va en SVG.
      ========================================================================== -->
+<!-- ==================================================================
+     "LONG-TERM RESULTS" -- DOS PROPUESTAS (18/9/2026)
+
+     1 Trend       la actual: la recta que baja de 302 a 198
+     2 Before/after las dos cifras enfrentadas, y la barra dice la
+                   proporcion entre ellas
+
+     La opcion 2 es LITERALMENTE lo que pide el documento del cliente:
+     "show a 302-to-198 COMPARISON rather than implying annual data
+     points that have not been supplied".
+
+     Las barras son proporcionales de verdad: 198/302 = 65,6%, asi que
+     la de hoy mide ese porcentaje de la de 2016. No es decoracion.
+
+     Copy IDENTICO en las dos.
+     ================================================================== -->
+<div class="d2-caru" id="caru-lt" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="prueba-sec">
   <div class="prueba-sec__inner prueba-sec__inner--ancho">
 
     <div class="prueba-sec__dato">
       <p class="eyebrow">Long-term results</p>
-      <p class="prueba-sec__cifra">34%</p>
-      <p class="prueba-sec__pie">
-        reduction in energy intensity across 22 facilities, with $4.4 million saved in
-        energy costs over the course of the program.
-      </p>
+      <!-- El titular que pide el copy maestro, y que faltaba: era la unica
+           seccion de la pagina sin h2, asi que el eyebrow daba paso directo
+           a la cifra y el nivel de encabezado se saltaba. -->
+      <h2 class="prueba-sec__titulo">What sustained energy management can achieve.</h2>
+      <!-- El "34%" y su pie estaban AQUI, y competian con el titular: la cifra
+           media 40px y el titular 49, asi que el dato protagonista se leia
+           como un subtitulo.
+
+           Se ha movido al grafico, que es su sitio: la caida de 302 a 198 ES
+           el 34%. La cifra explica la linea, y en la columna de texto solo
+           repetia lo que el parrafo de abajo ya dice. -->
       <p class="prueba-sec__texto">
         One Western Canadian school division began working with Rede in 2016. Across its
         portfolio of 22 facilities, energy intensity declined from 302 to 198 ekWh per
@@ -443,14 +649,33 @@
           <line x1="0" y1="185" x2="480" y2="185"/>
         </g>
 
+        <!-- DOS PUNTOS, NO OCHO. Lo pide el documento del cliente:
+
+             "the current mockup shows a multi-point downward trend. If REDE
+              only has confirmed start and end values, show a 302-to-198
+              comparison rather than implying annual data points that have
+              not been supplied."
+
+             y "use a multi-year trend line ONLY IF REDE supplies the
+             underlying annual values". No los ha suministrado.
+
+             La linea tenia 8 vertices --2016, y seis anos intermedios
+             inventados-- que daban por medido un recorrido que nadie midio.
+             Queda la recta entre los dos valores aprobados: 302 y 198. -->
         <path class="bepi__area"
-              d="M10,26 L78,38 L146,62 L214,84 L282,108 L350,132 L418,150 L470,158 L470,200 L10,200 Z"/>
+              d="M10,26 L470,158 L470,200 L10,200 Z"/>
         <path class="bepi__linea"
-              d="M10,26 L78,38 L146,62 L214,84 L282,108 L350,132 L418,150 L470,158"/>
+              d="M10,26 L470,158"/>
 
         <circle class="bepi__punto" cx="10" cy="26" r="4"/>
         <circle class="bepi__punto bepi__punto--fin" cx="470" cy="158" r="5"/>
       </svg>
+
+      <p class="bepi__destacado">
+        <span class="bepi__destacado-n">34%</span>
+        <span class="bepi__destacado-t">reduction in energy intensity across 22 facilities,
+          with $4.4&nbsp;million saved in energy costs over the course of the program.</span>
+      </p>
 
       <div class="bepi__pies">
         <span><strong>302</strong> in 2016</span>
@@ -463,6 +688,65 @@
     </figure>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="prueba-sec comp-sec d2-entra">
+  <div class="comp-sec__inner">
+
+    <div class="comp-sec__texto">
+      <p class="eyebrow">Long-term results</p>
+      <h2 class="comp-sec__titulo">What sustained energy management can achieve.</h2>
+      <p class="comp-sec__lead">
+        One Western Canadian school division began working with Rede in 2016. Across its
+        portfolio of 22 facilities, energy intensity declined from 302 to 198 ekWh per
+        square metre annually&mdash;a 34% reduction. Over the course of the program, the
+        division saved $4.4 million in energy costs.
+      </p>
+      <p class="comp-sec__lead">
+        That kind of result does not come from a single project. It comes from a
+        continuous program: utility data tracked monthly, buildings assessed annually,
+        projects prioritized and implemented, and a team that stays engaged long enough
+        to see the work compound.
+      </p>
+    </div>
+
+    <div class="comp-sec__medida">
+      <p class="comp-sec__label">Energy intensity &middot; ekWh per square metre</p>
+
+      <div class="comp">
+        <div class="comp__lado" style="--i:0">
+          <span class="comp__cuando">In 2016</span>
+          <span class="comp__n">302</span>
+          <span class="comp__barra comp__barra--antes" aria-hidden="true"></span>
+        </div>
+        <div class="comp__lado comp__lado--hoy" style="--i:1">
+          <span class="comp__cuando">Today</span>
+          <span class="comp__n">198</span>
+          <span class="comp__barra comp__barra--hoy" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <p class="comp__resumen">
+        <span class="comp__resumen-n">34%</span>
+        <span class="comp__resumen-t">reduction in energy intensity across 22 facilities,
+          with $4.4&nbsp;million saved in energy costs over the course of the program.</span>
+      </p>
+
+      <p class="comp__nota">Anonymized results from a 22-facility school division portfolio.</p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Trend</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Before / after</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
@@ -711,6 +995,10 @@
 <script src="js/d2.js"></script>
 <script src="js/d2-composicion.js"></script>
 <script src="js/d2-header.js"></script>
+<!-- El selector de variantes de las tres secciones. Sin esto los botones
+     estan en la pagina pero no hacen nada: la opcion 2 nunca se ve. -->
+<script src="js/d2-carrusel.js"></script>
 <script src="js/prueba-fondos.js"></script>
+<script src="js/ajuste-titulos.js"></script>
 </body>
 </html>

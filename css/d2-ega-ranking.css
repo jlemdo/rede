@@ -465,13 +465,26 @@
   /* Apilada ocupa el ancho completo: ahi el limite lo pone la pantalla. */
   .d2 .d2-ega-hero .d2-ega-hero__arte img { width: 100%; }
 
-  /* LA ILUSTRACION, DEBAJO DEL TEXTO (16/9/2026)
+}
 
-     Como en RUN, Energy Management, Recommissioning y About: el hero abre
-     con el titular y los botones, y la escena es el cierre.
+/* ==========================================================================
+   LA ILUSTRACION, DEBAJO DEL TEXTO (16/9/2026, corregido el 18/9/2026)
 
-     Gap era la unica que la subia --la regla general le da order:-1-- y
-     eso dejaba al visitante viendo un dibujo antes de saber de que va la
-     pagina. Se alinea con las demas. */
+   Como en RUN, Energy Management, Recommissioning y About: el hero abre con
+   el titular y los botones, y la escena es el cierre.
+
+   Gap era la unica que la subia --la regla general le da order:-1-- y eso
+   dejaba al visitante viendo un dibujo antes de saber de que va la pagina.
+
+   EL LIMITE TIENE QUE SER 1000, NO 900. Esta correccion vivia en el bloque
+   de 900px, pero quien sube la imagen es el de 1000px --d2-ega.css, donde
+   el hero pasa a una columna--. Entre 901 y 1000 no habia nadie que la
+   bajara, asi que en esa franja la imagen seguia saliendo arriba. Medido:
+   a 1000, 982 y 960 la imagen iba primero; a 900 y por debajo, no.
+
+   Los dos limites tienen que ser el mismo numero: la imagen se baja en
+   cuanto deja de haber dos columnas.
+   ========================================================================== */
+@media (max-width: 1000px) {
   .d2 .d2-ega-hero .d2-ega-hero__arte { order: 0; }
 }

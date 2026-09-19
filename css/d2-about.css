@@ -68,7 +68,7 @@
 
 .d2 .ab-origen__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h2);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.12;
   letter-spacing: -.022em;
   font-weight: var(--fw-extrabold, 800);
@@ -227,7 +227,7 @@
 
 .d2 .ab-mas__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h2);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.1;
   letter-spacing: -.022em;
   font-weight: var(--fw-extrabold, 800);
@@ -312,7 +312,7 @@
 
 .d2 .ab-principios__titulo {
   margin: var(--sp-3) 0 0;
-  font-size: var(--fs-h2);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.12;
   letter-spacing: -.022em;
   font-weight: var(--fw-extrabold, 800);

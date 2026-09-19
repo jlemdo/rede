@@ -1,0 +1,165 @@
+/* ==========================================================================
+   REGULADOR DE TAMANO DE TITULARES -- su panel  (18/9/2026)
+
+   Herramienta de trabajo, no parte del sitio. Va abajo a la izquierda para
+   no chocar con el selector de fondos, que vive abajo a la derecha.
+   ========================================================================== */
+
+.aj-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  width: 248px;
+  padding: 14px;
+  background: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .14);
+  font-family: var(--fuente, system-ui, sans-serif);
+  /* Tamanos propios y fijos: si heredaran del sitio, mover el regulador
+     cambiaria el tamano del propio regulador. */
+  font-size: 12px;
+  line-height: 1.4;
+  color: #333333;
+}
+
+.aj-titulo {
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #026F00;
+}
+
+.aj-panel.es-plegado .aj-fila,
+.aj-panel.es-plegado .aj-titulo { display: none; }
+
+.aj-panel.es-plegado { width: auto; padding: 8px; }
+
+.aj-fila + .aj-fila {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #EFEFEF;
+}
+
+.aj-cab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.aj-nom { flex: 1; font-weight: 700; }
+
+.aj-num {
+  width: 62px;
+  padding: 4px 6px;
+  font: inherit;
+  font-weight: 700;
+  text-align: right;
+  color: #333333;
+  background: #FAFAFA;
+  border: 1px solid #E4E4E4;
+  border-radius: 6px;
+}
+
+.aj-num:focus {
+  outline: 2px solid #39B54A;
+  outline-offset: 1px;
+  background: #FFFFFF;
+}
+
+/* Sin las flechas del navegador: ocupan sitio y el arrastre ya cubre el
+   subir y bajar de uno en uno. */
+.aj-num::-webkit-outer-spin-button,
+.aj-num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.aj-num { -moz-appearance: textfield; appearance: textfield; }
+
+.aj-px { color: #666666; }
+
+.aj-barra {
+  display: block;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.aj-barra::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #E4E4E4;
+  border-radius: 999px;
+}
+
+.aj-barra::-moz-range-track {
+  height: 4px;
+  background: #E4E4E4;
+  border-radius: 999px;
+}
+
+/* El punto que se arrastra. 16px es el minimo comodo con el raton sin que
+   el panel crezca de mas. */
+.aj-barra::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  background: #39B54A;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .28);
+}
+
+.aj-barra::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #39B54A;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .28);
+}
+
+.aj-barra:focus-visible { outline: 2px solid #026F00; outline-offset: 2px; }
+
+.aj-pie {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #666666;
+}
+
+.aj-orig { color: #026F00; font-weight: 700; }
+
+.aj-acciones {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.aj-btn {
+  flex: 1;
+  padding: 6px 8px;
+  font: inherit;
+  font-weight: 700;
+  color: #026F00;
+  background: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.aj-btn:hover { background: #F5F5F5; }
+.aj-btn:focus-visible { outline: 2px solid #39B54A; outline-offset: 1px; }
+
+.aj-panel.es-plegado .aj-acciones { margin-top: 0; }
+.aj-panel.es-plegado .aj-btn:not(.aj-btn--x) { display: none; }
+
+@media (max-width: 700px) {
+  .aj-panel { width: calc(100vw - 32px); }
+}

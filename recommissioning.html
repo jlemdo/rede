@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="css/v1.css">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
 <link rel="stylesheet" href="css/prueba-fondos.css">
+<!-- Regulador de tamano de titulares: herramienta de trabajo -->
+<link rel="stylesheet" href="css/ajuste-titulos.css">
 </head>
 <body class="d2 rc-page">
 
@@ -287,6 +289,22 @@
 <!-- ==========================================================================
      COMO FUNCIONA: dos columnas
      ========================================================================== -->
+<!-- ==================================================================
+     "HOW IT WORKS" -- DOS PROPUESTAS (18/9/2026)
+
+     1 Checklist  la actual: caja de cinco puntos junto al texto
+     2 Sequence   los cinco puntos como las FASES que son --revisar,
+                  analizar, recomendar, medir, tramitar-- unidas por una
+                  linea que las recorre. Mismo recurso que .d2-rutas-sec.
+
+     Con checks parecen requisitos ya cumplidos; numeradas y enlazadas
+     se leen como el proceso que son.
+
+     Copy IDENTICO en las dos. Solo cambia el diseno.
+     ================================================================== -->
+<div class="d2-caru" id="caru-hw" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="dos-col" id="how-it-works">
   <div class="dos-col__inner">
 
@@ -319,6 +337,81 @@
     </div>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="dos-col hw-sec d2-entra" id="how-it-works">
+  <div class="hw-sec__inner">
+
+    <div class="hw-sec__texto">
+      <p class="eyebrow">How it works</p>
+      <h2 class="dos-col__titulo">Find the drift. Turn it into a clear action plan.</h2>
+      <p class="dos-col__texto">
+        Rede&rsquo;s engineers review your building automation system and identify where
+        schedules, setpoints or control sequences no longer match design intent or
+        current operating needs. We document the recommended corrections and work
+        alongside your facilities team or controls contractor through implementation.
+      </p>
+      <p class="dos-col__texto">
+        Rede does not make changes to the BAS directly. Your authorized controls
+        contractor implements the approved changes, and Rede measures and verifies the
+        results. The focus is on operational improvements using existing equipment and
+        controls, without defaulting to a major capital project.
+      </p>
+    </div>
+
+    <div class="hw-sec__pasos">
+      <p class="eyebrow">What is involved</p>
+      <ol class="hw-sec__lista">
+        <li class="hw-paso" style="--i:0">
+          <span class="hw-paso__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="4.5" width="18.4" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 17v3.5"/></g></svg></span>
+          <span class="hw-paso__cuerpo">
+            <span class="hw-paso__fase">Review</span>
+            <span class="hw-paso__texto">Building automation system review</span>
+          </span>
+        </li>
+        <li class="hw-paso" style="--i:1">
+          <span class="hw-paso__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9M9.3 20V4M14.7 20v-8M20 20V6.5"/></g></svg></span>
+          <span class="hw-paso__cuerpo">
+            <span class="hw-paso__fase">Analyse</span>
+            <span class="hw-paso__texto">Scheduling, setpoint and control sequence analysis</span>
+          </span>
+        </li>
+        <li class="hw-paso" style="--i:2">
+          <span class="hw-paso__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8.5L13.5 3z"/><path d="M13.5 3v5.5H19"/></g></svg></span>
+          <span class="hw-paso__cuerpo">
+            <span class="hw-paso__fase">Recommend</span>
+            <span class="hw-paso__texto">Operational recommendations selected for a simple payback of two years or less</span>
+          </span>
+        </li>
+        <li class="hw-paso" style="--i:3">
+          <span class="hw-paso__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 9.2h18.4a1 1 0 011 1v3.6a1 1 0 01-1 1H2.8a1 1 0 01-1-1v-3.6a1 1 0 011-1z"/><path d="M6.5 9.2v3M10 9.2v4.2M13.5 9.2v3M17 9.2v4.2"/></g></svg></span>
+          <span class="hw-paso__cuerpo">
+            <span class="hw-paso__fase">Measure</span>
+            <span class="hw-paso__texto">Measurement and verification of results</span>
+          </span>
+        </li>
+        <li class="hw-paso" style="--i:4">
+          <span class="hw-paso__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.3-7.5-9.3a4.2 4.2 0 017.5-2.6 4.2 4.2 0 017.5 2.6c0 5-7.5 9.3-7.5 9.3z"/></g></svg></span>
+          <span class="hw-paso__cuerpo">
+            <span class="hw-paso__fase">Support</span>
+            <span class="hw-paso__texto">Incentive identification and application support</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Checklist</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Sequence</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
@@ -326,6 +419,20 @@
      Cuatro requisitos. Filtra visitantes que no encajan, que es util para
      ambas partes.
      ========================================================================== -->
+<!-- ====================================================================
+     "WHAT YOU WILL NEED" — DOS PROPUESTAS (18/9/2026)
+
+     1 Cards     la actual: cuatro tarjetas en fila con icono
+     2 Checklist una comprobacion: cuatro filas verificadas, con la
+                 escala medida del sistema y un contador que dice
+                 cuantos requisitos son antes de leerlos
+
+     El copy es IDENTICO en las dos. Solo cambia el diseno.
+     ES TEMPORAL: al elegir se deja una y se retira el carrusel.
+     ==================================================================== -->
+<div class="d2-caru" id="caru-rq" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1: Cards">
 <section class="requisitos">
   <div class="requisitos__inner">
 
@@ -341,25 +448,25 @@
 
     <ul class="requisitos__lista">
       <li class="requisito">
-        <span class="requisito__n">1</span>
+        <span class="requisito__icono" role="img" aria-label="Building automation system"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="9" y="8" width="30" height="32" rx="3"/><rect x="15" y="14" width="18" height="11" rx="1.5"/><path d="M19 19.5h10"/><circle cx="18" cy="33" r="2"/><circle cx="24" cy="33" r="2"/><circle cx="30" cy="33" r="2"/></svg></span>
         <p class="requisito__texto">
           A modern building automation system with detailed controls coverage
         </p>
       </li>
       <li class="requisito">
-        <span class="requisito__n">2</span>
+        <span class="requisito__icono" role="img" aria-label="Secure remote access"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="11" y="21" width="26" height="19" rx="3"/><path d="M17 21v-5a7 7 0 0114 0v5"/><circle cx="24" cy="29" r="2.5"/><path d="M24 31.5V34"/></svg></span>
         <p class="requisito__texto">
           Secure remote access to the BAS through a VPN or an approved equivalent
         </p>
       </li>
       <li class="requisito">
-        <span class="requisito__n">3</span>
+        <span class="requisito__icono" role="img" aria-label="Digital drawings"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M7 13l11-4 12 4 12-4v30l-12 4-12-4-11 4V13z"/><path d="M18 9v30M30 13v30"/></svg></span>
         <p class="requisito__texto">
           Digital mechanical and electrical drawings and current controls as-builts
         </p>
       </li>
       <li class="requisito">
-        <span class="requisito__n">4</span>
+        <span class="requisito__icono" role="img" aria-label="Controls lead"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M33.5 8.5a8.5 8.5 0 00-10.2 11.1L9 33.9a3.5 3.5 0 004.9 4.9l14.3-14.3A8.5 8.5 0 0039.5 14.5l-5 5-5-1-1-5 5-5z"/></svg></span>
         <p class="requisito__texto">
           A facilities controls lead or contractor who can implement approved findings
         </p>
@@ -372,6 +479,82 @@
     </p>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2: Checklist" hidden>
+<section class="requisitos rq-check d2-entra">
+  <div class="rq-check__inner">
+
+    <div class="rq-check__intro">
+      <p class="eyebrow">What you will need</p>
+      <h2 class="requisitos__titulo">
+        Remote recommissioning starts with the right building systems.
+      </h2>
+      <p class="requisitos__lead">For qualifying buildings, Rede can complete the
+        recommissioning review remotely without a site visit. Here is what makes that
+        possible.</p>
+    </div>
+
+    <div class="rq-check__panel">
+      <p class="rq-check__contador">
+        <span class="rq-check__n">4</span>
+        <span class="rq-check__eti">requirements</span>
+      </p>
+
+      <ul class="rq-check__lista">
+        <li class="rq-fila" style="--i:0">
+          <span class="rq-fila__marca" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+            </svg>
+          </span>
+          <span class="rq-fila__texto">A modern building automation system with detailed controls coverage</span>
+        </li>
+        <li class="rq-fila" style="--i:1">
+          <span class="rq-fila__marca" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+            </svg>
+          </span>
+          <span class="rq-fila__texto">Secure remote access to the BAS through a VPN or an approved equivalent</span>
+        </li>
+        <li class="rq-fila" style="--i:2">
+          <span class="rq-fila__marca" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+            </svg>
+          </span>
+          <span class="rq-fila__texto">Digital mechanical and electrical drawings and current controls as-builts</span>
+        </li>
+        <li class="rq-fila" style="--i:3">
+          <span class="rq-fila__marca" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+            </svg>
+          </span>
+          <span class="rq-fila__texto">A facilities controls lead or contractor who can implement approved findings</span>
+        </li>
+      </ul>
+
+      <p class="requisitos__nota">Rede never makes changes to the BAS directly. All
+        corrections are made by your controls contractor, with your authorization.</p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option">
+      <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Cards</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Checklist</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option">
+      <svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
@@ -387,6 +570,24 @@
      una tendencia energetica antes/despues de un proyecto real, con tipo de
      edificio, periodo de medicion y fuente etiquetados.
      ========================================================================== -->
+<!-- ==================================================================
+     "RESULTS" -- DOS PROPUESTAS (18/9/2026)
+
+     1 Panels    la actual: caja de texto y lista al lado
+     2 Measured  cuatro barras que van de "drift" a "corrected".
+
+     SIN CIFRAS, y es deliberado: el documento del cliente prohibe
+     publicar porcentajes sin confirmar fuente y periodo. La barra dice
+     la DIRECCION del cambio, no una cantidad inventada.
+
+     El titular promete "you can measure" y la version actual no mide
+     nada: es texto y una lista.
+
+     Copy IDENTICO. Solo cambia el diseno.
+     ================================================================== -->
+<div class="d2-caru" id="caru-rs" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="prueba-sec">
   <div class="prueba-sec__inner">
 
@@ -426,6 +627,65 @@
     </div>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="prueba-sec rs-sec d2-entra">
+  <div class="rs-sec__inner">
+
+    <div class="rs-sec__texto">
+      <p class="eyebrow">Results</p>
+      <h2 class="prueba-sec__titulo">Operational improvements you can measure.</h2>
+      <p class="prueba-sec__texto">
+        Recommissioning focuses on practical changes to schedules, setpoints and
+        control sequences that can reduce unnecessary energy use while keeping
+        existing equipment in service.
+      </p>
+      <p class="prueba-sec__texto">
+        After the approved corrections are implemented, Rede measures the results
+        against an agreed baseline. Your team gets a clear record of what changed and
+        whether building performance improved. Because operating conditions continue
+        to change, performance should be monitored over time.
+      </p>
+    </div>
+
+    <div class="rs-sec__medida">
+      <p class="rs-sec__label">What gets measured</p>
+      <ul class="rs-sec__lista">
+          <li class="rs-barra" style="--i:0">
+            <span class="rs-barra__eti">Better scheduling</span>
+            <span class="rs-barra__pista" aria-hidden="true"><span class="rs-barra__relleno"></span></span>
+          </li>
+          <li class="rs-barra" style="--i:1">
+            <span class="rs-barra__eti">Corrected setpoints</span>
+            <span class="rs-barra__pista" aria-hidden="true"><span class="rs-barra__relleno"></span></span>
+          </li>
+          <li class="rs-barra" style="--i:2">
+            <span class="rs-barra__eti">Coordinated sequences</span>
+            <span class="rs-barra__pista" aria-hidden="true"><span class="rs-barra__relleno"></span></span>
+          </li>
+          <li class="rs-barra" style="--i:3">
+            <span class="rs-barra__eti">Verified performance</span>
+            <span class="rs-barra__pista" aria-hidden="true"><span class="rs-barra__relleno"></span></span>
+          </li>
+      </ul>
+      <p class="rs-sec__pie">
+        <span class="rs-sec__pie-de">Drift</span>
+        <span class="rs-sec__pie-a">Corrected</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Panels</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Measured</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 <!-- ==========================================================================
@@ -437,6 +697,24 @@
      activo; queda como "commercial energy optimization support" y la
      disponibilidad se confirma en la cualificacion.
      ========================================================================== -->
+<!-- ==================================================================
+     "ACCESS FUNDING" -- DOS PROPUESTAS (18/9/2026)
+
+     1 Box    la actual: las dos provincias en una caja, con el mismo peso
+     2 Routes las dos vias con el trazado de certeza del sistema
+
+     No son iguales: en BC hay un programa CON NOMBRE --BC Hydro y
+     FortisBC-- y en Saskatchewan la disponibilidad se confirma caso a
+     caso. Por eso la primera llega entera y la segunda discontinua.
+
+     El discontinuo ES el dato, no decoracion: es el mismo recurso de
+     .d2-ega-ruta-sec, donde su CSS lo deja escrito.
+
+     Copy IDENTICO. Solo cambia el diseno.
+     ================================================================== -->
+<div class="d2-caru" id="caru-fn" data-caru>
+
+  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="fondos">
   <div class="fondos__inner">
     <div class="fondos__texto">
@@ -469,6 +747,54 @@
     </div>
   </div>
 </section>
+  </div>
+
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
+<section class="fondos fn-sec d2-entra">
+  <div class="fn-sec__inner">
+
+    <div class="fn-sec__texto">
+      <p class="eyebrow">Access funding</p>
+      <h2 class="fondos__titulo">Commercial building incentives may reduce the cost.</h2>
+      <p class="fondos__lead">
+        Funding depends on your location, building eligibility, program intake dates
+        and the scope of the work. Rede helps identify applicable commercial energy
+        efficiency programs and supports the incentive application process as part of
+        the recommissioning engagement.
+      </p>
+    </div>
+
+    <div class="fn-sec__vias">
+      <p class="fondos__caja-label">Programs we work with</p>
+
+      <div class="fn-via fn-via--firme" style="--i:0">
+        <span class="fn-via__traza" aria-hidden="true"><svg viewBox="0 0 200 8" preserveAspectRatio="none"><path d="M2 4h196" pathLength="100"/></svg></span>
+        <p class="fn-via__lugar">British Columbia</p>
+        <p class="fn-via__nombre">BC Hydro and FortisBC Continuous Optimization Program</p>
+      </div>
+
+      <div class="fn-via fn-via--abierta" style="--i:1">
+        <span class="fn-via__traza" aria-hidden="true"><svg viewBox="0 0 200 8" preserveAspectRatio="none"><path d="M2 4h196" pathLength="100"/></svg></span>
+        <p class="fn-via__lugar">Saskatchewan</p>
+        <p class="fn-via__nombre">Commercial energy optimization support &mdash; current program
+          eligibility and intake availability are confirmed during qualification.</p>
+      </div>
+
+      <p class="fondos__caja-nota">Program eligibility, funding amounts and intake
+        availability are confirmed through a conversation with the Rede team.</p>
+    </div>
+
+  </div>
+</section>
+  </div>
+
+  <div class="d2-caru__mandos">
+    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Box</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Routes</button>
+    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
 
 
 
@@ -1049,6 +1375,9 @@
     </footer>
 
 <script src="js/main.js"></script>
+<!-- El carrusel de variantes, para comparar las propuestas de seccion.
+     ES TEMPORAL: se retira al elegir, como se hizo en la home. -->
+<script src="js/d2-carrusel.js"></script>
 <!-- El mapa del FAQ y la ficha, igual que en Energy Gap Analysis (17/9/2026) -->
 <script src="js/d2-mapa-zonas.js"></script>
 <script src="js/d2-faq.js"></script>
@@ -1056,5 +1385,6 @@
 <script src="js/d2-composicion.js"></script>
 <script src="js/d2-header.js"></script>
 <script src="js/prueba-fondos.js"></script>
+<script src="js/ajuste-titulos.js"></script>
 </body>
 </html>

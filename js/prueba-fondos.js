@@ -41,17 +41,45 @@
     var hero = document.querySelector('.d2-ega-hero, .d2-hero');
     if (!hero) return [];
 
-    // la primera seccion despues del hero, saltando lo que no lo sea
-    var sec = hero.nextElementSibling;
-    while (sec && sec.tagName !== 'SECTION') sec = sec.nextElementSibling;
+    /* La primera seccion despues del hero.
+
+       MIRA DENTRO DE LOS CARRUSELES (18/9/2026)
+
+       Antes se pedia que el hermano fuera un <SECTION> y, si no, se pasaba
+       al siguiente. Eso dejo de funcionar en Recommissioning al envolver
+       sus secciones en carruseles de variantes: el hermano del hero pasa a
+       ser un <div class="d2-caru"> y el bucle los saltaba todos.
+
+       Resultado: la seccion de debajo del hero dejaba de cambiar de color
+       con los botones. No fallaba nada; simplemente no pasaba nada.
+
+       Ahora, si el hermano es un carrusel, se busca la seccion de su
+       diapositiva VISIBLE. Asi el selector sigue apuntando a lo que el
+       visitante ve, sea o no una variante. */
+    function seccionDe(nodo) {
+      if (!nodo) return null;
+      if (nodo.tagName === 'SECTION') return nodo;
+      if (nodo.classList && nodo.classList.contains('d2-caru')) {
+        var viva = nodo.querySelector('.d2-caru__diapo:not([hidden])');
+        if (viva) return viva.querySelector('section');
+      }
+      return null;
+    }
+
+    var sec = null;
+    var nodo = hero.nextElementSibling;
+    while (nodo && !sec) {
+      sec = seccionDe(nodo);
+      nodo = nodo.nextElementSibling;
+    }
     if (!sec) return [];
 
     var dianas = [sec];
 
-    // el par espejo: misma clase principal, seccion seguida
+    /* El par espejo: dos secciones seguidas de la misma clase --About y
+       RUN-- se pintan juntas o la composicion se parte por la mitad. */
     var principal = sec.className.split(' ')[0];
-    var sig = sec.nextElementSibling;
-    while (sig && sig.tagName !== 'SECTION') sig = sig.nextElementSibling;
+    var sig = seccionDe(nodo);
     if (sig && sig.className.split(' ')[0] === principal) dianas.push(sig);
 
     dianas.forEach(function (d) { d.setAttribute('data-pf-diana', ''); });
@@ -62,6 +90,41 @@
   if (!dianas.length) return;   // pagina sin hero: no pinta nada
 
   /* ------------------------------------------------------------------
+     AL CAMBIAR DE VARIANTE, HAY QUE VOLVER A MARCAR  (18/9/2026)
+
+     Las dianas se calculaban UNA SOLA VEZ al cargar. Con los carruseles de
+     variantes eso no basta: al pasar de la opcion 1 a la 2, la seccion
+     marcada se esconde y la que aparece no lleva la marca, asi que se
+     queda con su fondo de origen.
+
+     Se veia asi: eliges verde, cambias de variante y la seccion vuelve a
+     blanca. El boton seguia marcado en verde, lo que hacia pensar que el
+     selector estaba roto.
+
+     Ahora se observa el carrusel: cuando una diapositiva cambia de estado
+     --el guion del carrusel pone y quita `hidden`-- se rehace la marca y
+     se vuelve a aplicar el color elegido.
+     ------------------------------------------------------------------ */
+  function remarcar() {
+    dianas.forEach(function (d) {
+      d.removeAttribute('data-pf-diana');
+      d.removeAttribute('data-comp-tono');
+    });
+    dianas = marcarDianas();
+    aplicar(elegido);
+  }
+
+  var carruseles = document.querySelectorAll('.d2-caru');
+  if (carruseles.length && window.MutationObserver) {
+    var vigia = new MutationObserver(function () { remarcar(); });
+    Array.prototype.forEach.call(carruseles, function (c) {
+      Array.prototype.forEach.call(c.querySelectorAll('.d2-caru__diapo'), function (d) {
+        vigia.observe(d, { attributes: true, attributeFilter: ['hidden'] });
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------
      APLICAR
 
      El fondo lo pone el CSS a partir de data-pf. Aqui solo se anade el
@@ -69,8 +132,11 @@
      existe en d2-variantes.css y redefine --c-texto y compania dentro
      de la seccion, asi que no hay que tocar clase por clase.
      ------------------------------------------------------------------ */
+  var elegido = 'blanco';   // lo lee remarcar() al rehacer las dianas
+
   function aplicar(id) {
     var op = OPCIONES.filter(function (o) { return o.id === id; })[0] || OPCIONES[0];
+    elegido = op.id;
 
     raiz.setAttribute('data-pf', op.id);
 

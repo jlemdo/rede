@@ -188,7 +188,7 @@
   /* La escala de los titulares de seccion de la home --49 px a 1440--
      y no --fs-h2, que topa en 40 y los dejaba pequenos al lado de los
      suyos. */
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: 700;
@@ -1744,7 +1744,7 @@
    aqui, lo que confirma que fue un olvido y no una decision. */
 .d2 :is(.dos-col, .requisitos, .fondos, .rutas, .cta-final, .niveles, .funciones, .ciclo-sec, .plataforma, .prueba-sec) :is(h2, .dos-col__titulo, .requisitos__titulo, .fondos__titulo, .rutas__titulo, .cta-final__titulo, .ciclo-sec__titulo, .plataforma__titulo, .prueba-sec__titulo) {
   /* El mismo clamp que usan las secciones de Energy Gap Analysis. */
-  font-size: clamp(34px, 3.4vw, 52px);
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
   line-height: 1.08;
   letter-spacing: -.025em;
   font-weight: var(--fw-extrabold);
@@ -1760,4 +1760,29 @@
    oscuro. Se alinea con los demas. */
 .d2 .prueba-sec .eyebrow {
   color: var(--c-verde-hover, #026F00);
+}
+
+/* ==========================================================================
+   LA ILUSTRACION DEL HERO, DEBAJO DEL TEXTO EN TODAS LAS PAGINAS
+   (18/9/2026)
+
+   Las cuatro paginas ya tenian su regla para bajar la imagen, pero todas
+   viven en el bloque de 900px. Quien la SUBE es el de 1000px --donde el
+   hero pasa a una columna y la regla general aplica order:-1--.
+
+   Entre 901 y 1000 no habia nadie que la bajara, asi que en esa franja la
+   imagen salia antes que el titular en RUN, Energy Management y
+   Recommissioning. Medido a 982px en las tres.
+
+   El mismo fallo se corrigio en Gap; aqui se cierra para el resto. Los dos
+   limites tienen que ser el mismo numero: la imagen baja en cuanto deja de
+   haber dos columnas, no 100px despues.
+
+   About no lo sufria porque tiene su propia regla a 1280px, pero se incluye
+   igual para que las cinco compartan una sola norma.
+   ========================================================================== */
+@media (max-width: 1000px) {
+  .d2 :is(.run-hero, .em-hero, .rc-hero, .ab-hero) .d2-ega-hero__arte {
+    order: 0;
+  }
 }
