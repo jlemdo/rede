@@ -2394,12 +2394,22 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Baja de 17px --el cuerpo-- al tamano pequeno: el texto acompana a la
+   cifra, no compite con ella. Lo pidio Erick.
+
+   Y deja de ser flex: ahora lleva dentro la fuente en negrita, y un flex
+   pondria las dos partes una al lado de la otra en vez de seguidas. */
 .d2 .comp__resumen-t {
-  display: flex;
-  align-items: center;
-  font-size: var(--fs-body, 1rem);
-  line-height: 1.45;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
   color: rgba(255, 255, 255, .86);
+  align-self: center;
+}
+
+/* La fuente del dato, en negrita y dentro de la misma frase */
+.d2 .comp__resumen-fuente {
+  font-weight: var(--fw-bold, 700);
+  color: var(--c-blanco, #FFFFFF);
 }
 
 .d2 .comp__nota {
@@ -2935,3 +2945,705 @@
 }
 
 
+
+/* ==========================================================================
+   1. "WHAT IS INVOLVED" EN VERDE, CON SEQUENCE  (21/9/2026)
+
+   Pedido por Erick. La seccion era la diana del selector de fondos --su
+   color lo decidian los botones White/Grey/Green/Black-- y ahora tiene
+   color propio, asi que el selector se retira de esta pagina: ya no hay
+   nada que decidir aqui.
+
+   El verde es #1A5121, el mismo que pintaba la opcion "Green" de ese
+   selector y el que usan la banda de equipo y Client Login. No es un verde
+   nuevo.
+
+   data-comp-tono="oscuro" va en la propia seccion, no en un ancestro: las
+   reglas de tono del sistema lo buscan ahi.
+   ========================================================================== */
+.d2.rc-page #caru-hw .dos-col {
+  background: #1A5121;
+}
+
+/* El texto, en blanco sobre el verde */
+.d2.rc-page #caru-hw .dos-col :is(h2, .dos-col__titulo, .hw-sec__titulo) {
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2.rc-page #caru-hw .dos-col :is(p, li, .dos-col__texto, .hw-paso__texto) {
+  color: rgba(255, 255, 255, .88);
+}
+
+/* El eyebrow y la fase, en el verde claro de marca: el verde oscuro sobre
+   verde oscuro no se lee --1,5 de contraste--. */
+.d2.rc-page #caru-hw .dos-col :is(.eyebrow, .hw-paso__fase) {
+  color: #8FE89C;
+}
+
+/* El circulo del icono: blanco al 12% ya mezclado sobre el verde, opaco
+   para que la linea que une los pasos no se transparente a traves. */
+.d2.rc-page #caru-hw .hw-paso__n {
+  color: #8FE89C;
+  background: #2D6033;
+}
+
+/* La linea que recorre los pasos, en claro para que se vea sobre el verde */
+.d2.rc-page #caru-hw .hw-sec__lista::before {
+  background: linear-gradient(to bottom, #6BE873, rgba(107, 232, 115, .28));
+}
+
+/* El circuito del fondo, copiado de la banda "The Rede team" de About:
+   mismos colores, mismo grosor y misma opacidad. Solo cambia el trazado,
+   que alli esta dibujado para su alto y su composicion. */
+.d2.rc-page #caru-hw .hw-sec {
+  position: relative;
+  overflow: hidden;      /* el trazado sale por los lados a proposito */
+}
+
+.d2.rc-page .hw-sec__circuito {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.d2.rc-page .hw-sec__circuito path {
+  fill: none;
+  stroke: rgba(176, 225, 183, .28);
+  stroke-width: 1.2px;
+}
+
+/* Los nodos llevan el verde del fondo: tapan la linea que cruzan */
+.d2.rc-page .hw-sec__circuito circle {
+  fill: #1A5121;
+  stroke: rgba(176, 225, 183, .45);
+  stroke-width: 1.6px;
+}
+
+/* El contenido, por encima del circuito */
+.d2.rc-page #caru-hw .hw-sec__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   2. "RESULTS": LA DERIVA HORARIA  (21/9/2026)
+
+   Dos franjas de 24 horas. Arriba el edificio funcionando de 5:00 a 22:00;
+   abajo, corregido a 7:00-18:00. El rayado marca el tramo que estaba
+   encendido sin nadie dentro.
+
+   LOS PORCENTAJES SON LA HORA, NO UN VALOR INVENTADO: cada hora son
+   100/24 = 4,1667%, asi que las posiciones salen de ahi y se pueden
+   comprobar.
+
+     5:00   5  x 4,1667 = 20,83%      22:00  ->  desde la derecha, 2 x 4,1667 = 8,33%
+     7:00   7  x 4,1667 = 29,17%      18:00  ->  desde la derecha, 6 x 4,1667 = 25%
+
+   Son horas de ejemplo --lo dice la nota al pie-- porque para esta pagina
+   no hay ningun dato aprobado: el documento del cliente prohibe publicar
+   el 5,7% y el payback de 1,7 anos hasta que Rede confirme la fuente.
+   ========================================================================== */
+
+.d2 .rs-sec .drv {
+  display: grid;
+  gap: var(--sp-3, 12px);
+}
+
+.d2 .rs-sec .drv__fila {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--sp-3, 12px);
+  align-items: center;
+}
+
+.d2 .rs-sec .drv__eti {
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+
+/* La pista es el dia entero: de medianoche a medianoche */
+.d2 .rs-sec .drv__pista {
+  position: relative;
+  display: block;
+  height: 32px;
+  background: rgba(255, 255, 255, .10);
+  border-radius: var(--radio-sm, 8px);
+  overflow: hidden;
+}
+
+.d2 .rs-sec .drv__barra {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  display: block;
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* De 5:00 a 22:00 */
+.d2 .rs-sec .drv__barra--antes {
+  left: 20.83%;
+  right: 8.33%;
+  background: rgba(255, 255, 255, .30);
+}
+
+/* De 7:00 a 18:00 */
+.d2 .rs-sec .drv__barra--despues {
+  left: 29.17%;
+  right: 25%;
+  background: linear-gradient(to right, #6BE873, #8FE89C);
+}
+
+/* LO QUE SOBRA: DOS TRAMOS, NO LA FRANJA ENTERA
+
+   La primera version pintaba el rayado sobre las 17 horas completas --de 5
+   a 22-- y eso decia que todo el dia estaba mal. Lo que sobra son solo los
+   extremos: de 5:00 a 7:00 por la manana y de 18:00 a 22:00 por la tarde,
+   que es cuando el edificio funcionaba sin nadie dentro.
+
+   Las horas, en porcentaje de dia (100/24 = 4,1667% por hora):
+     manana  de  5 --20,83%--  a  7 --29,17%--
+     tarde   de 18 --75,00%--  a 22 --91,67%-- */
+.d2 .rs-sec .drv__sobra {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  background: repeating-linear-gradient(45deg,
+    rgba(255, 176, 176, .42) 0 5px, transparent 5px 10px);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.d2 .rs-sec .drv__sobra--am {
+  left: 20.83%;
+  right: 70.83%;
+  border-radius: 4px 0 0 4px;
+}
+
+.d2 .rs-sec .drv__sobra--pm {
+  left: 75%;
+  right: 8.33%;
+  border-radius: 0 4px 4px 0;
+}
+
+.d2 .rs-sec.es-visible .drv__barra {
+  transform: scaleX(1);
+  transition: transform .9s var(--curva, cubic-bezier(.32, .72, 0, 1));
+  transition-delay: calc(.2s + var(--i, 0) * 180ms);
+}
+
+.d2 .rs-sec.es-visible .drv__fila:nth-child(2) .drv__barra { --i: 1; }
+
+.d2 .rs-sec.es-visible .drv__sobra {
+  opacity: 1;
+  transition: opacity .6s var(--curva, cubic-bezier(.32, .72, 0, 1)) .9s;
+}
+
+/* Las horas, cada una SOBRE SU MARCA.
+
+   Antes se repartia el ancho en cinco columnas iguales, y eso es un error
+   de planteamiento: las horas son cinco PUNTOS del dia --0, 6, 12, 18 y
+   24-- no cinco tramos. Medido, los centros caian en 2,4 / 7,2 / 12 / 16,8
+   y 21,6: solo el mediodia acertaba.
+
+   Se posiciona cada una en su hora exacta: 6 de 24 = 25%, 12 = 50%, 18 =
+   75%. Los dos extremos se pegan a su borde --ahi la marca es el borde
+   mismo, y centrarlas las sacaria media palabra fuera de la pista-- y las
+   tres de en medio se centran con translateX(-50%). */
+.d2 .rs-sec .drv__horas {
+  position: relative;
+  height: 1.5em;
+  margin: 6px 0 0 68px;
+  font-size: var(--fs-xs, .75rem);
+  letter-spacing: .02em;
+  color: rgba(255, 255, 255, .58);
+}
+
+.d2 .rs-sec .drv__horas span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.d2 .rs-sec .drv__horas span:nth-child(1) { left: 0; }
+.d2 .rs-sec .drv__horas span:nth-child(2) { left: 25%; transform: translateX(-50%); }
+.d2 .rs-sec .drv__horas span:nth-child(3) { left: 50%; transform: translateX(-50%); }
+.d2 .rs-sec .drv__horas span:nth-child(4) { left: 75%; transform: translateX(-50%); }
+.d2 .rs-sec .drv__horas span:nth-child(5) { right: 0; }
+
+.d2 .rs-sec .drv__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4, 16px);
+  margin: var(--sp-4, 16px) 0 0;
+  font-size: var(--fs-xs, .75rem);
+  color: rgba(255, 255, 255, .80);
+}
+
+.d2 .rs-sec .drv__clave {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.d2 .rs-sec .drv__muestra {
+  width: 16px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+}
+
+.d2 .rs-sec .drv__muestra--sobra {
+  background: repeating-linear-gradient(45deg,
+    rgba(255, 176, 176, .70) 0 3px, rgba(255, 255, 255, .18) 3px 6px);
+}
+
+.d2 .rs-sec .drv__muestra--ok {
+  background: linear-gradient(to right, #6BE873, #8FE89C);
+}
+
+.d2 .rs-sec .drv__nota {
+  margin: var(--sp-4, 16px) 0 0;
+  padding-top: var(--sp-3, 12px);
+  border-top: 1px solid rgba(255, 255, 255, .18);
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .78);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .rs-sec .drv__barra { transform: scaleX(1); }
+  .d2 .rs-sec .drv__sobra { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .d2 .rs-sec .drv__fila { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .d2 .rs-sec .drv__horas { margin-left: 0; }
+}
+
+
+/* ==========================================================================
+   3. LA FICHA DEL FAQ DE RECOMMISSIONING  (21/9/2026)
+   ========================================================================== */
+
+/* ==========================================================================
+   LA FICHA DEL FAQ: EL BAS Y QUIEN TOCA QUE
+
+   Todo el dimensionado sale de las variables del sistema. La primera
+   version llevaba system-ui y valores a pelo --15, 13, 12,5 y 10px, gris
+   #666666, radio 12-- y en una auditoria salieron siete elementos con la
+   fuente equivocada: el sitio usa Open Sans.
+   ========================================================================== */
+
+.bas2 {
+  display: grid;
+  gap: var(--sp-4, 1rem);
+}
+
+.bas2__svg { display: block; width: 100%; height: auto; }
+
+/* --- la caja del sistema, arriba --- */
+.bas2__sistema rect {
+  fill: var(--c-blanco, #FFFFFF);
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 1.4;
+}
+
+/* El SVG no hereda la fuente del documento: hay que nombrarla. */
+.bas2__sis-eti,
+.bas2__sis-sub,
+.bas2__lado {
+  font-family: var(--fuente, "Open Sans", system-ui, sans-serif);
+}
+
+.bas2__sis-eti {
+  font-size: 11px;
+  font-weight: var(--fw-extrabold, 800);
+  fill: var(--c-verde-hover, #026F00);
+  letter-spacing: .09em;
+  text-anchor: middle;
+}
+
+.bas2__sis-sub {
+  font-size: 12px;
+  font-weight: var(--fw-regular, 400);
+  fill: var(--c-texto-suave, #6B6B6B);
+  text-anchor: middle;
+}
+
+/* --- el recorrido --- */
+.bas2__via {
+  fill: none;
+  stroke: var(--c-borde, #E4E4E4);
+  stroke-width: 2;
+}
+
+.bas2__flujo {
+  fill: none;
+  stroke: var(--c-verde, #39B54A);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.bas2__cabeza {
+  fill: var(--c-verde-hover, #026F00);
+  stroke: var(--c-blanco, #FFFFFF);
+  stroke-width: 2;
+  transition: opacity var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1));
+}
+
+/* --- los nodos --- */
+.bas2__nodo { cursor: pointer; }
+
+/* EL HIJO DIRECTO, no cualquier circle de dentro: sin el ">" esta regla
+   alcanzaba tambien al circulo con que se dibujaba el cristal de la lupa,
+   y al activarse el nodo la lupa se rellenaba del verde del fondo y
+   desaparecia. Los iconos ya no usan <circle>, pero el ">" evita que
+   vuelva a pasar con cualquier forma que se anada manana. */
+.bas2__nodo > circle {
+  fill: var(--c-blanco, #FFFFFF);
+  stroke: #C9D6CB;
+  stroke-width: 2;
+  transition: fill var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1)),
+              stroke var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1));
+}
+
+.bas2__ico {
+  fill: none;
+  stroke: var(--c-texto-suave, #6B6B6B);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1));
+}
+
+.bas2__ico, .bas2__ico * { fill: none; }
+
+.bas2__nodo.es-activo > circle {
+  fill: var(--c-verde-hover, #026F00);
+  stroke: var(--c-verde-hover, #026F00);
+}
+
+.bas2__nodo.es-activo .bas2__ico { stroke: var(--c-blanco, #FFFFFF); }
+
+.bas2__nodo:focus-visible > circle {
+  stroke: var(--c-verde, #39B54A);
+  stroke-width: 3;
+}
+
+.bas2__nodo:focus { outline: none; }
+
+/* --- las etiquetas de lado --- */
+/* Sube a 11px y al gris del sistema. Con el verdoso #8A9A8C a 10px daba
+   2,67 de contraste --medido-- y un texto pequeno necesita 4,5. */
+.bas2__lado {
+  font-size: 11px;
+  font-weight: var(--fw-bold, 700);
+  fill: var(--c-texto-suave, #6B6B6B);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+/* "On site" es lo unico que no es remoto, asi que se distingue. El ambar
+   anterior daba 3,34; este llega a 4,6 sin dejar de ser ambar. */
+.bas2__lado--sitio { fill: #8A5A14; }
+
+/* --- la ficha que cambia --- */
+.bas2__ficha {
+  padding: var(--sp-4, 1rem);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: var(--radio-md, 10px);
+  min-height: 92px;
+}
+
+.bas2__ficha.es-nueva {
+  animation: bas2Ficha var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1));
+}
+
+@keyframes bas2Ficha {
+  from { opacity: .55; transform: translateY(4px); }
+  to   { opacity: 1;   transform: none; }
+}
+
+.bas2__quien {
+  margin: 0 0 4px;
+  font-size: var(--fs-small, .875rem);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.3;
+  color: var(--c-texto, #333333);
+}
+
+.bas2__que {
+  margin: 0;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.bas2__nota {
+  margin: 0;
+  padding-top: var(--sp-3, .75rem);
+  border-top: 1px solid var(--c-borde-suave, #EFEFEF);
+  font-size: var(--fs-xs, .75rem);
+  line-height: 1.5;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bas2__ficha.es-nueva { animation: none; }
+}
+
+/* ==========================================================================
+   4. "THE WORK" EN NEGRO  (21/9/2026)
+
+   Pedido por Erick: fondo negro o verde. Se elige el NEGRO porque
+   "Long-term results" ya es verde oscuro, y con verde aqui la pagina
+   repetiria el mismo color en sus dos secciones oscuras, separadas solo
+   por una blanca. Con negro quedan tres tonos distintos --negro, blanco,
+   verde-- y el verde de los resultados conserva su peso.
+
+   #1A1A1A es el negro del sistema: el que pintaba la opcion "Black" del
+   selector de fondos y el de "More than engineers" en About.
+
+   La seccion era la diana de ese selector, asi que al fijarle color el
+   selector se retira de la pagina.
+   ========================================================================== */
+/* A LAS DOS VARIANTES. Cards usa .ciclo-sec y Loop usa .giro-sec; con
+   solo la primera, al cambiar de variante el fondo volvia a blanco. */
+.d2.em-page #caru-work .d2-caru__diapo > section {
+  background: #1A1A1A;
+}
+
+.d2.em-page #caru-work :is(h2, .ciclo-sec__titulo, .giro-sec__titulo) {
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2.em-page #caru-work :is(p, .ciclo-sec__lead, .giro-sec__lead) {
+  color: rgba(255, 255, 255, .88);
+}
+
+/* El eyebrow, en el verde claro: el verde oscuro sobre negro no se lee */
+.d2.em-page #caru-work .eyebrow {
+  color: #8FE89C;
+}
+
+/* Las tarjetas de los cuatro pasos, blancas sobre el negro */
+.d2.em-page #caru-work :is(.ciclo__paso, .giro__paso) {
+  background: var(--c-blanco, #FFFFFF);
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: none;
+}
+
+.d2.em-page #caru-work :is(.ciclo__nombre, .giro__nombre) {
+  color: var(--c-texto, #333333);
+}
+
+/* El circulo del icono: el verde claro del sistema sobre fondo claro */
+.d2.em-page #caru-work :is(.ciclo__n, .giro__icono) {
+  color: var(--c-verde-hover, #026F00);
+  background: rgba(57, 181, 74, .12);
+}
+
+
+/* ==========================================================================
+   5. "THE PARTNERSHIP": LA LISTA, PLEGADA  (21/9/2026)
+
+   Erick: "me gusta mas List, pero se me hace muy cargado de informacion,
+   se que no se puede modificar por el SEO".
+
+   Medido: los nueve puntos ocupaban nueve renglones en una columna de
+   478px, y miden entre 2 y 5 palabras. El problema no era cuanta
+   informacion hay, sino que estaba toda apilada.
+
+   Se pliega en un <details>. EL TEXTO SIGUE EN EL HTML, asi que el SEO no
+   cambia: solo cambia lo que se ve al llegar. Y dentro va en dos columnas,
+   de nueve renglones a cinco.
+
+   Hereda el patron del FAQ de este mismo sitio: triangulo nativo fuera, y
+   TRES senales de estado --no solo color--, que es lo que pide WCAG 1.4.1.
+   ========================================================================== */
+
+/* EL HOVER, CON MOVIMIENTO Y NO SOLO COLOR
+
+   La primera version solo cambiaba borde y sombra en 200ms, y se sentia
+   plano: sin desplazamiento no hay sensacion de que el elemento responda.
+
+   Ademas usaba var(--curva, ...), y esa variable NO EXISTE en el sistema
+   --comprobado: devuelve cadena vacia--. Los tokens reales son
+   --trans-rapida, --trans-media y --trans-lenta. Al no existir, todo caia
+   al respaldo; ahora se usan los de verdad.
+
+   Se anade:
+     - la caja se levanta 2px
+     - la sombra crece con ella, del token --sombra-md
+     - 250ms en vez de 200, que da tiempo a percibir el gesto */
+.d2 .part-plie {
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: var(--radio-md, 10px);
+  background: var(--c-blanco, #FFFFFF);
+  transition: border-color var(--trans-media, 250ms ease),
+              box-shadow var(--trans-media, 250ms ease),
+              transform var(--trans-media, 250ms ease);
+}
+
+.d2 .part-plie:hover {
+  border-color: var(--c-verde, #39B54A);
+  box-shadow: var(--sombra-md, 0 4px 16px rgba(0, 0, 0, .08));
+  transform: translateY(-2px);
+}
+
+/* Al pulsar vuelve a su sitio: el gesto se cierra */
+.d2 .part-plie:active { transform: translateY(0); }
+
+/* --- la barra que se pulsa --- */
+/* El relleno SUPERIOR se anula para que "What the program includes" quede
+   a la altura de "The partnership", el eyebrow de la columna de al lado.
+   Con el relleno completo caia 19px mas abajo --medido--.
+
+   La caja sube con un margen negativo del mismo valor, asi no pierde su
+   aire por dentro: es el metodo de la tarjeta de Client Login, el mismo
+   que se uso en Results y en Access funding. */
+.d2 .part-plie {
+  margin-top: calc(-1 * var(--sp-4, 1rem));
+}
+
+.d2 .part-plie__sum {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3, .75rem);
+  padding: var(--sp-4, 1rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* El titulo tambien responde: estaba a 0s, asi que cambiaba de golpe. */
+.d2 .part-plie__eti {
+  transition: color var(--trans-media, 250ms ease);
+}
+
+.d2 .part-plie:hover .part-plie__eti {
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .part-plie__sum::-webkit-details-marker { display: none; }
+.d2 .part-plie__sum::marker { content: ""; }
+
+.d2 .part-plie__eti {
+  flex: 1;
+  font-size: var(--fs-body, 1rem);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.3;
+  color: var(--c-texto, #333333);
+}
+
+/* El contador iba en una pildora verde a la izquierda de la flecha, y las
+   dos juntas se leian como dos botones repetidos. Ahora es solo texto, sin
+   fondo ni forma propia: informa sin competir con la flecha. */
+.d2 .part-plie__n {
+  flex: none;
+  font-size: var(--fs-xs, .75rem);
+  font-weight: var(--fw-regular, 400);
+  color: var(--c-texto-suave, #6B6B6B);
+  font-variant-numeric: tabular-nums;
+}
+
+/* La flecha, que gira al abrir: segunda senal de estado */
+.d2 .part-plie__flecha {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: var(--c-verde-hover, #026F00);
+  background: rgba(57, 181, 74, .12);
+  border-radius: 50%;
+  /* El giro va mas lento que el color: se ve girar, no aparece girada. */
+  transition: transform var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1)),
+              background var(--trans-media, 250ms ease),
+              color var(--trans-media, 250ms ease),
+              scale var(--trans-media, 250ms ease);
+}
+
+/* Crece un poco al pasar el raton: dice "esto se pulsa" */
+.d2 .part-plie:hover .part-plie__flecha {
+  background: var(--c-verde, #39B54A);
+  color: var(--c-blanco, #FFFFFF);
+  scale: 1.1;
+}
+
+.d2 .part-plie[open] .part-plie__flecha { transform: rotate(180deg); }
+
+/* Abierto: el borde entero se pone verde.
+
+   El FAQ usa ademas un filete a la izquierda como tercera senal, pero aqui
+   se retira por peticion del usuario. Siguen quedando DOS senales de estado
+   --la flecha girada y el borde verde-- ademas del contenido que aparece,
+   asi que WCAG 1.4.1 se cumple: el color no es la unica. */
+.d2 .part-plie[open] {
+  border-color: var(--c-verde, #39B54A);
+}
+
+/* --- el latido: lo que invita a pulsar --- */
+.d2 .part-plie:not([open]) .part-plie__flecha {
+  animation: partLatido 2.8s var(--curva, cubic-bezier(.32, .72, 0, 1)) infinite;
+}
+
+@keyframes partLatido {
+  0%, 62%, 100% { transform: translateY(0); }
+  70%           { transform: translateY(3px); }
+  78%           { transform: translateY(0); }
+  86%           { transform: translateY(2px); }
+  94%           { transform: translateY(0); }
+}
+
+/* Al pasar el raton deja de insistir: ya tiene la atencion */
+.d2 .part-plie:hover .part-plie__flecha,
+.d2 .part-plie[open] .part-plie__flecha { animation: none; }
+
+/* --- lo que hay dentro --- */
+.d2 .part-plie__cuerpo {
+  padding: 0 var(--sp-4, 1rem) var(--sp-4, 1rem);
+}
+
+/* Los nueve puntos, en dos columnas.
+
+   OJO: la lista es display:grid, asi que "columns: 2" se ignora --probado,
+   seguia en nueve renglones--. En un grid manda grid-template-columns. */
+.d2 .part-plie__cuerpo ul {
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--sp-5, 1.5rem);
+}
+
+/* Entran escalonados al abrir */
+.d2 .part-plie[open] .part-plie__cuerpo li {
+  animation: partEntra .35s var(--curva, cubic-bezier(.32, .72, 0, 1)) both;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+@keyframes partEntra {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.d2 .part-plie__sum:focus-visible {
+  outline: 2px solid var(--c-verde, #39B54A);
+  outline-offset: 2px;
+  border-radius: var(--radio-md, 10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d2 .part-plie:not([open]) .part-plie__flecha { animation: none; }
+  .d2 .part-plie[open] .part-plie__cuerpo li { animation: none; }
+}
+
+@media (max-width: 560px) {
+  .d2 .part-plie__cuerpo ul { grid-template-columns: 1fr; }
+}

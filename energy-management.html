@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/d2-ega.css">
 <link rel="stylesheet" href="css/v1.css">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
-<link rel="stylesheet" href="css/prueba-fondos.css">
+
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
 <link rel="stylesheet" href="css/ajuste-titulos.css">
 </head>
@@ -305,6 +305,13 @@
      Copy IDENTICO en las dos. El apunte de cada paso es la pregunta que
      ese paso responde, no copy nuevo del cliente.
      ================================================================== -->
+<!-- EN NEGRO, CON LAS DOS VARIANTES (21/9/2026)
+
+     Erick pidio el fondo y quitar "and repeat", no elegir entre Cards y
+     Loop: esa decision sigue abierta, asi que el selector se queda.
+
+     El selector de FONDOS si se retira --la seccion ya tiene color
+     propio-- pero eso es otra cosa que el de variantes. -->
 <div class="d2-caru" id="caru-work" data-caru>
 
   <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
@@ -342,15 +349,8 @@
         <span class="ciclo__n" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14L16 12h5"/></g></svg></span>
         <span class="ciclo__nombre">Monitor outcomes</span>
       </li>
-      <li class="ciclo__repite" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M3 12a9 9 0 019-9 9 9 0 016.7 3M21 12a9 9 0 01-9 9 9 9 0 01-6.7-3"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="1.8"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        and repeat
-      </li>
+      <!-- El "and repeat" se retira por peticion de Erick (21/9/2026). El
+           titular ya dice "a continuous cycle", asi que lo repetia. -->
     </ol>
   </div>
 </section>
@@ -404,7 +404,11 @@
           </svg>
         </span>
       </div>
-      <p class="giro__pie">The cycle does not stop &mdash; each pass builds on the last.</p>
+      <!-- El pie decia "The cycle does not stop - each pass builds on the
+           last". Se retira por el mismo motivo que el "and repeat" de
+           Cards: Erick pidio quitarlo, y el titular ya dice "a
+           continuous cycle". Este texto era de la maqueta, no del copy
+           aprobado. -->
     </div>
 
   </div>
@@ -471,18 +475,41 @@
     </div>
 
     <div class="dos-col__izq">
-      <p class="eyebrow">What the program includes</p>
-      <ul class="lista-check">
-        <li>Structured onboarding</li>
-        <li>Target setting and baseline definition</li>
-        <li>Portfolio assessment</li>
-        <li>Energy project list and prioritization</li>
-        <li>Three-year capital project plan</li>
-        <li>Building automation scheduling</li>
-        <li>Regular team engagement</li>
-        <li>Calculated greenhouse gas emissions reporting</li>
-        <li>Incentive identification and applications</li>
-      </ul>
+      <!-- LA LISTA, PLEGADA (21/9/2026)
+
+           Erick: "me gusta mas List, pero se me hace muy cargado de
+           informacion, se que no se puede modificar por el SEO".
+
+           EL TEXTO SIGUE ENTERO EN EL HTML --los nueve puntos y el titulo
+           estan aqui, dentro del <details>-- asi que el SEO no cambia: solo
+           cambia lo que se ve al llegar.
+
+           El titulo del desplegable REUTILIZA el eyebrow que ya estaba
+           encima, no anade texto nuevo: escribir uno propio habria cambiado
+           el copy.
+
+           Dentro, los nueve van en dos columnas: de nueve renglones a
+           cinco. -->
+      <details class="part-plie">
+        <summary class="part-plie__sum">
+          <span class="part-plie__eti">What the program includes</span>
+          <span class="part-plie__n" aria-hidden="true">9</span>
+          <span class="part-plie__flecha"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="part-plie__cuerpo">
+          <ul class="lista-check">
+          <li style="--i:0">Structured onboarding</li>
+          <li style="--i:1">Target setting and baseline definition</li>
+          <li style="--i:2">Portfolio assessment</li>
+          <li style="--i:3">Energy project list and prioritization</li>
+          <li style="--i:4">Three-year capital project plan</li>
+          <li style="--i:5">Building automation scheduling</li>
+          <li style="--i:6">Regular team engagement</li>
+          <li style="--i:7">Calculated greenhouse gas emissions reporting</li>
+          <li style="--i:8">Incentive identification and applications</li>
+          </ul>
+        </div>
+      </details>
 
       <div class="run-callout">
         <p class="run-callout__texto">
@@ -601,7 +628,12 @@
 
      Copy IDENTICO en las dos.
      ================================================================== -->
-<div class="d2-caru" id="caru-lt" data-caru>
+<!-- BEFORE / AFTER FIJA (21/9/2026)
+     Erick: "esta chingona el before and after". Es la opcion elegida,
+     asi que se deja puesta. data-caru-fijo="1" fija la segunda --el
+     indice es de base cero-- y el JS retira los mandos solo; la
+     variante Trend sigue en el archivo por si se quiere volver. -->
+<div class="d2-caru" id="caru-lt" data-caru data-caru-fijo="1">
 
   <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="prueba-sec">
@@ -727,13 +759,23 @@
         </div>
       </div>
 
+      <!-- LA NOTA, DENTRO DEL MISMO PARRAFO (21/9/2026)
+
+           Erick: "haria mas chico el texto ... y metria de alguna manera en
+           el mismo parrafo pero bold: Anonymized results...".
+
+           La nota estaba en un <p> aparte debajo. Ahora entra en el mismo
+           bloque de texto, en negrita, separada por un punto: se lee como
+           el cierre de la frase y no como un pie desconectado.
+
+           Ni una palabra cambia: son las mismas dos frases. -->
       <p class="comp__resumen">
         <span class="comp__resumen-n">34%</span>
         <span class="comp__resumen-t">reduction in energy intensity across 22 facilities,
-          with $4.4&nbsp;million saved in energy costs over the course of the program.</span>
+          with $4.4&nbsp;million saved in energy costs over the course of the program.
+          <strong class="comp__resumen-fuente">Anonymized results from a 22-facility school
+          division portfolio.</strong></span>
       </p>
-
-      <p class="comp__nota">Anonymized results from a 22-facility school division portfolio.</p>
     </div>
 
   </div>
@@ -998,7 +1040,7 @@
 <!-- El selector de variantes de las tres secciones. Sin esto los botones
      estan en la pagina pero no hacen nada: la opcion 2 nunca se ve. -->
 <script src="js/d2-carrusel.js"></script>
-<script src="js/prueba-fondos.js"></script>
+
 <script src="js/ajuste-titulos.js"></script>
 </body>
 </html>
