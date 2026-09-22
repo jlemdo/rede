@@ -431,186 +431,63 @@
      de las secciones blancas de alrededor. Clase propia y no .dos-col a secas
      porque esa clase la comparten otras secciones de la pagina.
      ========================================================================== -->
-<!-- ==================================================================
-     "THE PARTNERSHIP" -- DOS PROPUESTAS (18/9/2026)
+<!-- ======================================================================
+     THE PARTNERSHIP, PARTIDA EN DOS  (21/9/2026)
 
-     1 List    la actual: los nueve puntos en una lista seguida
-     2 Phases  los mismos nueve, agrupados por la fase a la que pertenecen
+     Erick pidio romper la seccion en dos, y ya lo estaba por dentro: la
+     columna izquierda responde COMO TRABAJAMOS JUNTOS y la derecha QUE
+     RECIBES. Dos mensajes independientes compitiendo por una pantalla.
 
-     Nueve puntos seguidos se leen como un inventario y no dicen en que
-     orden pasan las cosas. Agrupados en montar / planear / operar se ve
-     que el programa tiene un principio y un ritmo.
+     Ahora cada uno tiene la suya, a todo el ancho.
 
-     LOS NUEVE PUNTOS ESTAN LOS NUEVE, palabra por palabra. Solo cambia
-     como se agrupan. Los nombres de fase y sus apuntes son ANADIDOS
-     PARA ESTA MAQUETA: no vienen del copy maestro y hay que aprobarlos.
-     ================================================================== -->
-<div class="d2-caru" id="caru-part" data-caru>
-
-  <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
-<section class="dos-col dos-col--gris">
-  <div class="dos-col__inner dos-col__inner--invertido">
-
-    <div class="dos-col__der">
-      <p class="eyebrow">The partnership</p>
-      <h2 class="dos-col__titulo">We bring the expertise. You bring the buildings.</h2>
-      <p class="dos-col__texto">
-        This is a genuine partnership. Rede brings the energy management expertise, the
+     EL SELECTOR DE VARIANTES SE RETIRA: la variante "Phases" agrupaba los
+     nueve puntos en tres fases, incompatible con la marquesina que se
+     eligio. Se conserva la de List, que es la que gustaba.
+     ====================================================================== -->
+<section class="part-a">
+  <div class="part-a__inner">
+    <p class="eyebrow">The partnership</p>
+    <h2 class="part-a__titulo">We bring the expertise. You bring the buildings.</h2>
+    <div class="part-a__texto">
+      <p class="dos-col__texto">This is a genuine partnership. Rede brings the energy management expertise, the
         RUN platform and the plan. Your team brings the buildings and the people who
-        know them best.
-      </p>
-      <p class="dos-col__texto">
-        We combine portfolio data with the operational knowledge held by your staff:
+        know them best.</p>
+      <p class="dos-col__texto">We combine portfolio data with the operational knowledge held by your staff:
         ongoing issues, known problem buildings and context that rarely appears in a
         report. Together, we build an energy management program around what is actually
-        happening in your facilities.
-      </p>
-      <a href="contact.html" class="btn btn--primary dos-col__cta">
-        Talk to us about your buildings
-        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+        happening in your facilities.</p>
     </div>
+    <a class="btn btn--primary part-a__cta" href="contact.html">Talk to us about your buildings</a>
+  </div>
+</section>
 
-    <div class="dos-col__izq">
-      <!-- LA MARQUESINA (21/9/2026)
-
-           Erick pidio aligerar la seccion sin quitar texto. Los nueve
-           puntos pasan de nueve renglones a UNA linea que corre sin fin,
-           con la misma tecnica que la barra de logos de la home.
-
-           LA COPIA ES OBLIGADA: para que la cinta no tenga fin hay que
-           duplicar la fila, porque el desplazamiento del 50% cae justo
-           donde empieza la segunda. Va con aria-hidden para que un lector
-           de pantalla no lea los nueve dos veces --el SEO tampoco los
-           cuenta dos veces por lo mismo--.
-
-           Se pausa al pasar el raton: es texto, y en movimiento no hay
-           forma de leerlo con calma. -->
-      <p class="eyebrow">What the program includes</p>
-      <div class="mq">
-        <div class="mq__cinta">
-          <ul class="mq__fila">
-            <li class="mq__p">Structured onboarding</li>
-            <li class="mq__p">Target setting and baseline definition</li>
-            <li class="mq__p">Portfolio assessment</li>
-            <li class="mq__p">Energy project list and prioritization</li>
-            <li class="mq__p">Three-year capital project plan</li>
-            <li class="mq__p">Building automation scheduling</li>
-            <li class="mq__p">Regular team engagement</li>
-            <li class="mq__p">Calculated greenhouse gas emissions reporting</li>
-            <li class="mq__p">Incentive identification and applications</li>
-          </ul>
-          <ul class="mq__fila" aria-hidden="true">
-            <li class="mq__p" aria-hidden="true">Structured onboarding</li>
-            <li class="mq__p" aria-hidden="true">Target setting and baseline definition</li>
-            <li class="mq__p" aria-hidden="true">Portfolio assessment</li>
-            <li class="mq__p" aria-hidden="true">Energy project list and prioritization</li>
-            <li class="mq__p" aria-hidden="true">Three-year capital project plan</li>
-            <li class="mq__p" aria-hidden="true">Building automation scheduling</li>
-            <li class="mq__p" aria-hidden="true">Regular team engagement</li>
-            <li class="mq__p" aria-hidden="true">Calculated greenhouse gas emissions reporting</li>
-            <li class="mq__p" aria-hidden="true">Incentive identification and applications</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="run-callout">
-        <p class="run-callout__texto">
+<section class="part-b">
+  <div class="part-b__inner">
+    <p class="eyebrow">What the program includes</p>
+    <div class="mq mqi"><div class="mq__cinta"><ul class="mq__fila"><li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-7-6h14M-7 0h14M-7 6h9"/></g></svg></span>Structured onboarding</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="0" r="7"/><circle cx="0" cy="0" r="2.5"/></g></svg></span>Target setting and baseline definition</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 6V-2M-3 6v-8M2 6V-6M7 6V-1"/></g></svg></span>Portfolio assessment</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6-6h12M-6 0h12M-6 6h7"/><path d="M-8-6h.01M-8 0h.01M-8 6h.01"/></g></svg></span>Energy project list and prioritization</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="-7" y="-6" width="14" height="13" rx="2"/><path d="M-7-1h14M-3-8v4M3-8v4"/></g></svg></span>Three-year capital project plan</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="0" r="7"/><path d="M0-4v4l3 2"/></g></svg></span>Building automation scheduling</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="-3" cy="-2" r="3"/><circle cx="4" cy="-1" r="2.4"/><path d="M-8 7a5 5 0 019 0M2 7a4 4 0 017-2"/></g></svg></span>Regular team engagement</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-7 5a7 7 0 1114 0z"/><path d="M0-7v4"/></g></svg></span>Calculated greenhouse gas emissions reporting</li>
+<li class="mqi__p"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6-7h9l3 3v11h-12z"/><path d="M-2 2h4M-2 5h4"/></g></svg></span>Incentive identification and applications</li></ul><ul class="mq__fila" aria-hidden="true"><li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-7-6h14M-7 0h14M-7 6h9"/></g></svg></span>Structured onboarding</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="0" r="7"/><circle cx="0" cy="0" r="2.5"/></g></svg></span>Target setting and baseline definition</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 6V-2M-3 6v-8M2 6V-6M7 6V-1"/></g></svg></span>Portfolio assessment</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6-6h12M-6 0h12M-6 6h7"/><path d="M-8-6h.01M-8 0h.01M-8 6h.01"/></g></svg></span>Energy project list and prioritization</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="-7" y="-6" width="14" height="13" rx="2"/><path d="M-7-1h14M-3-8v4M3-8v4"/></g></svg></span>Three-year capital project plan</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="0" r="7"/><path d="M0-4v4l3 2"/></g></svg></span>Building automation scheduling</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="-3" cy="-2" r="3"/><circle cx="4" cy="-1" r="2.4"/><path d="M-8 7a5 5 0 019 0M2 7a4 4 0 017-2"/></g></svg></span>Regular team engagement</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-7 5a7 7 0 1114 0z"/><path d="M0-7v4"/></g></svg></span>Calculated greenhouse gas emissions reporting</li>
+<li class="mqi__p" aria-hidden="true"><span class="mqi__ico"><svg width="17" height="17" viewBox="-11 -11 22 22" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6-7h9l3 3v11h-12z"/><path d="M-2 2h4M-2 5h4"/></g></svg></span>Incentive identification and applications</li></ul></div></div>
+    <p class="run-callout part-b__nota">
           Every Energy Management engagement includes full access to RUN, Rede&rsquo;s
           utility management platform. Your data, your buildings and your plan are
           organized in one place.
         </p>
-        <a class="enlace-flecha enlace-flecha--verde" href="run.html">
-          Learn about RUN
-          <svg width="16" height="11" viewBox="0 0 18 12" aria-hidden="true">
-            <path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor"
-                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
   </div>
 </section>
-  </div>
-
-  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 2" hidden>
-<section class="dos-col dos-col--gris fases-sec d2-entra">
-  <div class="fases-sec__inner">
-
-    <div class="fases-sec__texto">
-      <p class="eyebrow">The partnership</p>
-      <h2 class="fases-sec__titulo">We bring the expertise. You bring the buildings.</h2>
-      <p class="fases-sec__lead">
-        This is a genuine partnership. Rede works as an extension of your team, not as
-        an outside consultant delivering a report and moving on.
-      </p>
-      <p class="fases-sec__lead">
-        We combine portfolio data with the operational knowledge your staff already
-        have, so the plan reflects how your buildings actually run.
-      </p>
-      <a class="btn btn--primary fases-sec__cta" href="contact.html">Book a consultation</a>
-    </div>
-
-    <div class="fases-sec__fases">
-      <p class="eyebrow">What the program includes</p>
-      <div class="fases">
-        <div class="fase" style="--i:0">
-          <div class="fase__cab">
-            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 3.5L16 11H5"/></g></svg></span>
-            <span class="fase__nombre">Set up</span>
-          </div>
-          <p class="fase__apunte">Agreeing what to measure and where you stand today.</p>
-          <ul class="fase__lista">
-            <li>Structured onboarding</li>
-            <li>Target setting and baseline definition</li>
-            <li>Portfolio assessment</li>
-          </ul>
-        </div>
-        <div class="fase" style="--i:1">
-          <div class="fase__cab">
-            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></svg></span>
-            <span class="fase__nombre">Plan</span>
-          </div>
-          <p class="fase__apunte">Turning the assessment into a prioritized, funded plan.</p>
-          <ul class="fase__lista">
-            <li>Energy project list and prioritization</li>
-            <li>Three-year capital project plan</li>
-            <li>Incentive identification and applications</li>
-          </ul>
-        </div>
-        <div class="fase" style="--i:2">
-          <div class="fase__cab">
-            <span class="fase__n" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 018.5-8.5 8.5 8.5 0 016.3 2.8M20.5 12a8.5 8.5 0 01-8.5 8.5 8.5 8.5 0 01-6.3-2.8"/><path d="M18 3.5v4h-4M6 20.5v-4h4"/></g></svg></span>
-            <span class="fase__nombre">Run</span>
-          </div>
-          <p class="fase__apunte">Keeping the cycle turning, month after month.</p>
-          <ul class="fase__lista">
-            <li>Building automation scheduling</li>
-            <li>Regular team engagement</li>
-            <li>Calculated greenhouse gas emissions reporting</li>
-          </ul>
-        </div>
-      </div>
-      <p class="run-callout fases-sec__nota">
-        Every Energy Management engagement is scoped to your portfolio, your data and
-        your team&rsquo;s capacity.
-      </p>
-    </div>
-
-  </div>
-</section>
-  </div>
-
-  <div class="d2-caru__mandos">
-    <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 List</button>
-    <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Phases</button>
-    <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
-</div>
 
 
 <!-- ==========================================================================

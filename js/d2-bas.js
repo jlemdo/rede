@@ -25,10 +25,10 @@
   var PASOS = [
     { y: 130, quien: 'Rede analyzes',
       que: 'Rede reviews the building automation system: scheduling, setpoint and control sequence analysis.' },
-    { y: 200, quien: 'Your contractor implements',
-      que: 'Your authorized controls contractor makes the approved changes. Rede documents the recommendations but does not touch the system.' },
-    { y: 270, quien: 'Rede measures the results',
-      que: 'Measurement and verification against the agreed baseline, so you can see whether performance improved.' }
+    { y: 200, quien: "Reviews contractor's performance",
+      que: 'Your authorized controls contractor makes the approved changes. Rede reviews the work against what was documented.' },
+    { y: 270, quien: 'Rede suggests adjustments',
+      que: 'Measurement and verification against the agreed baseline, and the adjustments that follow from it.' }
   ];
 
   var VUELTA = 9000;      /* el recorrido completo */
