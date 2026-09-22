@@ -475,41 +475,47 @@
     </div>
 
     <div class="dos-col__izq">
-      <!-- LA LISTA, PLEGADA (21/9/2026)
+      <!-- LA MARQUESINA (21/9/2026)
 
-           Erick: "me gusta mas List, pero se me hace muy cargado de
-           informacion, se que no se puede modificar por el SEO".
+           Erick pidio aligerar la seccion sin quitar texto. Los nueve
+           puntos pasan de nueve renglones a UNA linea que corre sin fin,
+           con la misma tecnica que la barra de logos de la home.
 
-           EL TEXTO SIGUE ENTERO EN EL HTML --los nueve puntos y el titulo
-           estan aqui, dentro del <details>-- asi que el SEO no cambia: solo
-           cambia lo que se ve al llegar.
+           LA COPIA ES OBLIGADA: para que la cinta no tenga fin hay que
+           duplicar la fila, porque el desplazamiento del 50% cae justo
+           donde empieza la segunda. Va con aria-hidden para que un lector
+           de pantalla no lea los nueve dos veces --el SEO tampoco los
+           cuenta dos veces por lo mismo--.
 
-           El titulo del desplegable REUTILIZA el eyebrow que ya estaba
-           encima, no anade texto nuevo: escribir uno propio habria cambiado
-           el copy.
-
-           Dentro, los nueve van en dos columnas: de nueve renglones a
-           cinco. -->
-      <details class="part-plie">
-        <summary class="part-plie__sum">
-          <span class="part-plie__eti">What the program includes</span>
-          <span class="part-plie__n" aria-hidden="true">9</span>
-          <span class="part-plie__flecha"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </summary>
-        <div class="part-plie__cuerpo">
-          <ul class="lista-check">
-          <li style="--i:0">Structured onboarding</li>
-          <li style="--i:1">Target setting and baseline definition</li>
-          <li style="--i:2">Portfolio assessment</li>
-          <li style="--i:3">Energy project list and prioritization</li>
-          <li style="--i:4">Three-year capital project plan</li>
-          <li style="--i:5">Building automation scheduling</li>
-          <li style="--i:6">Regular team engagement</li>
-          <li style="--i:7">Calculated greenhouse gas emissions reporting</li>
-          <li style="--i:8">Incentive identification and applications</li>
+           Se pausa al pasar el raton: es texto, y en movimiento no hay
+           forma de leerlo con calma. -->
+      <p class="eyebrow">What the program includes</p>
+      <div class="mq">
+        <div class="mq__cinta">
+          <ul class="mq__fila">
+            <li class="mq__p">Structured onboarding</li>
+            <li class="mq__p">Target setting and baseline definition</li>
+            <li class="mq__p">Portfolio assessment</li>
+            <li class="mq__p">Energy project list and prioritization</li>
+            <li class="mq__p">Three-year capital project plan</li>
+            <li class="mq__p">Building automation scheduling</li>
+            <li class="mq__p">Regular team engagement</li>
+            <li class="mq__p">Calculated greenhouse gas emissions reporting</li>
+            <li class="mq__p">Incentive identification and applications</li>
+          </ul>
+          <ul class="mq__fila" aria-hidden="true">
+            <li class="mq__p" aria-hidden="true">Structured onboarding</li>
+            <li class="mq__p" aria-hidden="true">Target setting and baseline definition</li>
+            <li class="mq__p" aria-hidden="true">Portfolio assessment</li>
+            <li class="mq__p" aria-hidden="true">Energy project list and prioritization</li>
+            <li class="mq__p" aria-hidden="true">Three-year capital project plan</li>
+            <li class="mq__p" aria-hidden="true">Building automation scheduling</li>
+            <li class="mq__p" aria-hidden="true">Regular team engagement</li>
+            <li class="mq__p" aria-hidden="true">Calculated greenhouse gas emissions reporting</li>
+            <li class="mq__p" aria-hidden="true">Incentive identification and applications</li>
           </ul>
         </div>
-      </details>
+      </div>
 
       <div class="run-callout">
         <p class="run-callout__texto">

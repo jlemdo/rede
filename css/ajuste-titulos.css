@@ -198,3 +198,45 @@
 body[style*="--fs-h1"] :is(.d2-hero__titulo, .ct__titulo, .d2-acceso__titulo) {
   font-size: var(--fs-h1);
 }
+
+
+/* ==========================================================================
+   SOLO EL HERO CONSERVA LA ANIMACION DE ENTRADA  (21/9/2026)
+
+   Erick: "quitar todas las animaciones de entrada excepto a los hero,
+   about, contact y client login". La frase admitia dos lecturas --"y esas
+   tres paginas enteras" o "los heroes, tambien los de esas tres"-- y se
+   toma la segunda, que es la coherente con la regla general: EN TODAS LAS
+   PAGINAS, solo el hero.
+
+   Se anula por estado y no quitando .d2-entra del marcado: el JS sigue
+   anadiendo .es-visible igual, y esto se revierte borrando el bloque.
+
+   CON !important, y hace falta: las reglas de .d2-entra ponen opacity:0 y
+   esperan al JS. Sin !important esto quitaba la transicion pero no devolvia
+   la opacidad, y elementos se quedaban invisibles --medido en la home--.
+
+   Y SE INCLUYE .es-visible en el selector: esa clase trae su propia regla,
+   mas especifica, que devolvia la transicion en cuanto el JS la anadia.
+
+   VA EN ESTA HOJA y no en v1.css: la home y Gap no cargan v1, asi que alli
+   la regla no les llegaba. Esta la cargan las ocho y va la ultima.
+
+   QUE CUENTA COMO HERO: lo que lleva .d2-hero, .d2-ega-hero o una clase de
+   cabecera propia --.ct__cab en Contact, .d2-acceso__copy en Client
+   Login--, y los hijos del hero de la home, que llevan .d2-entra cada uno.
+   ========================================================================== */
+
+.d2 .d2-entra:not(.d2-hero):not(.d2-ega-hero):not(.ct__cab):not(.d2-acceso__copy):not([class*="d2-hero__"]),
+.d2 .d2-entra.es-visible:not(.d2-hero):not(.d2-ega-hero):not(.ct__cab):not(.d2-acceso__copy):not([class*="d2-hero__"]) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Y lo que entraba escalonado dentro de esas secciones */
+.d2 .d2-entra:not(.d2-hero):not(.d2-ega-hero):not(.ct__cab):not(.d2-acceso__copy):not([class*="d2-hero__"]) > * {
+  opacity: 1 !important;
+  transform: none !important;
+}

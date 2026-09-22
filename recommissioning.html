@@ -663,16 +663,27 @@
     <div class="rs-sec__texto">
       <p class="eyebrow">Results</p>
       <h2 class="prueba-sec__titulo">Operational improvements you can measure.</h2>
-      <p class="prueba-sec__texto">
-        Recommissioning focuses on practical changes to schedules, setpoints and
-        control sequences that can reduce unnecessary energy use while keeping
-        existing equipment in service.
+      <!-- ICONOS EN LOS PARRAFOS (21/9/2026)
+
+           Pedido por Erick. Los dos parrafos hablan de cosas distintas --el
+           primero de QUE SE AJUSTA, el segundo de QUE SE MIDE-- asi que
+           cada uno lleva el suyo: los deslizadores de una consigna y el
+           pulso contra una linea base.
+
+           Ni una palabra cambia: el icono va delante, en su propia columna.
+           aria-hidden porque no aportan informacion nueva. -->
+      <p class="prueba-sec__texto rs-txt">
+        <span class="rs-txt__ico" aria-hidden="true"><svg width="20" height="20" viewBox="-11 -11 22 22" fill="none"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-8-5h16M-8 0h16M-8 5h16"/><circle cx="-3" cy="-5" r="2.2"/><circle cx="3" cy="0" r="2.2"/><circle cx="-1" cy="5" r="2.2"/></g></svg></span>
+        <span class="rs-txt__t">Recommissioning focuses on practical changes to schedules,
+          setpoints and control sequences that can reduce unnecessary energy use while
+          keeping existing equipment in service.</span>
       </p>
-      <p class="prueba-sec__texto">
-        After the approved corrections are implemented, Rede measures the results
-        against an agreed baseline. Your team gets a clear record of what changed and
-        whether building performance improved. Because operating conditions continue
-        to change, performance should be monitored over time.
+      <p class="prueba-sec__texto rs-txt">
+        <span class="rs-txt__ico" aria-hidden="true"><svg width="20" height="20" viewBox="-11 -11 22 22" fill="none"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-9 6h18"/><path d="M-8 1l3.5-7 3.5 10 3-5 3 2h2"/></g></svg></span>
+        <span class="rs-txt__t">After the approved corrections are implemented, Rede
+          measures the results against an agreed baseline. Your team gets a clear record
+          of what changed and whether building performance improved. Because operating
+          conditions continue to change, performance should be monitored over time.</span>
       </p>
     </div>
 
@@ -989,7 +1000,7 @@
                ==================================================================== -->
           <aside class="d2-faq-dato__ficha">
 
-        <p class="d2-faq-dato__eyebrow">Who does what</p>
+        <p class="d2-faq-dato__eyebrow">Who makes changes to the BAS</p>
 
         <div class="bas2" data-bas>
           <svg class="bas2__svg" viewBox="0 0 460 320" role="img"
@@ -1032,9 +1043,9 @@
                    centro del circulo: asi no hay que calcular a mano. -->
               <g class="bas2__ico" transform="translate(230 270)"><path d="M-8-.4h3.3l2-5.6 3.4 11.2 2-5.6H8"/></g>
             </g>
-            <text class="bas2__lado" x="272" y="134">Remote</text>
-            <text class="bas2__lado bas2__lado--sitio" x="272" y="204">On site</text>
-            <text class="bas2__lado" x="272" y="274">Remote</text>
+                      <text class="bas2__eti" x="264" y="135">Rede analyzes</text>
+            <text class="bas2__eti" x="264" y="205">Your contractor</text>
+            <text class="bas2__eti" x="264" y="275">Rede measures</text>
           </svg>
 
           <div class="bas2__ficha" data-bas-ficha aria-live="polite">
@@ -1042,7 +1053,7 @@
             <p class="bas2__que" data-bas-que>Schedules, setpoints and control sequences, checked against design intent and how the building runs today.</p>
           </div>
 
-          <p class="bas2__nota">Rede does not make changes to the BAS directly.</p>
+          <p class="bas2__nota">Rede does not touch the BAS. Throughout, Rede works alongside your team.</p>
         </div>
           </aside>
 

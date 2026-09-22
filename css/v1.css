@@ -1406,12 +1406,34 @@
    Se copia ese metodo: el relleno vuelve completo y la caja sube con un
    margen negativo del mismo valor. El resultado en pantalla es el mismo
    arriba, pero la caja crece hacia arriba en vez de encogerse por dentro. */
+/* El margen negativo se retira. Se puso para alinear "What gets measured"
+   con "Results", pero ahora la caja va CENTRADA en su columna --Erick pidio
+   la grafica "un poco mas en medio"-- y las dos cosas se contradicen: no
+   puede estar centrada y a la vez pegada arriba.
+
+   Con el margen puesto, ademas, el centrado quedaba 34px desviado: subia la
+   caja justo esos 34. */
+/* El relleno de Client Login, que es la tarjeta que sirve de patron: 43,2px
+   --var(--sp-6) a 3vw-- en vez de los 34 que tenia. Con 34 el label quedaba
+   a 35px del borde y alli esta a 46. */
 .d2 .rs-sec__medida {
-  padding: clamp(24px, 2.6vw, 34px);
-  margin-top: calc(-1 * clamp(24px, 2.6vw, 34px));
+  padding: clamp(var(--sp-6), 3vw, var(--sp-7));
   background: rgba(255, 255, 255, .07);
   border: 1px solid rgba(255, 255, 255, .18);
   border-radius: var(--radio-lg, 16px);
+}
+
+/* CENTRADA EN VERTICAL, confirmado por Erick: "la intentaria poner un poco
+   mas en medio", y es el eje Y.
+
+   Sin esto queda pegada arriba con todo el hueco debajo --medido: 0 arriba
+   y 171 abajo a 1880--, porque la columna de texto es mucho mas alta.
+
+   Esto renuncia a alinear "What operational drift looks like" con
+   "Results": son incompatibles, la tarjeta no puede estar centrada y
+   pegada arriba a la vez. */
+.d2 .rs-sec__inner > .rs-sec__medida {
+  align-self: center;
 }
 
 /* LA ESPECIFICIDAD, MEDIDA  (18/9/2026)
@@ -2282,7 +2304,10 @@
   max-width: var(--ancho-max, 1280px);
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 0.5rem + 3vw, 4rem);
-  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+  /* SIN padding-block: la seccion .prueba-sec ya lo trae, y ponerlo aqui
+     lo sumaba dos veces. Medido: 168px de aire arriba cuando el resto de
+     secciones de la pagina tienen 84. Es lo que Erick vio como "le sobra
+     mucho padding arriba y abajo". */
 }
 
 .d2 .comp-sec__titulo {
@@ -2300,8 +2325,24 @@
   color: rgba(255, 255, 255, .88);
 }
 
+/* "Energy intensity" A LA ALTURA DE "Long-term results"
+
+   El label caia 35px por debajo --medido--, justo a la altura del titulo,
+   y las dos columnas se leian descuadradas.
+
+   Se resuelve como la tarjeta de Client Login, que es el patron del sitio:
+   el relleno se queda entero y la caja sube con un margen negativo del
+   mismo valor. Asi el label se alinea sin que la caja pierda su aire por
+   dentro. Es lo mismo que se hizo en Results y en Access funding. */
+/* El margen usa LA MISMA formula que el relleno, no otra parecida.
+
+   Llevaba clamp(--sp-6, 3vw, --sp-7) --43,2px-- contra un relleno de 34, y
+   los 9 de diferencia descuadraban el label: -8px respecto al eyebrow,
+   medido. Para que la caja suba justo lo que mide su relleno, los dos
+   valores tienen que ser el mismo. */
 .d2 .comp-sec__medida {
   padding: clamp(24px, 2.6vw, 34px);
+  margin-top: calc(-1 * clamp(24px, 2.6vw, 34px));
   background: rgba(255, 255, 255, .07);
   border: 1px solid rgba(255, 255, 255, .18);
   border-radius: var(--radio-lg, 16px);
@@ -3229,6 +3270,7 @@
 }
 
 
+
 /* ==========================================================================
    3. LA FICHA DEL FAQ DE RECOMMISSIONING  (21/9/2026)
    ========================================================================== */
@@ -3453,197 +3495,95 @@
 }
 
 
+
+}
+
+/* Los nodos, con su nombre al lado (21/9/2026)
+
+   Erick: "a esta no le entendi mucho". Los tres nodos eran iconos sin
+   etiqueta: habia que senalarlos con el raton para saber que
+   representaban, y la ficha de abajo solo mostraba uno cada vez. Quien
+   pasaba de largo no se enteraba de nada.
+
+   El diseno no se toca --no dijo nada de el--: solo se les pone el nombre
+   al lado, siempre a la vista. La ficha sigue dando el detalle. */
+.bas2__eti {
+  font-family: var(--fuente, "Open Sans", system-ui, sans-serif);
+  font-size: 12.5px;
+  font-weight: var(--fw-bold, 700);
+  fill: var(--c-texto, #333333);
+}
+
+/* El activo se marca tambien aqui: el nodo se enciende y su nombre con el */
+.bas2__nodo.es-activo ~ .bas2__eti { fill: var(--c-verde-hover, #026F00); }
+
 /* ==========================================================================
-   5. "THE PARTNERSHIP": LA LISTA, PLEGADA  (21/9/2026)
+   5. "THE PARTNERSHIP": LA MARQUESINA  (21/9/2026)
 
-   Erick: "me gusta mas List, pero se me hace muy cargado de informacion,
-   se que no se puede modificar por el SEO".
+   Erick: "se me sigue haciendo muy cargada esta seccion". Se pidio
+   aligerarla SIN QUITAR TEXTO, y eligio la cinta infinita.
 
-   Medido: los nueve puntos ocupaban nueve renglones en una columna de
-   478px, y miden entre 2 y 5 palabras. El problema no era cuanta
-   informacion hay, sino que estaba toda apilada.
+   Los nueve puntos pasan de nueve renglones a una sola linea. La tecnica
+   es la de la barra de logos de la home: la fila se duplica y la cinta se
+   desplaza un 50%, que es justo donde empieza la copia.
 
-   Se pliega en un <details>. EL TEXTO SIGUE EN EL HTML, asi que el SEO no
-   cambia: solo cambia lo que se ve al llegar. Y dentro va en dos columnas,
-   de nueve renglones a cinco.
-
-   Hereda el patron del FAQ de este mismo sitio: triangulo nativo fuera, y
-   TRES senales de estado --no solo color--, que es lo que pide WCAG 1.4.1.
+   EL MEDIO HUECO. El -50% solo no basta: la mitad de la pista cae en
+   "9 pildoras + 8 huecos" pero la copia empieza en "9 + 9", porque entre
+   la ultima de la primera tanda y la primera de la copia hay un hueco
+   entero. Sin compensar ese medio hueco el bucle da un tiron al reiniciar
+   --esta documentado en la marquesina de logos, donde costo encontrarlo--.
    ========================================================================== */
 
-/* EL HOVER, CON MOVIMIENTO Y NO SOLO COLOR
+.d2 .mq {
+  --mq-hueco: 10px;
 
-   La primera version solo cambiaba borde y sombra en 200ms, y se sentia
-   plano: sin desplazamiento no hay sensacion de que el elemento responda.
-
-   Ademas usaba var(--curva, ...), y esa variable NO EXISTE en el sistema
-   --comprobado: devuelve cadena vacia--. Los tokens reales son
-   --trans-rapida, --trans-media y --trans-lenta. Al no existir, todo caia
-   al respaldo; ahora se usan los de verdad.
-
-   Se anade:
-     - la caja se levanta 2px
-     - la sombra crece con ella, del token --sombra-md
-     - 250ms en vez de 200, que da tiempo a percibir el gesto */
-.d2 .part-plie {
-  border: 1px solid var(--c-borde, #E4E4E4);
-  border-radius: var(--radio-md, 10px);
-  background: var(--c-blanco, #FFFFFF);
-  transition: border-color var(--trans-media, 250ms ease),
-              box-shadow var(--trans-media, 250ms ease),
-              transform var(--trans-media, 250ms ease);
+  overflow: hidden;
+  margin-top: var(--sp-4, 1rem);
+  /* Los extremos se desvanecen: sin esto las pildoras aparecen y
+     desaparecen de golpe contra el borde. */
+  mask-image: linear-gradient(to right, transparent, #000 48px,
+                              #000 calc(100% - 48px), transparent);
 }
 
-.d2 .part-plie:hover {
-  border-color: var(--c-verde, #39B54A);
-  box-shadow: var(--sombra-md, 0 4px 16px rgba(0, 0, 0, .08));
-  transform: translateY(-2px);
-}
-
-/* Al pulsar vuelve a su sitio: el gesto se cierra */
-.d2 .part-plie:active { transform: translateY(0); }
-
-/* --- la barra que se pulsa --- */
-/* El relleno SUPERIOR se anula para que "What the program includes" quede
-   a la altura de "The partnership", el eyebrow de la columna de al lado.
-   Con el relleno completo caia 19px mas abajo --medido--.
-
-   La caja sube con un margen negativo del mismo valor, asi no pierde su
-   aire por dentro: es el metodo de la tarjeta de Client Login, el mismo
-   que se uso en Results y en Access funding. */
-.d2 .part-plie {
-  margin-top: calc(-1 * var(--sp-4, 1rem));
-}
-
-.d2 .part-plie__sum {
+.d2 .mq__cinta {
   display: flex;
-  align-items: center;
-  gap: var(--sp-3, .75rem);
-  padding: var(--sp-4, 1rem);
-  cursor: pointer;
+  width: max-content;
+  gap: var(--mq-hueco);
+  animation: mqCorre 42s linear infinite;
+}
+
+/* Se para al pasar el raton: es texto, y en movimiento no se lee. */
+.d2 .mq:hover .mq__cinta { animation-play-state: paused; }
+
+@keyframes mqCorre {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% + var(--mq-hueco) / 2)); }
+}
+
+.d2 .mq__fila {
+  display: flex;
+  gap: var(--mq-hueco);
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-/* El titulo tambien responde: estaba a 0s, asi que cambiaba de golpe. */
-.d2 .part-plie__eti {
-  transition: color var(--trans-media, 250ms ease);
-}
-
-.d2 .part-plie:hover .part-plie__eti {
-  color: var(--c-verde-hover, #026F00);
-}
-
-.d2 .part-plie__sum::-webkit-details-marker { display: none; }
-.d2 .part-plie__sum::marker { content: ""; }
-
-.d2 .part-plie__eti {
-  flex: 1;
-  font-size: var(--fs-body, 1rem);
-  font-weight: var(--fw-bold, 700);
-  line-height: 1.3;
+.d2 .mq__p {
+  flex: none;
+  padding: 9px 16px;
+  white-space: nowrap;
+  font-size: var(--fs-small, .875rem);
   color: var(--c-texto, #333333);
+  background: var(--c-blanco, #FFFFFF);
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: 999px;
 }
 
-/* El contador iba en una pildora verde a la izquierda de la flecha, y las
-   dos juntas se leian como dos botones repetidos. Ahora es solo texto, sin
-   fondo ni forma propia: informa sin competir con la flecha. */
-.d2 .part-plie__n {
-  flex: none;
-  font-size: var(--fs-xs, .75rem);
-  font-weight: var(--fw-regular, 400);
-  color: var(--c-texto-suave, #6B6B6B);
-  font-variant-numeric: tabular-nums;
-}
-
-/* La flecha, que gira al abrir: segunda senal de estado */
-.d2 .part-plie__flecha {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  color: var(--c-verde-hover, #026F00);
-  background: rgba(57, 181, 74, .12);
-  border-radius: 50%;
-  /* El giro va mas lento que el color: se ve girar, no aparece girada. */
-  transition: transform var(--trans-lenta, 400ms cubic-bezier(.4, 0, .2, 1)),
-              background var(--trans-media, 250ms ease),
-              color var(--trans-media, 250ms ease),
-              scale var(--trans-media, 250ms ease);
-}
-
-/* Crece un poco al pasar el raton: dice "esto se pulsa" */
-.d2 .part-plie:hover .part-plie__flecha {
-  background: var(--c-verde, #39B54A);
-  color: var(--c-blanco, #FFFFFF);
-  scale: 1.1;
-}
-
-.d2 .part-plie[open] .part-plie__flecha { transform: rotate(180deg); }
-
-/* Abierto: el borde entero se pone verde.
-
-   El FAQ usa ademas un filete a la izquierda como tercera senal, pero aqui
-   se retira por peticion del usuario. Siguen quedando DOS senales de estado
-   --la flecha girada y el borde verde-- ademas del contenido que aparece,
-   asi que WCAG 1.4.1 se cumple: el color no es la unica. */
-.d2 .part-plie[open] {
-  border-color: var(--c-verde, #39B54A);
-}
-
-/* --- el latido: lo que invita a pulsar --- */
-.d2 .part-plie:not([open]) .part-plie__flecha {
-  animation: partLatido 2.8s var(--curva, cubic-bezier(.32, .72, 0, 1)) infinite;
-}
-
-@keyframes partLatido {
-  0%, 62%, 100% { transform: translateY(0); }
-  70%           { transform: translateY(3px); }
-  78%           { transform: translateY(0); }
-  86%           { transform: translateY(2px); }
-  94%           { transform: translateY(0); }
-}
-
-/* Al pasar el raton deja de insistir: ya tiene la atencion */
-.d2 .part-plie:hover .part-plie__flecha,
-.d2 .part-plie[open] .part-plie__flecha { animation: none; }
-
-/* --- lo que hay dentro --- */
-.d2 .part-plie__cuerpo {
-  padding: 0 var(--sp-4, 1rem) var(--sp-4, 1rem);
-}
-
-/* Los nueve puntos, en dos columnas.
-
-   OJO: la lista es display:grid, asi que "columns: 2" se ignora --probado,
-   seguia en nueve renglones--. En un grid manda grid-template-columns. */
-.d2 .part-plie__cuerpo ul {
-  grid-template-columns: 1fr 1fr;
-  column-gap: var(--sp-5, 1.5rem);
-}
-
-/* Entran escalonados al abrir */
-.d2 .part-plie[open] .part-plie__cuerpo li {
-  animation: partEntra .35s var(--curva, cubic-bezier(.32, .72, 0, 1)) both;
-  animation-delay: calc(var(--i, 0) * 35ms);
-}
-
-@keyframes partEntra {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.d2 .part-plie__sum:focus-visible {
-  outline: 2px solid var(--c-verde, #39B54A);
-  outline-offset: 2px;
-  border-radius: var(--radio-md, 10px);
-}
-
+/* Sin movimiento: la cinta se puede recorrer a mano */
 @media (prefers-reduced-motion: reduce) {
-  .d2 .part-plie:not([open]) .part-plie__flecha { animation: none; }
-  .d2 .part-plie[open] .part-plie__cuerpo li { animation: none; }
+  .d2 .mq { mask-image: none; overflow-x: auto; }
+  .d2 .mq__cinta { animation: none; }
+  .d2 .mq__fila[aria-hidden="true"] { display: none; }
 }
 
-@media (max-width: 560px) {
-  .d2 .part-plie__cuerpo ul { grid-template-columns: 1fr; }
-}
+

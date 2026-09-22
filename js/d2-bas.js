@@ -23,12 +23,12 @@
   'use strict';
 
   var PASOS = [
-    { y: 130, quien: 'Rede reviews',
-      que: 'Schedules, setpoints and control sequences, checked against design intent and how the building runs today.' },
+    { y: 130, quien: 'Rede analyzes',
+      que: 'Rede reviews the building automation system: scheduling, setpoint and control sequence analysis.' },
     { y: 200, quien: 'Your contractor implements',
-      que: 'Your authorized controls contractor makes the approved changes. Rede does not touch the system.' },
-    { y: 270, quien: 'Rede measures',
-      que: 'The result is verified against the baseline agreed before any change was made.' }
+      que: 'Your authorized controls contractor makes the approved changes. Rede documents the recommendations but does not touch the system.' },
+    { y: 270, quien: 'Rede measures the results',
+      que: 'Measurement and verification against the agreed baseline, so you can see whether performance improved.' }
   ];
 
   var VUELTA = 9000;      /* el recorrido completo */
