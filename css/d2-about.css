@@ -797,3 +797,98 @@
   grid-template-columns: minmax(0, 1fr);
   max-width: 260px;
 }
+
+
+/* ==========================================================================
+   LA BANDA DE DATOS, BAJO EL HERO (11/10/2026)
+
+   Cuatro cifras a todo el ancho, sobre el gris de seccion. Antes eran
+   tres datos dentro de la columna de texto del hero, en letra pequena y
+   compitiendo con el lead; el wireframe del cliente los saca aqui.
+
+   LA CIFRA NO LLEVA UN TAMANO FIJO. Las cuatro son de largo muy distinto
+   --"150+" frente a "Complex portfolios"-- y un tamano unico dejaba la
+   larga en dos lineas y la corta perdida. El clamp las iguala a la vista
+   sin que ninguna desborde.
+
+   Los separadores son un borde izquierdo, no un elemento: asi el primero
+   no lo lleva y no hay que marcarlo en el marcado.
+   ========================================================================== */
+
+.d2 .ab-datos {
+  background: var(--c-fondo-alt, #F5F5F5);
+  border-block: 1px solid var(--c-borde-suave, #EFEFEF);
+}
+
+.d2 .ab-datos__inner {
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding: clamp(28px, 3vw, 40px) var(--d2-gutter, clamp(20px, 4vw, 40px));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 36px);
+  text-align: center;
+}
+
+.d2 .ab-dato + .ab-dato {
+  border-left: 1px solid var(--c-borde, #E4E4E4);
+  padding-left: clamp(16px, 2vw, 32px);
+}
+
+/* Las cuatro cifras arrancan a la misma altura aunque una ocupe dos
+   lineas: sin esto, "Complex portfolios" --la mas larga-- empujaba su
+   etiqueta hacia abajo y la fila se veia descuadrada. */
+.d2 .ab-dato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.d2 .ab-dato__cifra {
+  margin: 0 0 6px;
+  /* EL TECHO ES 23px, Y SALE DE MEDIR.
+
+     "Complex portfolios" es la cadena mas larga de las cuatro. Medido a
+     1440: la columna mide 274px y el texto a 26px necesita mas, asi que
+     salta de linea y descuadra la fila. A 1200 la columna mide 258 y el
+     texto 23,4 --y cabe--.
+
+     La letra crece con la ventana mas deprisa que la columna, porque el
+     contenedor topa en 1280. Con el techo en 23 deja de crecer donde
+     todavia cabe. */
+  font-size: clamp(19px, 1.95vw, 23px);
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.12;
+  letter-spacing: -.015em;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ab-dato__eti {
+  margin: 0;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.45;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* A partir de 900 las cuatro no caben: dos y dos. El separador pasa a ir
+   solo entre las de cada fila, que es lo que hace el nth-child. */
+@media (max-width: 900px) {
+  .d2 .ab-datos__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(22px, 3vw, 32px);
+  }
+  .d2 .ab-dato + .ab-dato { border-left: 0; padding-left: 0; }
+  .d2 .ab-dato:nth-child(even) {
+    border-left: 1px solid var(--c-borde, #E4E4E4);
+    padding-left: clamp(16px, 3vw, 28px);
+  }
+}
+
+@media (max-width: 560px) {
+  .d2 .ab-datos__inner { grid-template-columns: minmax(0, 1fr); }
+  .d2 .ab-dato:nth-child(even) { border-left: 0; padding-left: 0; }
+  .d2 .ab-dato + .ab-dato {
+    border-top: 1px solid var(--c-borde, #E4E4E4);
+    padding-top: clamp(16px, 4vw, 24px);
+  }
+}
