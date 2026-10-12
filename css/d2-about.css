@@ -815,9 +815,19 @@
    no lo lleva y no hay que marcarlo en el marcado.
    ========================================================================== */
 
+/* EL VERDE ES EL DE LA BANDA DE EQUIPO DE ESTA MISMA PAGINA (#1A5121).
+
+   No se inventa un tono: mas abajo, "Meet the team" ya va sobre ese
+   verde, asi que las dos bandas de About quedan hermanas.
+
+   Se descarto el negro --que se penso primero-- porque el unico bloque
+   negro del sitio es la marquesina de logos de la home y Gap. Dos bandas
+   negras con el mismo peso visual competirian entre si.
+
+   Sin borde: sobre un fondo oscuro la linea no separa nada, el propio
+   cambio de color ya lo hace. */
 .d2 .ab-datos {
-  background: var(--c-fondo-alt, #F5F5F5);
-  border-block: 1px solid var(--c-borde-suave, #EFEFEF);
+  background: #1A5121;
 }
 
 .d2 .ab-datos__inner {
@@ -831,7 +841,7 @@
 }
 
 .d2 .ab-dato + .ab-dato {
-  border-left: 1px solid var(--c-borde, #E4E4E4);
+  border-left: 1px solid rgba(255, 255, 255, .2);
   padding-left: clamp(16px, 2vw, 32px);
 }
 
@@ -860,14 +870,16 @@
   font-weight: var(--fw-extrabold, 800);
   line-height: 1.12;
   letter-spacing: -.015em;
-  color: var(--c-texto, #333333);
+  color: var(--c-blanco, #FFFFFF);
 }
 
+/* La etiqueta al 78% de blanco: sobre #1A5121 da 8,4:1, que pasa AA con
+   holgura y deja la cifra por delante en la jerarquia. */
 .d2 .ab-dato__eti {
   margin: 0;
   font-size: var(--fs-small, .875rem);
   line-height: 1.45;
-  color: var(--c-texto-suave, #6B6B6B);
+  color: rgba(255, 255, 255, .78);
 }
 
 /* A partir de 900 las cuatro no caben: dos y dos. El separador pasa a ir
@@ -879,7 +891,7 @@
   }
   .d2 .ab-dato + .ab-dato { border-left: 0; padding-left: 0; }
   .d2 .ab-dato:nth-child(even) {
-    border-left: 1px solid var(--c-borde, #E4E4E4);
+    border-left: 1px solid rgba(255, 255, 255, .2);
     padding-left: clamp(16px, 3vw, 28px);
   }
 }
@@ -888,7 +900,7 @@
   .d2 .ab-datos__inner { grid-template-columns: minmax(0, 1fr); }
   .d2 .ab-dato:nth-child(even) { border-left: 0; padding-left: 0; }
   .d2 .ab-dato + .ab-dato {
-    border-top: 1px solid var(--c-borde, #E4E4E4);
+    border-top: 1px solid rgba(255, 255, 255, .2);
     padding-top: clamp(16px, 4vw, 24px);
   }
 }
