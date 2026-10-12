@@ -218,7 +218,7 @@
   margin-inline: auto;
   padding-inline: var(--d2-gutter, clamp(20px, 4vw, 40px));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   gap: clamp(var(--sp-5), 4vw, var(--sp-7));
   align-items: start;
 }
@@ -233,6 +233,24 @@
   font-weight: var(--fw-extrabold, 800);
   color: #FFFFFF;
   text-wrap: balance;
+}
+
+/* EL LEAD, BAJO EL TITULO (12/10/2026)
+
+   Antes vivia en la columna derecha, encima de los cuatro recuadros, y
+   les comia alto. Bajo el titulo acompana al titular --que es lo que
+   explica-- y deja la columna derecha entera para la rejilla.
+
+   Mismo color e interlinea que tenia en `.ab-mas__texto p`: baja de
+   sitio, no cambia de aspecto. El techo de 46ch es nuevo: suelto bajo el
+   titulo se estiraria hasta el borde de la columna. */
+.d2 .ab-mas__lead {
+  margin: var(--sp-4) 0 0;
+  max-width: 46ch;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  /* Blanco al 84%: 14.9:1 sobre el fondo. */
+  color: rgba(255, 255, 255, .84);
 }
 
 .d2 .ab-mas__texto p {
@@ -929,6 +947,18 @@
   font-weight: var(--fw-regular, 400);
 }
 
+/* LAS CUATRO TARJETAS, DE LA MISMA ALTURA (12/10/2026)
+
+   Sin esto cada fila se ajusta a su texto: la primera salia de 119px y
+   la segunda de 99, y el escalon se ve. Con las filas iguales las cuatro
+   forman un bloque, como los cuatro sectores de "who we work with". */
+.d2 .ab-oficios--pasos { grid-auto-rows: 1fr; }
+
+/* Mas relleno ahora que son mas anchas: 16px era lo que cabia cuando la
+   tarjeta medIa 296px y el lead le robaba la columna. A 314 el texto
+   quedaba pegado a los bordes. */
+.d2 .ab-oficios--pasos li { padding: 20px; }
+
 /* EL ICONO A 40px, Y SALE DE MEDIR.
 
    El bloque de texto que acompana mide 61px de alto --23 el nombre, 35
@@ -942,7 +972,10 @@
    el icono crece sin que la seccion crezca. */
 .d2 .ab-oficios--pasos svg {
   flex-shrink: 0;
-  margin-top: 0;
+  /* -8: el icono mide 40 y el nombre 23, asi que arrancando los dos
+     arriba el centro del icono caia 8px por debajo del centro del nombre
+     --MEDIDO en las cuatro tarjetas--. Subirlo esos 8 los empareja. */
+  margin-top: -8px;
 }
 
 .d2 .ab-oficios--pasos li { gap: var(--sp-4); }
@@ -971,3 +1004,150 @@
 @media (max-width: 700px) {
   .d2 .ab-oficios--pasos { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ==========================================================================
+   "WHO WE WORK WITH" (12/10/2026)
+
+   Dos columnas: el texto a la izquierda y los cuatro sectores a la
+   derecha. Misma estructura que "How Rede works", que va justo debajo, y
+   que "The work" de Energy Management: leidas seguidas se sienten del
+   mismo sistema.
+
+   LOS ICONOS SON LOS DEL WIREFRAME, A 56px SOBRE REJILLA DE 48.
+
+   El cliente los mando dibujados en el PowerPoint y se copian como
+   estan: el arco de la puerta del colegio, el remate redondo del
+   ayuntamiento, el rombo dentro de la cruz y los tres cuerpos del
+   multi-sitio. Lo unico que cambia es el color, que lo pone esta hoja.
+
+   Van a 56 --la medida de los iconos grandes del sitio-- porque llevan
+   mas detalle que un pictograma simple: a 48 las ventanas y las columnas
+   se tocaban. El relleno de la fila baja para que la seccion no crezca.
+
+   Un primer intento los dibujo en rejilla de 24 y los mostro a 30px.
+   Salieron apelmazados, y el motivo esta escrito en el CSS de
+   `.requisito__icono`: "un icono de linea necesita sitio o sus trazos se
+   tocan". Los iconos grandes del sitio son todos de 56 sobre rejilla de
+   48, y estos siguen esa norma.
+
+   El trazo lo pone esta hoja, no el SVG: asi los cuatro comparten grosor
+   con el resto del sitio sin repetirlo en cada archivo.
+   ========================================================================== */
+
+.d2 .ab-quien {
+  background: var(--c-blanco, #FFFFFF);
+  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+}
+
+.d2 .ab-quien__inner {
+  max-width: var(--d2-ancho, 1280px);
+  margin-inline: auto;
+  padding-inline: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(36px, 4.5vw, 64px);
+  align-items: start;
+}
+
+.d2 .ab-quien__titulo {
+  margin: var(--sp-3, .75rem) 0 0;
+  font-size: var(--fs-seccion, clamp(34px, 3.4vw, 52px));
+  font-weight: var(--fw-extrabold, 800);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: var(--c-texto, #333333);
+}
+
+.d2 .ab-quien__lead {
+  margin: var(--sp-4, 1rem) 0 0;
+  font-size: var(--fs-body, 1rem);
+  line-height: 1.65;
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .ab-quien__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--sp-5, 1.5rem);
+  font-weight: var(--fw-bold, 700);
+  color: var(--c-verde-hover, #026F00);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: gap var(--d2-normal, .3s) ease;
+}
+
+.d2 .ab-quien__link:hover { gap: 13px; }
+
+/* UNA SOLA COLUMNA: cuatro filas apiladas.
+
+   En dos columnas cada sector disponia de 296px y la cuarta etiqueta
+   ("Other institutional and multi-site organisations") pide 302 para caer
+   en una linea: salian 1/2/2/3 lineas, desparejas. Apiladas, las cuatro
+   caen en una linea en escritorio y se leen como la lista que son.
+
+   El hueco de 1px sobre fondo gris dibuja los separadores, sin un solo
+   `border`: cada fila lleva su propio fondo blanco encima. */
+.d2 .ab-quien__lista {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin: 0;
+  background: var(--c-borde-suave, #EFEFEF);
+  padding: 0;
+  list-style: none;
+}
+
+/* El icono AL LADO del texto, no encima.
+
+   Apilado, cada etiqueta disponia de 148px y necesita 179 para caer en
+   dos lineas: "School districts" --dos palabras-- salia en tres. En fila
+   la etiqueta estrena el ancho que el icono no usa. */
+.d2 .ab-quien__item {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 1.3vw, 18px);
+  padding: clamp(11px, 1.1vw, 15px) clamp(14px, 1.5vw, 20px);
+  background: var(--c-blanco, #FFFFFF);
+}
+
+.d2 .ab-quien__ico {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .ab-quien__ico svg { display: block; width: 100%; height: 100%; }
+
+.d2 .ab-quien__ico svg :is(path, rect, circle, line, polyline) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.d2 .ab-quien__eti {
+  font-size: var(--fs-body, 1rem);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.4;
+  color: var(--c-texto, #333333);
+}
+
+/* A partir de 900 las dos columnas aprietan: el texto arriba y los
+   sectores debajo, en fila de cuatro mientras quepan. */
+@media (max-width: 900px) {
+  .d2 .ab-quien__inner { grid-template-columns: minmax(0, 1fr); }
+
+  /* Apiladas, el texto vuelve arriba: en el marcado va segundo porque en
+     escritorio ocupa la columna derecha, pero leyendo de arriba abajo el
+     titulo tiene que preceder a la lista que explica. */
+  .d2 .ab-quien__texto { order: -1; }
+  .d2 .ab-quien__lista { margin-top: var(--sp-5, 1.5rem); }
+}
+
+
