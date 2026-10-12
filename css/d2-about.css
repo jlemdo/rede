@@ -929,13 +929,27 @@
   font-weight: var(--fw-regular, 400);
 }
 
-/* 2px: alinea el trazo del icono con la mayuscula del nombre, no con el
-   alto de linea. */
-.d2 .ab-oficios--pasos svg { margin-top: 2px; }
+/* EL ICONO A 40px, Y SALE DE MEDIR.
+
+   El bloque de texto que acompana mide 61px de alto --23 el nombre, 35
+   la descripcion, 3 de hueco--. Con 22px el icono se quedaba corto al
+   lado de eso; con 40 lo acompana sin competir.
+
+   No se sube a 61 --el alto exacto del texto-- porque entonces pesaria
+   igual que lo que acompana y se perderia la jerarquia.
+
+   Y no cuesta nada: la altura de la tarjeta la manda el texto, asi que
+   el icono crece sin que la seccion crezca. */
+.d2 .ab-oficios--pasos svg {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.d2 .ab-oficios--pasos li { gap: var(--sp-4); }
 
 .d2 .ab-paso__cuerpo {
   display: grid;
-  gap: 3px;
+  gap: 5px;
 }
 
 .d2 .ab-paso__nombre {
@@ -944,9 +958,13 @@
 }
 
 /* La descripcion al 80% de blanco: sobre la tarjeta da 7,9:1. */
+/* 13px y no 12: el texto blanco sobre fondo oscuro necesita mas aire que
+   al reves, y a 12 con interlineado 1,45 se leia justo. Cuesta 9px por
+   tarjeta y es el contenido que el cliente anadio en el brief: merece
+   leerse sin esfuerzo. */
 .d2 .ab-paso__desc {
-  font-size: var(--fs-xs, .75rem);
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, .8);
 }
 
