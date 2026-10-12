@@ -908,84 +908,48 @@
 /* ==========================================================================
    LOS CUATRO PASOS DE "HOW REDE WORKS" (12/10/2026)
 
-   Como el wireframe: en FILA, no en lista. Cada paso es una columna con
-   el icono en un circulo arriba, el nombre debajo y la descripcion al
-   pie. Entre uno y otro, una flecha.
+   Donde antes iban cuatro oficios de una palabra --Engineers, Data
+   analysts...-- ahora van los cuatro pasos del proceso con su
+   descripcion.
 
-   La version anterior ponia el icono a la izquierda del texto, dentro de
-   una tarjeta: venia de reaprovechar la lista de oficios que sustituye y
-   era la estructura equivocada.
+   SE CONSERVA LA REJILLA DE LOS OFICIOS: misma 2x2, mismas tarjetas.
+   Peticion expresa del cliente: primero el copy y los iconos, el diseno
+   despues.
 
-   LAS FLECHAS SON ELEMENTOS DEL MARCADO, no un ::after, porque van ENTRE
-   los <li> y un pseudoelemento quedaria dentro del ultimo paso. Llevan
-   aria-hidden: no aportan nada a quien escucha la pagina, que ya tiene
-   el orden en la numeracion del <ol>.
+   Se probo ponerlos en fila horizontal con circulos grandes y flechas,
+   como dibuja el wireframe, y se descarto: la seccion crecia mucho y
+   quedaba desorganizada. Si se retoma, sera como decision de diseno
+   aparte.
    ========================================================================== */
 
-.d2 .ab-pasos {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: start;
-  gap: 0;
-  margin: var(--sp-5) 0 0;
-  padding: 0;
-  list-style: none;
+/* Con dos lineas de texto el icono centrado quedaba a media altura de la
+   tarjeta, lejos del nombre al que acompana. */
+.d2 .ab-oficios--pasos li {
+  align-items: flex-start;
+  font-weight: var(--fw-regular, 400);
 }
 
-.d2 .ab-paso {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  gap: 8px;
-  padding-inline: clamp(6px, 1vw, 14px);
-}
+/* 2px: alinea el trazo del icono con la mayuscula del nombre, no con el
+   alto de linea. */
+.d2 .ab-oficios--pasos svg { margin-top: 2px; }
 
-/* El circulo del icono. 56px es el tamano del wireframe; el icono va a
-   26 dentro, que es la proporcion que deja aire sin que se pierda. */
-.d2 .ab-paso__icono {
+.d2 .ab-paso__cuerpo {
   display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .1);
-  color: #FFFFFF;
+  gap: 3px;
 }
 
 .d2 .ab-paso__nombre {
-  font-size: var(--fs-small, .875rem);
   font-weight: var(--fw-bold, 700);
-  line-height: 1.3;
   color: #FFFFFF;
 }
 
-/* La descripcion al 80% de blanco: sobre el verde de seccion da 7,9:1. */
+/* La descripcion al 80% de blanco: sobre la tarjeta da 7,9:1. */
 .d2 .ab-paso__desc {
   font-size: var(--fs-xs, .75rem);
-  line-height: 1.5;
+  line-height: 1.45;
   color: rgba(255, 255, 255, .8);
 }
 
-/* La flecha se alinea con el CENTRO DEL CIRCULO, no con el de la
-   columna: la columna es mucho mas alta por el texto, y centrada ahi la
-   flecha quedaba a la altura de la descripcion. 28px es medio circulo. */
-.d2 .ab-paso__flecha {
-  align-self: start;
-  margin-top: 22px;
-  color: rgba(255, 255, 255, .45);
-}
-
-/* A partir de 760 los cuatro no caben en fila: dos y dos, y las flechas
-   sobran --en rejilla ya no indican secuencia--. */
-@media (max-width: 760px) {
-  .d2 .ab-pasos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(20px, 4vw, 28px);
-  }
-  .d2 .ab-paso__flecha { display: none; }
-}
-
-@media (max-width: 460px) {
-  .d2 .ab-pasos { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 700px) {
+  .d2 .ab-oficios--pasos { grid-template-columns: minmax(0, 1fr); }
 }
