@@ -12183,10 +12183,25 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-equipo-banda__marco picture { display: block; }
 
+/* LA CAJA, CUADRADA SIEMPRE.
+
+   Con `height: auto` la imagen tomaba su proporcion nativa --300x420--
+   y la caja salia de 230x322. Un `border-radius: 50%` sobre un
+   rectangulo da un OVALO, no un circulo, y los lados se veian curvados
+   de mas.
+
+   Se notaba en Matthew, Marco y Erica, cuyos originales son verticales.
+   No en Enrique, cuyo PNG ya es cuadrado (400x400).
+
+   `aspect-ratio: 1` iguala ancho y alto, y `cover` recorta lo que sobra
+   sin deformar la cara. El encuadre vertical lo decide
+   `object-position`, que viene puesto foto a foto en el marcado. */
 .d2 .d2-equipo-banda__marco img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -15062,10 +15077,18 @@ span.d2-panel__filtro:hover {
 
 /* El aire sobre la cabeza, uno por foto. Erica es la unica que trae
    margen propio --su coronilla esta al 6% del archivo, no al 0-- y por
-   eso baja mas que los otros dos. */
-.d2 .d2-equipo-banda [src*="equipo/matthew.jpg"] { object-position: 50% 12%; }
-.d2 .d2-equipo-banda [src*="equipo/marco.jpg"]   { object-position: 50% 14%; }
-.d2 .d2-equipo-banda [src*="equipo/erica.jpg"]   { object-position: 50% 20%; }
+   eso baja mas que los otros dos.
+
+   EL SENTIDO DEL PORCENTAJE (12/10/2026). En `object-position`, un valor
+   MAYOR muestra la parte de ABAJO del archivo: la foto sube dentro del
+   circulo. Un valor MENOR muestra la de arriba y la foto baja.
+
+   Al pasar la caja de 230x322 a 230x230 sobra mas alto para recortar, y
+   con el mismo porcentaje la cara quedaba demasiado arriba. La
+   correccion es BAJAR el valor, no subirlo. */
+.d2 .d2-equipo-banda [src*="equipo/matthew.jpg"] { object-position: 50% 6%; }
+.d2 .d2-equipo-banda [src*="equipo/marco.jpg"]   { object-position: 50% 7%; }
+.d2 .d2-equipo-banda [src*="equipo/erica.jpg"]   { object-position: 50% 10%; }
 
 
 /* En la avioneta, mirando a camara desde la derecha del encuadre. */
