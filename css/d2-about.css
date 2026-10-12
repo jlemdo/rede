@@ -904,3 +904,53 @@
     padding-top: clamp(16px, 4vw, 24px);
   }
 }
+
+
+/* ==========================================================================
+   LOS CUATRO PASOS DE "HOW REDE WORKS" (12/10/2026)
+
+   Antes aqui iban cuatro oficios de una palabra --Engineers, Data
+   analysts...-- y ahora van los cuatro pasos del proceso, cada uno con
+   su descripcion.
+
+   SE REUTILIZA LA REJILLA DE LOS OFICIOS: misma 2x2, mismas tarjetas,
+   mismo icono de 17px. Es una peticion expresa del cliente --primero el
+   copy y los iconos, el diseno despues-- asi que aqui solo se anade lo
+   que la lista no tenia: un segundo nivel de texto.
+   ========================================================================== */
+
+/* Con dos lineas, el icono centrado quedaba a media altura de la
+   tarjeta en vez de junto al nombre. */
+.d2 .ab-oficios--pasos li {
+  align-items: flex-start;
+  font-weight: var(--fw-regular, 400);
+}
+
+.d2 .ab-oficios--pasos svg {
+  /* 3px de margen: alinea el trazo del icono con la mayuscula del
+     nombre, no con el alto de linea. */
+  margin-top: 3px;
+}
+
+.d2 .ab-paso__cuerpo {
+  display: grid;
+  gap: 4px;
+}
+
+.d2 .ab-paso__nombre {
+  font-weight: var(--fw-bold, 700);
+  color: #FFFFFF;
+}
+
+/* La descripcion al 80% de blanco. Sobre el fondo de la tarjeta
+   --blanco al 6% sobre el verde de seccion-- da 7,9:1. */
+.d2 .ab-paso__desc {
+  font-weight: var(--fw-regular, 400);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .8);
+}
+
+/* A partir de 700 las dos columnas aprietan el texto: una sola. */
+@media (max-width: 700px) {
+  .d2 .ab-oficios--pasos { grid-template-columns: minmax(0, 1fr); }
+}
