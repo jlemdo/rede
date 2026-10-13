@@ -12365,11 +12365,20 @@ span.d2-panel__filtro:hover {
   color: #B5DBAD;
 }
 
-/* 720px y no una medida en ch: el titular completo mide 1250px a 50px de
-   cuerpo, asi que para partirlo en DOS lineas hacen falta unos 700. En ch
-   la cuenta cambia con el tamano de fuente y salian tres. */
+/* 820px, y sale de medir EN EL TAMANO MAYOR.
+
+   El titular cae en dos lineas, y cuanto hace falta para eso depende del
+   cuerpo de letra, que es un clamp: a 48,96 --lo que da un monitor de
+   1440-- pide 749px, pero a 52 --el tope, desde 1600 en adelante-- pide
+   795. Con el techo puesto en 780 se partia en TRES a partir de 1600.
+
+   820 deja margen sobre esos 795 sin llegar a los 900 del contenedor.
+
+   En ch no: la cuenta cambia con el tamano de fuente y vuelven las tres
+   lineas. Y el techo anterior, 720, estaba calculado para el titulo
+   viejo, que medIa 1250px frente a los 1446 de este. */
 .d2 .calc__intro .calc__titulo {
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto 20px;
   /* A la escala comun: este clamp propio dejaba el titulo de la calculadora
      en 50px cuando los demas de seccion estan en 48,96. */
