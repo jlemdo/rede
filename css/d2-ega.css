@@ -2254,7 +2254,9 @@
 /* --- LAS CABECERAS ------------------------------------------------- */
 
 .d2 .ega-tabla__cab {
-  padding: 18px 16px 16px;
+  /* De 18/16 a 14/12: la cabecera medía 119px, la pieza mas alta de la
+     tabla despues de las filas juntas. */
+  padding: 14px 16px 12px;
   font-weight: inherit;
   vertical-align: bottom;
   border-radius: 10px 10px 0 0;
@@ -2300,8 +2302,9 @@
 
 .d2 .ega-tabla__ico {
   display: block;
-  width: 34px;
-  height: 34px;
+  /* 28 y no 34: acompana al recorte de la cabecera. */
+  width: 28px;
+  height: 28px;
   margin: 0 auto;
   /* Baja de .7 a .6: el icono es un trazo fino y pesa menos que el texto,
      asi que se apaga un punto mas para que la diferencia se note. */
@@ -2322,7 +2325,7 @@
 
 .d2 .ega-tabla__nombre {
   display: block;
-  margin-top: 12px;
+  margin-top: 8px;
   font-size: 1rem;
   font-weight: var(--fw-bold, 700);
   line-height: 1.2;
@@ -2377,7 +2380,9 @@
 }
 
 .d2 .ega-tabla__celda {
-  padding: 16px;
+  /* 10 arriba y abajo --no 16--: es de donde sale la mayor parte de los
+     143px que baja la seccion. A los lados se quedan los 16. */
+  padding: 10px 16px;
   font-size: var(--fs-small, .875rem);
   line-height: 1.45;
   text-align: center;
@@ -2431,8 +2436,10 @@
    Adorno que no informa, resta. */
 .d2 .ega-tabla__dato {
   display: block;
-  height: 26px;
-  margin: 0 auto 6px;
+  /* 24 y no 26: en una fila mas corta el icono tiene que ceder algo,
+     pero por debajo de 22 deja de leerse "uno contra varios". */
+  height: 24px;
+  margin: 0 auto 5px;
   color: var(--c-verde-hover, #026F00);
 }
 
@@ -2451,14 +2458,23 @@
   color: rgba(255, 255, 255, .55);
 }
 
-/* TODAS LAS FILAS A LA MISMA ALTURA.
+/* EL ALTO DE FILA LO DA EL ACOLCHADO, NO UNA ALTURA FIJA.
 
-   Sin esto las dos con icono median 85px y las tres de texto 53: un
-   escalon de 32px que descompensaba la tabla y hacia parecer apretadas
-   a las del medio --MEDIDO--. Con 78 de minimo el escalon baja a 7,
-   que ya no se nota, y de paso el bloque de texto de la izquierda y la
-   tabla terminan casi a la misma altura. */
-.d2 .ega-tabla tbody .ega-tabla__celda { height: 78px; }
+   Hubo una version con `height: 78px` en todas las filas, para igualar
+   el escalon que abren las dos que llevan icono. Igualaba, pero dejaba
+   la seccion en 692px y el cliente la pidio mas baja.
+
+   Con el acolchado a 10px la seccion baja a 549 --un 21% menos-- sin
+   tocar el padding de la seccion, que es el ritmo comun del sitio y no
+   se toca solo aqui.
+
+   EL ESCALON SE QUEDA EN 24px Y NO PASA NADA: las dos filas con icono
+   son mas altas porque tienen algo mas dentro, y eso se ve. Lo que
+   chirriaba en la version de 78 era lo contrario: tres filas infladas
+   sin motivo visible.
+
+   OJO: `min-height` NO sirve aqui. En una celda de tabla el navegador
+   lo ignora --MEDIDO: da exactamente el mismo alto con y sin el--. */
 
 /* --- LA ENTRADA ---------------------------------------------------- */
 
