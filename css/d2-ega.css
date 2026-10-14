@@ -2409,6 +2409,57 @@
   border-radius: 0 0 10px 10px;
 }
 
+/* --- EL DATO CON ICONO --------------------------------------------- */
+
+/* SOLO EN DOS FILAS, y a proposito.
+
+   El cliente trajo la referencia de Study Buddy, que usa palomas y
+   taches. AQUI NO VALEN: alli las filas son binarias --"risk-free
+   trial" se tiene o no se tiene-- y las nuestras no. "One building"
+   contra "Every building" no es tener o no tener: son dos herramientas
+   distintas. Un tache en "One building" diria que hacer un energy audit
+   esta mal, y Rede VENDE energy audits. Ademas deja en mal lugar al
+   prospecto que ya contrato uno.
+
+   LO QUE SI SE TOMA de la referencia es su otro recurso, el del coste:
+   una moneda contra tres. REPETIR LA PIEZA PARA QUE SE LEA LA CANTIDAD.
+   Eso si funciona en nuestras dos filas de cantidad --cuantos edificios
+   y que te llevas-- y es donde esta el argumento de la seccion.
+
+   LAS OTRAS TRES SE QUEDAN EN TEXTO: "where to look", "what you learn"
+   y "utility programs" son conceptuales, y un icono ahi seria adorno.
+   Adorno que no informa, resta. */
+.d2 .ega-tabla__dato {
+  display: block;
+  height: 26px;
+  margin: 0 auto 6px;
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .ega-tabla__dato svg {
+  height: 100%;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.d2 .ega-tabla__dato svg path { stroke: currentColor; fill: none; }
+
+/* En la columna del Audit el icono va apagado, igual que su texto: la
+   jerarquia entre columnas no la rompe el icono. */
+.d2 .ega-tabla__celda:not(.ega-tabla__celda--gap) .ega-tabla__dato {
+  color: rgba(255, 255, 255, .55);
+}
+
+/* TODAS LAS FILAS A LA MISMA ALTURA.
+
+   Sin esto las dos con icono median 85px y las tres de texto 53: un
+   escalon de 32px que descompensaba la tabla y hacia parecer apretadas
+   a las del medio --MEDIDO--. Con 78 de minimo el escalon baja a 7,
+   que ya no se nota, y de paso el bloque de texto de la izquierda y la
+   tabla terminan casi a la misma altura. */
+.d2 .ega-tabla tbody .ega-tabla__celda { height: 78px; }
+
 /* --- LA ENTRADA ---------------------------------------------------- */
 
 /* Fila por fila, de arriba abajo: la tabla se "escribe" al entrar.
