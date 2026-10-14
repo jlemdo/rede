@@ -762,60 +762,51 @@
       </div>
 
       <div class="ega-comp__panel">
-        <div class="ega-comp__carta">
-          <span class="ega-comp__ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 27V9h11v18" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M16 16h11v11" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M8.5 13v1.6M12.5 13v1.6M8.5 18v1.6M12.5 18v1.6M8.5 23v1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 20v1.6M23.5 20v1.6M20 24v1.6M23.5 24v1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 27h26" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span>
-          <h3 class="ega-comp__tit">Energy audit</h3>
-          <p class="ega-comp__sub">One building, in depth</p>
-          <ul class="ega-comp__lista">
-              <li>
-                <span class="ega-comp__crit">Scope</span>
-                <span class="ega-comp__val">One building</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">Where to look</span>
-                <span class="ega-comp__val">You choose first</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">What you learn</span>
-                <span class="ega-comp__val">Why one underperforms</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">Utility programs</span>
-                <span class="ega-comp__val">Out of scope</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">You end up with</span>
-                <span class="ega-comp__val">One detailed report</span>
-              </li>
-          </ul>
-        </div>
-        <div class="ega-comp__carta ega-comp__carta--gap">
-          <span class="ega-comp__ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 27h26" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M5 27V18h4v9M13 27V9h4v18M21 27V14h4v13" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg></span>
-          <h3 class="ega-comp__tit">Energy Gap Analysis</h3>
-          <p class="ega-comp__sub">Your whole portfolio</p>
-          <ul class="ega-comp__lista">
-              <li>
-                <span class="ega-comp__crit">Scope</span>
-                <span class="ega-comp__val">Every building</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">Where to look</span>
-                <span class="ega-comp__val">The data decides</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">What you learn</span>
-                <span class="ega-comp__val">Which ones underperform</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">Utility programs</span>
-                <span class="ega-comp__val">Flagged before you spend</span>
-              </li>
-              <li>
-                <span class="ega-comp__crit">You end up with</span>
-                <span class="ega-comp__val">A ranked shortlist</span>
-              </li>
-          </ul>
-        </div>
+        <table class="ega-tabla">
+          <caption class="u-visualmente-oculto">Energy audit compared with Energy Gap Analysis</caption>
+          <thead>
+            <tr>
+              <td class="ega-tabla__esquina"></td>
+              <th scope="col" class="ega-tabla__cab">
+                <span class="ega-tabla__ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 27V9h11v18" stroke-width="1.1" stroke-linejoin="round"/><path d="M16 16h11v11" stroke-width="1.1" stroke-linejoin="round"/><path d="M8.5 13v1.6M12.5 13v1.6M8.5 18v1.6M12.5 18v1.6M8.5 23v1.6" stroke-width="1.5" stroke-linecap="round"/><path d="M20 20v1.6M23.5 20v1.6M20 24v1.6M23.5 24v1.6" stroke-width="1.5" stroke-linecap="round"/><path d="M3 27h26" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+                <span class="ega-tabla__nombre">Energy audit</span>
+                <span class="ega-tabla__pie">One building, in depth</span>
+              </th>
+              <th scope="col" class="ega-tabla__cab ega-tabla__cab--gap">
+                <span class="ega-tabla__ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M3 27h26" stroke-width="1.1" stroke-linecap="round"/><path d="M5 27V18h4v9M13 27V9h4v18M21 27V14h4v13" stroke-width="1.1" stroke-linejoin="round"/></svg></span>
+                <span class="ega-tabla__nombre">Energy Gap Analysis</span>
+                <span class="ega-tabla__pie">Your whole portfolio</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="ega-tabla__crit">Scope</th>
+              <td class="ega-tabla__celda">One building</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">Every building</td>
+            </tr>
+            <tr>
+              <th scope="row" class="ega-tabla__crit">Where to look</th>
+              <td class="ega-tabla__celda">You choose first</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">The data decides</td>
+            </tr>
+            <tr>
+              <th scope="row" class="ega-tabla__crit">What you learn</th>
+              <td class="ega-tabla__celda">Why one underperforms</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">Which ones underperform</td>
+            </tr>
+            <tr>
+              <th scope="row" class="ega-tabla__crit">Utility programs</th>
+              <td class="ega-tabla__celda">Out of scope</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">Flagged before you spend</td>
+            </tr>
+            <tr>
+              <th scope="row" class="ega-tabla__crit">You end up with</th>
+              <td class="ega-tabla__celda">One detailed report</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">A ranked shortlist</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>

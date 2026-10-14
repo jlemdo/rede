@@ -2174,3 +2174,356 @@
 @media (max-width: 1000px) {
   .d2 .d2-ega-hero .d2-ega-hero__arte { order: 0; }
 }
+
+
+/* ==========================================================================
+   LA COMPARATIVA, EN TABLA  (13/10/2026)
+
+   El cliente mando una referencia --Study Buddy-- y pidio "algo asi".
+   Lo que esa referencia hace, y esto recoge:
+
+     1. Los criterios UNA SOLA VEZ, en la columna izquierda. Antes se
+        repetian dentro de cada tarjeta: cinco etiquetas de mas que el
+        ojo tenia que emparejar solo.
+     2. Una columna por opcion, y la propia EN COLOR SOLIDO de arriba
+        abajo. Esa banda continua es lo que hace el trabajo: no hace
+        falta ninguna marca mas para saber cual se vende.
+     3. El icono en la cabecera de la columna, no en cada fila.
+
+   LO QUE NO SE COPIA: los ticks y las cruces. Alli las filas son
+   binarias --prueba gratis si/no--. Aqui "One building" frente a "Every
+   building" son dos alcances distintos, no un acierto y un fallo: una
+   cruz diria que la auditoria esta mal hecha, y no lo esta.
+
+   Es ademas lo que recomienda NN/g para tablas comparativas: no empobrecer
+   una opcion para realzar otra, y quedarse en el formato de tabla estandar.
+   ========================================================================== */
+
+/* EL PANEL DEJA DE SER REJILLA DE DOS.
+
+   Traia `grid-template-columns: repeat(2,1fr)` de las tarjetas que esta
+   tabla sustituye: la tabla caia en la primera columna y se quedaba en
+   350px de los 685 disponibles --MEDIDO--. Ahora el panel solo contiene
+   la tabla, asi que es un bloque y ella ocupa todo. */
+.d2 .ega-comp__panel {
+  display: block;
+}
+
+/* El titulo accesible de la tabla: lo leen los lectores de pantalla y no
+   se ve. El sitio no tiene una utilidad para esto, asi que va aqui. */
+.d2 .ega-tabla caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.d2 .ega-tabla {
+  width: 100%;
+  margin: 0;
+  /* `collapse` juntaria los bordes y la banda de color perderia su
+     canto limpio; `separate` con 0 deja cada celda con el suyo. */
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+/* LA ESQUINA, vacia: es la celda que cruza la fila de cabeceras con la
+   columna de criterios. En la referencia tambien esta en blanco. */
+.d2 .ega-tabla__esquina {
+  border: 0;
+  background: none;
+  /* SIN ANCHO FIJO.
+
+     Con un ancho en pixeles hubo que perseguir los topes uno a uno: a
+     640 se partian los cinco criterios, a 1040 tambien, y cada @media
+     nuevo movia el fallo unos pixeles mas alla --BARRIDO cada 40px de
+     360 a 1960--.
+
+     `width: 0` con `white-space: nowrap` en la celda hace que el
+     navegador reserve justo lo que mide el criterio mas largo, sea cual
+     sea el ancho de pantalla, y reparta el resto entre las dos columnas
+     de datos. Un tope solo, en movil, donde ya no cabe. */
+  width: 0;
+}
+
+/* --- LAS CABECERAS ------------------------------------------------- */
+
+.d2 .ega-tabla__cab {
+  padding: 18px 16px 16px;
+  font-weight: inherit;
+  vertical-align: bottom;
+  border-radius: 10px 10px 0 0;
+  background: rgba(255, 255, 255, .04);
+}
+
+/* LA COLUMNA DEL GAP, SOLIDA Y EN GRIS CLARO.
+
+   Es el recurso de la referencia: la columna propia en solido, las
+   otras apagadas.
+
+   EL FONDO ES #F5F5F5 --c-fondo-alt--, el gris que el sistema ya usa
+   como superficie en la barra de logos. Lo propuso el cliente: el
+   blanco puro resultaba duro sobre un fondo tan oscuro.
+
+   SE MONTARON LOS TRES GRISES DEL SISTEMA Y SE MIDIERON:
+
+     opcion    gris                  vs fondo   texto #333   se nota
+     G1        #FAFAFA  c-fondo        8,97:1     12,10:1     0,044
+     G2 ESTA   #F5F5F5  c-fondo-alt    8,59:1     11,59:1     0,087
+     G3        #EFEFEF  c-borde-suave  8,14:1     10,99:1     0,137
+
+   Los tres pasan AA de sobra, asi que la eleccion no fue tecnica. G2 es
+   el punto medio: se distingue del blanco --el doble que G1, que casi
+   no se percibe-- sin llegar al gris apagado de G3. Y en el sistema es
+   superficie, que es el papel que hace aqui; G3 es color de borde.
+
+   POR QUE NO EL VERDE PLENO, que fue la primera salida: blanco sobre
+   #39B54A da 2,66:1, por debajo del 4,5 de AA, y el propio tokens.css
+   lo avisa --"este verde da 2.66:1 con blanco"--. Oscurecer el verde
+   para admitir el blanco tampoco servia: lo acercaba al fondo de la
+   seccion y la columna dejaba de destacar --1,99:1 y bajando--.
+
+   LA MARCA NO SE PIERDE: el verde se queda en el icono y en el pie de
+   la cabecera --#026F00, el verde-hover del sistema--.
+
+   ANTES DE TODO ESTO el fondo estaba en #6BE873, un verde suelto
+   heredado del ranking retirado que NO es un token. Lo detecto el
+   cliente. */
+.d2 .ega-tabla__cab--gap {
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+.d2 .ega-tabla__ico {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto;
+  /* Baja de .7 a .6: el icono es un trazo fino y pesa menos que el texto,
+     asi que se apaga un punto mas para que la diferencia se note. */
+  color: rgba(255, 255, 255, .6);
+}
+
+/* El icono se queda verde: es lo que sostiene la marca ahora que el
+   fondo es claro. #026F00 --verde-hover del sistema-- da 6,41:1 sobre
+   el gris. MEDIDO en el navegador, no calculado. */
+.d2 .ega-tabla__cab--gap .ega-tabla__ico { color: var(--c-verde-hover, #026F00); }
+
+.d2 .ega-tabla__ico svg { width: 100%; height: 100%; }
+
+.d2 .ega-tabla__ico svg :is(path, rect, circle) {
+  stroke: currentColor;
+  fill: none;
+}
+
+.d2 .ega-tabla__nombre {
+  display: block;
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.2;
+  text-align: center;
+  /* 72%: apagado frente al nombre del Gap --que va en #333 sobre
+     el gris claro-- pero todavia 5,23:1 sobre su fondo. MEDIDO. */
+  color: rgba(255, 255, 255, .72);
+}
+
+.d2 .ega-tabla__cab--gap .ega-tabla__nombre { color: var(--c-texto, #333333); }
+
+.d2 .ega-tabla__pie {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: center;
+  /* Baja de .78 a .62: acompana al apagado del nombre para que las dos
+     cabeceras guarden la misma jerarquia entre si. */
+  color: rgba(176, 225, 183, .62);
+}
+
+.d2 .ega-tabla__cab--gap .ega-tabla__pie { color: var(--c-verde-hover, #026F00); }
+
+/* --- EL CUERPO ----------------------------------------------------- */
+
+/* El criterio: en versalitas, como estaba en las tarjetas. Ahora manda
+   la fila entera en lugar de repetirse dentro de cada una. */
+.d2 .ega-tabla__crit {
+  /* El padding derecho sube de 16 a 22: separa el criterio de la primera
+     celda, que es donde se veia apretado. */
+  padding: 16px 22px 16px 0;
+  /* 11px: a 12 el criterio pesaba casi como el dato, y es una etiqueta.
+     Con el texto alineado a la derecha --ver abajo-- se lee igual. */
+  font-size: 11px;
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  vertical-align: middle;
+  /* Una sola linea: con esto el navegador sabe cuanto reservar para la
+     columna. Se suelta en movil, donde no cabe. */
+  white-space: nowrap;
+  /* A LA DERECHA, pegado a su fila.
+
+     Alineado a la izquierda el criterio quedaba suelto en medio del
+     hueco --50px de aire antes de la celda-- y costaba emparejarlo con
+     su dato. Pegandolo al borde la lectura va seguida: etiqueta, dato,
+     dato. Es lo que hace la referencia del cliente. */
+  text-align: right;
+  color: rgba(176, 225, 183, .78);
+}
+
+.d2 .ega-tabla__celda {
+  padding: 16px;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.45;
+  text-align: center;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, .04);
+  /* El filete separador va DENTRO de la celda, no en la fila: asi
+     tampoco cruza la columna de criterios, que no lleva fondo. */
+  border-top: 1px solid rgba(176, 225, 183, .14);
+  /* 68%: LO MAS APAGADO QUE ADMITE SIN PERDERSE.
+
+     El cliente pidio que Audit "no se vea tanto" para dar autoridad al
+     Gap, "pero que no se pierda". Sobre su fondo real --#23582A, que es
+     el blanco al 4% sobre el verde de seccion-- esto da 4,89:1: pasa AA
+     con margen. A 64% baja a 4,52 y a 60% a 4,17, ya al limite. MEDIDO. */
+  color: rgba(255, 255, 255, .68);
+}
+
+.d2 .ega-tabla__celda--gap {
+  background: var(--c-fondo-alt, #F5F5F5);
+  /* El filete, en gris sobre blanco: el que habia --blanco al 26%-- era
+     invisible aqui y la banda se quedaba sin separacion de filas. */
+  border-top-color: rgba(51, 51, 51, .14);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--c-texto, #333333);
+}
+
+/* La ultima fila cierra la banda por abajo. */
+.d2 .ega-tabla tbody tr:last-child .ega-tabla__celda {
+  border-radius: 0 0 10px 10px;
+}
+
+/* --- LA ENTRADA ---------------------------------------------------- */
+
+/* Fila por fila, de arriba abajo: la tabla se "escribe" al entrar.
+   Las cabeceras primero. */
+@media (prefers-reduced-motion: no-preference) {
+  .d2 .ega-comp .ega-tabla :is(thead, tbody) tr {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .d2 .ega-comp.es-visible .ega-tabla :is(thead, tbody) tr {
+    opacity: 1;
+    transform: none;
+    transition: opacity .45s ease, transform .5s cubic-bezier(.22, .61, .36, 1);
+  }
+
+  .d2 .ega-comp.es-visible .ega-tabla tbody tr:nth-child(1) { transition-delay: .08s; }
+  .d2 .ega-comp.es-visible .ega-tabla tbody tr:nth-child(2) { transition-delay: .14s; }
+  .d2 .ega-comp.es-visible .ega-tabla tbody tr:nth-child(3) { transition-delay: .20s; }
+  .d2 .ega-comp.es-visible .ega-tabla tbody tr:nth-child(4) { transition-delay: .26s; }
+  .d2 .ega-comp.es-visible .ega-tabla tbody tr:nth-child(5) { transition-delay: .32s; }
+}
+
+/* --- ESTRECHO ------------------------------------------------------ */
+
+/* Una tabla no se puede apilar: perderia el emparejamiento, que es todo
+   lo que aporta. Lo que se hace es encogerla hasta donde se lee. */
+/* LA FRANJA DE 1000 A 1200.
+
+   Aqui el inner ya esta a dos columnas pero todavia con poco ancho: las
+   frases largas --"Flagged before you spend", "Which ones underperform"--
+   se partian en dos lineas --MEDIDO con Range, cada 40px--.
+
+   Se recorta el acolchado lateral, no el cuerpo de letra: lo que hay que
+   poder leer es el dato. */
+/* Arranca en 1101, donde el inner vuelve a dos columnas. */
+@media (min-width: 1101px) and (max-width: 1240px) {
+  .d2 .ega-tabla__celda { padding-inline: 8px; font-size: 13px; }
+  .d2 .ega-tabla__cab { padding-inline: 8px; }
+  .d2 .ega-tabla__crit { padding-right: 14px; }
+  /* El punto mas apretado de toda la pagina: recien pasada a dos
+     columnas, la tabla tiene el minimo de ancho. Se le cede parte de la
+     columna del texto --que ahi todavia va sobrado-- y se estrecha el
+     hueco entre las dos. MEDIDO a 1040, el unico ancho que fallaba de
+     los 41 del barrido. */
+  .d2 .ega-comp__inner {
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+    column-gap: 32px;
+  }
+}
+
+@media (max-width: 760px) {
+  .d2 .ega-tabla__crit { padding: 12px 10px 12px 0; font-size: 10px; letter-spacing: .04em; }
+  .d2 .ega-tabla__celda { padding: 12px 10px; font-size: 13px; }
+  .d2 .ega-tabla__cab { padding: 14px 10px 12px; }
+  .d2 .ega-tabla__nombre { font-size: 14px; }
+  .d2 .ega-tabla__ico { width: 28px; height: 28px; }
+}
+
+/* EL MOVIL ESTRECHO.
+
+   A 375px las tres columnas no caben: la tabla pedia 453 y la seccion
+   --que recorta-- se comia la columna del Gap entera. Justo la que se
+   vende. MEDIDO.
+
+   `table-layout: fixed` reparte el ancho disponible en lugar de dejar
+   que el contenido lo pida, y el criterio baja a 78px. Con eso la tabla
+   cabe en los 335 utiles y las dos columnas quedan iguales. */
+/* 600 y no 620: a 620 justo todavia cabe en una linea --MEDIDO en el
+   barrido de 20px--. */
+@media (max-width: 600px) {
+  .d2 .ega-tabla { table-layout: fixed; }
+  .d2 .ega-tabla__esquina { width: 78px; }
+  .d2 .ega-tabla__crit {
+    /* Aqui SI se suelta: a 78px de columna "Utility programs" no cabe en
+       una linea de ninguna manera, y forzarlo desbordaria la tabla. */
+    white-space: normal;
+    padding: 10px 8px 10px 0;
+    font-size: 9.5px;
+    line-height: 1.25;
+  }
+  .d2 .ega-tabla__celda { padding: 10px 7px; font-size: 12px; line-height: 1.35; }
+  .d2 .ega-tabla__cab { padding: 12px 7px 10px; }
+  .d2 .ega-tabla__nombre { font-size: 12.5px; }
+  .d2 .ega-tabla__pie { font-size: 10.5px; }
+  .d2 .ega-tabla__ico { width: 24px; height: 24px; }
+}
+
+/* --- EL REPARTO DE LA SECCION -------------------------------------- */
+
+/* AJUSTE (13/10/2026): el bloque izquierdo quedaba estrecho.
+
+   Con .72/1.28 el texto se quedaba en 400px, el titular caia en SEIS
+   lineas y las celdas sobraban anchas --268 y 293px para frases de dos
+   palabras-- MEDIDO a 1256px.
+
+   El reparto se invierte: .95/1.05. El texto pasa de 400 a 528 --el
+   titular baja a cuatro lineas-- y las celdas se quedan en torno a 215,
+   que es lo que pide la frase mas larga, "Flagged before you spend", en
+   una sola linea. */
+.d2 .ega-comp__inner {
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+}
+
+/* EL APILADO, A 1100 Y NO A 1000.
+
+   Hay que repetir aqui el apilado de d2-ega.css --esta hoja carga
+   DESPUES, asi que con la misma especificidad la regla de arriba ganaba
+   tambien dentro de su @media y en movil seguia a dos columnas--.
+
+   Y se sube el corte de 1000 a 1100: entre esos dos la tabla se quedaba
+   en 469px, con celdas de 161 cuando "Flagged before you spend" pide
+   175, y el acolchado ya estaba en su minimo --MEDIDO a 1020--. Ahi la
+   tabla no cabe al lado del texto, asi que baja debajo y recupera el
+   ancho entero. */
+@media (max-width: 1100px) {
+  .d2 .ega-comp__inner { grid-template-columns: minmax(0, 1fr); }
+}
