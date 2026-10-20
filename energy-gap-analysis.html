@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/d2.css">
 <link rel="stylesheet" href="css/d2-variantes.css">
-<link rel="stylesheet" href="css/d2-ega.css">
+<link rel="stylesheet" href="css/d2-ega.css?v=20261019220510">
 <link rel="stylesheet" href="css/d2-ega-pasos-opciones.css">
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
 <link rel="stylesheet" href="css/ajuste-titulos.css">
@@ -253,20 +253,17 @@
           <span aria-current="page">Energy Gap Analysis</span>
         </nav>
 
-        <p class="eyebrow">Energy Gap Analysis for commercial buildings</p>
+        <p class="eyebrow">Energy Gap Analysis</p>
         <h1 class="d2-ega-hero__titulo" id="ega-hero-t">
-          Know which buildings are worth an <span>energy audit.</span>
+          Find the buildings costing and emitting <span>more than they should.</span>
         </h1>
-        <p class="d2-ega-hero__lead">Rede compares utility costs and energy use across your commercial building portfolio. You see where to investigate first&mdash;and whether a utility program may support the next step.</p>
+        <p class="d2-ega-hero__lead">Compare energy use, utility costs and GHG emissions across your portfolio to identify where performance is falling behind &mdash; and which buildings should be investigated first.</p>
 
         <div class="d2-ega-hero__acciones">
-          <a class="d2-btn d2-btn--solido" href="#contact">Check available funding
+          <a class="d2-btn d2-btn--solido" href="#calculator">Analyze my portfolio
             <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="d2-btn d2-btn--linea" href="#contact">Book a call</a>
         </div>
-
-        <p class="d2-ega-hero__nota"><span class="d2-ega-hero__punto" aria-hidden="true"></span>Rede can quickly screen your buildings for relevant BC Hydro, SaskPower and other provincial programs&mdash;at no cost and with no commitment.</p>
       </div>
 
       <div class="d2-ega-hero__arte">
@@ -753,12 +750,13 @@
 
       <div class="ega-comp__copy">
         <p class="eyebrow">Before you invest</p>
-        <h2 class="ega-comp__titulo" id="ega-comp-t">Don&rsquo;t spend your energy audit budget on the wrong building.</h2>
+        <h2 class="ega-comp__titulo" id="ega-comp-t">Before you audit a building, know why it&rsquo;s the priority.</h2>
         <p class="ega-comp__lead">
-          An energy audit tells you why one building underperforms. An Energy
-          Gap Analysis tells you which building to audit in the first place
-          &mdash; across the whole portfolio, before the budget is committed.
+          An Energy Gap Analysis compares performance across your portfolio,
+          identifies buildings that warrant further investigation, and helps
+          you decide where to focus your audit budget.
         </p>
+        <p class="ega-comp__cierre">Start with a clear shortlist&mdash;and the data behind it.</p>
       </div>
 
       <div class="ega-comp__panel">
@@ -781,32 +779,28 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row" class="ega-tabla__crit">Scope</th>
-              <td class="ega-tabla__celda"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M17 25V6h12v19" stroke-width="1.1" stroke-linejoin="round"/><path d="M20 10v1.6M26 10v1.6M20 14v1.6M26 14v1.6M20 18v1.6M26 18v1.6" stroke-width="1.5" stroke-linecap="round"/><path d="M13 25h20" stroke-width="1.1" stroke-linecap="round"/></svg></span>One building</td>
-              <td class="ega-tabla__celda ega-tabla__celda--gap"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M4 25V13h8v12" stroke-width="1.1" stroke-linejoin="round"/><path d="M6.5 16v1.4M9.5 16v1.4M6.5 20v1.4M9.5 20v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M14 25V6h8v19" stroke-width="1.1" stroke-linejoin="round"/><path d="M16.5 9v1.4M19.5 9v1.4M16.5 13v1.4M19.5 13v1.4M16.5 17v1.4M19.5 17v1.4M16.5 21v1.4M19.5 21v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M24 25V16h8v9" stroke-width="1.1" stroke-linejoin="round"/><path d="M26.5 19v1.4M29.5 19v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M34 25V10h8v15" stroke-width="1.1" stroke-linejoin="round"/><path d="M36.5 13v1.4M39.5 13v1.4M36.5 17v1.4M39.5 17v1.4M36.5 21v1.4M39.5 21v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M2 25h42" stroke-width="1.1" stroke-linecap="round"/></svg></span>Every building</td>
+              <th scope="row" class="ega-tabla__crit">Focus</th>
+              <td class="ega-tabla__celda"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M17 25V6h12v19" stroke-width="1.1" stroke-linejoin="round"/><path d="M20 10v1.6M26 10v1.6M20 14v1.6M26 14v1.6M20 18v1.6M26 18v1.6" stroke-width="1.5" stroke-linecap="round"/><path d="M13 25h20" stroke-width="1.1" stroke-linecap="round"/></svg></span>Detailed building assessment</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M4 25V13h8v12" stroke-width="1.1" stroke-linejoin="round"/><path d="M6.5 16v1.4M9.5 16v1.4M6.5 20v1.4M9.5 20v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M14 25V6h8v19" stroke-width="1.1" stroke-linejoin="round"/><path d="M16.5 9v1.4M19.5 9v1.4M16.5 13v1.4M19.5 13v1.4M16.5 17v1.4M19.5 17v1.4M16.5 21v1.4M19.5 21v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M24 25V16h8v9" stroke-width="1.1" stroke-linejoin="round"/><path d="M26.5 19v1.4M29.5 19v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M34 25V10h8v15" stroke-width="1.1" stroke-linejoin="round"/><path d="M36.5 13v1.4M39.5 13v1.4M36.5 17v1.4M39.5 17v1.4M36.5 21v1.4M39.5 21v1.4" stroke-width="1.4" stroke-linecap="round"/><path d="M2 25h42" stroke-width="1.1" stroke-linecap="round"/></svg></span>Portfolio-wide prioritization</td>
             </tr>
             <tr>
-              <th scope="row" class="ega-tabla__crit">Where to look</th>
-              <td class="ega-tabla__celda">You choose first</td>
-              <td class="ega-tabla__celda ega-tabla__celda--gap">The data decides</td>
+              <th scope="row" class="ega-tabla__crit">Key question</th>
+              <td class="ega-tabla__celda">What could improve this building&rsquo;s performance?</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">Which buildings should we investigate first?</td>
             </tr>
             <tr>
-              <th scope="row" class="ega-tabla__crit">What you learn</th>
-              <td class="ega-tabla__celda">Why one underperforms</td>
-              <td class="ega-tabla__celda ega-tabla__celda--gap">Which ones underperform</td>
+              <th scope="row" class="ega-tabla__crit">What you get</th>
+              <td class="ega-tabla__celda">Findings and recommended measures</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">Ranked priorities and recommended next steps</td>
             </tr>
             <tr>
-              <th scope="row" class="ega-tabla__crit">Utility programs</th>
-              <td class="ega-tabla__celda">Out of scope</td>
-              <td class="ega-tabla__celda ega-tabla__celda--gap">Flagged before you spend</td>
-            </tr>
-            <tr>
-              <th scope="row" class="ega-tabla__crit">You end up with</th>
-              <td class="ega-tabla__celda"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M17 3h8l5 5v17H17z" stroke-width="1.1" stroke-linejoin="round"/><path d="M25 3v5h5" stroke-width="1.1" stroke-linejoin="round"/><path d="M20 13h7M20 17h7M20 21h4" stroke-width="1.3" stroke-linecap="round"/></svg></span>One detailed report</td>
-              <td class="ega-tabla__celda ega-tabla__celda--gap"><span class="ega-tabla__dato" aria-hidden="true"><svg viewBox="0 0 46 28" fill="none"><path d="M9 7h4M9 14h4M9 21h4" stroke-width="1.6" stroke-linecap="round"/><path d="M17 7h20M17 14h14M17 21h9" stroke-width="1.4" stroke-linecap="round"/></svg></span>A ranked shortlist</td>
+              <th scope="row" class="ega-tabla__crit">When to use it</th>
+              <td class="ega-tabla__celda">To investigate a selected building</td>
+              <td class="ega-tabla__celda ega-tabla__celda--gap">To decide where to focus first</td>
             </tr>
           </tbody>
         </table>
+        <p class="ega-tabla__nota">Energy Gap Analysis helps you target your next audit. It doesn&rsquo;t replace it.</p>
       </div>
 
     </div>
@@ -833,34 +827,33 @@
        rejilla de 32. Un primer intento los dejo con alturas distintas
        (21 frente a 24) y el conjunto se veia desparejo.
        ========================================================================== -->
-  <section class="ega-how d2-entra" aria-labelledby="ega-how-t">
+  <section class="ega-how d2-entra" aria-label="What EGA answers">
     <div class="ega-how__inner">
-      <p class="eyebrow">How it works</p>
-      <h2 class="ega-how__titulo" id="ega-how-t">From utility data to a prioritized shortlist.</h2>
+      <p class="eyebrow">What EGA answers</p>
       <ol class="ega-how__lista">
           <li class="ega-how__paso">
-            <span class="ega-how__fondo" aria-hidden="true">01</span>
-            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="7.5" rx="9" ry="3.5"/><path d="M7 7.5v6c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-6"/><path d="M7 13.5v6c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-6"/><path d="M7 19.5v5c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-5"/></svg></span>
-            <h3 class="ega-how__tit">Bring the data</h3>
-            <p class="ega-how__desc">Utility bills, building type, floor area and operating context.</p>
-          </li>
-          <li class="ega-how__paso">
-            <span class="ega-how__fondo" aria-hidden="true">02</span>
             <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 28h24"/><path d="M7 28v-9h4.5v9"/><path d="M13.8 28v-15h4.5v15"/><path d="M20.5 28V4H25v24"/></svg></span>
-            <h3 class="ega-how__tit">Compare fairly</h3>
-            <p class="ega-how__desc">Normalize energy use, cost and emissions across the portfolio.</p>
+            <div class="ega-how__texto">
+              <h3 class="ega-how__tit">Which buildings use more energy than expected?</h3>
+            </div>
           </li>
           <li class="ega-how__paso">
-            <span class="ega-how__fondo" aria-hidden="true">03</span>
-            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M8 4h10l6 6v18H8V4z"/><path d="M18 4v6h6"/><path d="M12 16h8M12 20h8M12 24h5"/></svg></span>
-            <h3 class="ega-how__tit">Identify the gaps</h3>
-            <p class="ega-how__desc">See which buildings are using more energy, costing more or emitting more than expected.</p>
+            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 8.5v15"/><path d="M19.5 12.3c-.5-1.3-1.9-2.1-3.5-2.1-2.1 0-3.6 1.1-3.6 2.8 0 1.6 1.2 2.4 3.4 2.9 2.4.5 3.8 1.4 3.8 3.2 0 1.8-1.6 3-3.9 3-1.9 0-3.4-.9-3.9-2.3"/></svg></span>
+            <div class="ega-how__texto">
+              <h3 class="ega-how__tit">Where are utility costs unusually high?</h3>
+            </div>
           </li>
           <li class="ega-how__paso">
-            <span class="ega-how__fondo" aria-hidden="true">04</span>
-            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11.5 6H8v22h16V6h-3.5"/><path d="M12.5 4h7v4h-7V4z"/><path d="M12 18.5l2.8 2.8 5.6-5.6"/></svg></span>
-            <h3 class="ega-how__tit">Prioritize investigation</h3>
-            <p class="ega-how__desc">Create a ranked shortlist of buildings for Site Investigation.</p>
+            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M28 4c0 12.5-7.4 19.4-15.4 19.4-4 0-6.8-1.7-7.4-4.6-.7-3.4 1.1-6.8 5.1-9.1C15.4 6.9 22.3 7.4 28 4z"/><path d="M4 28c2.9-8 9.2-13.7 16.6-16.6"/></svg></span>
+            <div class="ega-how__texto">
+              <h3 class="ega-how__tit">Where are GHG emissions concentrated?</h3>
+            </div>
+          </li>
+          <li class="ega-how__paso">
+            <span class="ega-how__ico"><svg class="ega-how__svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10"/><path d="M21.1 21.1L28 28"/></svg></span>
+            <div class="ega-how__texto">
+              <h3 class="ega-how__tit">Which buildings should be investigated first?</h3>
+            </div>
           </li>
       </ol>
     </div>
@@ -868,121 +861,6 @@
 
 
 
-<!-- ======================================================================
-     FINANCIACION, CLONADA DE LA HOME (16/9/2026)
-
-     Misma seccion, mismo marcado y mismo copy. Va despues del ranking:
-     primero se dice que buscar --el edificio que merece la auditoria-- y
-     despues que puede haber dinero para pagarla.
-
-     El enlace apunta a #calculator, que existe tambien en esta pagina.
-
-     Si el copy de la home cambia, hay que cambiarlo aqui tambien: son dos
-     copias, no una pieza compartida.
-     ====================================================================== -->
-<section class="d2-financia d2-entra" aria-labelledby="fondos-titulo">
-
-  <!-- DOS SVG, uno por esquina. No uno estirado.
-
-         El primer intento fue un solo SVG de 1440x700 cubriendo la
-         seccion. No funciono, y la razon es geometrica: la seccion es
-         mucho mas apaisada que el viewBox --3.17:1 frente a 2.06:1-- asi
-         que "slice" recortaba 322px de alto para mantener la forma, y se
-         comia justo las dos esquinas donde vive el dibujo. El resultado
-         era una seccion sin circuito.
-
-         "none" tampoco sirve: estira los codos y convierte los nodos en
-         ovalos.
-
-         Con un SVG por esquina cada uno conserva su tamano real, se ancla
-         donde le toca y no depende del alto de la seccion. -->
-    <svg class="d2-financia__circuito d2-financia__circuito--sup" viewBox="0 0 460 140" fill="none" aria-hidden="true">
-      <path d="M8 0v18a14 14 0 0 0 14 14h250a14 14 0 0 1 14 14v22a14 14 0 0 0 14 14h142"/>
-      <circle cx="450" cy="82" r="7"/>
-    </svg>
-
-    <!-- El nodo va a la DERECHA (14/9/2026): el usuario lo pidio asi. La
-         linea entra por el borde izquierdo, baja en escalon y termina en
-         el nodo, que queda al final del recorrido en vez de al principio.
-
-         Es tambien lo que hace el trazo de arriba --entra por un borde y
-         acaba en nodo-- asi que los dos se leen igual. -->
-    <svg class="d2-financia__circuito d2-financia__circuito--inf" viewBox="0 0 320 150" fill="none" aria-hidden="true">
-      <path d="M0 16h126a14 14 0 0 1 14 14v40a14 14 0 0 0 14 14h146"/>
-      <circle cx="311" cy="84" r="7"/>
-    </svg>
-
-    <svg class="d2-financia__circuito d2-financia__circuito--izq" viewBox="0 0 120 30" fill="none" aria-hidden="true">
-      <path d="M0 15h56"/>
-      <circle cx="64" cy="15" r="7"/>
-    </svg>
-
-  <div class="d2-financia__inner">
-
-    <div class="d2-financia__texto">
-      <p class="eyebrow">Commercial energy funding</p>
-      <h2 class="d2-financia__titulo" id="fondos-titulo">
-        Funding may help cover your next energy project.
-      </h2>
-      <p class="d2-financia__lead">
-        Rede helps identify BC Hydro rebates, FortisBC rebates, SaskPower incentives,
-        and other commercial energy funding before you invest in an energy audit or
-        improvement project.
-      </p>
-    </div>
-
-    <div class="d2-financia__lado">
-      <p class="d2-financia__eti">Programs we can help you navigate</p>
-
-      <!-- ul y no ol: son tres utilities alternativas, no una secuencia.
-           Un lector de pantalla no debe sugerir orden donde no lo hay. -->
-      <ul class="d2-financia__programas">
-        <li>BC Hydro</li>
-        <li>FortisBC</li>
-        <li>SaskPower</li>
-      </ul>
-
-      <!-- CONFIRMADO (14/9/2026)
-
-           Se monto oculto porque la acreditacion no constaba en ningun
-           archivo del proyecto. El copy final del cliente --"Homepage
-           final copy (3).docx"-- la afirma DOS veces, en la seccion 03 y
-           otra vez en la 05:
-
-             "REDE is listed by BC Hydro as an approved service provider
-              for the Continuous Optimization program."
-
-           Con eso deja de ser una suposicion y se publica. El texto es el
-           del documento, literal. -->
-      <p class="d2-financia__aval">
-        <span class="d2-financia__tic" aria-hidden="true">
-          <svg width="13" height="10" viewBox="0 0 13 10"><path d="M1 5l3.5 3.5L12 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        Rede is listed by BC Hydro as an approved service provider for the Continuous Optimization program.
-      </p>
-
-      <a class="d2-btn d2-btn--solido d2-financia__cta" href="#calculator">
-        Check funding eligibility
-        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-
-      <!-- EL DISCLAIMER (16/9/2026)
-
-           Lo pide el documento del cliente y no estaba en ninguna parte.
-           Va aqui, junto a la promesa de financiacion, y no al final de la
-           calculadora: es donde el visitante lee que puede haber dinero,
-           asi que es donde tiene que leer que depende del programa.
-
-           Texto literal del documento. -->
-      <p class="d2-financia__aviso">
-        Program availability and final eligibility vary.
-      </p>
-
-      <p class="d2-financia__nota">Initial program-fit review at no cost.</p>
-    </div>
-
-  </div>
-</section>
 
 <!-- ====================================================================
          OPCION 3 — ASISTENTE POR PASOS
@@ -2338,42 +2216,137 @@
         
 
         <div class="d2-logos--dos__der">
-          <p class="d2-logos--dos__cifra">$4.4M</p>
-          <p class="d2-logos--dos__cifra-pie">Cumulative savings</p>
-          <p class="d2-logos--dos__cifra-nota">for one long-term client, over&nbsp;12&nbsp;years</p>
-        </div>
-        <div class="d2-logos--dos__centro">
-          <!-- ETIQUETA RETIRADA (7/9/2026): la composicion que eligio el
-               cliente no la lleva --la cifra de al lado ya dice que son
-               estos logos--. Se deja escrita, no borrada: es copy aprobado
-               y volver a ponerla es descomentar.
-          <p class="d2-logos--dos__etiqueta">PUBLIC-SECTOR PORTFOLIOS WE&rsquo;VE WORKED WITH</p>
-          -->
-
-          <div class="d2-logos--dos__marquesina">
-            <div class="d2-logos--dos__pista">
-              <img src="assets/img/logos-clientes/calgary-board.png" alt="Calgary Board of Education" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/greater-victoria.png" alt="Greater Victoria School District" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/northland.png" alt="Northland School Division" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/fort-vermilion.png" alt="Fort Vermilion School Division" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/cariboo-chilcotin.png" alt="Cariboo Chilcotin School District" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/grande-prairie.png" alt="Grande Prairie Public Schools" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/sunshine-coast.png" alt="Sunshine Coast School District" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/calgary-board.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/greater-victoria.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/northland.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/fort-vermilion.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/cariboo-chilcotin.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/grande-prairie.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
-              <img src="assets/img/logos-clientes/sunshine-coast.png" alt="" aria-hidden="true" width="200" height="200" decoding="async">
+          <p class="eyebrow d2-logos--dos__eyebrow">Proof / case example</p>
+          <div class="d2-logos--dos__caso">
+            <span class="d2-logos--dos__ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M8 28V7h11v21" stroke-width="1.3" stroke-linejoin="round"/><path d="M19 14h5v14" stroke-width="1.3" stroke-linejoin="round"/><path d="M11.5 11v1.8M15.5 11v1.8M11.5 16v1.8M15.5 16v1.8M11.5 21v1.8M15.5 21v1.8" stroke-width="1.6" stroke-linecap="round"/><path d="M21 19v1.8M21 23v1.8" stroke-width="1.6" stroke-linecap="round"/><path d="M6 28h20" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+            <p class="d2-logos--dos__cifra">$2.94M</p>
+            <div class="d2-logos--dos__texto">
+              <p class="d2-logos--dos__cifra-pie">Identified for one Western Canadian school district.</p>
+              <p class="d2-logos--dos__cifra-nota">Represents potential annual savings from underperforming buildings identified through EGA.</p>
             </div>
           </div>
         </div>
 
 
+
       </div>
     </section>
 
+<!-- ======================================================================
+     FINANCIACION, CLONADA DE LA HOME (16/9/2026)
+
+     Misma seccion, mismo marcado y mismo copy. Va despues del ranking:
+     primero se dice que buscar --el edificio que merece la auditoria-- y
+     despues que puede haber dinero para pagarla.
+
+     El enlace apunta a #calculator, que existe tambien en esta pagina.
+
+     Si el copy de la home cambia, hay que cambiarlo aqui tambien: son dos
+     copias, no una pieza compartida.
+     ====================================================================== -->
+<section class="d2-financia d2-entra" aria-labelledby="fondos-titulo">
+
+  <!-- DOS SVG, uno por esquina. No uno estirado.
+
+         El primer intento fue un solo SVG de 1440x700 cubriendo la
+         seccion. No funciono, y la razon es geometrica: la seccion es
+         mucho mas apaisada que el viewBox --3.17:1 frente a 2.06:1-- asi
+         que "slice" recortaba 322px de alto para mantener la forma, y se
+         comia justo las dos esquinas donde vive el dibujo. El resultado
+         era una seccion sin circuito.
+
+         "none" tampoco sirve: estira los codos y convierte los nodos en
+         ovalos.
+
+         Con un SVG por esquina cada uno conserva su tamano real, se ancla
+         donde le toca y no depende del alto de la seccion. -->
+    <svg class="d2-financia__circuito d2-financia__circuito--sup" viewBox="0 0 460 140" fill="none" aria-hidden="true">
+      <path d="M8 0v18a14 14 0 0 0 14 14h250a14 14 0 0 1 14 14v22a14 14 0 0 0 14 14h142"/>
+      <circle cx="450" cy="82" r="7"/>
+    </svg>
+
+    <!-- El nodo va a la DERECHA (14/9/2026): el usuario lo pidio asi. La
+         linea entra por el borde izquierdo, baja en escalon y termina en
+         el nodo, que queda al final del recorrido en vez de al principio.
+
+         Es tambien lo que hace el trazo de arriba --entra por un borde y
+         acaba en nodo-- asi que los dos se leen igual. -->
+    <svg class="d2-financia__circuito d2-financia__circuito--inf" viewBox="0 0 320 150" fill="none" aria-hidden="true">
+      <path d="M0 16h126a14 14 0 0 1 14 14v40a14 14 0 0 0 14 14h146"/>
+      <circle cx="311" cy="84" r="7"/>
+    </svg>
+
+    <svg class="d2-financia__circuito d2-financia__circuito--izq" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+      <path d="M0 15h56"/>
+      <circle cx="64" cy="15" r="7"/>
+    </svg>
+
+  <div class="d2-financia__inner">
+
+    <div class="d2-financia__texto">
+      <p class="eyebrow">Commercial energy funding</p>
+      <h2 class="d2-financia__titulo" id="fondos-titulo">
+        Funding may help cover your next energy project.
+      </h2>
+      <p class="d2-financia__lead">
+        Rede helps identify BC Hydro rebates, FortisBC rebates, SaskPower incentives,
+        and other commercial energy funding before you invest in an energy audit or
+        improvement project.
+      </p>
+    </div>
+
+    <div class="d2-financia__lado">
+      <p class="d2-financia__eti">Programs we can help you navigate</p>
+
+      <!-- ul y no ol: son tres utilities alternativas, no una secuencia.
+           Un lector de pantalla no debe sugerir orden donde no lo hay. -->
+      <ul class="d2-financia__programas">
+        <li>BC Hydro</li>
+        <li>FortisBC</li>
+        <li>SaskPower</li>
+      </ul>
+
+      <!-- CONFIRMADO (14/9/2026)
+
+           Se monto oculto porque la acreditacion no constaba en ningun
+           archivo del proyecto. El copy final del cliente --"Homepage
+           final copy (3).docx"-- la afirma DOS veces, en la seccion 03 y
+           otra vez en la 05:
+
+             "REDE is listed by BC Hydro as an approved service provider
+              for the Continuous Optimization program."
+
+           Con eso deja de ser una suposicion y se publica. El texto es el
+           del documento, literal. -->
+      <p class="d2-financia__aval">
+        <span class="d2-financia__tic" aria-hidden="true">
+          <svg width="13" height="10" viewBox="0 0 13 10"><path d="M1 5l3.5 3.5L12 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Rede is listed by BC Hydro as an approved service provider for the Continuous Optimization program.
+      </p>
+
+      <a class="d2-btn d2-btn--solido d2-financia__cta" href="#calculator">
+        Check funding eligibility
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- EL DISCLAIMER (16/9/2026)
+
+           Lo pide el documento del cliente y no estaba en ninguna parte.
+           Va aqui, junto a la promesa de financiacion, y no al final de la
+           calculadora: es donde el visitante lee que puede haber dinero,
+           asi que es donde tiene que leer que depende del programa.
+
+           Texto literal del documento. -->
+      <p class="d2-financia__aviso">
+        Program availability and final eligibility vary.
+      </p>
+
+      <p class="d2-financia__nota">Initial program-fit review at no cost.</p>
+    </div>
+
+  </div>
+</section>
   <!-- ====================================================================
        PREGUNTAS
 
@@ -2389,6 +2362,25 @@
             What to expect<br><span>from the analysis.</span>
           </h2>
         </div>
+
+        <ul class="d2-faq-dato__tira">
+          <li class="d2-faq-dato__dato">
+            <span class="d2-faq-dato__dato-ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12"/><path d="M16 8.5v15"/><path d="M19.5 12.3c-.5-1.3-1.9-2.1-3.5-2.1-2.1 0-3.6 1.1-3.6 2.8 0 1.6 1.2 2.4 3.4 2.9 2.4.5 3.8 1.4 3.8 3.2 0 1.8-1.6 3-3.9 3-1.9 0-3.4-.9-3.9-2.3"/></svg></span>
+            <span class="d2-faq-dato__dato-txt">$5,000</span>
+          </li>
+          <li class="d2-faq-dato__dato">
+            <span class="d2-faq-dato__dato-ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12"/><path d="M16 9v7.5l5 3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="d2-faq-dato__dato-txt">4&ndash;6 weeks</span>
+          </li>
+          <li class="d2-faq-dato__dato">
+            <span class="d2-faq-dato__dato-ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="8" rx="12" ry="4"/><path d="M4 8v8c0 2.2 5.4 4 12 4s12-1.8 12-4V8"/><path d="M4 16v8c0 2.2 5.4 4 12 4s12-1.8 12-4v-8"/></svg></span>
+            <span class="d2-faq-dato__dato-txt">Uses existing portfolio data</span>
+          </li>
+          <li class="d2-faq-dato__dato">
+            <span class="d2-faq-dato__dato-ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 12.2a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6z"/><path d="M25.3 19.3a2 2 0 00.4 2.2l.1.1a2.4 2.4 0 11-3.4 3.4l-.1-.1a2 2 0 00-2.2-.4 2 2 0 00-1.2 1.8v.2a2.4 2.4 0 11-4.8 0v-.1a2 2 0 00-1.3-1.8 2 2 0 00-2.2.4l-.1.1a2.4 2.4 0 11-3.4-3.4l.1-.1a2 2 0 00.4-2.2 2 2 0 00-1.8-1.2h-.2a2.4 2.4 0 110-4.8h.1a2 2 0 001.8-1.3 2 2 0 00-.4-2.2l-.1-.1a2.4 2.4 0 113.4-3.4l.1.1a2 2 0 002.2.4h.1a2 2 0 001.2-1.8v-.2a2.4 2.4 0 114.8 0v.1a2 2 0 001.2 1.8 2 2 0 002.2-.4l.1-.1a2.4 2.4 0 113.4 3.4l-.1.1a2 2 0 00-.4 2.2v.1a2 2 0 001.8 1.2h.2a2.4 2.4 0 110 4.8h-.1a2 2 0 00-1.8 1.2z" stroke-linejoin="round"/></svg></span>
+            <span class="d2-faq-dato__dato-txt">No new monitoring hardware required</span>
+          </li>
+        </ul>
 
         <div class="d2-faq-dato__cuerpo">
 
@@ -2806,13 +2798,12 @@
       <div class="d2-cta-bal__inner">
 
         <div class="d2-cta-bal__texto">
-          <p class="eyebrow">No-cost program screening</p>
           <h2 class="d2-cta-bal__titulo">
-            Find out what funding may be available&mdash;and where to look first.
+            Ready to see the gaps in your portfolio?
           </h2>
           <p class="d2-cta-bal__parrafo">
-            Tell Rede where your buildings are located and what you manage. We will quickly
-            screen for relevant utility programs and help clarify the most practical first step.
+            See which buildings are costing and emitting more than they should
+            &mdash; and where Site Investigation should begin.
           </p>
         </div>
 

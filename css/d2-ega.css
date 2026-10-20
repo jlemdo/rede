@@ -102,7 +102,20 @@
    minimo baja a 3:1. El #39B54A puro da 2,66:1 y ni asi llega; el
    #33A343 --el de marca al 90%, el mismo de las cifras de la home-- da
    3,25:1 y si cumple. Se ve como el verde del logo y pasa la norma. */
-.d2 .d2-ega-hero__titulo span { color: #33A343; }
+/* EL VERDE, EN SU PROPIA LINEA (19/10/2026).
+
+   Con el copy nuevo --"Find the buildings costing and emitting more
+   than they should."-- el verde arrancaba a media linea: MEDIDO en
+   x=285, partiendo "emitting | more" y dejando el color descolgado.
+
+   display:block lo baja a linea propia sin meter un <br> en el
+   marcado: un salto duro se mantendria en movil, donde el titular ya
+   reparte distinto, y ademas daba una linea MAS que esta via --8
+   frente a 6, medidas las dos--. */
+.d2 .d2-ega-hero__titulo span {
+  display: block;
+  color: #33A343;
+}
 
 .d2 .d2-ega-hero__lead {
   margin: 0 0 26px;
@@ -1883,6 +1896,40 @@
   color: rgba(255, 255, 255, .84);
 }
 
+/* LA LINEA DE CIERRE, en negrita bajo el parrafo.
+
+   Blanco puro --no el .84 del lead--: es la frase que remata el bloque
+   y tiene que pesar mas que lo que la precede. Sobre el verde oscuro
+   de la seccion da 12,6:1, de sobra para AA.
+
+   El margen es mayor que el del lead: separa el remate del cuerpo del
+   texto en vez de dejarlo como un parrafo mas. */
+.d2 .ega-comp__cierre {
+  margin: var(--sp-5, 1.25rem) 0 0;
+  font-size: var(--fs-body, 1rem);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.5;
+  color: var(--c-blanco, #FFFFFF);
+}
+
+/* LA NOTA AL PIE DE LA TABLA.
+
+   Baja de jerarquia a proposito: es una aclaracion --el Gap no
+   sustituye a la auditoria--, no un dato de la comparativa. Por eso va
+   fuera de la <table>, mas pequena y al .72 de blanco, que sobre el
+   verde oscuro da 9,1:1.
+
+   Centrada bajo la tabla y no alineada a la izquierda: la tabla ocupa
+   todo el panel y la nota se lee como su pie, no como el principio de
+   otra columna de texto. */
+.d2 .ega-tabla__nota {
+  margin: 14px 0 0;
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(255, 255, 255, .72);
+}
+
 .d2 .ega-comp__panel {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2017,7 +2064,18 @@
      daria #333: en el home cae entre blancos, pero aqui anadiria una
      tercera banda oscura seguida. */
   background: #F3F3F3;
-  padding-block: var(--seccion-y, clamp(56px, 6.4vw, 84px));
+
+  /* BANDA, NO SECCION (19/10/2026)
+
+     De 84px arriba y abajo a 40. MEDIDO antes del cambio: la seccion
+     media 351px de alto y 168 eran aire --el 48%--, con solo el
+     eyebrow y una fila de tarjetas dentro.
+
+     El 40 no es inventado: es el que ya usa `d2-logos--dos` en esta
+     misma pagina, la unica banda estrecha que hay. Asi la franja gris
+     queda como separador entre la comparativa verde y la calculadora,
+     en vez de como una seccion a medio llenar. */
+  padding-block: 40px;
 }
 
 .d2 .ega-how__inner {
@@ -2042,8 +2100,13 @@
   /* Filas iguales: en dos columnas --de 560 a 900-- cada fila se
      ajustaba a su texto y salian 163/163/184/184. El escalon se ve. */
   grid-auto-rows: 1fr;
-  gap: 14px;
-  margin: clamp(30px, 3.4vw, 48px) 0 0;
+  /* 24px: `rutas` separa sus tarjetas 32 y estas son mas bajas, asi
+     que 24 guarda la proporcion sin estirar la banda. Los 14 de antes
+     las pegaban como celdas de una tabla. */
+  gap: 24px;
+  /* 20px y no los 30-48 de antes: sin titulo entre el eyebrow y las
+     tarjetas, ese hueco era otro trozo de vacio. */
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -2052,39 +2115,41 @@
   position: relative;
   overflow: hidden;
   padding: 22px 20px 20px;
-  /* #E2E2E2 y no el --c-borde-suave de siempre: ese es #EFEFEF, mas
-     claro que el gris #F3F3F3 de la seccion, y la tarjeta se separaba
-     1,11:1 --MEDIDO--, o sea nada. */
-  border: 1px solid #E2E2E2;
+  /* LOS TOKENS DEL SISTEMA, no valores propios (19/10/2026).
+
+     Antes: borde #E2E2E2 suelto y fondo blanco. El motivo de entonces
+     --que --c-borde-suave #EFEFEF apenas se separa del gris #F3F3F3 de
+     la seccion-- deja de valer al poner el fondo en --c-fondo #FAFAFA:
+     ahi quien separa la tarjeta del fondo es ella misma, y el borde
+     solo tiene que cerrarla.
+
+     Es el mismo trio que usa `.ruta`, la unica otra tarjeta con borde
+     de la pagina: radio 10, --c-borde-suave y --c-fondo. */
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
   border-radius: 10px;
-  background: var(--c-blanco, #FFFFFF);
+  background: var(--c-fondo, #FAFAFA);
 }
 
-/* La cifra, detras del contenido.
 
-   Al 7% de opacidad: es ritmo, no informacion. Con mas peso compite con
-   el titulo, que es lo que hay que leer. */
-.d2 .ega-how__fondo {
-  position: absolute;
-  top: -14px;
-  right: 2px;
-  font-size: 76px;
-  font-weight: var(--fw-extrabold, 800);
-  line-height: 1;
-  letter-spacing: -.04em;
-  color: rgba(2, 111, 0, .07);
-  pointer-events: none;
-}
+/* EL ICONO, SUELTO A LA IZQUIERDA.
 
+   SIN CIRCULO DE FONDO. Lo traia del wireframe, pero era el UNICO
+   icono con circulo de toda la web --comprobado recorriendo todos los
+   elementos con borde y radio de la pagina--: el resto, `rutas` el
+   primero, dibuja el icono suelto. Un adorno que solo aparece aqui
+   lee como pieza de otro sitio.
+
+   38px, el tamano que tenia dentro del circulo: lo que se va es el
+   fondo, no el dibujo. */
 .d2 .ega-how__ico {
   position: relative;
   display: block;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   color: var(--c-verde-hover, #026F00);
 }
 
-.d2 .ega-how__svg { width: 100%; height: 100%; }
+.d2 .ega-how__svg { width: 38px; height: 38px; }
 
 /* El trazo lo pone esta hoja: los cuatro iconos comparten grosor sin
    repetirlo en cada archivo. */
@@ -2096,12 +2161,25 @@
   stroke-linejoin: round;
 }
 
+/* LA PREGUNTA.
+
+   PESO --fw-medium (600), NO --fw-bold (700). MEDIDO en la pagina: el
+   700 lo llevan los titulares y el eyebrow; el texto de tarjeta del
+   mismo cuerpo --`.d2-financia__texto`, tambien 17px-- va en 400. A
+   700 la pregunta pedia el peso de un titular siendo texto de
+   tarjeta, y en cuatro tarjetas seguidas se veia pesado.
+
+   No baja hasta 400 porque aqui la pregunta es lo UNICO que se lee en
+   la tarjeta --no hay titulo encima del que colgar--: el 600 la
+   sostiene sin competir con los titulares.
+
+   line-height 1.4 y no 1.25: a tres lineas, 1.25 las apretaba. */
 .d2 .ega-how__tit {
   position: relative;
   margin: 16px 0 0;
   font-size: 1.0625rem;
-  font-weight: var(--fw-bold, 700);
-  line-height: 1.25;
+  font-weight: var(--fw-medium, 600);
+  line-height: 1.4;
   color: var(--c-texto, #333333);
 }
 
@@ -2111,6 +2189,40 @@
   font-size: var(--fs-small, .875rem);
   line-height: 1.5;
   color: var(--c-texto-suave, #6B6B6B);
+}
+
+/* ICONO A LA IZQUIERDA, TEXTO A LA DERECHA.
+
+   ES LO UNICO QUE CAMBIA DE LA TARJETA. El icono estaba encima del
+   titulo; ahora va al lado, con el bloque de texto --titulo mas
+   descripcion-- a su derecha. Tipografia, borde, fondo, relleno, la
+   cifra de marca de agua y la entrada escalonada se quedan igual.
+
+   align-items:center centra el icono respecto al bloque de texto
+   completo, asi la tarjeta se lee como una sola linea. Con flex-start
+   el icono se pegaba arriba y quedaban a dos niveles. */
+.d2 .ega-how__paso {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* flex-shrink:0: sin el, el icono se comprime cuando el texto no cabe
+   --el SVG se deforma, no se recorta--. El tamano es el de siempre. */
+.d2 .ega-how__paso > .ega-how__ico {
+  flex: 0 0 auto;
+}
+
+/* El texto, en su propia columna a la derecha. min-width:0 permite que
+   las palabras largas se partan en vez de ensanchar la tarjeta. */
+.d2 .ega-how__texto {
+  min-width: 0;
+}
+
+/* El titulo abria la tarjeta por debajo del icono y llevaba ese margen
+   de separacion. Puesto al lado, ya no hay nada encima. */
+.d2 .ega-how__texto .ega-how__tit {
+  margin-top: 0;
 }
 
 /* LA ENTRADA: las cuatro tarjetas, escalonadas. */

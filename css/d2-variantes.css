@@ -1521,9 +1521,90 @@ span.d2-panel__filtro:hover {
    Derecha — la cifra
    -------------------------------------------------------------------------- */
 
+/* EL CASO, SIN LOS LOGOS (19/10/2026).
+
+   La columna ya no va al lado de la marquesina --se retiro--, asi que
+   pierde el filete que la separaba de ella: ahora ocupa el ancho y el
+   separador pasa a estar DENTRO, entre la cifra y su texto, como en el
+   wireframe.
+
+   LA REJILLA, A UNA COLUMNA. Era "auto minmax(0,1fr) auto" para
+   titular, logos y cifra. Quitados los dos primeros, esas pistas
+   seguian repartiendo y a la cifra le quedaban 240px cuando necesita
+   440 --MEDIDO--: el texto se envolvia debajo en vez de ponerse al
+   lado. Se declara aqui, donde vive el caso, para no tocar el
+   componente que usan las otras paginas. */
+
 .d2-logos--dos__der {
-  padding-left: clamp(20px, 2.6vw, 40px);
-  border-left: 1px solid rgba(2, 51, 0, .1);
+  grid-column: 1 / -1;
+  /* Sin esto el bloque se encogia a su ancho minimo --MEDIDO: 240px en
+     una columna de 1200-- y el caso se apilaba. */
+  justify-self: stretch;
+  width: 100%;
+}
+
+/* El eyebrow, EN BLANCO --peticion del cliente--. Sobre el negro de la
+   seccion da 17,4:1; el verde de marca no llegaba ni a AA aqui.
+
+   Se encadenan las dos clases: el elemento lleva tambien `.eyebrow`,
+   que pinta el verde con el mismo peso y declarada despues, asi que
+   ganaba ella. */
+.d2 .eyebrow.d2-logos--dos__eyebrow {
+  margin: 0 0 14px;
+  color: var(--c-blanco, #FFFFFF);
+}
+
+/* La fila del caso: icono, cifra y texto. align-items:center para que
+   los tres compartan eje, como en el wireframe. */
+.d2-logos--dos__caso {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  flex-wrap: wrap;
+}
+
+/* El icono, en circulo. Sobre fondo oscuro el verde palido del sistema
+   --#E8F5E8-- deslumbra, asi que el circulo va en blanco al 8% y el
+   trazo en blanco: es la misma idea, adaptada al fondo. */
+.d2-logos--dos__ico {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  color: var(--c-blanco, #FFFFFF);
+}
+
+.d2-logos--dos__ico svg { width: 32px; height: 32px; }
+
+.d2-logos--dos__ico svg :is(path, circle, rect) {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* EL SEPARADOR, entre la cifra y el texto --no a la izquierda de todo,
+   como estaba--. min-width:0 deja que el texto se parta en vez de
+   empujar la cifra. */
+.d2-logos--dos__texto {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding-left: clamp(20px, 2.6vw, 32px);
+  border-left: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* EN ESTRECHO el texto baja a su propia linea y el filete lateral se
+   queda separando de nada --MEDIDO a 390px--. Pasa a ser superior, que
+   es lo que de verdad lo separa de la cifra cuando van apilados. */
+@media (max-width: 900px) {
+  .d2-logos--dos__texto {
+    flex-basis: 100%;
+    padding-left: 0;
+    padding-top: 16px;
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+  }
 }
 
 .d2-logos--dos__cifra {
@@ -10054,6 +10135,92 @@ span.d2-panel__filtro:hover {
    3,26:1 sobre el gris. A simple vista es el mismo verde. */
 .d2 .d2-faq-dato__titulo span { color: #2E9A3C; }
 
+/* LA TIRA DE DATOS (19/10/2026).
+
+   Los cuatro datos que se preguntan antes de leer nada: precio, plazo,
+   que hace falta y que no. Van arriba del FAQ porque el titular de la
+   seccion ya dice "What to expect".
+
+   auto-fit con minmax: a partir de cierto ancho caben los cuatro en
+   linea y por debajo se reparten solos, sin saltos declarados. */
+.d2 .d2-faq-dato__tira {
+  display: grid;
+  /* Cuatro fijas, no auto-fit: con auto-fit salian CINCO pistas para
+     cuatro tarjetas --MEDIDO-- y las estrechaba sin motivo. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 clamp(32px, 3.6vw, 48px);
+  padding: 0;
+  list-style: none;
+}
+
+/* Dos por fila cuando cuatro ya no caben, y una en movil. */
+@media (max-width: 900px) {
+  .d2 .d2-faq-dato__tira { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .d2 .d2-faq-dato__tira { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* LA TARJETA, SUTIL. Sobre el gris #F3F3F3 de la seccion el blanco ya
+   separa por si solo; el borde --c-borde-suave solo la cierra. Es el
+   mismo trio que usa `.ruta`, la tarjeta de referencia de la web. */
+.d2 .d2-faq-dato__dato {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: 10px;
+  background: var(--c-blanco, #FFFFFF);
+}
+
+/* El icono, en circulo. Mismo par de colores del sistema que ya usan
+   `.d2-ega-tarj--si` y la seccion de preguntas: --c-verde-claro de
+   fondo y --c-verde-hover de trazo.
+
+   flex-shrink:0 para que no se ovale cuando el texto ocupa dos lineas. */
+.d2 .d2-faq-dato__dato-ico {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-verde-claro, #E8F5E8);
+  color: var(--c-verde-hover, #026F00);
+}
+
+.d2 .d2-faq-dato__dato-ico svg { width: 22px; height: 22px; }
+
+/* EL ENGRANE, AL TAMANO DE LOS OTROS TRES.
+
+   MEDIDO con getBBox: dibuja 26,4 de caja contra los 24 de dolar,
+   reloj y cilindro --sus dientes sobresalen del circulo-- y al lado de
+   ellos se veia abultado.
+
+   24/26,4 = 0,909: el scale lo iguala sin tocar el trazado, que es
+   preferible a redibujar un engrane entero. */
+.d2 .d2-faq-dato__dato:last-child .d2-faq-dato__dato-ico svg {
+  transform: scale(.909);
+}
+
+.d2 .d2-faq-dato__dato-ico svg :is(path, circle, ellipse, rect) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+/* El texto. min-width:0 deja que se parta en vez de empujar el circulo. */
+.d2 .d2-faq-dato__dato-txt {
+  min-width: 0;
+  font-size: var(--fs-small, .875rem);
+  font-weight: var(--fw-medium, 600);
+  line-height: 1.35;
+  color: var(--c-texto, #333333);
+}
+
 .d2 .d2-faq-dato__cuerpo {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
@@ -13266,6 +13433,18 @@ span.d2-panel__filtro:hover {
    El marcado de las dos columnas queda comentado.
    ========================================================================== */
 
+/* UNA COLUMNA CUANDO LA SECCION LLEVA EL CASO (19/10/2026).
+
+   Retirados los logos, las dos pistas seguian repartiendo y al caso
+   le quedaban 240px cuando necesita 440 --MEDIDO--: icono, cifra y
+   texto se apilaban en vez de ir en linea.
+
+   Lleva el prefijo .d2 a proposito: sin el perdia contra la regla
+   de dos columnas de aqui debajo, que si lo tiene. */
+.d2 .d2-logos--dos:has(.d2-logos--dos__caso) .d2-logos--dos__inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .d2 .d2-logos--dos__inner {
   /* Dos columnas (7/9/2026): la cifra a la izquierda y los logos ocupando
      el resto. Era de una sola columna mientras la cifra estuvo retirada. */
@@ -13290,6 +13469,20 @@ span.d2-panel__filtro:hover {
 }
 
 /* La cifra manda en su columna y no se estrecha */
+/* EL CASO OCUPA EL ANCHO (19/10/2026).
+
+   La regla de aqui debajo pone `max-width: 15rem` --240px exactos-- y
+   era lo que mantenia el bloque estrecho: nacio cuando la columna solo
+   llevaba la cifra al lado de los logos.
+
+   Con el caso --icono, cifra y texto en linea-- ese tope los apilaba:
+   MEDIDO, 240px disponibles para 440 que necesita. */
+.d2 .d2-logos--dos:has(.d2-logos--dos__caso) .d2-logos--dos__der {
+  grid-column: 1 / -1;
+  max-width: none;
+  width: 100%;
+}
+
 .d2 .d2-logos--dos__der {
   grid-row: 1;
   grid-column: 1;
