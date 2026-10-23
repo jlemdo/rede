@@ -1109,6 +1109,162 @@
 
 .d2 .rp-panel__gr { margin: 0; }
 
+/* EL GRAFICO DENTRO DEL FAQ DE GAP (22/10/2026, punto 3.4)
+
+   Ocupa el sitio del mapa ilustrativo que habia aqui. La caja medida
+   era de 493x595, y el grafico viene de RUN con viewBox 560x432, o sea
+   mas ancho que alto: a ancho completo se queda en unos 380px y dejaba
+   200 de hueco debajo.
+
+   Se le da el alto de la caja y se deja que el SVG se estire dentro.
+   `preserveAspectRatio` no se toca --sigue conservando la proporcion--
+   asi que las barras no se deforman: lo que crece es el aire.
+
+   El titulo del grafico hace de rotulo, el mismo papel que tenia el
+   pie "Illustrative portfolio map" que se fue con el mapa. */
+.d2 .d2-faq-dato__bepi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* El padding lateral baja a 14: el SVG trae su propio margen interno
+     --la columna de siglas empieza en x=52 de 560-- y sumarle 20 por
+     fuera estrechaba las barras sin necesidad. */
+  padding: 20px 14px;
+  border: 1px solid var(--c-borde-suave, #EFEFEF);
+  border-radius: 10px;
+  background: var(--c-blanco, #FFFFFF);
+}
+
+/* El titulo, un punto mas presente que en RUN: aqui es lo unico que
+   dice que se esta viendo, sin el pie que tenia el mapa. */
+.d2 .d2-faq-dato__bepi .rp-panel__titulo {
+  margin: 0 0 14px;
+  font-size: .75rem;
+  color: var(--c-texto, #333333);
+}
+
+/* EL GRAFICO NO SE ESTIRA: LA CAJA SE AJUSTA A EL.
+
+   Viene de RUN con viewBox 560x432, mas ancho que alto, asi que a 493
+   de ancho se dibuja a 348 de alto. La caja pedia 564 y sobraban 91.
+
+   Se penso en estirarlo con `preserveAspectRatio: none` y se descarto
+   al comprobarlo: este SVG no lleva vector-effect en sus <text>, asi
+   que estirar el lienzo deformaria TAMBIEN las siglas y las cifras.
+   Las letras saldrian altas y estrechas.
+
+   Asi que manda el grafico: la caja baja a su alto natural mas el aire
+   del titulo. El hueco que quede en la columna lo absorbe el FAQ de al
+   lado, que es mas largo. */
+/* POR DEBAJO DE 1100 EL GRAFICO NO CABE LEGIBLE.
+
+   Son 26 filas de barras con siglas y cifras dentro. El SVG es fluido,
+   asi que al estrecharse la columna el texto encoge con el: MEDIDO, la
+   fuente mas pequena cae a 6px a 1024 y a 5px a 390, cuando el minimo
+   del resto de la web es 12.
+
+   En vez de dejarlo ilegible se le da un ancho minimo y la caja hace
+   scroll lateral. El visitante arrastra para ver el resto, que es lo
+   que se hace con cualquier tabla ancha en un movil.
+
+   640px es el ancho al que la fuente mas chica vuelve a los 10px, que
+   es el suelo de este grafico tambien en RUN. */
+/* EL GRAFICO PIDE 640px PARA LEERSE.
+
+   Son 26 filas con siglas y cifras dentro de las barras. El SVG es
+   fluido, asi que encoge con su columna y el texto con el. MEDIDO: la
+   fuente mas pequena cae a 7px a 1440, 6,9 a 1200 y 5 a 390, cuando el
+   suelo del resto de la web son 12.
+
+   A 640 de ancho esa fuente vuelve a 10,3px, que es lo que mide tambien
+   en RUN. Asi que ese es el minimo y la caja hace scroll lateral cuando
+   no cabe. Se arrastra, como cualquier tabla ancha en un movil.
+
+   `overflow-x` EN TODOS LOS ANCHOS, no solo en los estrechos: en esta
+   pagina el grafico vive en una columna de 493px incluso a 1440, asi
+   que el caso de no caber es el normal, no la excepcion. */
+.d2 .d2-faq-dato__bepi {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* `min-width: 0` EN LA CAJA, y el motivo no es evidente.
+
+     Sin esto el min-width de 640 del SVG empujaba a la caja, la caja a
+     su columna y la columna a la rejilla entera: MEDIDO a 390, la lista
+     del FAQ --que es la columna de al lado-- acababa midiendo 666px y
+     la pagina entera tenia scroll lateral.
+
+     Una pista de grid toma por defecto el tamano minimo de su
+     contenido, asi que un hijo ancho la ensancha. Con min-width:0 la
+     caja puede ser mas estrecha que lo que lleva dentro, y el
+     desbordamiento se queda donde tiene que quedarse: en su propio
+     scroll. */
+  min-width: 0;
+}
+
+.d2 .d2-faq-dato__bepi .rp-bepi {
+  /* 520 y no 640: a 640 el grafico salia demasiado grande para su
+     columna. Bajando el minimo el dibujo se encoge y con el los huecos
+     entre las marcas de la escala --0, 100, 200, 300--, que es
+     exactamente lo que se busca: menos aire, mas compacto.
+
+     El TEXTO no encoge con el, porque su tamano se sube aparte un punto
+     mas abajo. Medido a 520: la fuente queda en 12px, el suelo del
+     resto de la web. */
+  min-width: 520px;
+
+  /* Y UN TECHO, no solo un suelo.
+
+     Por debajo de 900px el FAQ pasa a UNA columna y el grafico se
+     queda con todo el ancho. MEDIDO en ese tramo: 803px a 900, 791 a
+     888, 763 a 860. Al estirarse el SVG se estira el texto con el --18
+     y 19px-- y el bloque se comia la pantalla.
+
+     Con el techo el grafico se queda en su tamano util y el ancho que
+     sobra se reparte a los lados. */
+  max-width: 560px;
+}
+
+/* El titulo se queda quieto mientras el grafico se arrastra. */
+.d2 .d2-faq-dato__bepi .rp-panel__titulo {
+  position: sticky;
+  left: 0;
+}
+
+/* LA CAJA SE ENCOGE CON EL GRAFICO, no al reves.
+
+   Con `margin-inline:auto` en el SVG el grafico se centraba dentro de
+   una caja blanca de 817px y el titulo se quedaba pegado al borde
+   izquierdo, a medio palmo del dibujo. Se veia descolgado.
+
+   Centrando la CAJA el marco blanco se ajusta al contenido y el titulo
+   viaja con el. 560 + el padding de los dos lados. */
+.d2 .d2-faq-dato__bepi {
+  max-width: 588px;
+  margin-inline: auto;
+}
+
+/* EL TEXTO DEL GRAFICO, UN PUNTO MAS GRANDE AQUI (22/10/2026)
+
+   En RUN el grafico vive en el hero, a buen tamano. Aqui comparte fila
+   con el FAQ y se dibuja mas chico, asi que las siglas y las cifras
+   pedian un punto mas.
+
+   Sube solo DENTRO de esta caja: RUN se queda como esta. Son unidades
+   del viewBox, no pixeles de pantalla, asi que el aumento se mantiene
+   proporcional cuando el SVG escala.
+
+     siglas   9    -> 10.5
+     cifras   8.5  -> 10
+     escala   9    -> 10.5 */
+.d2 .d2-faq-dato__bepi .rp-bepi__eti { font-size: 9.5px; }
+.d2 .d2-faq-dato__bepi .rp-bepi__val { font-size: 9px; }
+.d2 .d2-faq-dato__bepi .rp-bepi__escala text { font-size: 9.5px; }
+
+@media (max-width: 900px) {
+  .d2 .d2-faq-dato__bepi { padding: 16px 12px; }
+}
+
 .d2 .rp-panel__titulo {
   margin: 0 0 6px;
   font-size: .6875rem;
@@ -1398,6 +1554,19 @@
      rectangulo, asi que un lector de pantalla lo anuncia igual. */
   .d2 .rp-panel--bepi .rp-panel__gr { display: block; }
   .d2 .rp-bepi__val { display: none; }
+}
+
+/* ...PERO EN GAP SI SE QUEDAN (22/10/2026)
+
+   La regla de arriba se escribio para RUN, donde el grafico se dibujaba
+   a 305px y las cifras caian a 4px. En Gap el grafico tiene suelo de
+   520 y arrastre lateral, asi que su texto nunca baja de 12px --medido
+   en los 13 anchos de 390 a 1440--.
+
+   O sea: la premisa de esa regla no se cumple aqui, y sin cifras las
+   barras dejan de decir cuanto. */
+@media (max-width: 900px) {
+  .d2 .d2-faq-dato__bepi .rp-bepi__val { display: block; }
 }
 
 /* --- El trazado de fondo de los heroes (15/9/2026) ----------------------
@@ -1922,12 +2091,60 @@
    Centrada bajo la tabla y no alineada a la izquierda: la tabla ocupa
    todo el panel y la nota se lee como su pie, no como el principio de
    otra columna de texto. */
+/* EL ROTULO SOBRE LA TABLA (22/10/2026, punto 3.1)
+
+   Hereda del sitio donde estaba la nota --mismo tamano y color-- pero va
+   arriba y alineado a la izquierda, no centrado: es una entrada de
+   lectura, no un pie.
+
+   El margen inferior es el que separaba la nota de la tabla, ahora del
+   otro lado. */
+.d2 .ega-tabla__intro {
+  /* ALINEADO CON LAS COLUMNAS, NO CON EL PANEL (22/10/2026)
+
+     El rotulo arrancaba en el borde del panel y las dos columnas 120px
+     mas adentro --el ancho de la columna de criterios, que no tiene
+     cabecera--. Medido: 713 contra 832. Quedaban dos arranques distintos
+     en la misma pieza y se leia como un descuadre.
+
+     El margen izquierdo iguala ese hueco para que el texto empiece
+     exactamente donde empieza "Energy audit", que es de lo que habla. */
+  margin: 0 0 16px;
+  /* El hueco de la columna de criterios, que NO tiene ancho fijo: mide
+     120px en escritorio, 96 a 620 y 78 a 390 porque se adapta al texto.
+     Con un valor clavado el rotulo se descolgaba en los anchos medios,
+     asi que lo fija el JS en --ega-hueco y aqui solo se consume. */
+  padding-left: var(--ega-hueco, 0px);
+  font-size: var(--fs-small, .875rem);
+  line-height: 1.5;
+  font-weight: var(--fw-bold, 700);
+  /* Blanco pleno: es el renglon que contesta "que estoy viendo". */
+  color: var(--c-blanco, #FFFFFF);
+}
+
+/* El hueco se encoge con la tabla. La columna de criterios no tiene
+   ancho fijo --se adapta al texto-- y medida da 120px en escritorio
+   pero 78 a 390. Con el padding clavado en 120 el rotulo se metia
+   40px mas adentro que las columnas y el texto caia a cinco lineas
+   en un ancho util de 215.
+
+   Por debajo de 900 el hueco baja a 78, que es lo que mide ahi. */
 .d2 .ega-tabla__nota {
   margin: 14px 0 0;
   font-size: var(--fs-small, .875rem);
   line-height: 1.5;
   text-align: center;
   color: rgba(255, 255, 255, .72);
+
+  /* CENTRADA SOBRE LAS COLUMNAS, NO SOBRE EL PANEL (22/10/2026)
+
+     Iba centrada en todo el panel --713 a 1312-- pero las columnas
+     empiezan en 832, porque la columna de criterios no tiene cabecera.
+     El centro caia 60px a la izquierda del centro real de la tabla y se
+     veia descolgada.
+
+     El mismo hueco que lleva el rotulo de arriba, por el mismo motivo. */
+  padding-left: var(--ega-hueco, 0px);
 }
 
 .d2 .ega-comp__panel {
@@ -2372,7 +2589,58 @@
   font-weight: inherit;
   vertical-align: bottom;
   border-radius: 10px 10px 0 0;
-  background: rgba(255, 255, 255, .04);
+
+  /* 22/10/2026 (feedback de Erica, punto 3.1): "it was initially unclear
+     to me that you were comparing/contrasting two products. Maybe
+     distinguish the header row/colour, and/or make the energy audit
+     column colour distinct from the left-hand column".
+
+     Tenia razon y el numero lo confirma: el fondo era blanco al 4%, que
+     sobre el verde de seccion da 1.07:1. O sea, la columna del audit NO
+     ERA UNA COLUMNA, era el fondo. Solo se veia un panel claro --el del
+     Gap-- flotando, y nada que comparar.
+
+     Sube a .18, que da 1.63:1 contra la seccion. Se probaron .10 y .14:
+     a .10 seguia pegada al fondo --1.12-- y era lo que el usuario
+     describio como "el color pelea con el fondo". A .18 se despega
+     y aun guarda 5.27:1 con el panel del Gap, que es lo que importa
+     para que las dos columnas no se confundan. Sigue siendo discreta
+     --le toca, es la opcion que no vendemos-- pero ya se lee como una
+     superficie propia con su canto. */
+  /* EL VERDE DE MARCA (22/10/2026, decision del cliente)
+
+     Sustituye al blanco translucido, que era un tono inventado por
+     nosotros y no sale de ninguna guia. Este es el #39B54A del logo y
+     de los botones, asi que la columna usa un color real del sistema.
+
+     Contra el fondo de seccion da 3.51:1 --el translucido daba 1.63--,
+     asi que la columna por fin se despega de verdad.
+
+     EL TEXTO VA EN BLANCO, como en los botones solidos. Es el mismo par
+     que ya usa `d2-btn--solido`: 2.66:1. Queda por debajo del minimo de
+     4.5 para texto normal, y aqui pesa mas que en un boton porque son
+     frases a 15px en peso normal y no tres palabras a 16 en negrita.
+     Se deja asi por decision expresa del cliente: manda la coherencia
+     con los botones. */
+  background: var(--c-fondo-alt, #F5F5F5);
+}
+
+/* LA FILA DE CABECERA, SEPARADA DEL RESTO
+
+   La otra mitad de lo que pide Erica. Sin esto, cabecera y celdas son la
+   misma mancha continua y la tabla no dice donde empieza cada cosa.
+
+   Un filete, no un fondo distinto: el fondo ya lo usa la columna para
+   separarse de la seccion, y meter un tercer tono volveria a confundir
+   las dos cosas que hay que distinguir. */
+.d2 .ega-tabla__cab {
+  /* La columna del audit es clara: el filete va oscuro. */
+  box-shadow: inset 0 -2px 0 rgba(51, 51, 51, .16);
+}
+
+.d2 .ega-tabla__cab--gap {
+  /* Sobre el verde de marca el filete oscuro no se ve: pasa a blanco. */
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, .30);
 }
 
 /* LA COLUMNA DEL GAP, SOLIDA Y EN GRIS CLARO.
@@ -2409,7 +2677,11 @@
    heredado del ranking retirado que NO es un token. Lo detecto el
    cliente. */
 .d2 .ega-tabla__cab--gap {
-  background: var(--c-fondo-alt, #F5F5F5);
+  /* OJO: hay DOS reglas .ega-tabla__cab--gap en esta hoja. Al invertir
+     los colores se cambio la primera y esta quedo en gris, asi que la
+     cabecera de Rede seguia clara sobre su columna verde y el nombre
+     casi no se leia. */
+  background: var(--c-verde-marca, #39B54A);
 }
 
 .d2 .ega-tabla__ico {
@@ -2418,15 +2690,21 @@
   width: 28px;
   height: 28px;
   margin: 0 auto;
-  /* Baja de .7 a .6: el icono es un trazo fino y pesa menos que el texto,
-     asi que se apaga un punto mas para que la diferencia se note. */
-  color: rgba(255, 255, 255, .6);
+  /* 22/10/2026: la columna del audit paso a fondo claro, asi que el
+     icono blanco quedaba invisible --1.09:1 medido--. Toma el gris del
+     texto, un punto mas apagado porque es un trazo fino y pesa menos. */
+  /* 22/10/2026: con los colores invertidos esta regla base pinta el
+     icono de la columna CLARA (el audit). Medido en gris al 55% daba
+     1.23:1, practicamente invisible. Sube a opaco. */
+  color: rgba(51, 51, 51, .72);
 }
 
 /* El icono se queda verde: es lo que sostiene la marca ahora que el
    fondo es claro. #026F00 --verde-hover del sistema-- da 6,41:1 sobre
    el gris. MEDIDO en el navegador, no calculado. */
-.d2 .ega-tabla__cab--gap .ega-tabla__ico { color: var(--c-verde-hover, #026F00); }
+/* Sobre el verde de marca el texto va en blanco, como en los botones
+   solidos del sistema. En verde oscuro quedaba invisible. */
+.d2 .ega-tabla__cab--gap .ega-tabla__ico { color: var(--c-blanco, #FFFFFF); }
 
 .d2 .ega-tabla__ico svg { width: 100%; height: 100%; }
 
@@ -2444,10 +2722,10 @@
   text-align: center;
   /* 72%: apagado frente al nombre del Gap --que va en #333 sobre
      el gris claro-- pero todavia 5,23:1 sobre su fondo. MEDIDO. */
-  color: rgba(255, 255, 255, .72);
+  color: var(--c-texto, #333333);
 }
 
-.d2 .ega-tabla__cab--gap .ega-tabla__nombre { color: var(--c-texto, #333333); }
+.d2 .ega-tabla__cab--gap .ega-tabla__nombre { color: var(--c-blanco, #FFFFFF); }
 
 .d2 .ega-tabla__pie {
   display: block;
@@ -2457,10 +2735,10 @@
   text-align: center;
   /* Baja de .78 a .62: acompana al apagado del nombre para que las dos
      cabeceras guarden la misma jerarquia entre si. */
-  color: rgba(176, 225, 183, .62);
+  color: var(--c-verde-hover, #026F00);
 }
 
-.d2 .ega-tabla__cab--gap .ega-tabla__pie { color: var(--c-verde-hover, #026F00); }
+.d2 .ega-tabla__cab--gap .ega-tabla__pie { color: rgba(255, 255, 255, .92); }
 
 /* --- EL CUERPO ----------------------------------------------------- */
 
@@ -2499,7 +2777,12 @@
   line-height: 1.45;
   text-align: center;
   vertical-align: middle;
-  background: rgba(255, 255, 255, .04);
+  /* .10 y no .04, igual que la cabecera: la columna del audit
+     tiene que leerse como UNA superficie de arriba abajo. Con el
+     cuerpo mas claro que la cabecera se partia en dos. */
+  /* El mismo verde de marca que la cabecera: la columna tiene que
+     leerse como UNA superficie de arriba abajo. */
+  background: var(--c-fondo-alt, #F5F5F5);
   /* El filete separador va DENTRO de la celda, no en la fila: asi
      tampoco cruza la columna de criterios, que no lleva fondo. */
   border-top: 1px solid rgba(176, 225, 183, .14);
@@ -2509,17 +2792,20 @@
      Gap, "pero que no se pierda". Sobre su fondo real --#23582A, que es
      el blanco al 4% sobre el verde de seccion-- esto da 4,89:1: pasa AA
      con margen. A 64% baja a 4,52 y a 60% a 4,17, ya al limite. MEDIDO. */
-  color: rgba(255, 255, 255, .68);
+  color: var(--c-texto, #333333);
 }
 
 .d2 .ega-tabla__celda--gap {
-  background: var(--c-fondo-alt, #F5F5F5);
+  background: var(--c-verde-marca, #39B54A);
   /* El filete, en gris sobre blanco: el que habia --blanco al 26%-- era
      invisible aqui y la banda se quedaba sin separacion de filas. */
   border-top-color: rgba(51, 51, 51, .14);
   font-weight: var(--fw-semibold, 600);
   color: var(--c-texto, #333333);
 }
+/* El cuerpo de la columna de Rede, tambien en blanco. */
+.d2 .ega-tabla__celda--gap { color: var(--c-blanco, #FFFFFF); }
+
 
 /* La ultima fila cierra la banda por abajo. */
 .d2 .ega-tabla tbody tr:last-child .ega-tabla__celda {
@@ -2552,7 +2838,10 @@
      pero por debajo de 22 deja de leerse "uno contra varios". */
   height: 24px;
   margin: 0 auto 5px;
-  color: var(--c-verde-hover, #026F00);
+  /* Sobre el verde de marca el verde oscuro se confunde con el fondo
+     --3.28:1 medido-- asi que el icono de Rede pasa a blanco, como su
+     texto. */
+  color: var(--c-blanco, #FFFFFF);
 }
 
 .d2 .ega-tabla__dato svg {
@@ -2567,7 +2856,9 @@
 /* En la columna del Audit el icono va apagado, igual que su texto: la
    jerarquia entre columnas no la rompe el icono. */
 .d2 .ega-tabla__celda:not(.ega-tabla__celda--gap) .ega-tabla__dato {
-  color: rgba(255, 255, 255, .55);
+  /* La columna del audit paso a fondo claro: el icono blanco
+     desaparecia. Mismo gris que su icono de cabecera. */
+  color: rgba(51, 51, 51, .72);
 }
 
 /* EL ALTO DE FILA LO DA EL ACOLCHADO, NO UNA ALTURA FIJA.

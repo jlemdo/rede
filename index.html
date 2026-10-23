@@ -13,15 +13,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/d2.css">
-<link rel="stylesheet" href="css/d2-variantes.css">
+<link rel="stylesheet" href="css/tokens.css?v=202610221713">
+<link rel="stylesheet" href="css/style.css?v=202610221713">
+<link rel="stylesheet" href="css/d2.css?v=202610221713">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610221713">
 <!-- selector.css retirado con el selector de version (3/9/2026): solo
      define .selector-v y una regla que lo recolocaba en modo edicion.
      Las otras dos paginas lo siguen cargando. -->
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610221713">
 </head>
 <body class="d2 home-page">
 
@@ -530,7 +530,7 @@
         <div class="d2-logos--dos__der">
           <p class="d2-logos--dos__cifra">$4.4M</p>
           <p class="d2-logos--dos__cifra-pie">Cumulative savings</p>
-          <p class="d2-logos--dos__cifra-nota">for one long-term client, over&nbsp;12&nbsp;years</p>
+          <p class="d2-logos--dos__cifra-nota">for one client, over&nbsp;12&nbsp;years</p>
         </div>
 
         <div class="d2-logos--dos__centro">
@@ -617,7 +617,7 @@
           <div class="d2-foco__prueba-dato">
             <p class="d2-foco__cifra">$4.4M</p>
             <p class="d2-foco__cifra-pie">Cumulative savings</p>
-            <p class="d2-foco__cifra-nota">for one long-term client, over&nbsp;12&nbsp;years</p>
+            <p class="d2-foco__cifra-nota">for one client, over&nbsp;12&nbsp;years</p>
           </div>
         </div>
 
@@ -1702,10 +1702,34 @@
 
       <!-- ul y no ol: son tres utilities alternativas, no una secuencia.
            Un lector de pantalla no debe sugerir orden donde no lo hay. -->
+      <!-- LOS LOGOS (22/10/2026, feedback de Erica, punto 1.4)
+
+           Van DENTRO de las pastillas que ya existian, no en una fila
+           aparte: asi las tres utilities siguen leyendose como iguales y
+           el borde y el ritmo de la seccion no cambian.
+
+           Descargados de sus webs oficiales: bchydro.com y saskpower.com.
+           FortisBC no publica el suyo, asi que su pastilla sigue siendo
+           texto. Cuando llegue el archivo se sustituye igual que estos.
+
+           El alt va vacio y el nombre queda en el texto de al lado: si
+           no, un lector de pantalla diria "BC Hydro" dos veces. -->
       <ul class="d2-financia__programas">
-        <li>BC Hydro</li>
-        <li>FortisBC</li>
-        <li>SaskPower</li>
+        <li class="tiene-logo">
+          <img class="d2-financia__logo" src="assets/img/logos-utilities/bc-hydro.svg"
+               alt="" width="142" height="26" loading="lazy" decoding="async">
+          <span class="u-oculto-visual">BC Hydro</span>
+        </li>
+        <li class="tiene-logo es-fortis">
+          <img class="d2-financia__logo" src="assets/img/logos-utilities/fortisbc.png"
+               alt="" width="196" height="44" loading="lazy" decoding="async">
+          <span class="u-oculto-visual">FortisBC</span>
+        </li>
+        <li class="tiene-logo">
+          <img class="d2-financia__logo" src="assets/img/logos-utilities/saskpower.png"
+               alt="" width="97" height="26" loading="lazy" decoding="async">
+          <span class="u-oculto-visual">SaskPower</span>
+        </li>
       </ul>
 
       <!-- CONFIRMADO (14/9/2026)
@@ -1727,7 +1751,12 @@
         Rede is listed by BC Hydro as an approved service provider for the Continuous Optimization program.
       </p>
 
-      <a class="d2-btn d2-btn--solido d2-financia__cta" href="#calculator">
+      <!-- 22/10/2026 (feedback de Erica): "Where does the 'check funding
+           eligibility' go?". Iba a #calculator, que estima ahorro pero no
+           dice nada de elegibilidad. Ahora va a Contact, que es donde se
+           resuelve: el propio aviso de abajo dice que la elegibilidad se
+           confirma hablando con Rede. -->
+      <a class="d2-btn d2-btn--solido d2-financia__cta" href="contact.html">
         Check funding eligibility
         <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M11.5 1L16.5 6L11.5 11M16 6H1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -2672,9 +2701,12 @@
           <!-- PASO 1: el filtro de tamano -->
           <div class="paso-calc is-activo" data-paso="1">
           <h3 class="paso-calc__titulo">Is any building you want to assess at least 25,000 sq. ft.?</h3>
+          <!-- 22/10/2026 (feedback de Erica, punto 1.5): la segunda frase
+               iba tachada en su revision. "Below that size the numbers rarely
+               work" desanimaba a quien tiene edificios pequenos justo antes de
+               responder; la primera frase ya explica por que se pregunta. -->
           <p class="paso-calc__ayuda">
-          Recommissioning pays for itself on larger buildings. Below that size
-          the numbers rarely work.
+          Recommissioning pays for itself on larger buildings.
           </p>
           <div class="opciones">
           <button class="opcion" type="button" data-tamano="si">
@@ -3827,7 +3859,7 @@
                 <span>
                   <span class="d2-res-ed__nombre" data-res-nombre>Wayne Turpin</span>
                   <span class="d2-res-ed__meta">
-                    <span data-res-cargo>Construction Manager</span>
+                    <span data-res-cargo>Former Construction Manager</span>
                     <span class="d2-res-ed__barra" aria-hidden="true">/</span>
                     <span class="d2-res-ed__org" data-res-org>Northland School Division</span>
                   </span>
@@ -3916,7 +3948,7 @@
 
             <div class="d2-res-cen__firma">
               <b data-cen-nombre>Alex Telford</b>
-              <span data-cen-cargo>Manager of Facilities and Transportation</span>
+              <span data-cen-cargo>Former Manager of Facilities and Transportation</span>
               <span data-cen-org>SD27 &middot; British Columbia</span>
             </div>
           </div>
@@ -4520,11 +4552,11 @@
             <p class="d2-equipo-voz__bio">
               Matthew founded Rede in 2008 to serve Indigenous, Northern, and rural
               communities that larger engineering firms weren&rsquo;t reaching. Nearly two
-              decades later, he leads a team that has helped more than 150 organisations
-              across Western Canada reduce their energy costs and manage their buildings
+              decades later, he leads a team that has helped dozens of organizations
+              across Western Canada reduce energy costs and manage hundreds of buildings
               more effectively.
             </p>
-            <a class="d2-btn d2-btn--linea d2-equipo-voz__btn" href="about.html">
+            <a class="d2-btn d2-btn--linea d2-equipo-voz__btn" href="about.html#team">
               Meet the Rede team
               <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
                 <path d="M11 1l5 5-5 5M16 6H1" stroke="currentColor" stroke-width="1.7"

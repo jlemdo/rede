@@ -92,6 +92,23 @@
   color: var(--c-texto-cuerpo, #333333);
 }
 
+/* LA PRONUNCIACION, JUNTO AL NOMBRE (22/10/2026)
+
+   Un apunte entre parentesis, no una nota aparte: tiene que leerse de
+   corrido con la frase. Va en el gris secundario del sistema --el mismo
+   que usan las etiquetas-- para que ceda ante el nombre en negrita y no
+   compita con el.
+
+   Contraste medido sobre el fondo de seccion: 5.33:1, de sobra para
+   texto pequeno.
+
+   El tamano no baja: a 0.9em quedaba en 15px y el resto del parrafo en
+   17, y una linea de 15 dentro de otra de 17 se lee como un error de
+   maquetacion, no como un inciso. */
+.d2 .ab-pron {
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
 /* --- EL MAPA DE COMUNIDADES ---------------------------------------------
 
    Replica del mapa "Our Communities" del cliente. La silueta y los 59

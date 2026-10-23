@@ -98,7 +98,17 @@
                Roboto, Helvetica, Arial, sans-serif;
 
   /* Escala fluida — escala sola entre móvil y escritorio */
-  --fs-h1:      clamp(2.25rem, 1.5rem + 3.2vw, 4rem);
+  /* BAJADA DE TITULARES (22/10/2026, feedback de Erica)
+
+     "overall, headlines might be a bit too big". El hero bajaba de 60 a
+     49px y el titulo de seccion de 52 a 41 --medido a 1440, que es donde
+     el clamp toca su techo--.
+
+     SOLO SE TOCA EL TECHO. El minimo y la pendiente se quedan: en movil
+     los titulares ya eran chicos y no son el problema. Asi el cambio solo
+     se nota de tablet para arriba, que es donde Erica lo vio.
+     ---------------------------------------------------------------------- */
+  --fs-h1:      clamp(2.25rem, 1.5rem + 3.2vw, 49px);
   --fs-h2:      clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
 
   /* EL TITULO DE SECCION (18/9/2026)
@@ -116,7 +126,7 @@
      adoptarla; lo que cambia es que ahora se toca en un sitio.
 
      No se toca --fs-h2 para no mover los titulos de tarjeta que la usan. */
-  --fs-seccion: clamp(34px, 3.4vw, 52px);
+  --fs-seccion: clamp(34px, 3.4vw, 41px);
   --fs-h3:      clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
   --fs-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --fs-body:    clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);

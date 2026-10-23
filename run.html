@@ -13,19 +13,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/d2.css">
-<link rel="stylesheet" href="css/d2-variantes.css">
+<link rel="stylesheet" href="css/tokens.css?v=202610221727">
+<link rel="stylesheet" href="css/style.css?v=202610221727">
+<link rel="stylesheet" href="css/d2.css?v=202610221727">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610221727">
 <!-- d2-ega.css: el hero usa la maqueta de Energy Gap Analysis y sus
      reglas viven ahi. Va ANTES de v1 para que las propias de esta
      pagina sigan mandando sobre las suyas. -->
-<link rel="stylesheet" href="css/d2-ega.css">
-<link rel="stylesheet" href="css/v1.css">
+<link rel="stylesheet" href="css/d2-ega.css?v=202610221727">
+<link rel="stylesheet" href="css/v1.css?v=202610221727">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
-<link rel="stylesheet" href="css/prueba-fondos.css">
+<link rel="stylesheet" href="css/prueba-fondos.css?v=202610221727">
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610221727">
 </head>
 <body class="d2 run-page">
 
@@ -280,7 +280,16 @@
       <p class="eyebrow">RUN &mdash; Rede Utility Navigator</p>
 
       <h1 class="d2-ega-hero__titulo" id="run-hero-t">
-        One <span>energy management system</span> for your entire building portfolio.
+        <!-- 22/10/2026 (feedback de Erica, punto 3.5). En su revision:
+             "energy ~~management~~ MONITORING system for your entire
+             ~~building~~ portfolio" --tachados en negro, la palabra nueva
+             en rojo--.
+
+             "Monitoring" describe mejor lo que hace RUN, y sin "building"
+             el titular pierde una palabra, que es lo que ella pide en la
+             linea de arriba: "headlines seem too large, and possibly too
+             long". -->
+        One <span>energy monitoring system</span> for your entire portfolio.
       </h1>
 
       <p class="d2-ega-hero__lead">
@@ -1083,7 +1092,7 @@
       <article class="nivel">
         <header class="nivel__cab">
           <h3 class="nivel__nombre">RUN Intelligence</h3>
-          <p class="nivel__precio">1 to 2 per cent of annual energy spend</p>
+          <p class="nivel__precio">1 to 2% of annual energy spend</p>
           <p class="nivel__nota">Capped for public sector. Typical payback: 2 to 5 months.</p>
         </header>
         <p class="nivel__texto">

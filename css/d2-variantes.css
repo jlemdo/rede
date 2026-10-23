@@ -1570,14 +1570,18 @@ span.d2-panel__filtro:hover {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  /* Crece con la cifra: a 64px quedaba pequeno al lado de 60px de
+     numero. */
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   background: rgba(255, 255, 255, .08);
   color: var(--c-blanco, #FFFFFF);
 }
 
-.d2-logos--dos__ico svg { width: 32px; height: 32px; }
+/* El trazo crece con su circulo: 32 en una caja de 84 dejaba
+   demasiado aire alrededor. */
+.d2-logos--dos__ico svg { width: 42px; height: 42px; }
 
 .d2-logos--dos__ico svg :is(path, circle, rect) {
   fill: none;
@@ -1609,7 +1613,11 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra {
   margin: 0;
-  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  /* 22/10/2026: la cifra crece para que el dato pese. De 40px de
+     techo a 60 --la mas grande del sistema estaba en 44, asi que esta
+     pasa a ser la cifra destacada de la pagina, que es lo que toca a
+     la unica prueba de resultado que hay--. */
+  font-size: clamp(2.5rem, 1.9rem + 2.6vw, 3.75rem);
   font-weight: var(--fw-extrabold);
   line-height: 1;
   letter-spacing: -.03em;
@@ -1618,7 +1626,8 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra-pie {
   margin: 6px 0 0;
-  font-size: .9375rem;
+  /* De 15 a 19px: acompana a una cifra de 60, no de 40. */
+  font-size: clamp(1rem, .92rem + .38vw, 1.1875rem);
   font-weight: var(--fw-medium);
   line-height: 1.25;
   color: var(--c-texto);
@@ -1626,7 +1635,9 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra-nota {
   margin: 2px 0 0;
-  font-size: .8125rem;
+  /* De 13 a 15px. Sube con las otras dos, pero menos: es la letra
+     pequena y tiene que seguir leyendose como tal. */
+  font-size: clamp(.875rem, .84rem + .17vw, .9375rem);
   line-height: 1.3;
   color: var(--c-texto-suave);
 }
@@ -10403,7 +10414,13 @@ span.d2-panel__filtro:hover {
 }
 
 @media (max-width: 900px) {
-  .d2 .d2-faq-dato__cuerpo { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr) y no 1fr: una pista `1fr` toma por defecto el ancho
+     MINIMO de su contenido, asi que el grafico de 640px de ancho minimo
+     estiraba la pista a 666 y con ella la pagina entera --medido a 390,
+     scroll lateral en todo el documento--. Con minmax(0,...) la pista
+     puede ser mas estrecha que lo que lleva dentro y el grafico se
+     queda con su propio scroll. */
+  .d2 .d2-faq-dato__cuerpo { grid-template-columns: minmax(0, 1fr); }
   /* La ficha pasa arriba: abajo quedaria despues de diez preguntas y nadie
      la relacionaria con lo que acaba de abrir. */
   .d2 .d2-faq-dato__ficha { position: static; order: -1; }
@@ -14986,6 +15003,59 @@ span.d2-panel__filtro:hover {
    quedaba sin identificar. */
 .d2 .d2-hero__punto--meta { background: #6B6B6B; }
 
+/* LA MUESTRA DIBUJA EL TRAZO DE SU LINEA (22/10/2026, punto 1.12)
+
+   Erica: "need to fix legend / lines on this chart". Medido, eran dos
+   cosas y ninguna era el color:
+
+   1. Las tres muestras de linea eran barritas SOLIDAS iguales, de 10x3.
+      En el grafico una va a guion largo, otra punteada y otra continua,
+      asi que la leyenda no permitia emparejar nombre y linea.
+   2. "Do nothing" (#8A8A8A) y "Target" (#6B6B6B) son dos grises que a
+      10x3 px no se distinguen: en la captura del cliente parecen la
+      misma muestra repetida.
+
+   Se arregla la FORMA, no el color. Los tonos actuales estan elegidos
+   para pasar contraste sobre blanco (3.45, 5.33 y 6.41) y escalan de
+   claro a oscuro segun importancia; cambiarlos romperia eso.
+
+   Con el trazo replicado, las tres se distinguen sin depender del color,
+   que es ademas lo que necesita quien no separa bien dos grises.
+
+   Se dibuja con un degradado repetido y no con `border-top: dashed`:
+   el guion de CSS no deja elegir el largo ni el hueco, y aqui tienen
+   que coincidir con el stroke-dasharray de cada linea del SVG. */
+.d2 .d2-hero__punto--nada,
+.d2 .d2-hero__punto--meta {
+  background: none;
+  border-radius: 0;
+  height: 2px;
+}
+
+/* Guion largo: el mismo ritmo que `stroke-dasharray: 7 5` de su linea,
+   reducido para que en 12px se vean dos guiones y no uno cortado. */
+.d2 .d2-hero__punto--nada {
+  width: 12px;
+  background-image: linear-gradient(to right, #8A8A8A 0 4px, transparent 4px 7px);
+  background-size: 7px 2px;
+  background-repeat: repeat-x;
+}
+
+/* Punteada: `stroke-dasharray: 1.5 3.5` de su linea. El punto cuadrado
+   y no redondo porque a 2px el redondeo se come medio punto. */
+.d2 .d2-hero__punto--meta {
+  width: 12px;
+  background-image: linear-gradient(to right, #6B6B6B 0 2px, transparent 2px 4px);
+  background-size: 4px 2px;
+  background-repeat: repeat-x;
+}
+
+/* Continua y mas gruesa, como su linea: es el dato que importa. */
+.d2 .d2-hero__punto--real {
+  width: 12px;
+  height: 3px;
+}
+
 /* Los anos, bajo el grafico. Solo el primero y el ultimo: los once no caben
    legibles en un panel de 400px, y con los extremos ya se responde la
    pregunta que importa --cuanto tiempo--.
@@ -16186,6 +16256,87 @@ span.d2-panel__filtro:hover {
   }
 
   .d2 .d2-financia__lead { max-width: none; }
+}
+
+/* LOS LOGOS DE UTILITY (22/10/2026)
+
+   La pastilla con logo cambia el padding: el logo ya trae su propio aire
+   dentro del SVG, asi que con el padding de texto quedaba enorme al lado
+   de la de FortisBC, que sigue siendo texto.
+
+   La ALTURA es lo que iguala las tres, no el ancho: BC Hydro es casi
+   cuadrado y SaskPower muy apaisado, asi que fijar el ancho los dejaria
+   de tamanos distintos. Se fija el alto del logo y el ancho sale solo. */
+.d2 .d2-financia__programas li.tiene-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+}
+
+.d2 .d2-financia__logo {
+  display: block;
+  width: auto;
+  height: 26px;
+  /* por si alguna hoja global pone max-width a las imagenes */
+  max-width: none;
+}
+
+/* FORTISBC VA UN PUNTO MAS BAJO, Y NO ES UN CAPRICHO.
+
+   Su simbolo mide 95px de alto cuando su texto mide 40: mas del doble.
+   En BC Hydro y SaskPower el simbolo y el texto van parejos. Igualando
+   la altura TOTAL de los tres, el nombre "FORTIS BC" salia visiblemente
+   mas chico que los otros dos, porque su altura se la come el simbolo.
+
+   Se le da menos alto de caja para que el TEXTO case con el de al lado,
+   que es lo que el ojo compara. Medido: con 21px su mayuscula queda a
+   la altura de la de BC Hydro. */
+.d2 .d2-financia__programas li.es-fortis .d2-financia__logo {
+  /* 44px, no 26: en este logo el nombre es solo 40 de los 99 de alto, asi
+     que a 26 la palabra "FORTIS BC" media 8,3px contra los 18,5 de BC
+     Hydro. A 44 mide 17,8 y los tres nombres se leen iguales.
+
+     El circulo queda mas grande que los simbolos de las otras dos, pero
+     el ojo compara los NOMBRES, no los simbolos. Se probo recortar el
+     hueco del logo y no sirve: ese aire es interno, lo marca el propio
+     circulo, y recortarlo lo decapita. El archivo no se toca.
+
+     34 y no 44: el alto de Fortis decide el ancho de su pastilla, y las
+     tres tienen que caber en una columna de 525. A 44 sumaban 553 y a 38
+     se pasaban por 1px. A 34 quedan 525 con 20 de holgura, que es lo que
+     hace falta para que un ajuste de fuente no parta la fila.
+     El nombre mide entonces 13,8 contra 18,5 y 20,7: mas chico, pero ya
+     legible y lejos de los 8,3 del principio. */
+  height: 34px;
+}
+
+/* La pastilla NO crece: se queda a la altura de las otras dos y el logo
+   sobresale lo justo, recortado por el radio. Sin esto la fila quedaba
+   escalonada --50px contra 44--, que es peor que la diferencia de tamano
+   que veniamos a arreglar. */
+.d2 .d2-financia__programas li.es-fortis {
+  padding-block: 0;
+  /* el logo trae su propio aire a los lados, asi que no necesita los 18
+     de las otras. Sin esto la pastilla medía 234 y las tres sumaban 569
+     en una columna de 525: SaskPower caia a una segunda fila. */
+  padding-inline: 10px;
+}
+
+/* Altura fija para las TRES: con el logo de Fortis a 44 su pastilla
+   crecia a 46 y SaskPower se quedaba en 44, dejando la fila escalonada.
+   Fijandola, el alto deja de depender del contenido de cada una. */
+.d2 .d2-financia__programas li {
+  height: 46px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 540px) {
+  .d2 .d2-financia__programas li.es-fortis .d2-financia__logo { height: 38px; }
+}
+
+@media (max-width: 540px) {
+  .d2 .d2-financia__programas li.tiene-logo { padding: 7px 14px; }
+  .d2 .d2-financia__logo { height: 22px; }
 }
 
 @media (max-width: 540px) {

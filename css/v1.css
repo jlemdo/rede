@@ -1160,30 +1160,59 @@
 
 .d2 .rq-fila {
   display: grid;
-  grid-template-columns: 26px minmax(0, 1fr);
+  /* 40, el ancho del circulo. Se quedo en 26 al agrandarlo y el disco
+     desbordaba su columna por 14px, asi que caia 7 por debajo de la
+     primera linea del texto --medido--. */
+  grid-template-columns: 40px minmax(0, 1fr);
   gap: 14px;
-  align-items: start;
+}
+
+/* EL CIRCULO, CENTRADO CON EL BLOQUE DE TEXTO
+
+   Primero se centro con la PRIMERA LINEA, y por medida salia perfecto:
+   desvio 0. Pero los cuatro textos ocupan DOS lineas, asi que el disco
+   quedaba arriba del todo y se veia descolgado --lo noto el usuario, no
+   la medida--.
+
+   La leccion: medir contra la primera linea responde a una pregunta que
+   no es la que hace el ojo. El ojo compara el disco con la mancha de
+   texto entera.
+
+   `align-items: center` lo centra con el bloque, sea de una linea o de
+   tres, y sin cuentas. */
+.d2 .rq-fila {
+  align-items: center;
 }
 
 .d2 .rq-fila__marca {
   display: grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
+  /* 40 y no 26: con iconos de verdad --panel, candado, plano, persona--
+     el circulo tiene que dar sitio al dibujo. Con un visto bastaba 26,
+     y se probaron 32: seguian leyendose pequenos al lado de un texto de
+     17px. */
+  width: 40px;
+  height: 40px;
   border: 2px solid var(--c-verde, #39B54A);
   border-radius: 50%;
   color: var(--c-verde-hover, #026F00);
 }
 
 .d2 .rq-fila__marca svg {
-  width: 15px;
-  height: 15px;
+  /* 22 dentro de un circulo de 40: la misma proporcion que tenia el
+     visto original --15 en 26-- pero a un tamano en el que el dibujo se
+     distingue. Por debajo de 20 el panel y el plano se empastaban. */
+  width: 22px;
+  height: 22px;
 }
 
 .d2 .rq-fila__marca svg path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 2.4;
+  /* 1.8 y no 2.4: el visto era un trazo solo y aguantaba el grosor.
+     Un icono con detalle interior --los diales del panel, las lineas del
+     plano-- se empasta a 2.4 cuando se dibuja a 13px. */
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 
@@ -2978,7 +3007,7 @@
    manda este clamp --60px, tres lineas-- y en cuanto se toca el regulador
    manda el regulador. */
 .d2.em-page {
-  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem);
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 49px);   /* 22/10/2026: baja con el resto */
 }
 
 .d2.em-page .d2-ega-hero__titulo {
@@ -3731,4 +3760,107 @@
 .d2 .part-b .mq {
   mask-image: linear-gradient(to right, transparent, #000 48px,
                               #000 calc(100% - 48px), transparent);
+}
+
+/* EL ANILLO DEL CICLO (22/10/2026, feedback de Erica, punto 3.10)
+
+   Tercera propuesta para "The Work". Erica descarto las dos anteriores
+   --"the cards definitely don't work, the loop is better but still not
+   great"-- y paso una figura: un disco verde en cuatro cuadrantes con
+   el centro calado.
+
+   LA FORMA VA EN EL SVG, no aqui: los cuadrantes son paths calculados.
+   Esta hoja solo pone color, tipografia y la entrada. */
+.d2 .anillo {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.d2 .anillo__parte {
+  /* #39B54A, el verde de marca. El de su figura mide #3AAA34, que es
+     practicamente el mismo: se usa el del sistema, no el de la imagen. */
+  fill: var(--c-verde, #39B54A);
+}
+
+/* EL CENTRO, BLANCO HUESO Y NO CALADO.
+
+   En su figura el hueco es un disco #F4F8F1, no un agujero. Calado se
+   veia el fondo negro de esta seccion y el dibujo no se parecia. */
+.d2 .anillo__centro {
+  /* Del color del fondo de la seccion, no blanco hueso: asi el hueco
+     desaparece en el fondo y lo que se ve es el anillo, no un disco
+     claro encima. En la figura de Erica el fondo era blanco, por eso
+     alli el centro era claro. */
+  fill: var(--c-negro, #1A1A1A);
+}
+
+/* EL FILETE EN ZIGZAG.
+
+   Son cuatro trazos del color del FONDO pintados encima de los sectores,
+   no huecos recortados: asi el filete conserva el mismo grosor en todo
+   su recorrido, tambien en los quiebres.
+
+   Su trayecto sale del borde interior desviado a un lado, cruza el radio
+   y se va al otro antes de volver --medido sobre la figura: -3.8 grados
+   a un 9% del radio, +3.2 a mitad, -3.5 al borde--. */
+.d2 .anillo__corte {
+  fill: none;
+  stroke: var(--c-negro, #1A1A1A);
+  stroke-width: 5.7;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+}
+
+.d2 .anillo__eti {
+  font-size: 14px;
+  font-weight: var(--fw-bold, 700);
+  fill: var(--c-blanco, #FFFFFF);
+  /* El texto va DENTRO del verde: blanco pleno, sin opacidad, que sobre
+     #39B54A ya anda justo de contraste. */
+}
+
+/* LA ENTRADA, cuadrante por cuadrante.
+
+   Cada pieza aparece girando un poco sobre el centro del disco, en el
+   sentido del ciclo. `transform-origin` en el centro del viewBox y
+   `transform-box: view-box` para que ese centro sea el del dibujo y no
+   el de la caja de cada path. */
+@media (prefers-reduced-motion: no-preference) {
+  /* EL DIBUJO ENTERO ENTRA COMO UNA PIEZA.
+
+     Antes cada cuadrante giraba por su cuenta y el filete en zigzag se
+     quedaba quieto: durante la entrada los cortes no coincidian con sus
+     sectores y el dibujo se veia roto.
+
+     Ahora gira el <svg> completo --sectores, filete, centro y textos a
+     la vez-- asi que el zigzag viaja pegado a su sitio y la entrada se
+     lee como un solo giro. */
+  .d2 .anillo {
+    opacity: 0;
+    transform: rotate(-10deg) scale(.94);
+    transform-origin: center;
+  }
+
+  .d2 .es-visible .anillo {
+    opacity: 1;
+    transform: none;
+    transition: opacity .55s ease, transform .75s cubic-bezier(.32, .72, 0, 1);
+  }
+
+  /* Los nombres entran un punto despues, ya colocado el anillo. */
+  .d2 .anillo__eti { opacity: 0; }
+
+  .d2 .es-visible .anillo__eti {
+    opacity: 1;
+    transition: opacity .4s ease;
+    transition-delay: calc(.35s + var(--i) * 90ms);
+  }
+}
+
+@media (max-width: 760px) {
+  .d2 .anillo { max-width: 300px; }
+  .d2 .anillo__eti { font-size: 15px; }
 }

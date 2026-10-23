@@ -13,16 +13,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/d2.css">
-<link rel="stylesheet" href="css/d2-variantes.css">
-<link rel="stylesheet" href="css/d2-ega.css">
-<link rel="stylesheet" href="css/v1.css">
+<link rel="stylesheet" href="css/tokens.css?v=202610221718">
+<link rel="stylesheet" href="css/style.css?v=202610221718">
+<link rel="stylesheet" href="css/d2.css?v=202610221718">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610221718">
+<link rel="stylesheet" href="css/d2-ega.css?v=202610221718">
+<link rel="stylesheet" href="css/v1.css?v=202610221718">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
 
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610221718">
 </head>
 <body class="d2 rc-page">
 
@@ -457,7 +457,16 @@
      El copy es IDENTICO en las dos. Solo cambia el diseno.
      ES TEMPORAL: al elegir se deja una y se retira el carrusel.
      ==================================================================== -->
-<div class="d2-caru" id="caru-rq" data-caru>
+<!-- CHECKLIST FIJO (22/10/2026, feedback de Erica, punto 3.8)
+     "What you will need - prefer checklist over cards".
+
+     data-caru-fijo="1" deja puesta la opcion 2 --el indice es de base
+     cero-- y el JS del carrusel retira los mandos solo. Las tarjetas
+     siguen en el archivo por si se quiere volver.
+
+     Mismo patron que `caru-hw` justo arriba, que Erick fijo en
+     septiembre. -->
+<div class="d2-caru" id="caru-rq" data-caru data-caru-fijo="1">
 
   <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1: Cards">
 <section class="requisitos">
@@ -532,7 +541,7 @@
         <li class="rq-fila" style="--i:0">
           <span class="rq-fila__marca" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+              <path d="M4 5h16v14H4z M8 9.5h3 M8 13h3 M14.5 9.5h1.5 M14.5 13h1.5" pathLength="100"/>
             </svg>
           </span>
           <span class="rq-fila__texto">A modern building automation system with detailed controls coverage</span>
@@ -540,7 +549,7 @@
         <li class="rq-fila" style="--i:1">
           <span class="rq-fila__marca" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+              <path d="M6 11h12v8H6z M9 11V8a3 3 0 0 1 6 0v3" pathLength="100"/>
             </svg>
           </span>
           <span class="rq-fila__texto">Secure remote access to the BAS through a VPN or an approved equivalent</span>
@@ -548,7 +557,7 @@
         <li class="rq-fila" style="--i:2">
           <span class="rq-fila__marca" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+              <path d="M6 3h8l4 4v14H6z M14 3v4h4 M9 12h6 M9 16h6" pathLength="100"/>
             </svg>
           </span>
           <span class="rq-fila__texto">Digital mechanical and electrical drawings and current controls as-builts</span>
@@ -556,7 +565,7 @@
         <li class="rq-fila" style="--i:3">
           <span class="rq-fila__marca" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="100"/>
+              <path d="M12 4a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4 M5 20v-1.5A4.5 4.5 0 0 1 9.5 14h5a4.5 4.5 0 0 1 4.5 4.5V20" pathLength="100"/>
             </svg>
           </span>
           <span class="rq-fila__texto">A facilities controls lead or contractor who can implement approved findings</span>
@@ -804,7 +813,11 @@
 
      Copy IDENTICO. Solo cambia el diseno.
      ================================================================== -->
-<div class="d2-caru" id="caru-fn" data-caru>
+<!-- BOX FIJA (22/10/2026, peticion del usuario): nos quedamos con la
+     caja y se retira la eleccion. data-caru-fijo="0" deja puesta la
+     opcion 1 y el JS quita los mandos solo; Routes sigue en el archivo
+     por si se quiere volver. -->
+<div class="d2-caru" id="caru-fn" data-caru data-caru-fijo="0">
 
   <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="fondos">
@@ -828,8 +841,20 @@
           <span class="programa__nombre">BC Hydro and FortisBC Continuous Optimization Program</span>
         </li>
         <li>
+      <!-- 22/10/2026 (feedback de Erica, punto 3.9): "repetitive language.
+           Don't need clarification under Saskatchewan if it's stated plainly
+           right below."
+
+           Decia "...eligibility and intake availability are confirmed during
+           qualification", y el pie de la caja, dos lineas mas abajo, dice
+           "Program eligibility, funding amounts and intake availability are
+           confirmed through a conversation with the Rede team". Lo mismo dos
+           veces seguidas.
+
+           Se quita la aclaracion de aqui: el pie cubre las dos provincias y
+           lo dice mejor. Corregido en las DOS variantes del carrusel. -->
           <span class="programa__lugar">Saskatchewan</span>
-          <span class="programa__nombre">Commercial energy optimization support &mdash; current program eligibility and intake availability are confirmed during qualification.</span>
+          <span class="programa__nombre">Commercial energy optimization support</span>
         </li>
       </ul>
       <p class="fondos__caja-nota">
@@ -868,12 +893,8 @@
       <div class="fn-via fn-via--abierta" style="--i:1">
         <span class="fn-via__traza" aria-hidden="true"><svg viewBox="0 0 200 8" preserveAspectRatio="none"><path d="M2 4h196" pathLength="100"/></svg></span>
         <p class="fn-via__lugar">Saskatchewan</p>
-        <p class="fn-via__nombre">Commercial energy optimization support &mdash; current program
-          eligibility and intake availability are confirmed during qualification.</p>
+        <p class="fn-via__nombre">Commercial energy optimization support</p>
       </div>
-
-      <p class="fondos__caja-nota">Program eligibility, funding amounts and intake
-        availability are confirmed through a conversation with the Rede team.</p>
     </div>
 
   </div>

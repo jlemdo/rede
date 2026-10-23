@@ -187,12 +187,17 @@
    escribe --fs-h1 en linea en <body> y la segunda regla --que solo existe
    entonces-- lo recoge.
    ========================================================================== */
+/* 22/10/2026: los dos techos bajan con --fs-h1 (60 -> 49 y 54 -> 49).
+
+   ESTAS REGLAS PISAN LA VARIABLE, asi que bajar solo el token NO movia
+   ni el hero de la home ni los titulos de Contact y Client Login: la
+   segunda regla de abajo solo entra cuando el regulador esta en uso. */
 .d2 .d2-hero__titulo {
-  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.75rem);
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 49px);
 }
 
 .d2 :is(.ct__titulo, .d2-acceso__titulo) {
-  font-size: clamp(32px, 3.6vw, 54px);
+  font-size: clamp(32px, 3.6vw, 49px);
 }
 
 body[style*="--fs-h1"] :is(.d2-hero__titulo, .ct__titulo, .d2-acceso__titulo) {

@@ -13,19 +13,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/d2.css">
-<link rel="stylesheet" href="css/d2-variantes.css">
-<link rel="stylesheet" href="css/v1.css">
+<link rel="stylesheet" href="css/tokens.css?v=202610221713">
+<link rel="stylesheet" href="css/style.css?v=202610221713">
+<link rel="stylesheet" href="css/d2.css?v=202610221713">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610221713">
+<link rel="stylesheet" href="css/v1.css?v=202610221713">
 <!-- d2-ega.css: el hero se copia de Energy Gap Analysis y sus reglas
      viven ahi. Sin esta hoja el marcado no tiene un solo estilo. -->
-<link rel="stylesheet" href="css/d2-ega.css">
-<link rel="stylesheet" href="css/d2-about.css">
+<link rel="stylesheet" href="css/d2-ega.css?v=202610221713">
+<link rel="stylesheet" href="css/d2-about.css?v=202610221713">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
-<link rel="stylesheet" href="css/prueba-fondos.css">
+<link rel="stylesheet" href="css/prueba-fondos.css?v=202610221713">
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610221713">
 </head>
 <body class="d2">
 
@@ -238,7 +238,11 @@
         <p class="eyebrow">About Rede</p>
         <h1 class="d2-ega-hero__titulo" id="ab-hero-t">
             Energy management built around how your buildings
-            <span class="acento">actually operate</span>.
+            <!-- El punto va DENTRO del span (22/10/2026, punto 2.1). Fuera
+                 quedaba como una palabra suelta y el navegador se lo llevaba
+                 a una quinta linea el solo: el titular ocupaba 5 renglones y
+                 el ultimo era un punto. -->
+            <span class="acento">actually operate.</span>
           </h1>
           <p class="d2-ega-hero__lead">
             Since 2008, Rede has helped organisations across Western Canada turn
@@ -248,9 +252,14 @@
 
           <!-- Los tres datos, y de donde sale cada uno (15/9/2026)
 
-               150+ organisations . bio de Matthew en el copy oficial, y
-                                    tambien en getrede.ca: "over 150
-                                    schools and organizations".
+               150+ organisations . RETIRADO EL 22/10/2026. Salia de la bio
+                                    de Matthew y de getrede.ca ("over 150
+                                    schools and organizations"), pero el
+                                    feedback de Erica lo corrige: "its
+                                    dozens of organizations, and hundreds
+                                    of buildings. (not 150 orgs)". La
+                                    fuente anterior era el sitio viejo, no
+                                    un dato verificado.
                59 communities ..... contados sobre el mapa "Our
                                     Communities" del propio cliente, el
                                     mismo que se replica mas abajo.
@@ -333,9 +342,20 @@
        ========================================================================== -->
   <section class="ab-datos" aria-label="Rede in numbers">
     <div class="ab-datos__inner">
+      <!-- 22/10/2026 (feedback de Erica, punto 2.2). Decia "150+
+           Organisations served across Western Canada", todo tachado en su
+           revision: "its dozens of organizations, and hundreds of
+           buildings. (not 150 orgs)".
+
+           La cifra inventada sale y entran los dos hechos que ella da. El
+           edificio es ademas la unidad del servicio: se gestionan
+           edificios, no organizaciones.
+
+           Ella escribe "Replace with??" con dos interrogantes, asi que la
+           redaccion queda pendiente de que la confirme. -->
       <div class="ab-dato">
-        <p class="ab-dato__cifra">150+</p>
-        <p class="ab-dato__eti">Organisations served<br>across Western Canada</p>
+        <p class="ab-dato__cifra">Hundreds of buildings</p>
+        <p class="ab-dato__eti">For dozens of organisations<br>across Western Canada</p>
       </div>
       <div class="ab-dato">
         <p class="ab-dato__cifra">Since 2008</p>
@@ -501,8 +521,29 @@
     <div class="ab-origen__texto">
       <p class="eyebrow">Our story</p>
       <h2 class="ab-origen__titulo" id="ab-origen-esp-t">Western roots. Broader impact.</h2>
+      <!-- LA PRONUNCIACION (22/10/2026, feedback de Erica, punto 2.5)
+
+           "We have lots of problems with people not knowing how to
+           pronounce Rede". Ofrecia tres caminos: un widget de audio,
+           "pronounced ready" o "rhymes with steady".
+
+           Va la frase y no el widget: un boton de audio solo ayuda a
+           quien ya sabe que hay duda, y quien no la tiene no lo pulsa.
+           La frase lo resuelve para todo el que pase por aqui. Ademas el
+           sitio no tiene ni un solo elemento de audio, y este seria el
+           unico.
+
+           "Pronounced ready" antes que "rhymes with steady": da la
+           respuesta directa, sin pedir el paso mental de quitarle la
+           s-t a otra palabra.
+
+           AQUI Y NO EN OTRO SITIO: es la primera vez en toda la pagina
+           que el nombre aparece en prosa --el hero lo usa como etiqueta--
+           y la seccion se llama "Our story", asi que el origen del nombre
+           cae donde se cuenta el origen de la empresa. -->
       <p>
-        Rede was founded in 2008 working with Indigenous, Northern and rural
+        <strong>Rede</strong><span class="ab-pron"> (pronounced &ldquo;ready&rdquo;)</span>
+        was founded in 2008 working with Indigenous, Northern and rural
         communities across Western Canada where resources were constrained and
         practical energy expertise mattered.
       </p>
@@ -605,12 +646,34 @@
       <circle class="ab-mapa__sitio" cx="189.9" cy="456.2" r="15.4" style="--i:13;--f:0.87"/>
       <circle class="ab-mapa__sitio" cx="806.0" cy="471.6" r="15.4" style="--i:54;--f:1.18"/>
       <circle class="ab-mapa__sitio" cx="814.1" cy="508.1" r="15.4" style="--i:55;--f:1.23"/>
+      <!-- CINCO PUNTOS MAS (22/10/2026, feedback de Erica, punto 2.3)
+
+           "Need to add Vancouver Island dots (Victoria, Saanich peninsula,
+           Comox, Campbell River) and Saskatoon".
+
+           Los 59 originales salieron de medir el mapa del cliente; estos
+           cinco los aporta Erica, que conoce la cartera. Van sobre la
+           silueta --comprobado con isPointInFill, ninguno cae en el mar--
+           y siguen el eje real de la isla, que corre de noroeste a
+           sureste: Campbell River arriba, luego Comox, y abajo la zona de
+           Saanich y Victoria.
+
+           El --i mantiene el pulso ordenado de oeste a este: la isla
+           entra con los primeros (0 a 3) y Saskatoon antes de Manitoba. -->
+      <circle class="ab-mapa__sitio" cx="100.0" cy="442.0" r="15.4" style="--i:1;--f:0.91"/>
+      <circle class="ab-mapa__sitio" cx="120.0" cy="462.0" r="15.4" style="--i:2;--f:0.97"/>
+      <circle class="ab-mapa__sitio" cx="150.0" cy="492.0" r="15.4" style="--i:3;--f:1.04"/>
+      <circle class="ab-mapa__sitio" cx="166.0" cy="508.0" r="15.4" style="--i:4;--f:0.95"/>
+      <circle class="ab-mapa__sitio" cx="648.0" cy="404.0" r="15.4" style="--i:50;--f:1.12"/>
       </svg>
     </div>
 
   </div>
 </section>
-<section class="d2-equipo-banda" aria-labelledby="eq-banda-titulo">
+<!-- id anadido el 22/10/2026 (feedback de Erica, punto 1.11): el boton
+     "Meet the Rede team" de la home apuntaba a about.html a secas y
+     dejaba al visitante arriba del todo, a varias pantallas del equipo. -->
+<section class="d2-equipo-banda" id="team" aria-labelledby="eq-banda-titulo">
 
       <!-- El trazado de circuito del fondo. Decorativo. -->
       <svg class="d2-equipo-banda__circuito" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
@@ -659,7 +722,9 @@
               </picture>
             </span>
             <h3 class="d2-equipo-banda__nombre">Marco Bieri, P.Eng., M.Eng, MSc, CEM</h3>
-            <p class="d2-equipo-banda__cargo">Energy Efficiency Engineer</p>
+            <!-- 22/10/2026 (feedback de Erica, punto 2.4): "Senior" en rojo,
+                 sin tachar, o sea una palabra que faltaba en el cargo. -->
+            <p class="d2-equipo-banda__cargo">Senior Energy Efficiency Engineer</p>
           </li>
 
           <li class="d2-equipo-banda__persona">

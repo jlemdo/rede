@@ -13,16 +13,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/d2.css">
-<link rel="stylesheet" href="css/d2-variantes.css">
-<link rel="stylesheet" href="css/d2-ega.css">
-<link rel="stylesheet" href="css/v1.css">
+<link rel="stylesheet" href="css/tokens.css?v=202610221727">
+<link rel="stylesheet" href="css/style.css?v=202610221727">
+<link rel="stylesheet" href="css/d2.css?v=202610221727">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610221727">
+<link rel="stylesheet" href="css/d2-ega.css?v=202610221727">
+<link rel="stylesheet" href="css/v1.css?v=202610221727">
 <!-- PRUEBA DE FONDO (16/9/2026) -- temporal, se retira al elegir -->
 
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610221727">
 </head>
 <body class="d2 em-page">
 
@@ -312,7 +312,11 @@
 
      El selector de FONDOS si se retira --la seccion ya tiene color
      propio-- pero eso es otra cosa que el de variantes. -->
-<div class="d2-caru" id="caru-work" data-caru>
+<!-- ANILLO FIJO (22/10/2026, punto 3.10): nos quedamos con la opcion 3,
+     la que replica la figura de Erica. data-caru-fijo="2" la deja puesta
+     y el JS retira los mandos solo; Cards y Loop siguen en el archivo
+     --ella las descarto, pero no se borran. -->
+<div class="d2-caru" id="caru-work" data-caru data-caru-fijo="2">
 
   <div class="d2-caru__diapo es-activa" role="tabpanel" aria-label="Option 1">
 <section class="ciclo-sec" id="how-it-works">
@@ -414,11 +418,70 @@
   </div>
 </section>
   </div>
+  <div class="d2-caru__diapo" role="tabpanel" aria-label="Option 3: Ring" hidden>
+<section class="ciclo-sec ciclo-sec--anillo d2-entra" aria-labelledby="work-anillo-t">
+  <div class="ciclo-sec__inner">
+
+    <div class="ciclo-sec__copy">
+      <p class="eyebrow">The work</p>
+      <h2 class="ciclo-sec__titulo" id="work-anillo-t">Energy management is a continuous cycle.</h2>
+      <p class="ciclo-sec__lead">Without someone dedicated to running that cycle, energy costs can
+        drift upward and capital decisions can be made without the data needed to support them.</p>
+      <p class="ciclo-sec__lead">Rede runs the cycle alongside your team, using portfolio data to
+        prioritize the work that matters.</p>
+    </div>
+
+    <div class="ciclo-sec__ciclo">
+      <!-- EL ANILLO (22/10/2026, punto 3.10)
+
+           Replica la figura que paso Erica: cuatro cuadrantes verdes
+           separados por filetes blancos que quiebran a media altura, y el
+           centro calado.
+
+           Va en SVG porque los cortes no son radios rectos. Las cuatro
+           piezas se generan por calculo --angulo, radio interior y
+           exterior-- asi que cambiar el tamano o el hueco es tocar una
+           constante, no redibujar.
+
+           El <title> y el <desc> cuentan lo mismo para quien no ve la
+           figura: un lector de pantalla anuncia las cuatro fases. -->
+      <svg class="anillo" viewBox="0 0 320 320" role="img"
+           aria-labelledby="anillo-t anillo-d">
+        <title id="anillo-t">The energy management cycle</title>
+        <desc id="anillo-d">A four-part cycle: identify opportunities, develop
+          strategies, implement measures, then monitor and verify, which feeds
+          back into identifying the next opportunities.</desc>
+        <g class="anillo__partes">
+            <path class="anillo__parte" style="--i:0" d="M160.0 97.0L160.0 10.0A150 150 0 0 1 310.0 160.0L223.0 160.0A63 63 0 0 0 160.0 97.0Z"/>
+            <path class="anillo__parte" style="--i:1" d="M223.0 160.0L310.0 160.0A150 150 0 0 1 160.0 310.0L160.0 223.0A63 63 0 0 0 223.0 160.0Z"/>
+            <path class="anillo__parte" style="--i:2" d="M160.0 223.0L160.0 310.0A150 150 0 0 1 10.0 160.0L97.0 160.0A63 63 0 0 0 160.0 223.0Z"/>
+            <path class="anillo__parte" style="--i:3" d="M97.0 160.0L10.0 160.0A150 150 0 0 1 160.0 10.0L160.0 97.0A63 63 0 0 0 97.0 160.0Z"/>
+        </g>
+            <circle class="anillo__centro" cx="160" cy="160" r="63"/>
+        <g class="anillo__cortes" aria-hidden="true">
+            <path class="anillo__corte" d="M155.4 97.2L155.3 89.3L160.0 74.4L165.9 53.7L158.9 32.6L150.8 10.3"/>
+            <path class="anillo__corte" d="M222.8 155.4L230.7 155.3L245.6 160.0L266.3 165.9L287.4 158.9L309.7 150.8"/>
+            <path class="anillo__corte" d="M164.6 222.8L164.7 230.7L160.0 245.6L154.1 266.3L161.1 287.4L169.2 309.7"/>
+            <path class="anillo__corte" d="M97.2 164.6L89.3 164.7L74.4 160.0L53.7 154.1L32.6 161.1L10.3 169.2"/>
+        </g>
+        <g class="anillo__etis">
+            <text class="anillo__eti" style="--i:0" x="235" y="85" text-anchor="middle"><tspan x="235" dy="-6">Identify</tspan><tspan x="235" dy="16">Opportunities</tspan></text>
+            <text class="anillo__eti" style="--i:1" x="235" y="235" text-anchor="middle"><tspan x="235" dy="-6">Develop</tspan><tspan x="235" dy="16">Strategies</tspan></text>
+            <text class="anillo__eti" style="--i:2" x="85" y="235" text-anchor="middle"><tspan x="85" dy="-6">Implement</tspan><tspan x="85" dy="16">Measures</tspan></text>
+            <text class="anillo__eti" style="--i:3" x="85" y="85" text-anchor="middle"><tspan x="85" dy="-6">Monitor &</tspan><tspan x="85" dy="16">Verify</tspan></text>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+  </div>
 
   <div class="d2-caru__mandos">
     <button class="d2-caru__flecha" type="button" data-caru-ir="-1" aria-label="Previous option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M7.5 1L1.5 7l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="d2-caru__punto" type="button" data-caru-a="0" aria-label="Option 1">1 Cards</button>
     <button class="d2-caru__punto" type="button" data-caru-a="1" aria-label="Option 2">2 Loop</button>
+    <button class="d2-caru__punto" type="button" data-caru-a="2" aria-label="Option 3">3 Ring</button>
     <button class="d2-caru__flecha" type="button" data-caru-ir="1" aria-label="Next option"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1.5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 </div>
@@ -552,7 +615,7 @@
     <figure class="bepi">
       <figcaption class="bepi__cab">
         <span class="bepi__titulo">Energy intensity over time</span>
-        <span class="bepi__unidad">ekWh per square metre</span>
+        <span class="bepi__unidad">ekWh/m&sup2;</span>
       </figcaption>
 
       <svg class="bepi__chart" viewBox="0 0 480 220" preserveAspectRatio="none"
@@ -627,7 +690,7 @@
     </div>
 
     <div class="comp-sec__medida">
-      <p class="comp-sec__label">Energy intensity &middot; ekWh per square metre</p>
+      <p class="comp-sec__label">Energy intensity &middot; ekWh/m&sup2;</p>
 
       <div class="comp">
         <div class="comp__lado" style="--i:0">
