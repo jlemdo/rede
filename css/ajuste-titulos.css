@@ -196,11 +196,26 @@
   font-size: clamp(2.25rem, 1.3rem + 3.4vw, 49px);
 }
 
-.d2 :is(.ct__titulo, .d2-acceso__titulo) {
+.d2 .ct__titulo {
   font-size: clamp(32px, 3.6vw, 49px);
 }
 
-body[style*="--fs-h1"] :is(.d2-hero__titulo, .ct__titulo, .d2-acceso__titulo) {
+/* Client Login aparte (23/10/2026): "Rede Utility Navigator (RUN)" mide
+   724px a 49 dentro de una caja de 599, asi que rompia en dos lineas. A
+   38 mide 561 y entra con 37 de margen; a 40 entraria con 8, que es
+   demasiado justo para aguantar cualquier cambio.
+
+   Es el nombre de un producto, y un nombre propio no deberia partirse
+   por la mitad. */
+.d2 .d2-acceso__titulo {
+  /* El minimo baja a 21: en movil la caja se queda en ~330px y a 27
+     el texto mide 399, asi que volvia a partirse. A 21 mide 310. */
+  font-size: clamp(21px, 3vw, 38px);
+}
+
+/* El titulo de Client Login NO sigue a la barra: con --fs-h1 volveria a
+   49 y a partirse en dos. El de Contact si, que cabe de sobra. */
+body[style*="--fs-h1"] :is(.d2-hero__titulo, .ct__titulo) {
   font-size: var(--fs-h1);
 }
 
