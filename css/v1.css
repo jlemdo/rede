@@ -3864,3 +3864,41 @@
   .d2 .anillo { max-width: 300px; }
   .d2 .anillo__eti { font-size: 15px; }
 }
+
+/* --------------------------------------------------------------------------
+   LA RETICULA DEL FONDO (23/10/2026)
+
+   La misma que la cabecera negra de la calculadora y la banda de About:
+   dos degradados cruzados que dejan una linea de 1px cada 130px, en verde
+   de marca al 6%. Sobre el negro se intuye sin competir con el texto.
+
+   Sin mascara: la calculadora recorta la suya porque alli la banda negra
+   es solo la cabecera; esta seccion es oscura entera.
+
+   Decorativa: va en un ::before con pointer-events none, asi que no entra
+   en el arbol de accesibilidad ni intercepta el raton.
+   -------------------------------------------------------------------------- */
+.d2 .ciclo-sec--anillo {
+  /* la capa de abajo se ancla a la seccion; sin esto buscaria el ancestro
+     posicionado mas cercano */
+  position: relative;
+  overflow: hidden;
+}
+
+.d2 .ciclo-sec--anillo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(126, 225, 142, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 225, 142, .06) 1px, transparent 1px);
+  background-size: 130px 130px;
+}
+
+.d2 .ciclo-sec--anillo .ciclo-sec__inner {
+  /* por encima de la reticula, igual que .calc__inner y .ab-mas__inner */
+  position: relative;
+  z-index: 1;
+}
