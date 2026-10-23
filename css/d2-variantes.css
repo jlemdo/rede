@@ -15108,6 +15108,89 @@ span.d2-panel__filtro:hover {
   }
 }
 
+/* ==========================================================================
+   LOS COLORES DE LA GRAFICA ORIGINAL (23/10/2026)
+
+   Medidos sobre la grafica que paso el cliente, la de "Cumulative Savings
+   $4,438,000". El ambar se leyo pixel a pixel; los tres de las lineas son
+   los colores por defecto de Excel, que es con lo que esta hecha:
+
+     Do Nothing  #4472C4  azul
+     Target      #ED7D31  naranja
+     Actual      #70AD47  verde
+     Barras      #FFC000  ambar
+
+   El naranja estaba descartado desde el 11/9 porque "el manual lo
+   menciona sin dar su valor". Ahora el valor existe, medido de su propia
+   grafica.
+
+   Entran solo con data-paleta="original" en el <svg>. Sin ese atributo
+   la grafica se ve como hasta ahora, asi que el boton compara las dos en
+   vivo sin tocar nada mas: ni grosores, ni punteados, ni animaciones.
+   ========================================================================== */
+.d2 .hero-gr[data-paleta="original"] .hero-gr__barras rect {
+  fill: #FFC000;
+}
+
+.d2 .hero-gr[data-paleta="original"] .hero-gr__linea--nada {
+  stroke: #4472C4;
+}
+
+.d2 .hero-gr[data-paleta="original"] .hero-gr__linea--meta {
+  stroke: #ED7D31;
+}
+
+.d2 .hero-gr[data-paleta="original"] .hero-gr__linea--real {
+  stroke: #70AD47;
+}
+
+/* La leyenda acompana: sus muestras pintan el color de la serie que
+   representan, asi que cambian con ella. El contenedor lleva el atributo
+   para que las cuatro se muevan a la vez. */
+.d2 [data-paleta="original"] .d2-hero__punto--ahorro { background: #FFC000; }
+.d2 [data-paleta="original"] .d2-hero__punto--nada   { background: #4472C4; }
+.d2 [data-paleta="original"] .d2-hero__punto--meta   { background: #ED7D31; }
+.d2 [data-paleta="original"] .d2-hero__punto--real   { background: #70AD47; }
+
+/* EL BOTON DE COMPARACION
+
+   Temporal, para que el cliente vea las dos. Va pegado a la esquina de
+   la grafica y en gris, para que no se confunda con los controles de la
+   pagina. */
+.d2 .gr-paleta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 5px 11px;
+  border: 1px solid var(--c-borde, #E4E4E4);
+  border-radius: 999px;
+  background: var(--c-blanco, #FFFFFF);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--c-texto, #333333);
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease;
+}
+
+.d2 .gr-paleta:hover {
+  border-color: var(--c-verde, #39B54A);
+  background: var(--c-verde-claro, #E8F5E8);
+}
+
+.d2 .gr-paleta__punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-verde-hover, #026F00);
+}
+
+.d2 .gr-paleta[aria-pressed="true"] .gr-paleta__punto {
+  background: #4472C4;
+}
+
 /* Sin movimiento: el grafico se ve entero desde el principio. */
 @media (prefers-reduced-motion: reduce) {
   .d2 .hero-gr__barras rect,
