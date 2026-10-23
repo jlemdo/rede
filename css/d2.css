@@ -398,7 +398,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: .26;
+  /* .26 dejaba el panel en verde plano: medido, la imagen variaba
+     12 niveles de 255 bajo el velo. */
+  opacity: .42;
 }
 
 /* Velo inferior: asegura la lectura del texto sobre cualquier zona del
@@ -407,13 +409,30 @@
   content: "";
   position: absolute;
   inset: 0;
+  /* Mas opaco abajo, donde va el texto, y mas limpio arriba, donde
+     no hay nada que proteger y solo tapaba la imagen. */
   background: linear-gradient(to top,
-    rgba(14, 42, 18, .85) 0%,
-    rgba(14, 42, 18, .35) 55%,
+    rgba(14, 42, 18, .88) 0%,
+    rgba(14, 42, 18, .30) 58%,
     transparent 100%);
 }
 
-.d2 .nav__drop__destacado > * { position: relative; z-index: 1; }
+/* El texto va por encima del velo, la imagen NO.
+
+   Antes decia "> *", que alcanzaba a todos los hijos. Cuando la imagen
+   se envolvio en un <picture> para servir webp, ese <picture> paso a
+   ser hijo directo: la regla lo metia en la pila del texto y el <img>
+   de dentro, que es absolute con inset:0, dejaba de medirse contra el
+   panel. Los cuatro paneles se veian en verde plano. */
+.d2 .nav__drop__destacado > *:not(picture) { position: relative; z-index: 1; }
+
+/* El <picture> ocupa el panel entero, como ocupaba el <img> cuando iba
+   suelto. Sin esto mide lo que una linea de texto. */
+.d2 .nav__drop__destacado > picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 
 .d2 .nav__drop__cifra {
   margin: 0;
