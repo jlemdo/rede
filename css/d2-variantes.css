@@ -10156,6 +10156,9 @@ span.d2-panel__filtro:hover {
 
    auto-fit con minmax: a partir de cierto ancho caben los cuatro en
    linea y por debajo se reparten solos, sin saltos declarados. */
+/* Las filas se estiran para que las fichas igualen su alto. */
+.d2 .d2-faq-dato__tira { align-items: stretch; }
+
 .d2 .d2-faq-dato__tira {
   display: grid;
   /* Cuatro fijas, no auto-fit: con auto-fit salian CINCO pistas para
@@ -10183,6 +10186,11 @@ span.d2-panel__filtro:hover {
   display: flex;
   align-items: center;
   gap: 12px;
+  /* 23/10/2026: todas las de una fila, del mismo alto. A 600px la
+     rejilla pasa a dos columnas y el dato mas largo parte en dos, asi
+     que su ficha medi­a 87 y las otras 74. */
+  height: 100%;
+  box-sizing: border-box;
   padding: 16px 18px;
   border: 1px solid var(--c-borde-suave, #EFEFEF);
   border-radius: 10px;
@@ -10226,6 +10234,37 @@ span.d2-panel__filtro:hover {
 }
 
 /* El texto. min-width:0 deja que se parta en vez de empujar el circulo. */
+/* EL ROTULO Y EL DATO (23/10/2026)
+
+   Antes cada ficha era una sola frase en negrita a 14px: el rotulo y el
+   dato pesaban igual, y como las columnas miden lo mismo pero los
+   textos no, unas llenaban su linea y otras dejaban una palabra suelta
+   al 15%.
+
+   Ahora llevan la estructura que ya usan las cifras del sitio --$4.4M
+   con "Cumulative savings" debajo--: rotulo corto arriba, dato debajo.
+   Las cuatro tienen dos lineas, asi que ninguna deja hueco raro. */
+.d2 .d2-faq-dato__dato-rot {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  /* Gris y no verde: el verde de los iconos ya marca la seccion, y un
+     segundo acento aqui competiria con el dato. */
+  color: var(--c-texto-suave, #6B6B6B);
+}
+
+.d2 .d2-faq-dato__dato-val {
+  display: block;
+  font-size: 15px;
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.25;
+  color: var(--c-texto, #333333);
+}
+
 .d2 .d2-faq-dato__dato-txt {
   min-width: 0;
   font-size: var(--fs-small, .875rem);
