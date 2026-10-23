@@ -245,6 +245,23 @@
       caja.classList.add('esta-cambiando');
 
       window.setTimeout(function () {
+        /* EL <source> TAMBIEN, no solo el <img>.
+
+           La previa vive dentro de un <picture> con un <source> en webp.
+           Un <source> GANA al <img>: cambiando solo el src el navegador
+           seguia pintando la primera imagen y el menu parecia roto
+           --comprobado con currentSrc, que decia esquema-mecanico.webp
+           para las cuatro opciones--.
+
+           El webp se deduce del jpg porque las dos versiones de cada
+           imagen comparten nombre y carpeta. Si no existiera, el
+           navegador cae al src sin romper nada. */
+        var fuente = destino.parentNode
+          ? destino.parentNode.querySelector('source')
+          : null;
+        if (fuente) {
+          fuente.setAttribute('srcset', img.replace(/\.jpe?g$/i, '.webp'));
+        }
         destino.setAttribute('src', img);
         cifra.textContent = a.getAttribute('data-mega-cif') || cifra.textContent;
         texto.textContent = a.getAttribute('data-mega-txt') || '';
