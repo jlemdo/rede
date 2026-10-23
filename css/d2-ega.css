@@ -117,6 +117,19 @@
   color: #33A343;
 }
 
+/* RUN ES LA EXCEPCION (23/10/2026)
+
+   Su titular empieza por "One " FUERA del span, asi que el display:block
+   de arriba dejaba esa palabra sola en su propia linea a cualquier
+   tamano. En las otras paginas el span va al final y no deja huerfanos,
+   por eso la regla general se queda.
+
+   Medido en las cinco paginas con este titular: quitar el block aqui
+   baja RUN de cuatro lineas a tres y no mueve ninguna otra. */
+.d2.run-page .d2-ega-hero__titulo span {
+  display: inline;
+}
+
 .d2 .d2-ega-hero__lead {
   margin: 0 0 26px;
   max-width: 46ch;
