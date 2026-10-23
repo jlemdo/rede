@@ -122,7 +122,7 @@
   margin: var(--sp-4) 0 0;
   /* 17px fijos, los de Login. El --fs-body-lg del sistema sube hasta 20
      en pantalla ancha y ahi el apoyo pesaba mas que el de Login. */
-  font-size: 1.0625rem;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
   /* 76ch: el lead son 16 palabras y a este ancho caen en DOS renglones

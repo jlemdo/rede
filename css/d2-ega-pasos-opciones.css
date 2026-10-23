@@ -96,7 +96,7 @@
 
 .d2 .d2-ega-pasos3__lead {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -742,7 +742,7 @@
 
 .d2 .d2-ega-termo__lead {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -943,7 +943,7 @@
 
 .d2 .d2-ega-per__lead {
   margin: 18px 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -1696,7 +1696,7 @@
 
 .d2 :is(.d2-ega-piv__lead) {
   margin: 18px 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -2058,7 +2058,7 @@
 
 .d2 .d2-ega-met__lead {
   margin: 18px 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -2959,7 +2959,7 @@
 
 .d2 .d2-ega-ruta-sec__lead {
   margin: 18px 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: rgba(255, 255, 255, .72);
 }
@@ -3252,7 +3252,7 @@
 
 .d2 :is(.d2-ega-eta__lead, .d2-ega-sen__lead) {
   margin: 18px 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: rgba(255, 255, 255, .72);
 }

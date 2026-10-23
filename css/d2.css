@@ -548,7 +548,7 @@
 .d2-hero__lead {
   max-width: 44ch;
   margin: var(--d2-e4) 0 0;
-  font-size: clamp(1rem, .95rem + .3vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.7;
   color: var(--c-texto-cuerpo);
 }
@@ -944,7 +944,7 @@
 .d2-lead-seccion {
   max-width: 62ch;
   margin: var(--d2-e4) auto 0;
-  font-size: clamp(1rem, .95rem + .3vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.7;
   color: var(--c-texto-cuerpo);
 }

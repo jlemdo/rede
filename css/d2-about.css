@@ -264,7 +264,7 @@
 .d2 .ab-mas__lead {
   margin: var(--sp-4) 0 0;
   max-width: 46ch;
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
   line-height: 1.7;
   /* Blanco al 84%: 14.9:1 sobre el fondo. */
   color: rgba(255, 255, 255, .84);
@@ -1077,7 +1077,7 @@
 
 .d2 .ab-quien__lead {
   margin: var(--sp-4, 1rem) 0 0;
-  font-size: var(--fs-body, 1rem);
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-suave, #6B6B6B);
 }

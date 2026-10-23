@@ -126,7 +126,24 @@
      adoptarla; lo que cambia es que ahora se toca en un sitio.
 
      No se toca --fs-h2 para no mover los titulos de tarjeta que la usan. */
-  --fs-seccion: clamp(34px, 3.4vw, 41px);
+  /* 23/10/2026: 30px fijo, en todos los anchos. Lo pidio el usuario y
+     sustituye al clamp de 34 a 41. A 30 el titular sigue midiendo casi
+     el doble que el parrafo de entrada, que es lo que sostiene la
+     jerarquia entre los dos. */
+  --fs-seccion: 30px;
+
+  /* EL PARRAFO DE ENTRADA (23/10/2026)
+
+     Los parrafos que abren hero y secciones median 17px, pero ese 17
+     salia de TREINTA reglas distintas en tres hojas: unas con clamp,
+     otras con el valor escrito a pelo.
+
+     Esta variable es ahora el unico sitio donde se decide, igual que
+     --fs-seccion para los titulares. Las treinta reglas apuntan aqui.
+
+     No se reutiliza --fs-body-lg: esa la usan tambien pies de foto y
+     notas, y moverla arrastraria texto que no es un parrafo de entrada. */
+  --fs-lead:    16px;
   --fs-h3:      clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
   --fs-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --fs-body:    clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);

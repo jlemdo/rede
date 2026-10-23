@@ -2139,7 +2139,7 @@ span.d2-panel__filtro:hover {
 .d2-prob-lec__lead,
 .d2-prob-comp__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -2263,7 +2263,7 @@ span.d2-panel__filtro:hover {
 
 .d2-prob-lec__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -2871,7 +2871,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .calc__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -4295,7 +4295,7 @@ span.d2-panel__filtro:hover {
 .d2 .d2-rutas-esc__lead,
 .d2 .d2-rutas-cmp__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -6849,7 +6849,7 @@ span.d2-panel__filtro:hover {
 .d2 .d2-equipo-dosier__lead,
 .d2 .d2-equipo-firma__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -6890,7 +6890,7 @@ span.d2-panel__filtro:hover {
 .d2 .d2-equipo-firma__lead {
   margin: clamp(14px, 1.6vw, 20px) 0 0;
   max-width: 62ch;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
 }
 
@@ -8478,7 +8478,7 @@ span.d2-panel__filtro:hover {
 
 .d2-prob-mapa__lead {
   margin: 0 0 14px;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--mapa-cuerpo);
   max-width: 46ch;
@@ -10603,7 +10603,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-faq-rol__lead {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -10876,7 +10876,7 @@ span.d2-panel__filtro:hover {
      mediria sobre los 17px del lead, no sobre el tamano del titular, y el
      ajuste se quedaba en 27px cuando hacen falta 48. */
   margin: calc(32px + (clamp(32px, 3.5vw, 50px) * 1.04 - 17px * 1.6) / 2) 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo, #333333);
   max-width: 46ch;
@@ -11566,7 +11566,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-cta-ficha__lead {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: #E8E8E8;                       /* 11.04:1 */
   max-width: 44ch;
@@ -12274,7 +12274,7 @@ span.d2-panel__filtro:hover {
   margin: 0;
   /* 17px y no 15.5: es el tamano de entradilla que usan las otras cuatro
      secciones que la llevan, y este era el unico distinto. */
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: #B5DBAD;
 }
@@ -13907,7 +13907,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-botones__lead {
   margin: var(--d2-e3) 0 0;
-  font-size: clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  font-size: var(--fs-lead);
   line-height: 1.62;
   color: var(--c-texto-cuerpo, #333);
 }
@@ -14336,7 +14336,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-equipo-voz__lead {
   margin: clamp(14px, 1.6vw, 20px) 0 0;
-  font-size: 17px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: #B5DBAD;
 }
@@ -16096,7 +16096,7 @@ span.d2-panel__filtro:hover {
 .d2 .d2-financia__lead {
   margin: 18px 0 0;
   max-width: 46ch;
-  font-size: 1.0625rem;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }

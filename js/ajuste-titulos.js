@@ -49,7 +49,25 @@
     { id: 'sec', etq: 'Section title', variable: '--fs-seccion',
       muestra: 'h2.dos-col__titulo, h2.ciclo-sec__titulo, h2.prueba-sec__titulo,' +
                '.d2-ega-pasos__titulo, .calc__titulo, h2',
-      min: 20, max: 80 }
+      min: 20, max: 80 },
+
+    /* El parrafo que abre el hero y cada seccion (23/10/2026).
+
+       Antes median 17px desde treinta reglas distintas; ahora todas
+       apuntan a --fs-lead, asi que esta barra las mueve a la vez.
+
+       El minimo es 12 y no menos: por debajo de eso un parrafo deja de
+       leerse comodo, y la barra no deberia ofrecer algo que no se
+       publicaria. */
+    { id: 'lead', etq: 'Paragraph', variable: '--fs-lead',
+      muestra: '.d2-hero__lead, .d2-lead-seccion, .serv-hero__lead,' +
+               '.d2-rutas-sec__lead, .d2-financia__lead, .requisitos__lead,' +
+               '.ciclo-sec__lead, .d2-equipo-voz__lead,' +
+               /* la red, para las paginas con clase propia: About usa
+                  d2-ega-hero__lead y Contact ct__lead. Va al final para
+                  que los concretos se prueben antes. */
+               '[class*="__lead"]',
+      min: 12, max: 28 }
   ];
 
   function leeActual(sel) {
@@ -57,7 +75,11 @@
     for (var i = 0; i < els.length; i++) {
       var r = els[i].getBoundingClientRect();
       // el primero que se vea de verdad: hay h2 ocultos y eyebrows de 11px
-      if (r.width > 40 && parseFloat(getComputedStyle(els[i]).fontSize) > 18) {
+      /* 10px y no 18: el umbral alto se puso para saltarse los eyebrow
+         cuando solo habia titulares. Con el parrafo en 16 descartaria
+         justo lo que hay que medir. Los eyebrow se filtran por selector,
+         que es mas fiable que por tamano. */
+      if (r.width > 40 && parseFloat(getComputedStyle(els[i]).fontSize) > 10) {
         return parseFloat(getComputedStyle(els[i]).fontSize);
       }
     }

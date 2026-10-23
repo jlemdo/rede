@@ -326,7 +326,7 @@ button {
 
 .hero__lead {
   max-width: 34em;
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -782,7 +782,7 @@ button {
 }
 
 .problema__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -949,7 +949,7 @@ button {
 }
 
 .calc__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -2414,7 +2414,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .rutas__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -2611,7 +2611,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .equipo__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -2974,7 +2974,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 .acceso__lead {
   margin-bottom: var(--sp-6);
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo);
 }
@@ -3242,7 +3242,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 .serv-hero__lead {
   max-width: 58ch;
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -3436,7 +3436,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .plataforma__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -3566,7 +3566,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .niveles__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -3746,7 +3746,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .requisitos__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -3871,7 +3871,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .fondos__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -4078,7 +4078,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .ciclo-sec__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -4280,7 +4280,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .origen__lead {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
