@@ -58,7 +58,10 @@
     texto.textContent = original ? 'Rede colours' : 'Original colours';
   }
 
-  pinta(false);
+  /* Arranca en los colores de la original (23/10/2026, a peticion del
+     usuario): es la version que el cliente reconoce, y el boton lleva a
+     los de Rede. Invertirlo es cambiar este true por false. */
+  pinta(true);
 
   boton.addEventListener('click', function () {
     pinta(boton.getAttribute('aria-pressed') !== 'true');
