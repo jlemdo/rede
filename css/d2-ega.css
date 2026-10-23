@@ -2580,6 +2580,56 @@
   width: 0;
 }
 
+/* --------------------------------------------------------------------------
+   EL "VS" ENTRE LAS DOS COLUMNAS (23/10/2026)
+
+   Va en CSS y no en el HTML: la tabla es una <table> de verdad, asi que
+   un <span> suelto entre los dos <th> ensuciaria la estructura y un
+   lector de pantalla lo leeria como si fuera otra columna. Un ::after
+   sobre la fila de cabeceras lo pinta encima sin tocar el marcado.
+
+   Se coloca a la mitad exacta de la tabla y a la altura de los nombres,
+   que es donde el ojo compara las dos palabras.
+
+   Lleva fondo propio --el de la seccion-- porque cae sobre el canto de
+   las dos tarjetas: sin el se leeria encima de los dos colores a la vez.
+   -------------------------------------------------------------------------- */
+.d2 .ega-tabla thead .ega-tabla__cab--gap {
+  position: relative;
+}
+
+/* Anclado al <th> de la derecha y no a la fila: su borde izquierdo ES la
+   union de las dos columnas. Con `left: 50%` sobre la fila caia en la
+   mitad de la TABLA, 59px a la izquierda, porque la columna de etiquetas
+   --FOCUS, KEY QUESTION...-- desplaza el centro. */
+.d2 .ega-tabla thead .ega-tabla__cab--gap::after {
+  content: "VS";
+  position: absolute;
+  left: 0;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+
+  padding: 5px 9px;
+  border-radius: 999px;
+  /* el fondo de la seccion, #1A5121. No tiene variable: va a pelo
+     en d2-ega.css, asi que aqui tambien. */
+  background: #1A5121;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1;
+  color: var(--c-blanco, #FFFFFF);
+}
+
+@media (max-width: 560px) {
+  /* En movil las dos columnas se estrechan y el VS se comeria el nombre
+     de las dos. */
+  .d2 .ega-tabla thead .ega-tabla__cab--gap::after { display: none; }
+}
+
 /* --- LAS CABECERAS ------------------------------------------------- */
 
 .d2 .ega-tabla__cab {
