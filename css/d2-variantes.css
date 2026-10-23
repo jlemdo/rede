@@ -9706,12 +9706,16 @@ span.d2-panel__filtro:hover {
 .d2 .d2-res-cen__inner {
   position: relative;
   z-index: 1;
-  max-width: 1040px;
+  /* 23/10/2026: sube con las otras dos, manteniendo el margen que
+     siempre tuvo sobre el contenido. */
+  max-width: clamp(1040px, 72vw, 1330px);
   margin-inline: auto;
 }
 
 .d2 .d2-res-cen__contenido {
-  max-width: 980px;
+  /* 23/10/2026: crece con la cita. Con 980 fijos recortaba la caja de la
+     cita, que a 42px de letra pide mas sitio. */
+  max-width: clamp(980px, 68vw, 1260px);
   margin-inline: auto;
   text-align: center;
 }
@@ -9726,7 +9730,16 @@ span.d2-panel__filtro:hover {
 }
 
 .d2 .d2-res-cen__cita {
-  max-width: 960px;
+  /* 23/10/2026: la caja crece con la letra.
+
+     La cita escala de 26 a 42px, pero esto estaba clavado en 960: a
+     1600 de ancho la letra llegaba a 40px dentro de la misma caja y la
+     ultima linea se quedaba con un 5%, o sea "it." colgando solo.
+
+     62vw deja el ancho igual hasta 1550 --62vw de 1550 son 961-- y de
+     ahi arriba lo ensancha hasta 1180, que es lo que el texto pide a
+     42px para no dejar huerfanos. */
+  max-width: clamp(960px, 67vw, 1240px);
   margin: 0 auto;
   font-size: clamp(26px, 2.5vw, 42px);
   font-weight: 400;
