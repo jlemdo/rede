@@ -1570,18 +1570,14 @@ span.d2-panel__filtro:hover {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  /* Crece con la cifra: a 64px quedaba pequeno al lado de 60px de
-     numero. */
-  width: 84px;
-  height: 84px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: rgba(255, 255, 255, .08);
   color: var(--c-blanco, #FFFFFF);
 }
 
-/* El trazo crece con su circulo: 32 en una caja de 84 dejaba
-   demasiado aire alrededor. */
-.d2-logos--dos__ico svg { width: 42px; height: 42px; }
+.d2-logos--dos__ico svg { width: 32px; height: 32px; }
 
 .d2-logos--dos__ico svg :is(path, circle, rect) {
   fill: none;
@@ -1613,11 +1609,7 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra {
   margin: 0;
-  /* 22/10/2026: la cifra crece para que el dato pese. De 40px de
-     techo a 60 --la mas grande del sistema estaba en 44, asi que esta
-     pasa a ser la cifra destacada de la pagina, que es lo que toca a
-     la unica prueba de resultado que hay--. */
-  font-size: clamp(2.5rem, 1.9rem + 2.6vw, 3.75rem);
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
   font-weight: var(--fw-extrabold);
   line-height: 1;
   letter-spacing: -.03em;
@@ -1626,8 +1618,7 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra-pie {
   margin: 6px 0 0;
-  /* De 15 a 19px: acompana a una cifra de 60, no de 40. */
-  font-size: clamp(1rem, .92rem + .38vw, 1.1875rem);
+  font-size: .9375rem;
   font-weight: var(--fw-medium);
   line-height: 1.25;
   color: var(--c-texto);
@@ -1635,9 +1626,7 @@ span.d2-panel__filtro:hover {
 
 .d2-logos--dos__cifra-nota {
   margin: 2px 0 0;
-  /* De 13 a 15px. Sube con las otras dos, pero menos: es la letra
-     pequena y tiene que seguir leyendose como tal. */
-  font-size: clamp(.875rem, .84rem + .17vw, .9375rem);
+  font-size: .8125rem;
   line-height: 1.3;
   color: var(--c-texto-suave);
 }
@@ -16747,3 +16736,31 @@ span.d2-panel__filtro:hover {
 .d2 .dos-col__cta {
   border-radius: var(--radio-pill, 999px);
 }
+
+
+/* LA CIFRA CRECE SOLO EN GAP (22/10/2026, punto 3.2)
+
+   Se pidio agrandar el $2.94M de Energy Gap Analysis. La clase la
+   comparten DOS bloques --ese y el $4.4M de la home-- asi que subirla
+   sin mas agrandaba tambien el de la home, que nadie pidio.
+
+   El aumento se acota a la pagina de Gap con `.ega-page`, la clase de su <body>. En la home
+   la cifra se queda en sus 40px de siempre. */
+.d2.ega-page .d2-logos--dos__cifra {
+  font-size: clamp(2.5rem, 1.9rem + 2.6vw, 3.75rem);
+}
+
+.d2.ega-page .d2-logos--dos__cifra-pie {
+  font-size: clamp(1rem, .92rem + .38vw, 1.1875rem);
+}
+
+.d2.ega-page .d2-logos--dos__cifra-nota {
+  font-size: clamp(.875rem, .84rem + .17vw, .9375rem);
+}
+
+.d2.ega-page .d2-logos--dos__ico {
+  width: 84px;
+  height: 84px;
+}
+
+.d2.ega-page .d2-logos--dos__ico svg { width: 42px; height: 42px; }
