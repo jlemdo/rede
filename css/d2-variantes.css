@@ -15148,9 +15148,19 @@ span.d2-panel__filtro:hover {
    representan, asi que cambian con ella. El contenedor lleva el atributo
    para que las cuatro se muevan a la vez. */
 .d2 [data-paleta="original"] .d2-hero__punto--ahorro { background: #FFC000; }
-.d2 [data-paleta="original"] .d2-hero__punto--nada   { background: #4472C4; }
-.d2 [data-paleta="original"] .d2-hero__punto--meta   { background: #ED7D31; }
 .d2 [data-paleta="original"] .d2-hero__punto--real   { background: #70AD47; }
+
+/* Estas dos NO son color plano: su guion y su punto los dibuja un
+   degradado repetido, con el color dentro. Hay que reescribir el
+   degradado, no el fondo: `background` a secas pisa background-image y
+   las dejaba en barra solida, perdiendo el patron que las distingue. */
+.d2 [data-paleta="original"] .d2-hero__punto--nada {
+  background-image: linear-gradient(to right, #4472C4 0 4px, transparent 4px 7px);
+}
+
+.d2 [data-paleta="original"] .d2-hero__punto--meta {
+  background-image: linear-gradient(to right, #ED7D31 0 2px, transparent 2px 4px);
+}
 
 /* EL BOTON DE COMPARACION
 
