@@ -2467,7 +2467,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 .ruta__texto {
   margin-bottom: var(--sp-5);
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -2535,7 +2535,7 @@ body { -webkit-font-smoothing: antialiased; }
   margin-top: var(--sp-5);
   padding-top: var(--sp-5);
   border-top: 1px solid rgba(255, 255, 255, .14);
-  font-size: var(--fs-small);
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: rgba(255, 255, 255, .6);
 }
@@ -3319,7 +3319,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .dos-col__texto {
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-lead);
   color: var(--c-texto-cuerpo);
 }
 
@@ -3530,7 +3530,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 .funcion__texto {
-  font-size: var(--fs-small);
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo);
 }
@@ -3641,7 +3641,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 .nivel__texto {
   margin-bottom: var(--sp-5);
-  font-size: var(--fs-small);
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo);
 }

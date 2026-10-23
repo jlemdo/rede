@@ -159,7 +159,7 @@
 .prueba-sec__texto {
   margin: clamp(var(--sp-5), 2.4vw, var(--sp-6)) 0 0;
   padding-top: clamp(var(--sp-5), 2.4vw, var(--sp-6));
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo);
   border-top: 1px solid var(--c-borde);
@@ -2457,7 +2457,7 @@
 
 .d2 .comp__resumen-n {
   flex: none;
-  font-size: clamp(40px, 3.9vw, 56px);
+  font-size: var(--fs-lead);
   font-weight: var(--fw-extrabold, 800);
   line-height: 1;
   color: var(--c-blanco, #FFFFFF);
@@ -2470,7 +2470,7 @@
    Y deja de ser flex: ahora lleva dentro la fuente en negrita, y un flex
    pondria las dos partes una al lado de la otra en vez de seguidas. */
 .d2 .comp__resumen-t {
-  font-size: var(--fs-small, .875rem);
+  font-size: var(--fs-lead);
   line-height: 1.5;
   color: rgba(255, 255, 255, .86);
   align-self: center;

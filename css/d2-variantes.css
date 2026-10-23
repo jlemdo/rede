@@ -5595,7 +5595,7 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-cta-bal__parrafo {
   margin: var(--d2-e3) 0 0;
-  font-size: 1.0625rem;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo);
 }
@@ -10314,7 +10314,9 @@ span.d2-panel__filtro:hover {
 
 .d2 .d2-faq-dato__r p {
   margin: 0 0 10px;
-  font-size: 15px;
+  /* 23/10/2026: con la barra, como el resto del cuerpo. Son los
+     parrafos mas largos del sitio y estaban a 15px fijos. */
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -14428,7 +14430,7 @@ span.d2-panel__filtro:hover {
      retrato y sobraba verde a la derecha. */
   margin: clamp(16px, 1.8vw, 22px) 0 0;
   max-width: 86ch;
-  font-size: .9375rem;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: #B5DBAD;
 }

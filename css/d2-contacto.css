@@ -478,7 +478,7 @@
 
 .d2 .ct-caja__texto {
   margin: 0 0 var(--sp-3);
-  font-size: var(--fs-small);
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo, #333333);
 }

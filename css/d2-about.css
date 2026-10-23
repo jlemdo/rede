@@ -87,7 +87,9 @@
    etiqueta alcanza mas de lo que su nombre sugiere. */
 .d2 .ab-origen__texto p:not(.eyebrow) {
   margin: var(--sp-4) 0 0;
-  font-size: var(--fs-body);
+  /* 23/10/2026: con la barra. Es el "Our story" de About, texto corrido
+     de seccion como cualquier otro. */
+  font-size: var(--fs-lead);
   line-height: 1.7;
   color: var(--c-texto-cuerpo, #333333);
 }

@@ -313,7 +313,7 @@
      Sigue dentro del rango comodo de lectura --45 a 75 caracteres-- y la
      frase entra entera en una linea. */
   max-width: 56ch;
-  font-size: 1.0625rem;
+  font-size: var(--fs-lead);
   line-height: 1.65;
   color: #D8D8D8;   /* 6.57:1 sobre el verde, comprobado */
 }
@@ -539,7 +539,7 @@
 
 .d2 .d2-acceso__puerta-texto {
   margin: 14px 0 0;
-  font-size: 15.5px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: var(--c-texto-cuerpo, #333333);
 }
@@ -576,7 +576,7 @@
 .d2 .d2-acceso__apoyo-texto {
   margin: 10px 0 0;
   max-width: 46ch;
-  font-size: 15px;
+  font-size: var(--fs-lead);
   line-height: 1.6;
   color: #BFBFBF;
 }
