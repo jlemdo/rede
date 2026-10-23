@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/tokens.css?v=202610230817">
-<link rel="stylesheet" href="css/style.css?v=202610230817">
-<link rel="stylesheet" href="css/d2.css?v=202610230817">
-<link rel="stylesheet" href="css/d2-variantes.css?v=202610230817">
-<link rel="stylesheet" href="css/d2-ega.css?v=202610230817">
-<link rel="stylesheet" href="css/d2-ega-pasos-opciones.css?v=202610230817">
+<link rel="stylesheet" href="css/tokens.css?v=202610231005">
+<link rel="stylesheet" href="css/style.css?v=202610231005">
+<link rel="stylesheet" href="css/d2.css?v=202610231005">
+<link rel="stylesheet" href="css/d2-variantes.css?v=202610231005">
+<link rel="stylesheet" href="css/d2-ega.css?v=202610231005">
+<link rel="stylesheet" href="css/d2-ega-pasos-opciones.css?v=202610231005">
 <!-- Regulador de tamano de titulares: herramienta de trabajo -->
-<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610230817">
+<link rel="stylesheet" href="css/ajuste-titulos.css?v=202610231005">
 </head>
 <body class="d2 ega-page">
 <header class="header" id="header">
@@ -2646,22 +2646,23 @@
       <!-- Los logos (22/10/2026, punto 1.4). La misma fila que en la home:
            esta seccion se repite en las dos paginas y tiene que verse
            igual en ambas. Descargados de las webs oficiales. -->
-      <ul class="d2-financia__programas">
+      <!-- SOLO BC HYDRO LLEVA LOGO (23/10/2026)
+
+           FortisBC y SaskPower vuelven a ser texto por decision del
+           usuario. BC Hydro se queda con el suyo porque es la unica cuya
+           acreditacion consta en el copy aprobado: "REDE is listed by BC
+           Hydro as an approved service provider".
+
+           Los archivos de los otros dos siguen en
+           assets/img/logos-utilities/ por si se autorizan mas adelante. -->
+<ul class="d2-financia__programas">
         <li class="tiene-logo">
           <img class="d2-financia__logo" src="assets/img/logos-utilities/bc-hydro.svg"
                alt="" width="142" height="26" loading="lazy" decoding="async">
           <span class="u-oculto-visual">BC Hydro</span>
         </li>
-        <li class="tiene-logo es-fortis">
-          <img class="d2-financia__logo" src="assets/img/logos-utilities/fortisbc.png"
-               alt="" width="152" height="34" loading="lazy" decoding="async">
-          <span class="u-oculto-visual">FortisBC</span>
-        </li>
-        <li class="tiene-logo">
-          <img class="d2-financia__logo" src="assets/img/logos-utilities/saskpower.png"
-               alt="" width="97" height="26" loading="lazy" decoding="async">
-          <span class="u-oculto-visual">SaskPower</span>
-        </li>
+        <li>FortisBC</li>
+        <li>SaskPower</li>
       </ul>
 
       <!-- CONFIRMADO (14/9/2026)

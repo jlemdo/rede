@@ -16317,6 +16317,12 @@ span.d2-panel__filtro:hover {
 .d2 .d2-financia__programas li {
   height: 46px;
   box-sizing: border-box;
+  /* Centrado para todas, lleven logo o no (23/10/2026). Al quitar los
+     logos de FortisBC y SaskPower volvieron a ser list-item y su texto
+     se colocaba 2px alto dentro del alto fijo. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 540px) {
